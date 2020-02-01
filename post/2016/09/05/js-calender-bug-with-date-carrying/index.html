@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>JavaScript 中 Date 细节问题导致的程序 Bug - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="JavaScript 中 Date 细节问题导致的程序 Bug" />
+<meta property="og:description" content="今天遇到一个 Bug，是在逢 31 号当天，日历控件（同事开发的）就会出问题。 表现为凡是有 31 号的月份几乎都不显示 31 号，但是部分月份如 12 月和 7 月除外。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2016/09/05/js-calender-bug-with-date-carrying/" />
+<meta property="article:published_time" content="2016-09-05T11:20:00+08:00" />
+<meta property="article:modified_time" content="2016-09-05T11:20:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="JavaScript 中 Date 细节问题导致的程序 Bug"/>
+<meta name="twitter:description" content="今天遇到一个 Bug，是在逢 31 号当天，日历控件（同事开发的）就会出问题。 表现为凡是有 31 号的月份几乎都不显示 31 号，但是部分月份如 12 月和 7 月除外。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">05</span>
+							<span class="rest">Sep 2016</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">JavaScript 中 Date 细节问题导致的程序 Bug</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/typescript">Category: TypeScript</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: JavaScript" href="/tags/javascript">JavaScript</a class="category">
+						
+						<a class="tag" title="Tag: Date" href="/tags/date">Date</a class="category">
+						
+						<a class="tag" title="Tag: Bug" href="/tags/bug">Bug</a class="category">
+						
+						<a class="tag" title="Tag: 31" href="/tags/31">31</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+
+	
+				<p>今天遇到一个 Bug，是在逢 31 号当天，日历控件（同事开发的）就会出问题。 表现为凡是有 31 号的月份几乎都不显示 31 号，但是部分月份如 12 月和 7 月除外。</p>
+<p>检查代码发现出错的位置在于</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">//返回某月天数
+</span><span style="color:#008000"></span><span style="color:#00f">function</span> getDaysBayYearAndMonth(year, month) {
+
+    <span style="color:#00f">var</span> date = <span style="color:#00f">new</span> Date();
+    date.setFullYear(year);
+    date.setMonth(month);
+    date.setDate(0);
+    <span style="color:#00f">return</span> date.getDate();
+}
+</code></pre></div><p>把系统时间设置为 8 月 31 号，重启浏览器，因为是当天发现的。
+从这个函数体开始单步调试，依次检查，发现结果如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">/**
+</span><span style="color:#008000"> * 调用函数 getDaysBayYearAndMonth(2016, 8)
+</span><span style="color:#008000"> */</span>
+<span style="color:#00f">function</span> getDaysBayYearAndMonth(year, month) {
+
+    <span style="color:#00f">var</span> date = <span style="color:#00f">new</span> Date(); <span style="color:#008000">// 2016-08-31
+</span><span style="color:#008000"></span>    date.setFullYear(year); <span style="color:#008000">// 2016-08-31
+</span><span style="color:#008000"></span>    date.setMonth(month);  <span style="color:#008000">// 2016-10-01
+</span><span style="color:#008000"></span>    date.setDate(0); <span style="color:#008000">// 2016-09-30
+</span><span style="color:#008000"></span>    <span style="color:#00f">return</span> date.getDate(); <span style="color:#008000">// 30
+</span><span style="color:#008000"></span>}
+</code></pre></div><p>找到问题的关键所在了，因为 <code>setMonth</code> 修改了月份为 9 月，而 9 月没有 31 号，遂自动进位到 10 月 1 日。
+然后再设置 <code>setDate(0)</code> 使得返回上个月最后一天，变成了 9 月 30 日。</p>
+<p>那 12 月和 7 月为什么没有问题呢？因为 7 月的下一个月是 8 月，而 12 月的下一个月是 1 月，1 月和
+8 月都是有 31 号的。</p>
+<p>问题遂解。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2016/09/05/js-calender-bug-with-date-carrying/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

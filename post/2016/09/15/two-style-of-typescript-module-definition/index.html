@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>TypeScript 的两种声明文件写法的区别和根本意义 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="TypeScript 的两种声明文件写法的区别和根本意义" />
+<meta property="og:description" content="TypeScript 的 DefinitelyTyped 声明文件有两种写法，一种叫做 全局类型声明(Global Type Definition)，另一个则是叫做 模块导出声明(External Module Definition)。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2016/09/15/two-style-of-typescript-module-definition/" />
+<meta property="article:published_time" content="2016-09-15T17:40:00+08:00" />
+<meta property="article:modified_time" content="2016-09-15T17:40:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TypeScript 的两种声明文件写法的区别和根本意义"/>
+<meta name="twitter:description" content="TypeScript 的 DefinitelyTyped 声明文件有两种写法，一种叫做 全局类型声明(Global Type Definition)，另一个则是叫做 模块导出声明(External Module Definition)。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">15</span>
+							<span class="rest">Sep 2016</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">TypeScript 的两种声明文件写法的区别和根本意义</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/typescript">Category: TypeScript</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: Definition" href="/tags/definition">Definition</a class="category">
+						
+						<a class="tag" title="Tag: Module" href="/tags/module">Module</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+
+	
+				<p>TypeScript 的 DefinitelyTyped 声明文件有两种写法，一种叫做 全局类型声明(Global Type Definition)，另一个则是叫做 模块导出声明(External Module Definition)。</p>
+<p>我们知道 NPM 包可以有内建的 TS 声明文件，从而免去使用 typings 工具安装 TS
+声明文件的操作。那既然可以有内建的声明文件，为何还需要额外安装呢？因为不是
+所有人都在使用 TypeScript，很多 NPM 模块都是纯 JavaScript 编写的，其作者
+没有太大的可能性为之编写模块声明文件。而且内建的声明文件有一定约束。</p>
+<p>TypeScript 的 DefinitelyTyped 声明文件有两种写法，一种叫做
+<strong>全局类型声明(Global Type Definition)</strong>，另一个则是叫做
+<strong>模块导出声明(External Module Definition)</strong>。</p>
+<blockquote>
+<p>External Module 一词源自 TypeScript 1.5 之前的 内部模块/外部模块
+之说，而 1.5 之后内部模块变成了 namespace，外部模块直接化为模块，
+不再有内外部模块之说。</p>
+<p>所以这里将 <code>External Module Definition</code> 译为 <code>模块导出声明</code> 比较合适。</p>
+</blockquote>
+<p>DefinitelyTyped 对此的说明是：</p>
+<ul>
+<li>如果你的模块需要将新的名称引入全局命名空间，那么就应该使用全局声明。</li>
+<li>如果你的模块无需将新的名称引入全局命名空间，那么就应该使用模块导出声明。</li>
+</ul>
+<p>这两者有什么不同呢？</p>
+<p>首先，最主要的区别在于，NPM 模块里面的内建声明文件必须使用模块导出声明写法，
+否则 TypeScript 编译无法通过。下面来看一个简单的例子：</p>
+<p>以一个名为 abc 的模块为例，TS源代码如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">export</span> <span style="color:#00f">function</span> abc(s: <span style="color:#2b91af">string</span>): <span style="color:#2b91af">string</span> {
+
+    <span style="color:#00f">return</span> s.substr(0, 4);
+}
+</code></pre></div><p>其声明文件有两种写法：</p>
+<ul>
+<li>
+<p>第一种，模块导出声明写法</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> <span style="color:#00f">interface</span> funcAbcSign {
+    (s: <span style="color:#2b91af">string</span>): <span style="color:#2b91af">string</span>
+}
+
+<span style="color:#00f">export</span> <span style="color:#00f">declare</span> <span style="color:#00f">let</span> abc: <span style="color:#2b91af">funcAbcSign</span>;
+</code></pre></div></li>
+<li>
+<p>第二种，全局类型声明写法</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;abc&#34;</span> {
+    <span style="color:#00f">interface</span> funcAbcSign {
+        (s: <span style="color:#2b91af">string</span>): <span style="color:#2b91af">string</span>
+    }
+
+    <span style="color:#00f">export</span> <span style="color:#00f">let</span> abc: <span style="color:#2b91af">funcAbcSign</span>;
+}
+</code></pre></div></li>
+</ul>
+<p>如果要理解两者的区别，首先要理解其意义。<code>模块导出声明写法</code> 中，单从这个文件内容
+看来是无法得知这些内容属于哪个模块的。所以必须将之与模块放在一起，作为内建声明文件，
+TypeScript 编译器才能得知其所属的模块。（或者放进 typings 的 external 目录）</p>
+<p><code>全局类型声明写法</code> 中，实际上是将模块名称 <code>abc</code> 引入了全局空间，即告诉
+TypeScript 编译器，存在一个叫 <code>abc</code> 的模块，想使用里面的名称，就 import 吧！</p>
+<p>因为任何一个 Node.js 的模块都是必须依靠 require 加载的才能通过字段引用的方式
+使用里面的名称，即是说
+<strong>一个模块无法真正地将任何名称引入全局的命名空间中，所以不应该也不能在一个模块
+的内建声明文件里使用全局声明写法！</strong></p>
+<p>这样，就明白了什么时候应该使用全局声明写法，什么时候应该使用模块导出声明写法了</p>
+<p>如果你写的 TypeScript 文件是在浏览器上通过 <code>&lt;script&gt;</code> 标签加载的，那么里面的
+变量、函数等都会被引入到全局命名空间中，这时候就需要为这个文件写一份全局类型声明
+了！比如这个文件：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// 定义了一个全局变量，整个页面内都可见
+</span><span style="color:#008000"></span><span style="color:#00f">let</span> appStartedTime: <span style="color:#2b91af">Date</span> = <span style="color:#00f">new</span> Date();
+</code></pre></div><p>你需要为之写一份 <code>.d.ts</code> 文件，供其它 ts 文件引用：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// 这里将变量名 appStartedTime 引入了 TypeScript 的全局命名空间中。
+</span><span style="color:#008000"></span><span style="color:#00f">declare</span> <span style="color:#00f">let</span> appStartedTime: <span style="color:#2b91af">Date</span>;
+</code></pre></div><p>除此之外，你可以用一个全局类型声明文件定义多个模块、命名空间，例如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// node.d.ts
+</span><span style="color:#008000"></span>
+<span style="color:#00f">declare</span> namespace NodeJS {
+
+    <span style="color:#00f">export</span> <span style="color:#00f">interface</span> Error {
+
+        <span style="color:#a31515">&#34;name&#34;</span>: <span style="color:#2b91af">string</span>;
+    }
+}
+
+<span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;http&#34;</span> {
+
+    <span style="color:#008000">// Node built-in module http
+</span><span style="color:#008000"></span>}
+
+<span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;fs&#34;</span> {
+
+    <span style="color:#008000">// Node built-in module fs
+</span><span style="color:#008000"></span>}
+</code></pre></div><p>或者深层模块声明：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts">
+<span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample/lib1&#34;</span> {
+
+    <span style="color:#00f">export</span> <span style="color:#00f">let</span> name: <span style="color:#2b91af">number</span>;
+}
+
+<span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample/lib2&#34;</span> {
+
+    <span style="color:#00f">export</span> <span style="color:#00f">let</span> value: <span style="color:#2b91af">number</span>;
+}
+
+<span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample&#34;</span> {
+
+    <span style="color:#00f">export</span> * from <span style="color:#a31515">&#34;sample/lib1&#34;</span>;
+
+    <span style="color:#00f">export</span> * from <span style="color:#a31515">&#34;sample/lib2&#34;</span>;
+}
+
+</code></pre></div><p>这是模块导出声明写法做不到的。</p>
+<p>综上所述，最直观的解释是：</p>
+<ul>
+<li>全局类型声明里的名称将被引入整个 TypeScript 全局命名空间中，从引用这个
+声明文件起就可以自由使用。</li>
+<li>模块导出声明里的名称必须通过 import/require 才能使用。</li>
+</ul>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2016/09/15/two-style-of-typescript-module-definition/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

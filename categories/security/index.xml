@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Security on Fenying</title>
+    <link>https://fenying.github.io/categories/security/</link>
+    <description>Recent content in Security on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Thu, 29 Nov 2018 13:10:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用阿里云 DNS 验证并签发 TLS 证书</title>
+      <link>https://fenying.github.io/post/2018/11/29/using-acme-with-aliyun-dns-verification/</link>
+      <pubDate>Thu, 29 Nov 2018 13:10:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/11/29/using-acme-with-aliyun-dns-verification/</guid>
+      <description>&lt;p&gt;使用阿里云 DNS 为 ACME.sh 提供验证，签发 TLS 证书。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Node.js 中使用 ECDSA 签名遇到的坑</title>
+      <link>https://fenying.github.io/post/2018/11/25/ecdsa-with-nodejs/</link>
+      <pubDate>Sun, 25 Nov 2018 18:14:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/11/25/ecdsa-with-nodejs/</guid>
+      <description>&lt;p&gt;最近有个朋友问我关于 Node.js 下使用 ECDSA 的问题，主要是使用 Node.js 的 Crypto 模块无法校验网络传输过来的签名结果。在踩坑无数后，终于搞清楚了原因。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenSSL 之 RSA 相关命令学习笔记</title>
+      <link>https://fenying.github.io/post/2016/11/11/openssl-rsa-commands/</link>
+      <pubDate>Thu, 10 Nov 2016 22:35:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/11/11/openssl-rsa-commands/</guid>
+      <description>&lt;p&gt;本文介绍 OpenSSL 命令行进行 RSA 加密、解密、签名、验证的操作，但不涉及 RSA
+算法原理解析，如有兴趣，可以阅读阮一峰的《RSA算法原理》。如果你只想知道 RSA
+是什么，那么你只要记住：&lt;strong&gt;RSA 是一种加密算法，使用两个密钥，一个叫公钥，一个
+叫私钥，使用公钥加密的密文只有使用私钥才可以解密，反之亦然。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在 MinGW 中使用 OpenSSL 创建证书时的 BUG</title>
+      <link>https://fenying.github.io/post/2016/09/12/openssl-bug-for-certificate-in-mingw/</link>
+      <pubDate>Mon, 12 Sep 2016 10:48:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/09/12/openssl-bug-for-certificate-in-mingw/</guid>
+      <description>&lt;p&gt;&lt;code&gt;openssl req&lt;/code&gt; 命令在 MinGW 环境下无法正确生成证书的 Bug。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

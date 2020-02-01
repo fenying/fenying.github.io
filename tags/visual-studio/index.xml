@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visual Studio on Fenying</title>
+    <link>https://fenying.github.io/tags/visual-studio/</link>
+    <description>Recent content in Visual Studio on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Wed, 02 Dec 2015 00:09:26 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Visual Studio 2015 中使用 OpenSSL</title>
+      <link>https://fenying.github.io/post/2015/12/02/using-openssl-with-vs2015/</link>
+      <pubDate>Wed, 02 Dec 2015 00:09:26 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/12/02/using-openssl-with-vs2015/</guid>
+      <description>&lt;p&gt;在 Visual Studio 2015 中使用 OpenSSL 的记录。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

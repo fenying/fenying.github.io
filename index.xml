@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fenying</title>
+    <link>https://fenying.github.io/</link>
+    <description>Recent content on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Wed, 29 Jan 2020 16:52:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于旧博客的声明</title>
+      <link>https://fenying.github.io/post/2020/01/29/about-the-old-blog/</link>
+      <pubDate>Wed, 29 Jan 2020 16:52:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2020/01/29/about-the-old-blog/</guid>
+      <description>本博客的前身是 https://fenying.blog.163.com/ 由于网易博客关停服务，旧的文章将逐渐搬迁过来。</description>
+    </item>
+    
+    <item>
+      <title>使用 Docker 部署 MongoDB</title>
+      <link>https://fenying.github.io/post/2020/01/20/deploy-mongodb-with-docker/</link>
+      <pubDate>Mon, 20 Jan 2020 18:32:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2020/01/20/deploy-mongodb-with-docker/</guid>
+      <description>&lt;p&gt;使用 Docker 部署 MongoDB 的例子。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Docker 部署 RabbitMQ</title>
+      <link>https://fenying.github.io/post/2019/11/12/deploy-rabbitmq-with-docker/</link>
+      <pubDate>Tue, 12 Nov 2019 16:47:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2019/11/12/deploy-rabbitmq-with-docker/</guid>
+      <description>&lt;p&gt;使用 Docker 部署 RabbitMQ 的例子。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Docker 部署 PHP-FPM</title>
+      <link>https://fenying.github.io/post/2019/09/24/deploy-php-fpm-with-docker/</link>
+      <pubDate>Tue, 24 Sep 2019 11:44:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2019/09/24/deploy-php-fpm-with-docker/</guid>
+      <description>&lt;p&gt;使用 Docker 部署 PHP-FPM 的例子。（包括 Redis 等扩展）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Docker 部署 MySQL</title>
+      <link>https://fenying.github.io/post/2019/02/23/deploy-mysql-with-docker/</link>
+      <pubDate>Sat, 23 Feb 2019 14:04:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2019/02/23/deploy-mysql-with-docker/</guid>
+      <description>&lt;p&gt;使用 Docker 部署 MySQL 的例子。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用阿里云 DNS 验证并签发 TLS 证书</title>
+      <link>https://fenying.github.io/post/2018/11/29/using-acme-with-aliyun-dns-verification/</link>
+      <pubDate>Thu, 29 Nov 2018 13:10:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/11/29/using-acme-with-aliyun-dns-verification/</guid>
+      <description>&lt;p&gt;使用阿里云 DNS 为 ACME.sh 提供验证，签发 TLS 证书。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Node.js 中使用 ECDSA 签名遇到的坑</title>
+      <link>https://fenying.github.io/post/2018/11/25/ecdsa-with-nodejs/</link>
+      <pubDate>Sun, 25 Nov 2018 18:14:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/11/25/ecdsa-with-nodejs/</guid>
+      <description>&lt;p&gt;最近有个朋友问我关于 Node.js 下使用 ECDSA 的问题，主要是使用 Node.js 的 Crypto 模块无法校验网络传输过来的签名结果。在踩坑无数后，终于搞清楚了原因。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 Docker 部署 Redis</title>
+      <link>https://fenying.github.io/post/2018/11/25/deploy-redis-with-docker/</link>
+      <pubDate>Sun, 25 Nov 2018 16:28:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/11/25/deploy-redis-with-docker/</guid>
+      <description>&lt;p&gt;使用 Docker 部署 Redis 的例子。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JavaScript 中进行时间周期增减</title>
+      <link>https://fenying.github.io/post/2018/08/07/date-calculation-in-javascript/</link>
+      <pubDate>Tue, 07 Aug 2018 18:39:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/08/07/date-calculation-in-javascript/</guid>
+      <description>&lt;p&gt;在 JavaScript 中进行时间周期增减计算的方法。特别是——下个月的此刻（解决 29，30，31 号的问题）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>如何彻底禁止 Redis 持久化功能</title>
+      <link>https://fenying.github.io/post/2018/03/08/how-to-turn-off-redis-permanent-storage/</link>
+      <pubDate>Thu, 08 Mar 2018 15:10:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/03/08/how-to-turn-off-redis-permanent-storage/</guid>
+      <description>&lt;p&gt;这是一个关于 Redis 坑的故事。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>如何发布一个 TypeScript 编写的包到 NPM 官方仓库</title>
+      <link>https://fenying.github.io/post/2018/01/16/how-to-publish-typescript-package-to-npmjs/</link>
+      <pubDate>Tue, 16 Jan 2018 00:01:39 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/01/16/how-to-publish-typescript-package-to-npmjs/</guid>
+      <description>&lt;p&gt;本文介绍如何发布一个包到 npmjs.org，包括创建、发布、撤回、更新、使用分支等等，以及其中
+包含的一些小技巧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Linux 登陆用户时启动 ssh-agent 并复用</title>
+      <link>https://fenying.github.io/post/2017/12/20/auto-init-ssh-agent/</link>
+      <pubDate>Wed, 20 Dec 2017 17:25:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2017/12/20/auto-init-ssh-agent/</guid>
+      <description>&lt;p&gt;使用 Git/SSH/SCP 之类操作的时候，一般都是用 ssh 密钥的，但是每次都要先启动 ssh-agent 才能注册密钥，挺烦的，于是尝试了一下，能不能在登陆终端的时候自动启动 ssh-agent，并在下次启动终端时复用该 ssh-agent。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>旧版本 mysql 命令行客户端导致 mysqlbinlog 出错</title>
+      <link>https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/</link>
+      <pubDate>Wed, 20 Dec 2017 14:49:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/</guid>
+      <description>&lt;p&gt;一次 MySQL 备份事故——不要试图用系统自带 yum 源安装 mysql/php/node/git/nginx 之流！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenSSL 之 RSA 相关命令学习笔记</title>
+      <link>https://fenying.github.io/post/2016/11/11/openssl-rsa-commands/</link>
+      <pubDate>Thu, 10 Nov 2016 22:35:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/11/11/openssl-rsa-commands/</guid>
+      <description>&lt;p&gt;本文介绍 OpenSSL 命令行进行 RSA 加密、解密、签名、验证的操作，但不涉及 RSA
+算法原理解析，如有兴趣，可以阅读阮一峰的《RSA算法原理》。如果你只想知道 RSA
+是什么，那么你只要记住：&lt;strong&gt;RSA 是一种加密算法，使用两个密钥，一个叫公钥，一个
+叫私钥，使用公钥加密的密文只有使用私钥才可以解密，反之亦然。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>为 Git 项目添加一个新的纯空分支</title>
+      <link>https://fenying.github.io/post/2016/10/08/add-an-empty-git-branch/</link>
+      <pubDate>Sat, 08 Oct 2016 23:45:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/10/08/add-an-empty-git-branch/</guid>
+      <description>&lt;p&gt;出于某种特殊的需求，要给一个已经存在的 git 项目添加一个全新的空分支——没有源自现有分支 commits 记录的分支。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在 Visual Studio 2015 下编译 LibUV-1.9.1</title>
+      <link>https://fenying.github.io/post/2016/09/25/compile-libuv-with-vs2015/</link>
+      <pubDate>Sun, 25 Sep 2016 22:21:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/09/25/compile-libuv-with-vs2015/</guid>
+      <description>&lt;p&gt;使用 VS2015 编译 LibUV 的过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TypeScript 的声明文件的使用与编写</title>
+      <link>https://fenying.github.io/post/2016/09/19/how-to-write-typescript-definitions/</link>
+      <pubDate>Mon, 19 Sep 2016 21:53:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/09/19/how-to-write-typescript-definitions/</guid>
+      <description>&lt;p&gt;本文分享个人编写 TypeScript 声明文件的经验。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>TypeScript 的两种声明文件写法的区别和根本意义</title>
+      <link>https://fenying.github.io/post/2016/09/15/two-style-of-typescript-module-definition/</link>
+      <pubDate>Thu, 15 Sep 2016 17:40:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/09/15/two-style-of-typescript-module-definition/</guid>
+      <description>&lt;p&gt;TypeScript 的 DefinitelyTyped 声明文件有两种写法，一种叫做 全局类型声明(Global Type Definition)，另一个则是叫做 模块导出声明(External Module Definition)。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在 MinGW 中使用 OpenSSL 创建证书时的 BUG</title>
+      <link>https://fenying.github.io/post/2016/09/12/openssl-bug-for-certificate-in-mingw/</link>
+      <pubDate>Mon, 12 Sep 2016 10:48:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/09/12/openssl-bug-for-certificate-in-mingw/</guid>
+      <description>&lt;p&gt;&lt;code&gt;openssl req&lt;/code&gt; 命令在 MinGW 环境下无法正确生成证书的 Bug。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>JavaScript 中 Date 细节问题导致的程序 Bug</title>
+      <link>https://fenying.github.io/post/2016/09/05/js-calender-bug-with-date-carrying/</link>
+      <pubDate>Mon, 05 Sep 2016 11:20:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/09/05/js-calender-bug-with-date-carrying/</guid>
+      <description>&lt;p&gt;今天遇到一个 Bug，是在逢 31 号当天，日历控件（同事开发的）就会出问题。 表现为凡是有 31 号的月份几乎都不显示 31 号，但是部分月份如 12 月和 7 月除外。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用 AWS SNS 发送通知到 HTTP 终端</title>
+      <link>https://fenying.github.io/post/2016/08/27/use-aws-sns-with-a-http-endpoint/</link>
+      <pubDate>Sat, 27 Aug 2016 17:46:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/08/27/use-aws-sns-with-a-http-endpoint/</guid>
+      <description>&lt;p&gt;AWS 的 SNS 是一个消息推送服务，通过 SNS，可以将 AWS 的其他服务（如 S3）的事件消息转发给 其它终端（E-Mail，HTTP服务器等）。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记一次 libiconv 编译错误</title>
+      <link>https://fenying.github.io/post/2016/07/07/memo-about-libiconv-compilation-failure/</link>
+      <pubDate>Thu, 07 Jul 2016 09:54:31 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/07/07/memo-about-libiconv-compilation-failure/</guid>
+      <description>&lt;p&gt;今天编译 PHP 时漏了安装 libiconv，于是去编译了一次 libiconv，结果编译报错了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MongoDB 在 Windows 下的手动安装与配置</title>
+      <link>https://fenying.github.io/post/2016/02/27/install-mongodb-in-windows/</link>
+      <pubDate>Sat, 27 Feb 2016 08:32:27 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/02/27/install-mongodb-in-windows/</guid>
+      <description>&lt;p&gt;本文介绍如何在 Windows 系统中安装 MongoDB 并配置为系统服务。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySQL 5.7.11 在 Windows 下的安装配置</title>
+      <link>https://fenying.github.io/post/2016/02/26/install-mysql-5.7.11-in-windows/</link>
+      <pubDate>Fri, 26 Feb 2016 17:09:55 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/02/26/install-mysql-5.7.11-in-windows/</guid>
+      <description>&lt;p&gt;今天下载了一个 mysql-5.7.11-winx64.zip，发现里面没有 data 目录了，看了下以前的笔记整理下安装命令。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CentOS 6.3 下安装 Sendmail 报错</title>
+      <link>https://fenying.github.io/post/2016/02/24/install-sendmail-error-in-centos-6.3/</link>
+      <pubDate>Wed, 24 Feb 2016 14:24:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/02/24/install-sendmail-error-in-centos-6.3/</guid>
+      <description>&lt;p&gt;公司有一台服务器是 CentOS 6.3，今天安装 sendmail 提示 GPG 验证失败。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Windows 8.1 下 subst 命令使用注意事项一例</title>
+      <link>https://fenying.github.io/post/2016/02/05/notice-about-subst-in-windows-8.1/</link>
+      <pubDate>Fri, 05 Feb 2016 12:02:47 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/02/05/notice-about-subst-in-windows-8.1/</guid>
+      <description>&lt;p&gt;由于笔记本加装了SSD，新装了Win8.1后，主分区是SSD，导致机械盘的分区全部都乱了，于是想到用 subst 命令来实现固定化路径。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CentOS 6.7 x64 下更新 GCC 5.2</title>
+      <link>https://fenying.github.io/post/2015/12/25/install-gcc-5.2-in-centos-6.7/</link>
+      <pubDate>Fri, 25 Dec 2015 11:45:35 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/12/25/install-gcc-5.2-in-centos-6.7/</guid>
+      <description>&lt;p&gt;众所周知，CentOS作为服务器操作系统被广泛使用，然而其包含的 yum 源中提供的软件版本是非常旧的。比如 GCC，最新版本竟然还是 4.4.x。前天尝试编译 MongoDB 3.2.0，都要求使用 GCC 4.8.1了（GCC 4.8+支持C++ 11）。&lt;/p&gt;
+&lt;p&gt;只好手动编译一次GCC。注意这并不复杂，但是时间很长。且要预留6G以上的空间给编译器。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记一次在 CentOS 6.7 上编译 MySQL 5.7.10 的过程</title>
+      <link>https://fenying.github.io/post/2015/12/23/compile-mysql-5.7.10-in-centos-6.7/</link>
+      <pubDate>Wed, 23 Dec 2015 01:18:23 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/12/23/compile-mysql-5.7.10-in-centos-6.7/</guid>
+      <description>&lt;p&gt;记录一次编译 MySQL 5.7.10 的过程。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Visual Studio 2015 中使用 OpenSSL</title>
+      <link>https://fenying.github.io/post/2015/12/02/using-openssl-with-vs2015/</link>
+      <pubDate>Wed, 02 Dec 2015 00:09:26 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/12/02/using-openssl-with-vs2015/</guid>
+      <description>&lt;p&gt;在 Visual Studio 2015 中使用 OpenSSL 的记录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于php与mysql连接的小CASE</title>
+      <link>https://fenying.github.io/post/2015/11/29/can-not-connect-mysql-with-php/</link>
+      <pubDate>Sun, 29 Nov 2015 14:40:16 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/11/29/can-not-connect-mysql-with-php/</guid>
+      <description>&lt;p&gt;两则 PHP 连接 MySQL 失败的记录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CentOS 6.7 下编译安装 Git</title>
+      <link>https://fenying.github.io/post/2015/11/27/compile-latest-git-in-gcc-6.7/</link>
+      <pubDate>Fri, 27 Nov 2015 17:24:31 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/11/27/compile-latest-git-in-gcc-6.7/</guid>
+      <description>&lt;p&gt;由于 yum 里面的 Git 居然还是 1.7.3 版本的，简直不能忍。于是下载了源码编译安装一个。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Who am I?</title>
+      <link>https://fenying.github.io/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/about/</guid>
+      <description>当前  就职于 Reolink Innovation Limited（2016 ~ ） 担任开源组织 LiteRT 首席开发者（2014 ~） 担任开源组织 迈云 技术顾问（2007 ~） 担任百度贴吧吧主·血之沙漏吧（2009 ~）  曾经  担任广东工业大学内网 PT 站 GDPT 主要开发人员（2013 ~ 2016） 就读于广东工业大学（2012 ~ 2016） 担任齐乐乐游戏论坛·网页游戏板块版主（2007 ~ 2009） 担任齐乐乐游戏论坛·枫叶骑士团家族版主（2009 ~ 2014）  </description>
+    </item>
+    
+  </channel>
+</rss>

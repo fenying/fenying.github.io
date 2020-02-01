@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on Fenying</title>
+    <link>https://fenying.github.io/tags/database/</link>
+    <description>Recent content in Database on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Wed, 20 Dec 2017 14:49:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/database/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>旧版本 mysql 命令行客户端导致 mysqlbinlog 出错</title>
+      <link>https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/</link>
+      <pubDate>Wed, 20 Dec 2017 14:49:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/</guid>
+      <description>&lt;p&gt;一次 MySQL 备份事故——不要试图用系统自带 yum 源安装 mysql/php/node/git/nginx 之流！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

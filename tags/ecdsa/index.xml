@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ECDSA on Fenying</title>
+    <link>https://fenying.github.io/tags/ecdsa/</link>
+    <description>Recent content in ECDSA on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Sun, 25 Nov 2018 18:14:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/ecdsa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Node.js 中使用 ECDSA 签名遇到的坑</title>
+      <link>https://fenying.github.io/post/2018/11/25/ecdsa-with-nodejs/</link>
+      <pubDate>Sun, 25 Nov 2018 18:14:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/11/25/ecdsa-with-nodejs/</guid>
+      <description>&lt;p&gt;最近有个朋友问我关于 Node.js 下使用 ECDSA 的问题，主要是使用 Node.js 的 Crypto 模块无法校验网络传输过来的签名结果。在踩坑无数后，终于搞清楚了原因。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

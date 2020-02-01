@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OpenSSL on Fenying</title>
+    <link>https://fenying.github.io/tags/openssl/</link>
+    <description>Recent content in OpenSSL on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Thu, 10 Nov 2016 22:35:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/openssl/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>OpenSSL 之 RSA 相关命令学习笔记</title>
+      <link>https://fenying.github.io/post/2016/11/11/openssl-rsa-commands/</link>
+      <pubDate>Thu, 10 Nov 2016 22:35:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/11/11/openssl-rsa-commands/</guid>
+      <description>&lt;p&gt;本文介绍 OpenSSL 命令行进行 RSA 加密、解密、签名、验证的操作，但不涉及 RSA
+算法原理解析，如有兴趣，可以阅读阮一峰的《RSA算法原理》。如果你只想知道 RSA
+是什么，那么你只要记住：&lt;strong&gt;RSA 是一种加密算法，使用两个密钥，一个叫公钥，一个
+叫私钥，使用公钥加密的密文只有使用私钥才可以解密，反之亦然。&lt;/strong&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在 MinGW 中使用 OpenSSL 创建证书时的 BUG</title>
+      <link>https://fenying.github.io/post/2016/09/12/openssl-bug-for-certificate-in-mingw/</link>
+      <pubDate>Mon, 12 Sep 2016 10:48:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/09/12/openssl-bug-for-certificate-in-mingw/</guid>
+      <description>&lt;p&gt;&lt;code&gt;openssl req&lt;/code&gt; 命令在 MinGW 环境下无法正确生成证书的 Bug。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Visual Studio 2015 中使用 OpenSSL</title>
+      <link>https://fenying.github.io/post/2015/12/02/using-openssl-with-vs2015/</link>
+      <pubDate>Wed, 02 Dec 2015 00:09:26 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/12/02/using-openssl-with-vs2015/</guid>
+      <description>&lt;p&gt;在 Visual Studio 2015 中使用 OpenSSL 的记录。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

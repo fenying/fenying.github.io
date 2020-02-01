@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TLS on Fenying</title>
+    <link>https://fenying.github.io/tags/tls/</link>
+    <description>Recent content in TLS on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Thu, 29 Nov 2018 13:10:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/tls/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用阿里云 DNS 验证并签发 TLS 证书</title>
+      <link>https://fenying.github.io/post/2018/11/29/using-acme-with-aliyun-dns-verification/</link>
+      <pubDate>Thu, 29 Nov 2018 13:10:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2018/11/29/using-acme-with-aliyun-dns-verification/</guid>
+      <description>&lt;p&gt;使用阿里云 DNS 为 ACME.sh 提供验证，签发 TLS 证书。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

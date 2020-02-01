@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database on Fenying</title>
+    <link>https://fenying.github.io/categories/database/</link>
+    <description>Recent content in Database on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Wed, 20 Dec 2017 14:49:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/categories/database/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>旧版本 mysql 命令行客户端导致 mysqlbinlog 出错</title>
+      <link>https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/</link>
+      <pubDate>Wed, 20 Dec 2017 14:49:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/</guid>
+      <description>&lt;p&gt;一次 MySQL 备份事故——不要试图用系统自带 yum 源安装 mysql/php/node/git/nginx 之流！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MongoDB 在 Windows 下的手动安装与配置</title>
+      <link>https://fenying.github.io/post/2016/02/27/install-mongodb-in-windows/</link>
+      <pubDate>Sat, 27 Feb 2016 08:32:27 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/02/27/install-mongodb-in-windows/</guid>
+      <description>&lt;p&gt;本文介绍如何在 Windows 系统中安装 MongoDB 并配置为系统服务。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySQL 5.7.11 在 Windows 下的安装配置</title>
+      <link>https://fenying.github.io/post/2016/02/26/install-mysql-5.7.11-in-windows/</link>
+      <pubDate>Fri, 26 Feb 2016 17:09:55 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/02/26/install-mysql-5.7.11-in-windows/</guid>
+      <description>&lt;p&gt;今天下载了一个 mysql-5.7.11-winx64.zip，发现里面没有 data 目录了，看了下以前的笔记整理下安装命令。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>记一次在 CentOS 6.7 上编译 MySQL 5.7.10 的过程</title>
+      <link>https://fenying.github.io/post/2015/12/23/compile-mysql-5.7.10-in-centos-6.7/</link>
+      <pubDate>Wed, 23 Dec 2015 01:18:23 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/12/23/compile-mysql-5.7.10-in-centos-6.7/</guid>
+      <description>&lt;p&gt;记录一次编译 MySQL 5.7.10 的过程。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

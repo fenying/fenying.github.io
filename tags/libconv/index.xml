@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>libconv on Fenying</title>
+    <link>https://fenying.github.io/tags/libconv/</link>
+    <description>Recent content in libconv on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Thu, 07 Jul 2016 09:54:31 +0000</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/libconv/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>记一次 libiconv 编译错误</title>
+      <link>https://fenying.github.io/post/2016/07/07/memo-about-libiconv-compilation-failure/</link>
+      <pubDate>Thu, 07 Jul 2016 09:54:31 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/07/07/memo-about-libiconv-compilation-failure/</guid>
+      <description>&lt;p&gt;今天编译 PHP 时漏了安装 libiconv，于是去编译了一次 libiconv，结果编译报错了。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

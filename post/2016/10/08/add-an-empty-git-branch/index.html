@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>为 Git 项目添加一个新的纯空分支 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="为 Git 项目添加一个新的纯空分支" />
+<meta property="og:description" content="出于某种特殊的需求，要给一个已经存在的 git 项目添加一个全新的空分支——没有源自现有分支 commits 记录的分支。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2016/10/08/add-an-empty-git-branch/" />
+<meta property="article:published_time" content="2016-10-08T23:45:00+08:00" />
+<meta property="article:modified_time" content="2016-10-08T23:45:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="为 Git 项目添加一个新的纯空分支"/>
+<meta name="twitter:description" content="出于某种特殊的需求，要给一个已经存在的 git 项目添加一个全新的空分支——没有源自现有分支 commits 记录的分支。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">08</span>
+							<span class="rest">Oct 2016</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">为 Git 项目添加一个新的纯空分支</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/git">Category: Git</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: Git" href="/tags/git">Git</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+
+	
+				<p>出于某种特殊的需求，要给一个已经存在的 git 项目添加一个全新的空分支——没有源自现有分支 commits 记录的分支。</p>
+<p>例如名为 <code>new-branch</code>。假如我们的 git 项目托管空间地址是 <code>https://git.oschina.net/sample/test</code>。</p>
+<p>思路是先创建一个空的 git 仓库，然后添加一个名为 <code>new-branch</code> 的分支，将其 <code>push</code> 到现有的 git 项目托管空间中。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cd ~
+mkdir new-branch
+cd new-branch
+git init
+touch README.md
+git add -A .
+git commit -m <span style="color:#a31515">&#34;Initial commit&#34;</span>
+git remote add origin https://git.oschina.net/sample/test.git
+git branch new-branch
+git push origin new-branch
+cd ~
+rm -rf new-branch
+</code></pre></div><p>好了，现在可以到原有的目录中，使用下面的命令切换到新的分支了。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">git fetch --all
+git checkout -b new-branch origin/new-branch
+</code></pre></div>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2016/10/08/add-an-empty-git-branch/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

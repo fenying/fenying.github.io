@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SNS on Fenying</title>
+    <link>https://fenying.github.io/tags/sns/</link>
+    <description>Recent content in SNS on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Sat, 27 Aug 2016 17:46:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/sns/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用 AWS SNS 发送通知到 HTTP 终端</title>
+      <link>https://fenying.github.io/post/2016/08/27/use-aws-sns-with-a-http-endpoint/</link>
+      <pubDate>Sat, 27 Aug 2016 17:46:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/08/27/use-aws-sns-with-a-http-endpoint/</guid>
+      <description>&lt;p&gt;AWS 的 SNS 是一个消息推送服务，通过 SNS，可以将 AWS 的其他服务（如 S3）的事件消息转发给 其它终端（E-Mail，HTTP服务器等）。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows on Fenying</title>
+    <link>https://fenying.github.io/tags/windows/</link>
+    <description>Recent content in Windows on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Sat, 27 Feb 2016 08:32:27 +0000</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MongoDB 在 Windows 下的手动安装与配置</title>
+      <link>https://fenying.github.io/post/2016/02/27/install-mongodb-in-windows/</link>
+      <pubDate>Sat, 27 Feb 2016 08:32:27 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/02/27/install-mongodb-in-windows/</guid>
+      <description>&lt;p&gt;本文介绍如何在 Windows 系统中安装 MongoDB 并配置为系统服务。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySQL 5.7.11 在 Windows 下的安装配置</title>
+      <link>https://fenying.github.io/post/2016/02/26/install-mysql-5.7.11-in-windows/</link>
+      <pubDate>Fri, 26 Feb 2016 17:09:55 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/02/26/install-mysql-5.7.11-in-windows/</guid>
+      <description>&lt;p&gt;今天下载了一个 mysql-5.7.11-winx64.zip，发现里面没有 data 目录了，看了下以前的笔记整理下安装命令。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

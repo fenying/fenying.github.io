@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>OpenSSL 之 RSA 相关命令学习笔记 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="OpenSSL 之 RSA 相关命令学习笔记" />
+<meta property="og:description" content="本文介绍 OpenSSL 命令行进行 RSA 加密、解密、签名、验证的操作，但不涉及 RSA
+算法原理解析，如有兴趣，可以阅读阮一峰的《RSA算法原理》。如果你只想知道 RSA
+是什么，那么你只要记住：RSA 是一种加密算法，使用两个密钥，一个叫公钥，一个
+叫私钥，使用公钥加密的密文只有使用私钥才可以解密，反之亦然。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2016/11/11/openssl-rsa-commands/" />
+<meta property="article:published_time" content="2016-11-10T22:35:00+08:00" />
+<meta property="article:modified_time" content="2016-11-10T22:35:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="OpenSSL 之 RSA 相关命令学习笔记"/>
+<meta name="twitter:description" content="本文介绍 OpenSSL 命令行进行 RSA 加密、解密、签名、验证的操作，但不涉及 RSA
+算法原理解析，如有兴趣，可以阅读阮一峰的《RSA算法原理》。如果你只想知道 RSA
+是什么，那么你只要记住：RSA 是一种加密算法，使用两个密钥，一个叫公钥，一个
+叫私钥，使用公钥加密的密文只有使用私钥才可以解密，反之亦然。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">10</span>
+							<span class="rest">Nov 2016</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">OpenSSL 之 RSA 相关命令学习笔记</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/security">Category: Security</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: RSA" href="/tags/rsa">RSA</a class="category">
+						
+						<a class="tag" title="Tag: OpenSSL" href="/tags/openssl">OpenSSL</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+<aside class="toc">
+    <p class="toc-title">目录</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#section-0-生成随机文件">Section 0: 生成随机文件</a></li>
+    <li><a href="#section-1-生成一个密钥文件">Section 1: 生成一个密钥文件</a></li>
+    <li><a href="#section-2-去除密钥文件的密码">Section 2: 去除密钥文件的密码</a></li>
+    <li><a href="#section-3-根据私钥生成公钥">Section 3: 根据私钥生成公钥</a></li>
+    <li><a href="#section-4-使用公钥加密">Section 4: 使用公钥加密</a></li>
+    <li><a href="#section-5-使用私钥解密">Section 5: 使用私钥解密</a></li>
+    <li><a href="#section-6-使用私钥签名">Section 6: 使用私钥签名</a></li>
+    <li><a href="#section-7-使用公钥校验">Section 7: 使用公钥校验</a></li>
+  </ul>
+</nav>
+</aside>
+
+
+	
+				<p>本文介绍 OpenSSL 命令行进行 RSA 加密、解密、签名、验证的操作，但不涉及 RSA
+算法原理解析，如有兴趣，可以阅读阮一峰的《RSA算法原理》。如果你只想知道 RSA
+是什么，那么你只要记住：<strong>RSA 是一种加密算法，使用两个密钥，一个叫公钥，一个
+叫私钥，使用公钥加密的密文只有使用私钥才可以解密，反之亦然。</strong></p>
+<h2 id="section-0-生成随机文件">Section 0: 生成随机文件</h2>
+<p>由于 OpenSSL 创建密钥文件是随机生成的，因此有必要为之提供一份随机数据源。</p>
+<p>可以用 openssl 的 <code>rand</code> 命令创建一个 64MB 的随机文件，保存为文件
+<strong>randSrc.bin</strong>。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl rand -out ./randSrc.bin 67108864
+</code></pre></div><p>还可以使用 <code>-base64</code> 或者 <code>-hex</code> 两个参数之一指定输出格式为 BASE64 或者 HEX。</p>
+<h2 id="section-1-生成一个密钥文件">Section 1: 生成一个密钥文件</h2>
+<blockquote>
+<p>小贴士：</p>
+<ol>
+<li>根据目前的普遍需求，应当使用 AES256 为加密标准。</li>
+<li>通常 RSA 私钥文件命名为 <strong>name.pem</strong>，公钥文件名为 <strong>name_pub.pem</strong>。</li>
+<li>OpenSSL 生成的密钥文件默认是 PEM 格式的。</li>
+</ol>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl genrsa <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -rand randSrc.bin <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -aes256 <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -out rsa.pem 2048
+</code></pre></div><p>这个命令的意思是：</p>
+<ul>
+<li><code>genrsa</code>: 生成 RSA 密钥文件。</li>
+<li><code>-aes256</code>: 使用 AES256 算法加密生成的密钥文件，
+因此你需要输入加密用的密码（并记住）。</li>
+<li><code>-rand randSrc.bin</code> 使用文件 <strong>randSrc.bin</strong> 作为随机数来源。</li>
+<li><code>-out rsa.pem</code>: 将生成的密钥文件保存为 <code>rsa.pem</code>。</li>
+<li><code>2048</code>: 生成 2048 Bits 的 RSA 密钥文件。</li>
+</ul>
+<blockquote>
+<p>2048 Bits 是指 RSA 算法里 N 的长度，而不是说公钥和私钥都是 2048 Bits。</p>
+</blockquote>
+<p>生成文件样例：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">-----BEGIN RSA PRIVATE KEY-----
+Proc-Type: 4,ENCRYPTED
+DEK-Info: AES-256-CBC,A6F8DD9D1D994363907C278CDF9B644C
+
+MfsPjXK6izOmmzMseG3M2aBKque20ao13+oFg/JdJtlCK0Vb11hLqq8h/ICnY3lI
+z1xuBKiXVykl521YumeTS6C+WtSkb71cy1u6lHBwdO44tWxklEqcl1sLYIWKyNaB
+VgKmS4BhfuUq8XlSt3LnuQT/BJWPP7+GUUaZG6/stMWAx+XBg9mMahxGCqo7aRcz
+...............
+nLGRE27iklwGgSagaK40FDiSe69HcIBkHCUQYaYtXQzHNgjoQRkcotzo+vxM7XcL
+5y5DHwA8IFwt9c5f14lxZ2cXF9p54JA3UMy+T7XggINDgBFuOPR/U3eBS2x6hHW6
+eoGX+khw+s5atpNJaF4s6n2ViDseQsW+b8NfSdlX0j5f5xSasFcYgFsDZtBy/FqZ
+-----END RSA PRIVATE KEY-----
+</code></pre></div><blockquote>
+<p>这是一个密钥文件，而不是一个纯粹的私钥文件，它包含了完整的密钥信息，即是说，里面
+既有公钥也有私钥。但是只能把它当成私钥使用，公钥部分请参考 <em>Section 3</em>。</p>
+</blockquote>
+<h2 id="section-2-去除密钥文件的密码">Section 2: 去除密钥文件的密码</h2>
+<p>从 <em>Section 1</em> 生成的密钥文件中提取没有密码的密钥文件，以便给 Nginx 等服务器使用。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl rsa -in rsa.pem -out rsa_pri.pem
+</code></pre></div><h2 id="section-3-根据私钥生成公钥">Section 3: 根据私钥生成公钥</h2>
+<p>从 <em>Section 1</em> 生成的私钥文件中提取公钥文件。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl rsa -in rsa.pem -pubout -out rsa_pub.pem
+</code></pre></div><h2 id="section-4-使用公钥加密">Section 4: 使用公钥加密</h2>
+<p>RSA 加密和解密都是使用 openssl 的 rsautl 命令。</p>
+<p>在 <em>Section 3</em> 里面生成了公钥文件 <strong>rsa_pub.pem</strong>，下面使用它进行加密。
+（先生成个数据文件）</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">echo 1234567890 &gt; test.txt
+md5sum test.txt
+openssl rsautl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -encrypt <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -in test.txt <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -out test.secret <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -pubin <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -inkey rsa_pub.pem
+</code></pre></div><p>可以看到源文件 <strong>test.txt</strong> 的 MD5 值为 <code>7c12772809c1c0c3deda6103b10fdfa0</code>。</p>
+<blockquote>
+<p>源文件 <strong>test.txt</strong> 只有 10 个字节大小，但是加密结果文件 <strong>test.secret</strong>* 居然有
+256 字节（2048 位长），这是因为 RSA 密钥是 2048 位长度的，而 RSA 加解密算法的操作
+单位必须和密钥长度一致。所以加密结果的大小一定和密钥长度的一致。所以加密长度必须小于
+<code>密钥长度 - 填充长度</code>。</p>
+<p>关于填充数据，默认使用 <code>PKCS#1 v1.5</code> 填充格式。</p>
+</blockquote>
+<h2 id="section-5-使用私钥解密">Section 5: 使用私钥解密</h2>
+<p>在 <em>Section 1</em> 里面生成了密钥文件 <strong>rsa.pem</strong>，下面使用它进行加密。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl rsautl -decrypt -in test.secret -out test.raw -inkey rsa.pem
+md5sum test.raw
+</code></pre></div><p>这里使用的是带密码的密钥文件，因此需要输入 AES 密码先把密钥文件解密出来。如果使用的是
+<em>Section 2</em> 中生成的无密码密钥文件，那么则不需要输入密码了。</p>
+<p>可以看到解密出来的文件 <strong>test.raw</strong> 的 MD5 值为 <code>7c12772809c1c0c3deda6103b10fdfa0</code>。</p>
+<h2 id="section-6-使用私钥签名">Section 6: 使用私钥签名</h2>
+<p>加解密是使用公钥加密，私钥解密，因为公钥是公开的，私钥是保密的。签名和校验则反过来，
+私钥签名，公钥校验。</p>
+<p>这里假设你要发送消息给你朋友，消息存在文件 <strong>test.txt</strong> 中，你已经拥有了你朋友的
+公钥文件 <strong>fr_pub.pem</strong>。</p>
+<p>那么先用他的公钥对文件进行加密：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl rsautl -encrypt -in test.txt -out test.msg -pubin -inkey fr_pub.pem
+</code></pre></div><p>得到了加密后的文件 <strong>test.msg</strong>，下面使用你自己的私钥进行签名。</p>
+<p>先用 SHA256 算法生成文件的哈希校验码：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl sha256 -out test.hash test.msg
+</code></pre></div><p>得到了哈希校验文件 <strong>test.hash</strong>，内容如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">SHA256(test.msg)= ************************
+</code></pre></div><p>下面使用 RSA 私钥对其进行签名：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl pkeyutl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -sign <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -in test.hash <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -out test.sign <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -inkey rsa_raw.pem
+</code></pre></div><p>或者</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl rsautl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -sign <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -in test.hash <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -out test.sign <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -inkey rsa_raw.pem
+</code></pre></div><blockquote>
+<p>RSA 私钥签名的实质是：使用 RSA 私钥对数据的哈希校验码进行加密，这样就可以用
+对应的 RSA 公钥解密得到数据的哈希校验码。</p>
+</blockquote>
+<p>得到了签名后的文件 <strong>test.sign</strong>，将它和 <strong>test.msg</strong>、<strong>rsa_pub.pem</strong>
+一起发给你的朋友。</p>
+<h2 id="section-7-使用公钥校验">Section 7: 使用公钥校验</h2>
+<p>现在你的朋友收到了你发给他的三个文件，分别是：公钥、签名、消息。现在他怎么确定
+消息是发给他的呢？当然是使用公钥校验啦。</p>
+<p>首先，他同样使用 openssl 生成文件 <strong>test.msg</strong> 的哈希校验码。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl sha256 -out test.hash test.msg
+</code></pre></div><p>然后使用你的公钥文件对其进行校验：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl pkeyutl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -verify <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -in test.hash <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -sigfile test.sign <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -pubin <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -inkey rsa_pub.pem
+</code></pre></div><p>如果校验通过，则会看到提示：<code>Signature Verified Successfully</code>。</p>
+<p>然后他再使用他的私钥解密 <strong>test.msg</strong> 文件即可得到你发给他的消息了。</p>
+<blockquote>
+<p>这里不使用 <code>openssl rsautl -verify</code> 命令，因为 <code>rsautl</code> 的 <code>-verify</code> 指令
+仅仅是将输入的文件用公钥解密，但不与计算出来的哈希校验码进行比较，不如 pkeyutl
+的 <code>-verify</code> 方便：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl rsautl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -verify <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -in test.sign <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -pubin <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -inkey rsa_pub.pem
+</code></pre></div></blockquote>
+<blockquote>
+<p>前面说了，<strong>rsa.pem</strong> 里面既包含私钥又包含公钥，这里可以小小地证明一下。
+直接使用 <strong>rsa_raw.pem</strong> 文件进行签名校验。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">openssl pkeyutl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -verify <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -in test.hash <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -sigfile test.sign <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -pubin <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>    -inkey rsa_raw.pem
+</code></pre></div><p>如何，结果是不是一样呢？</p>
+</blockquote>
+<p><strong>那么，问题来了。如果传输过程被人拦截了怎么办？这就是下一篇文章的内容了。</strong></p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2016/11/11/openssl-rsa-commands/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

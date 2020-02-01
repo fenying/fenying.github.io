@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://fenying.github.io/categories/announcement/</loc>
+    <lastmod>2020-01-29T16:52:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/</loc>
+    <lastmod>2020-01-29T16:52:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/</loc>
+    <lastmod>2020-01-29T16:52:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/</loc>
+    <lastmod>2020-01-29T16:52:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2020/01/29/about-the-old-blog/</loc>
+    <lastmod>2020-01-29T16:52:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/docker/</loc>
+    <lastmod>2020-01-20T18:32:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/docker/</loc>
+    <lastmod>2020-01-20T18:32:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/mongodb/</loc>
+    <lastmod>2020-01-20T18:32:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/</loc>
+    <lastmod>2020-01-20T18:32:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2020/01/20/deploy-mongodb-with-docker/</loc>
+    <lastmod>2020-01-20T18:32:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/rabbitmq/</loc>
+    <lastmod>2019-11-12T16:47:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2019/11/12/deploy-rabbitmq-with-docker/</loc>
+    <lastmod>2019-11-12T16:47:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/fpm/</loc>
+    <lastmod>2019-09-24T11:44:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/php/</loc>
+    <lastmod>2019-09-24T11:44:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2019/09/24/deploy-php-fpm-with-docker/</loc>
+    <lastmod>2019-09-24T11:44:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/mysql/</loc>
+    <lastmod>2019-02-23T14:04:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2019/02/23/deploy-mysql-with-docker/</loc>
+    <lastmod>2019-02-23T14:04:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/acme/</loc>
+    <lastmod>2018-11-29T13:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/certificate/</loc>
+    <lastmod>2018-11-29T13:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/security/</loc>
+    <lastmod>2018-11-29T13:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/tls/</loc>
+    <lastmod>2018-11-29T13:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2018/11/29/using-acme-with-aliyun-dns-verification/</loc>
+    <lastmod>2018-11-29T13:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/ecdsa/</loc>
+    <lastmod>2018-11-25T18:14:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2018/11/25/ecdsa-with-nodejs/</loc>
+    <lastmod>2018-11-25T18:14:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/nodejs/</loc>
+    <lastmod>2018-11-25T18:14:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/redis/</loc>
+    <lastmod>2018-11-25T16:28:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2018/11/25/deploy-redis-with-docker/</loc>
+    <lastmod>2018-11-25T16:28:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/calculation/</loc>
+    <lastmod>2018-08-07T18:39:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/date/</loc>
+    <lastmod>2018-08-07T18:39:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/javascript/</loc>
+    <lastmod>2018-08-07T18:39:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2018/08/07/date-calculation-in-javascript/</loc>
+    <lastmod>2018-08-07T18:39:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/period/</loc>
+    <lastmod>2018-08-07T18:39:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/typescript/</loc>
+    <lastmod>2018-08-07T18:39:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/cache/</loc>
+    <lastmod>2018-03-08T15:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/cache/</loc>
+    <lastmod>2018-03-08T15:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2018/03/08/how-to-turn-off-redis-permanent-storage/</loc>
+    <lastmod>2018-03-08T15:10:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/npm/</loc>
+    <lastmod>2018-01-16T00:01:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/typescript/</loc>
+    <lastmod>2018-01-16T00:01:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2018/01/16/how-to-publish-typescript-package-to-npmjs/</loc>
+    <lastmod>2018-01-16T00:01:39+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/linux/</loc>
+    <lastmod>2017-12-20T17:25:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2017/12/20/auto-init-ssh-agent/</loc>
+    <lastmod>2017-12-20T17:25:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/shell/</loc>
+    <lastmod>2017-12-20T17:25:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/ssh/</loc>
+    <lastmod>2017-12-20T17:25:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/database/</loc>
+    <lastmod>2017-12-20T14:49:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/database/</loc>
+    <lastmod>2017-12-20T14:49:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/</loc>
+    <lastmod>2017-12-20T14:49:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/openssl/</loc>
+    <lastmod>2016-11-10T22:35:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/11/11/openssl-rsa-commands/</loc>
+    <lastmod>2016-11-10T22:35:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/rsa/</loc>
+    <lastmod>2016-11-10T22:35:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/git/</loc>
+    <lastmod>2016-10-08T23:45:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/git/</loc>
+    <lastmod>2016-10-08T23:45:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/10/08/add-an-empty-git-branch/</loc>
+    <lastmod>2016-10-08T23:45:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/c/c&#43;&#43;/</loc>
+    <lastmod>2016-09-25T22:21:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/c/c&#43;&#43;/</loc>
+    <lastmod>2016-09-25T22:21:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/09/25/compile-libuv-with-vs2015/</loc>
+    <lastmod>2016-09-25T22:21:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/definition/</loc>
+    <lastmod>2016-09-19T21:53:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/module/</loc>
+    <lastmod>2016-09-19T21:53:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/09/19/how-to-write-typescript-definitions/</loc>
+    <lastmod>2016-09-19T21:53:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/09/15/two-style-of-typescript-module-definition/</loc>
+    <lastmod>2016-09-15T17:40:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/bug/</loc>
+    <lastmod>2016-09-12T10:48:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/mingw/</loc>
+    <lastmod>2016-09-12T10:48:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/09/12/openssl-bug-for-certificate-in-mingw/</loc>
+    <lastmod>2016-09-12T10:48:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/31/</loc>
+    <lastmod>2016-09-05T11:20:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/09/05/js-calender-bug-with-date-carrying/</loc>
+    <lastmod>2016-09-05T11:20:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/aws/</loc>
+    <lastmod>2016-08-27T17:46:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/cloud/</loc>
+    <lastmod>2016-08-27T17:46:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/http/</loc>
+    <lastmod>2016-08-27T17:46:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/sns/</loc>
+    <lastmod>2016-08-27T17:46:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/08/27/use-aws-sns-with-a-http-endpoint/</loc>
+    <lastmod>2016-08-27T17:46:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/libconv/</loc>
+    <lastmod>2016-07-07T09:54:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/07/07/memo-about-libiconv-compilation-failure/</loc>
+    <lastmod>2016-07-07T09:54:31+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/02/27/install-mongodb-in-windows/</loc>
+    <lastmod>2016-02-27T08:32:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/windows/</loc>
+    <lastmod>2016-02-27T08:32:27+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/02/26/install-mysql-5.7.11-in-windows/</loc>
+    <lastmod>2016-02-26T17:09:55+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/centos/</loc>
+    <lastmod>2016-02-24T14:24:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/02/24/install-sendmail-error-in-centos-6.3/</loc>
+    <lastmod>2016-02-24T14:24:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/sendmail/</loc>
+    <lastmod>2016-02-24T14:24:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/root/</loc>
+    <lastmod>2016-02-05T12:02:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/su/</loc>
+    <lastmod>2016-02-05T12:02:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/subst/</loc>
+    <lastmod>2016-02-05T12:02:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2016/02/05/notice-about-subst-in-windows-8.1/</loc>
+    <lastmod>2016-02-05T12:02:47+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/12/25/install-gcc-5.2-in-centos-6.7/</loc>
+    <lastmod>2015-12-25T11:45:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/gcc/</loc>
+    <lastmod>2015-12-25T11:45:35+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/compile/</loc>
+    <lastmod>2015-12-23T01:18:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/12/23/compile-mysql-5.7.10-in-centos-6.7/</loc>
+    <lastmod>2015-12-23T01:18:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/visual-studio/</loc>
+    <lastmod>2015-12-02T00:09:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/12/02/using-openssl-with-vs2015/</loc>
+    <lastmod>2015-12-02T00:09:26+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/named-socket/</loc>
+    <lastmod>2015-11-29T14:40:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/pdo/</loc>
+    <lastmod>2015-11-29T14:40:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/php/</loc>
+    <lastmod>2015-11-29T14:40:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/11/29/can-not-connect-mysql-with-php/</loc>
+    <lastmod>2015-11-29T14:40:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/11/27/compile-latest-git-in-gcc-6.7/</loc>
+    <lastmod>2015-11-27T17:24:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/series/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/about/</loc>
+  </url>
+  
+</urlset>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>CentOS 6.7 下编译安装 Git - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="CentOS 6.7 下编译安装 Git" />
+<meta property="og:description" content="由于 yum 里面的 Git 居然还是 1.7.3 版本的，简直不能忍。于是下载了源码编译安装一个。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2015/11/27/compile-latest-git-in-gcc-6.7/" />
+<meta property="article:published_time" content="2015-11-27T17:24:31+08:00" />
+<meta property="article:modified_time" content="2015-11-27T17:24:31+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CentOS 6.7 下编译安装 Git"/>
+<meta name="twitter:description" content="由于 yum 里面的 Git 居然还是 1.7.3 版本的，简直不能忍。于是下载了源码编译安装一个。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">27</span>
+							<span class="rest">Nov 2015</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">CentOS 6.7 下编译安装 Git</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/git">Category: Git</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: Git" href="/tags/git">Git</a class="category">
+						
+						<a class="tag" title="Tag: Compile" href="/tags/compile">Compile</a class="category">
+						
+						<a class="tag" title="Tag: CentOS" href="/tags/centos">CentOS</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/1020559932015102751944427" target="_blank">http://fenying.blog.163.com/blog/static/1020559932015102751944427</a>。
+				</div><div class="markdown">
+				
+
+	
+				<p>由于 yum 里面的 Git 居然还是 1.7.3 版本的，简直不能忍。于是下载了源码编译安装一个。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">
+<span style="color:#008000"># install dependencies.</span>
+
+yum install curl 
+yum install curl-devel 
+yum install zlib-devel 
+yum install openssl-devel 
+yum install perl 
+yum install cpio 
+yum install expat-devel 
+yum install gettext-devel
+yum install perl-ExtUtils-MakeMaker
+
+<span style="color:#008000"># 安装perl的make工具，否则安装git时无法make</span>
+<span style="color:#008000"># 下载一个你能找到的版本。</span>
+
+tar -xvzf ExtUtils-MakeMaker-6.XX.tar.gz
+cd ExtUtils-MakeMaker-6.XX
+perl Makefile.PL
+make
+make install
+cd ..
+
+<span style="color:#008000"># 编译 git</span>
+
+tar -zxvf git-2.6.3.tar.gz
+cd git-2.6.3
+autoconf
+./configure
+make
+make install
+
+<span style="color:#008000"># 测试</span>
+
+git --version
+</code></pre></div><p>这就安装好了。但是注意下，如果最后提示</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">git: error while loading shared libraries: libiconv.so.2: cannot open shared object file: No such file or directory
+</code></pre></div><p>那么只要在 <code>/etc/ld.so.conf</code> 里面加一行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">/usr/local/lib
+</code></pre></div><p>再执行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">/sbin/ldconfig
+</code></pre></div><p>搞定。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2015/11/27/compile-latest-git-in-gcc-6.7/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

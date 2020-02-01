@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>在 Visual Studio 2015 下编译 LibUV-1.9.1 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="在 Visual Studio 2015 下编译 LibUV-1.9.1" />
+<meta property="og:description" content="使用 VS2015 编译 LibUV 的过程。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2016/09/25/compile-libuv-with-vs2015/" />
+<meta property="article:published_time" content="2016-09-25T22:21:00+08:00" />
+<meta property="article:modified_time" content="2016-09-25T22:21:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在 Visual Studio 2015 下编译 LibUV-1.9.1"/>
+<meta name="twitter:description" content="使用 VS2015 编译 LibUV 的过程。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">25</span>
+							<span class="rest">Sep 2016</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">在 Visual Studio 2015 下编译 LibUV-1.9.1</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: C/C&#43;&#43;" href="/tags/c/c&#43;&#43;">C/C&#43;&#43;</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+
+	
+				<p>使用 VS2015 编译 LibUV 的过程。</p>
+<p>首先，到 <a href="http://www.libuv.org/">LibUV 官网</a> 下载源代码，我用的是 1.9.1 版本，将其解压出来，这里是 <code>H:\Projects\C\libuv</code> 。</p>
+<p>自行安装 Git For Windows，这里假定你安装到了 <code>C:\Program Files (x86)\Git</code>。</p>
+<p>接着打开 VS2015 x64 Native Tools Command Prompt，进入解压的目录 <code>H:\Projects\C\libuv</code>。</p>
+<p>执行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">set VS140COMNTOOLS=C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\
+set PATH=%PATH%;C:\Program Files (x86)\Git\bin
+</code></pre></div><blockquote>
+<p>注意把上面的 <code>C:\Program Files (x86)\Microsoft Visual Studio 14.0</code> 改为你的 VS2015 安装路径。</p>
+</blockquote>
+<p>修改 vcbuild.bat 的 44~92 行内容为下面的两行代码：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd"><span style="color:#00f">call</span> <span style="color:#a31515">&#34;</span>%VS140COMNTOOLS%<span style="color:#a31515">\..\..\vc\vcvarsall.bat</span><span style="color:#a31515">&#34;</span> %vs_toolset%
+<span style="color:#00f">set</span> <span style="color:#00f"></span>GYP_MSVS_VERSION=2015
+</code></pre></div><p>现在，打开你的科学上网工具，因为要从 Google Source 下载 GYP。</p>
+<p>执行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">vcbuild.bat x64 static
+</code></pre></div><p>即可生成64位版本的 <code>libuv.lib</code> 文件。</p>
+<p>更多使用方式可以执行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cmd" data-lang="cmd">vcbuild.bat --help
+</code></pre></div><p>查看。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2016/09/25/compile-libuv-with-vs2015/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

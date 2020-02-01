@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Visual Studio 2015 中使用 OpenSSL - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Visual Studio 2015 中使用 OpenSSL" />
+<meta property="og:description" content="在 Visual Studio 2015 中使用 OpenSSL 的记录。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2015/12/02/using-openssl-with-vs2015/" />
+<meta property="article:published_time" content="2015-12-02T00:09:26+08:00" />
+<meta property="article:modified_time" content="2015-12-02T00:09:26+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Visual Studio 2015 中使用 OpenSSL"/>
+<meta name="twitter:description" content="在 Visual Studio 2015 中使用 OpenSSL 的记录。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">02</span>
+							<span class="rest">Dec 2015</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Visual Studio 2015 中使用 OpenSSL</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: OpenSSL" href="/tags/openssl">OpenSSL</a class="category">
+						
+						<a class="tag" title="Tag: Visual Studio" href="/tags/visual-studio">Visual Studio</a class="category">
+						
+						<a class="tag" title="Tag: Compile" href="/tags/compile">Compile</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993201511182659120" target="_blank">http://fenying.blog.163.com/blog/static/102055993201511182659120</a>。
+				</div><div class="markdown">
+				
+<aside class="toc">
+    <p class="toc-title">目录</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-编译">1. 编译</a></li>
+    <li><a href="#2-测试">2. 测试</a></li>
+    <li><a href="#3-参考文献">3. 参考文献</a></li>
+  </ul>
+</nav>
+</aside>
+
+
+	
+				<p>在 Visual Studio 2015 中使用 OpenSSL 的记录。</p>
+<h2 id="1-编译">1. 编译</h2>
+<p>编译 OpenSSL 没什么难度，直接命令行就可以搞定。不过要注意一点细节。</p>
+<ol>
+<li>
+<p>官网下载 <a href="http://www.openssl.org/source/">OpenSSL-1.0.0s.tar.gz</a>。</p>
+</li>
+<li>
+<p>安装 Perl For Windows，用于生产 mak 脚本，安装一个 <a href="http://www.activestate.com/activeperl/">ActivePerl</a> 即可。</p>
+</li>
+<li>
+<p>在开始菜单打开 VS2015 x86 本机工具命令提示符。（64位的也差不多，参考 INSTALL.w64）</p>
+</li>
+<li>
+<p>先把 PERL 安装目录写入 PATH。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">SET PATH=%PATH%;PERL安装目录<span style="color:#a31515">\s</span>ite<span style="color:#a31515">\b</span>in;PERL安装目录<span style="color:#a31515">\b</span>in
+</code></pre></div></li>
+<li>
+<p>执行configure，注意 &ndash;prefix 是输出目录。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">perl Configure VC-WIN32 no-asm --prefix=x:/openssl
+</code></pre></div></li>
+<li>
+<p>接下来先不要急着编译，最重要的是先修改生成的 .mak 文件。因为 .mak 脚本强制把 C 编译警告当成错误处理，这会导致编译失败。</p>
+<p>方法是打开 ms/ntdll.mak，修改第 20 行，把 /WX 去掉。</p>
+<p>如果你要编译静态库，那么则应该修改 ms/nt.mak，修改方法一样。</p>
+<p>注意，如果要编译 DEBUG 版本，那么在 ms/ntdll.mak （或 ms/nt.mak）的第 20 行处，给 /MD（或/MT）后面加一个d，变成 /MDd（或 /MTd），即可。</p>
+</li>
+<li>
+<p>打开 e_os.h，跳到 319 行，把这一行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">    if _MSC_VER&gt;=1300</span><span style="color:#00f">
+</span></code></pre></div><p>替换成如下内容并保存。否则会导致链接错误，因为 VC2015 中标准IO流的定义被修改了。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">    if _MSC_VER&gt;=1400</span><span style="color:#00f">
+</span><span style="color:#00f"></span>_ACRTIMP_ALT FILE* <span style="color:#00f">__cdecl</span> __acrt_iob_func(<span style="color:#2b91af">unsigned</span>);
+<span style="color:#00f">#</span><span style="color:#00f">        define stdin  (__acrt_iob_func(0))</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">        define stdout (__acrt_iob_func(1))</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">        define stderr (__acrt_iob_func(2))</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">    elif _MSC_VER&gt;=1300</span><span style="color:#00f">
+</span></code></pre></div></li>
+<li>
+<p>现在，开始编译。</p>
+<p>编译静态链接库</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">nmake -f ms<span style="color:#a31515">\n</span>t.mak
+nmake -f ms<span style="color:#a31515">\n</span>t.mak install
+nmake -f ms<span style="color:#a31515">\n</span>t.mak clean
+</code></pre></div><p>编译动态链接库</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">nmake -f ms<span style="color:#a31515">\n</span>tdll.mak
+nmake -f ms<span style="color:#a31515">\n</span>tdll.mak install
+nmake -f ms<span style="color:#a31515">\n</span>tdll.mak clean
+</code></pre></div></li>
+<li>
+<p>测试代码，如果遇到报错</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">OPENSSL_Uplink(006E9000,08): no OPENSSL_Applink
+</code></pre></div><p>则包含文件</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/applink.c&gt;</span><span style="color:#00f">
+</span></code></pre></div></li>
+</ol>
+<h2 id="2-测试">2. 测试</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;stdlib.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;string.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/rsa.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/pem.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/err.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/applink.c&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/md5.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/sha.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+<span style="color:#00f">#</span><span style="color:#00f">define OPENSSLKEY	&#34;test.key&#34;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define PUBLICKEY	&#34;test_pub.key&#34;</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+<span style="color:#00f">typedef</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span>			byte_t;
+
+byte_t *rsaEncrypt(byte_t *inputData, size_t *inputLength, byte_t *pBuffer, size_t bufLength, <span style="color:#2b91af">char</span> *priKeyPath) {
+
+    RSA *pRSA;
+    FILE *hFile;
+    size_t lenRSA;
+
+    <span style="color:#00f">if</span> ((hFile = fopen(priKeyPath, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">r</span><span style="color:#a31515">&#34;</span>)) == NULL)
+        <span style="color:#00f">return</span> NULL;
+
+    <span style="color:#00f">if</span> ((pRSA = PEM_read_RSA_PUBKEY(hFile, NULL, NULL, NULL)) == NULL)
+        <span style="color:#00f">return</span> NULL;
+
+    lenRSA = RSA_size(pRSA);
+
+    <span style="color:#00f">if</span> (*inputLength &gt; lenRSA - RSA_PKCS1_PADDING_SIZE || bufLength &lt; lenRSA)
+        <span style="color:#00f">return</span> NULL;
+
+    memset(pBuffer, 0, lenRSA);
+
+    <span style="color:#00f">if</span> ((lenRSA = RSA_public_encrypt(*inputLength, inputData, pBuffer, pRSA, RSA_PKCS1_PADDING)) == -1) {
+        <span style="color:#00f">return</span> NULL;
+    }
+
+    *inputLength = lenRSA;
+
+    RSA_free(pRSA);
+    fclose(hFile);
+    <span style="color:#00f">return</span> pBuffer;
+}
+
+byte_t *rsaDecrypt(byte_t *inputData, size_t inputLength, byte_t *pBuffer, size_t bufLength, <span style="color:#2b91af">char</span> *path_key) {
+
+    RSA *pRSA;
+    FILE *hFile;
+    <span style="color:#2b91af">int</span> lenRSA;
+
+    <span style="color:#00f">if</span> ((hFile = fopen(path_key, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">r</span><span style="color:#a31515">&#34;</span>)) == NULL)
+        <span style="color:#00f">return</span> NULL;
+
+    <span style="color:#00f">if</span> ((pRSA = PEM_read_RSAPrivateKey(hFile, NULL, NULL, NULL)) == NULL)
+        <span style="color:#00f">return</span> NULL;
+
+    lenRSA = RSA_size(pRSA);
+
+    <span style="color:#00f">if</span> (inputLength != lenRSA)
+        <span style="color:#00f">return</span> NULL;
+
+    memset(pBuffer, 0, lenRSA);
+
+    <span style="color:#00f">if</span> (RSA_private_decrypt(lenRSA, inputData, pBuffer, pRSA, RSA_PKCS1_PADDING) &lt; 0)
+        <span style="color:#00f">return</span> NULL;
+
+    RSA_free(pRSA);
+    fclose(hFile);
+    <span style="color:#00f">return</span> pBuffer;
+}
+
+<span style="color:#2b91af">int</span> main(<span style="color:#2b91af">int</span> argc, <span style="color:#2b91af">char</span>** argv) {
+    <span style="color:#2b91af">char</span> *pData = <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello RSA, This is a test.</span><span style="color:#a31515">&#34;</span>;
+    MD5_CTX md5Data;
+    SHA_CTX sha1Data;
+    byte_t encBuf[512], decBuf[512];
+    size_t lenInput;
+    <span style="color:#2b91af">int</span> i;
+    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Input Data:%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, pData);
+
+    <span style="color:#008000">/* RSA */</span>
+
+    lenInput = strlen(pData);
+
+    rsaEncrypt((byte_t*)pData, &amp;lenInput, encBuf, <span style="color:#00f">sizeof</span>(encBuf), PUBLICKEY);
+    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">after encrypt[%lu]:%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, lenInput, encBuf);
+
+    rsaDecrypt(encBuf, lenInput, decBuf, <span style="color:#00f">sizeof</span>(decBuf), OPENSSLKEY);
+    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">after decrypt:%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, decBuf);
+
+    <span style="color:#008000">/* MD5 */</span>
+
+    lenInput = strlen(pData);
+
+    MD5_Init(&amp;md5Data);
+
+    MD5_Update(&amp;md5Data, pData, lenInput);
+    MD5_Final(encBuf, &amp;md5Data);
+
+    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">MD5: </span><span style="color:#a31515">&#34;</span>);
+    <span style="color:#00f">for</span> (i = 0; i &lt; 16; i++)
+        printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">%02x</span><span style="color:#a31515">&#34;</span>, encBuf[i]);
+    putchar(<span style="color:#a31515"></span><span style="color:#a31515">&#39;</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#39;</span>);
+
+    <span style="color:#008000">/* SHA-1 */</span>
+
+    lenInput = strlen(pData);
+
+    SHA1_Init(&amp;sha1Data);
+
+    SHA1_Update(&amp;sha1Data, pData, lenInput);
+    SHA1_Final(encBuf, &amp;sha1Data);
+
+    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">SHA-1: </span><span style="color:#a31515">&#34;</span>);
+    <span style="color:#00f">for</span> (i = 0; i &lt; 20; i++)
+        printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">%02x</span><span style="color:#a31515">&#34;</span>, encBuf[i]);
+    putchar(<span style="color:#a31515"></span><span style="color:#a31515">&#39;</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#39;</span>);
+
+    <span style="color:#00f">return</span> 0;
+}
+</code></pre></div><h2 id="3-参考文献">3. 参考文献</h2>
+<ul>
+<li><a href="http://my.oschina.net/SmileWolf/blog/28923">VC6编译的静态库，在VC2008下使用报错</a></li>
+<li><a href="http://blog.csdn.net/pony_maggie/article/details/8588888">Windows 下openssl安装与配置</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_866538d80101153r.html">no OPENSSL_Applink错误</a></li>
+</ul>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2015/12/02/using-openssl-with-vs2015/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

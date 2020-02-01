@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>如何发布一个 TypeScript 编写的包到 NPM 官方仓库 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="如何发布一个 TypeScript 编写的包到 NPM 官方仓库" />
+<meta property="og:description" content="本文介绍如何发布一个包到 npmjs.org，包括创建、发布、撤回、更新、使用分支等等，以及其中
+包含的一些小技巧。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2018/01/16/how-to-publish-typescript-package-to-npmjs/" />
+<meta property="article:published_time" content="2018-01-16T00:01:39+08:00" />
+<meta property="article:modified_time" content="2018-01-16T00:01:39+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何发布一个 TypeScript 编写的包到 NPM 官方仓库"/>
+<meta name="twitter:description" content="本文介绍如何发布一个包到 npmjs.org，包括创建、发布、撤回、更新、使用分支等等，以及其中
+包含的一些小技巧。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">16</span>
+							<span class="rest">Jan 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">如何发布一个 TypeScript 编写的包到 NPM 官方仓库</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/typescript">Category: TypeScript</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: TypeScript" href="/tags/typescript">TypeScript</a class="category">
+						
+						<a class="tag" title="Tag: NPM" href="/tags/npm">NPM</a class="category">
+						
+						<a class="tag" title="Tag: JavaScript" href="/tags/javascript">JavaScript</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+<aside class="toc">
+    <p class="toc-title">目录</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#0-创建">0. 创建</a></li>
+    <li><a href="#1-准备">1. 准备</a></li>
+    <li><a href="#2-发布">2. 发布</a>
+      <ul>
+        <li><a href="#20-修正下载源">2.0. 修正下载源</a></li>
+        <li><a href="#21-创建并登录-npmjsorg-账户">2.1. 创建并登录 npmjs.org 账户</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-真正的开始">3. 真正的开始</a>
+      <ul>
+        <li><a href="#31-合理的-packagejson">3.1. 合理的 package.json</a></li>
+        <li><a href="#32-scripts-字段">3.2. scripts 字段</a></li>
+        <li><a href="#33-git-设置">3.3. Git 设置</a></li>
+        <li><a href="#34-npm-包文件设置">3.4. NPM 包文件设置</a></li>
+        <li><a href="#35-配置-tsconfigjson">3.5. 配置 tsconfig.json</a></li>
+        <li><a href="#36-使用-tslintjson">3.6. 使用 tslint.json</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-维护">4. 维护</a>
+      <ul>
+        <li><a href="#41-版本号维护">4.1. 版本号维护</a></li>
+        <li><a href="#42-使用标签">4.2. 使用标签</a></li>
+        <li><a href="#43-使用前缀">4.3. 使用前缀</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</aside>
+
+
+	
+				<p>本文介绍如何发布一个包到 npmjs.org，包括创建、发布、撤回、更新、使用分支等等，以及其中
+包含的一些小技巧。</p>
+<h2 id="0-创建">0. 创建</h2>
+<p>创建一个包很简单，就是手动或者用 <code>npm init</code> 命令直接生成一个 package.json 文件，一个
+包就算是创建出来了。剩下的就是给它添加内容而已了。</p>
+<blockquote>
+<p>如果使用 <code>npm init</code> 命令配合 <code>-y</code> 或者 <code>--yes</code> 参数，可以不使用命令行交互模式，而
+快速地创建一个 package.json 文件。</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm init -y
+</code></pre></div><p>比如我这里创建出来的是：</p>
+<blockquote>
+<p>name 字段默认是当前所在的目录名称。</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  &#34;name&#34;: <span style="color:#a31515">&#34;test&#34;</span>,
+  &#34;version&#34;: <span style="color:#a31515">&#34;0.1.0&#34;</span>,
+  &#34;description&#34;: <span style="color:#a31515">&#34;&#34;</span>,
+  &#34;main&#34;: <span style="color:#a31515">&#34;index.js&#34;</span>,
+  &#34;scripts&#34;: {
+    &#34;test&#34;: <span style="color:#a31515">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span>
+  },
+  &#34;keywords&#34;: [],
+  &#34;author&#34;: <span style="color:#a31515">&#34;Angus.Fenying &lt;i.am.x.fenying@gmail.com&gt; (https://fenying.net/)&#34;</span>,
+  &#34;license&#34;: <span style="color:#a31515">&#34;Apache-2.0&#34;</span>
+}
+</code></pre></div><blockquote>
+<p>什么，你说你创建出来是下面这样的？有些字段的初始值和我的不一样？</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  &#34;name&#34;: <span style="color:#a31515">&#34;test&#34;</span>,
+  &#34;version&#34;: <span style="color:#a31515">&#34;1.0.0&#34;</span>,
+  &#34;description&#34;: <span style="color:#a31515">&#34;&#34;</span>,
+  &#34;main&#34;: <span style="color:#a31515">&#34;index.js&#34;</span>,
+  &#34;scripts&#34;: {
+    &#34;test&#34;: <span style="color:#a31515">&#34;echo \&#34;Error: no test specified\&#34; &amp;&amp; exit 1&#34;</span>
+  },
+  &#34;keywords&#34;: [],
+  &#34;author&#34;: <span style="color:#a31515">&#34;&#34;</span>,
+  &#34;license&#34;: <span style="color:#a31515">&#34;ISC&#34;</span>
+}
+</code></pre></div><p>别急，那是因为你没有设置 NPM 的一些默认配置。通过下面三条命令，可以设置创建新的 NPM
+包时使用的默认属性。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm config set init-author-name <span style="color:#a31515">&#34;Angus.Fenying&#34;</span>             <span style="color:#008000"># 你的名称</span>
+npm config set init-author-email <span style="color:#a31515">&#34;i.am.x.fenying@gmail.com&#34;</span> <span style="color:#008000"># 你的邮箱</span>
+npm config set init-author-url <span style="color:#a31515">&#34;https://fenying.net&#34;</span>        <span style="color:#008000"># 你的个人网页</span>
+npm config set init-license <span style="color:#a31515">&#34;Apache-2.0&#34;</span>                    <span style="color:#008000"># 开源授权协议名</span>
+npm config set init-version <span style="color:#a31515">&#34;0.1.0&#34;</span>                         <span style="color:#008000"># 版本号</span>
+</code></pre></div></blockquote>
+<h2 id="1-准备">1. 准备</h2>
+<p>现在你可以为 package.json 添加内容了，比如修改如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  &#34;name&#34;: <span style="color:#a31515">&#34;npm-tutorial-test-1&#34;</span>,
+  &#34;version&#34;: <span style="color:#a31515">&#34;0.1.0&#34;</span>,
+  &#34;description&#34;: <span style="color:#a31515">&#34;This is a test package for my NPM tutorial.&#34;</span>,
+  &#34;main&#34;: <span style="color:#a31515">&#34;index.js&#34;</span>,
+  &#34;scripts&#34;: {
+    &#34;test&#34;: <span style="color:#a31515">&#34;echo hello&#34;</span>
+  },
+  &#34;keywords&#34;: [
+      <span style="color:#a31515">&#34;test&#34;</span>
+  ],
+  &#34;author&#34;: <span style="color:#a31515">&#34;NPM Learner &lt;me@sample.com&gt; (https://sample.com/)&#34;</span>,
+  &#34;license&#34;: <span style="color:#a31515">&#34;MIT&#34;</span>
+}
+</code></pre></div><p>然后添加一个 README.md 文件，内容如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-markdown" data-lang="markdown"><span style="font-weight:bold"># NPM Tutorial Test 1
+</span><span style="font-weight:bold"></span>
+This is a test package for my NPM tutorial.
+
+<span style="font-weight:bold">## License
+</span><span style="font-weight:bold"></span>
+This package is published under [MIT license](./LICENSE).
+</code></pre></div><p>添加你的 LICENSE 文件（开源协议），以及一个 index.js 文件。</p>
+<p>现在，一个最基本的包就是准备好了，等待发布了。</p>
+<h2 id="2-发布">2. 发布</h2>
+<p>既然包已经准备好了，那么就可以发布了。</p>
+<h3 id="20-修正下载源">2.0. 修正下载源</h3>
+<p>如果你曾经为了加速 NPM 下载速度而修改了它的下载源，那么请改回去，不然是无法发布的。</p>
+<p>检查方式：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm config get registry
+</code></pre></div><p>NPM 的官方源是 <code>https://registry.npmjs.org/</code>，如果你看到控制台打印是这个，那么就没
+问题了。而如果不是，那么请使用下面的命令修改回去：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm config set registry https://registry.npmjs.org/
+</code></pre></div><h3 id="21-创建并登录-npmjsorg-账户">2.1. 创建并登录 npmjs.org 账户</h3>
+<p>如果你没有 npmjs.org 账户，那么先要创建一个，方法很简单：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm adduser
+</code></pre></div><p>根据提示创建即可。</p>
+<blockquote>
+<p>记得验证邮箱，否则将无法发布包。</p>
+</blockquote>
+<p>如果已经有 npmjs.org 账户了，请直接登录：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm login
+</code></pre></div><h2 id="3-真正的开始">3. 真正的开始</h2>
+<p>上面的教程只是一个最简单的 DEMO，远远不能满足我们的发布需要，下面以一个需要编译的
+TypeScript 包为例，看看如何发布和管理。</p>
+<h3 id="31-合理的-packagejson">3.1. 合理的 package.json</h3>
+<p>先来看一个 package.json 的内容：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  &#34;name&#34;: <span style="color:#a31515">&#34;full-sample&#34;</span>,
+  &#34;version&#34;: <span style="color:#a31515">&#34;0.1.0&#34;</span>,
+  &#34;description&#34;: <span style="color:#a31515">&#34;A sample to learn NPM.&#34;</span>,
+  &#34;main&#34;: <span style="color:#a31515">&#34;./dist/index.js&#34;</span>,
+  &#34;scripts&#34;: {
+    &#34;prepare&#34;: <span style="color:#a31515">&#34;npm run rebuild&#34;</span>,
+    &#34;build&#34;: <span style="color:#a31515">&#34;tsc -p .&#34;</span>,
+    &#34;rebuild&#34;: <span style="color:#a31515">&#34;npm run clean &amp;&amp; npm run lint &amp;&amp; npm run build&#34;</span>,
+    &#34;test&#34;: <span style="color:#a31515">&#34;echo See directory sources/tests&#34;</span>,
+    &#34;clean&#34;: <span style="color:#a31515">&#34;rm -rf dist&#34;</span>,
+    &#34;lint&#34;: <span style="color:#a31515">&#34;tslint --project tslint.json&#34;</span>
+  },
+  &#34;keywords&#34;: [
+    <span style="color:#a31515">&#34;npm&#34;</span>,
+    <span style="color:#a31515">&#34;sample&#34;</span>
+  ],
+  &#34;author&#34;: <span style="color:#a31515">&#34;NPM Learner &lt;me@sample.com&gt; (https://sample.com/)&#34;</span>,
+  &#34;license&#34;: <span style="color:#a31515">&#34;Apache-2.0&#34;</span>,
+  &#34;repository&#34;: {
+    &#34;type&#34;: <span style="color:#a31515">&#34;git&#34;</span>,
+    &#34;url&#34;: <span style="color:#a31515">&#34;git+https://github.com/learn-npm/full-sample.git&#34;</span>
+  },
+  &#34;bugs&#34;: {
+    &#34;url&#34;: <span style="color:#a31515">&#34;https://github.com/learn-npm/full-sample/issues&#34;</span>
+  },
+  &#34;homepage&#34;: <span style="color:#a31515">&#34;https://github.com/learn-npm/full-sample#readme&#34;</span>,
+  &#34;types&#34;: <span style="color:#a31515">&#34;./dist/index.d.ts&#34;</span>,
+  &#34;typings&#34;: <span style="color:#a31515">&#34;./dist/index.d.ts&#34;</span>,
+  &#34;dependencies&#34;: {
+    &#34;sequelize&#34;: <span style="color:#a31515">&#34;^4.24.0&#34;</span>
+  },
+  &#34;devDependencies&#34;: {
+    &#34;@types/node&#34;: <span style="color:#a31515">&#34;^8.0.51&#34;</span>,
+    &#34;@types/sequelize&#34;: <span style="color:#a31515">&#34;^4.0.79&#34;</span>,
+    &#34;typescript&#34;: <span style="color:#a31515">&#34;^2.6.1&#34;</span>
+  },
+  &#34;engines&#34;: {
+    &#34;node&#34;: <span style="color:#a31515">&#34;&gt;=8.0.0&#34;</span>
+  }
+}
+</code></pre></div><blockquote>
+<p>假定项目的 TypeScript 源代码都在 sources 目录，编译结果都在 dist 目录。</p>
+</blockquote>
+<p>上面与 DEMO 有什么区别呢？下面逐个字段解释：</p>
+<ul>
+<li>
+<p><code>homepage</code></p>
+<p>指定项目的主页地址，如果没有一般可以使用项目的 GitHub 地址。</p>
+</li>
+<li>
+<p><code>bugs.url</code></p>
+<p>指定项目的 Bug 反馈地址，一般可以用项目的 GitHub Issue 地址。</p>
+</li>
+<li>
+<p><code>repository.url</code> 和 <code>repository.type</code></p>
+<p>指定项目的源码仓库地址，可以指定是 git/cvs/svn。</p>
+</li>
+<li>
+<p><code>main</code></p>
+<p>指定 Node.js 中 require(&ldquo;moduel-name&rdquo;) 导入的默认文件。</p>
+</li>
+<li>
+<p><code>keywords</code></p>
+<p>指定项目的关键词，合理设置有利于让他人发现你的项目。</p>
+</li>
+<li>
+<p><code>engines</code></p>
+<p>设置项目对引擎的版本要求，比如 node、electron、vscode 等。</p>
+</li>
+<li>
+<p><code>types</code> 和 <code>typings</code></p>
+<p>设置项目内置的 TypeScript 模块声明文件入口文件。</p>
+</li>
+</ul>
+<h3 id="32-scripts-字段">3.2. scripts 字段</h3>
+<p>scripts 字段作为单独一节解释，因为它是用于构建控制和发布控制的工具。</p>
+<ul>
+<li>
+<p><code>scripts.build</code></p>
+<p>这个允许使用 <code>npm run build</code> 命令直接编译 TS 代码。</p>
+</li>
+<li>
+<p><code>scripts.lint</code></p>
+<p>这个允许使用 <code>npm run lint</code> 命令调用 TSLinter 对代码进行格式检查。</p>
+</li>
+<li>
+<p><code>scripts.clean</code></p>
+<p>这个允许使用 <code>npm run clean</code> 命令清理编译结果。</p>
+</li>
+<li>
+<p><code>scripts.rebuild</code></p>
+<p>这个允许使用 <code>npm run rebuild</code> 命令清理编译结果然后重新生成。</p>
+</li>
+<li>
+<p><code>scripts.prepare</code></p>
+<p>这个不是给我们用的，而是 NPM 提供的钩子，这个命令会在执行 <code>npm publish</code> 的时候
+被调用。<strong>因此可以用这个钩子进行发布前构建。</strong></p>
+</li>
+</ul>
+<h3 id="33-git-设置">3.3. Git 设置</h3>
+<p>Git 应当使用 <code>.gitignore</code> 文件忽略那些编译结果，以及 NPM 依赖的包文件：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">/node_modules/
+/dist/
+*.log
+</code></pre></div><h3 id="34-npm-包文件设置">3.4. NPM 包文件设置</h3>
+<p>NPM 打包发布的时候，会默认把当前目录下所有文件打包。但是 Git 仓库中，有些东西是不需要
+发布到 NPM 的，因此我们需要使用一个文件 <code>.npmignore</code> 来忽略这些文件，常用配置如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">/.git/
+/.vscode/
+/docs/
+/node_modules/
+.gitignore
+.npmignore
+tslint.json
+tsconfig.json
+*.log
+</code></pre></div><p>这些文件都不是发布需要的内容，因此可以忽略。</p>
+<h3 id="35-配置-tsconfigjson">3.5. 配置 tsconfig.json</h3>
+<p>前面说了，假定 TypeScript 的代码在 sources 目录下，编译的输出目录则为 dist。那么需要
+在 tsconfig.json 里面通过 <code>rootDir</code> 和 <code>outDir</code> 选项指定。</p>
+<p>其次，为了让其它 TypeScript 程序能正常使用你的包，你还应该设置 <code>declaration</code> 字段为
+<code>true</code>，使之自动生成 <code>*.d.ts</code> 文件。此处我们假定模块的入口是 <code>index.js</code> ，因此你必须
+实现一个 <code>index.ts</code> 文件，作为模块的入口。</p>
+<p>另外，如果要实现 TypeScript 源码调试，则需要开启 <code>sourceMap</code> 选项，以生成源码映射
+文件。</p>
+<h3 id="36-使用-tslintjson">3.6. 使用 tslint.json</h3>
+<p>现在，就可以愉快地编写代码了吗？不不不，为了规范代码，我们还需要配置下 TSLinter。通过
+下面的命令初始化一个 tslint.json 文件。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm install tslint -g
+tslint --init
+</code></pre></div><p>TS Linter 的规则非常多，而且默认规则限制非常严格，可以适当根据提示解除一些限制。比如
+作者就采用了如下配置，仅供参考：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    &#34;defaultSeverity&#34;: <span style="color:#a31515">&#34;error&#34;</span>,
+    &#34;extends&#34;: [
+        <span style="color:#a31515">&#34;tslint:recommended&#34;</span>
+    ],
+    &#34;jsRules&#34;: {
+    },
+    &#34;rules&#34;: {
+        &#34;interface-name&#34;: <span style="color:#00f">false</span>,
+        &#34;trailing-comma&#34;: <span style="color:#00f">false</span>,
+        &#34;max-classes-per-file&#34;: <span style="color:#00f">false</span>,
+        &#34;ordered-imports&#34;: <span style="color:#00f">false</span>,
+        &#34;variable-name&#34;: <span style="color:#00f">false</span>,
+        &#34;prefer-const&#34;: <span style="color:#00f">false</span>,
+        &#34;member-ordering&#34;: <span style="color:#00f">false</span>,
+        &#34;no-bitwise&#34;: <span style="color:#00f">false</span>,
+        &#34;forin&#34;: <span style="color:#00f">false</span>,
+        &#34;object-literal-sort-keys&#34;: <span style="color:#00f">false</span>,
+        &#34;one-line&#34;: [<span style="color:#00f">false</span>],
+        &#34;object-literal-key-quotes&#34;: [<span style="color:#00f">false</span>],
+        &#34;no-string-literal&#34;: <span style="color:#00f">false</span>,
+        &#34;no-angle-bracket-type-assertion&#34;: <span style="color:#00f">false</span>,
+        &#34;only-arrow-functions&#34;: <span style="color:#00f">false</span>,
+        &#34;no-namespace&#34;: <span style="color:#00f">false</span>,
+        &#34;no-internal-module&#34;: <span style="color:#00f">false</span>,
+        &#34;unified-signatures&#34;: <span style="color:#00f">false</span>,
+        &#34;ban-types&#34;: <span style="color:#00f">false</span>,
+        &#34;no-conditional-assignment&#34;: <span style="color:#00f">false</span>,
+        &#34;radix&#34;: <span style="color:#00f">false</span>
+    },
+    &#34;rulesDirectory&#34;: []
+}
+</code></pre></div><blockquote>
+<p>如果想在 Visual Studio Code 里面实现 TS Linter 智能提示，则还需要安装 VSCode 的
+TSLint 扩展。</p>
+</blockquote>
+<p>现在，可以尽情地编写代码了。</p>
+<h2 id="4-维护">4. 维护</h2>
+<h3 id="41-版本号维护">4.1. 版本号维护</h3>
+<p>维护一个包，肯定是要进行包的版本升级的。如何进行呢？手动修改 package.json 的 version
+字段是一个办法，但是显得有点 low。可以使用下面的命令：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm version v0.1.0      <span style="color:#008000"># 版本号变成 0.1.0，即显式设置版本号。</span>
+npm version patch       <span style="color:#008000"># 版本号从 0.1.0 变成 0.1.1，即修订版本号加一。</span>
+npm version minor       <span style="color:#008000"># 版本号从 0.1.1 变成 0.2.0，即子版本号加一。</span>
+npm version major       <span style="color:#008000"># 版本号从 0.2.0 变成 1.0.0，即主版本号加一。</span>
+</code></pre></div><p>但是，除此之外，还有四条命令，用于创建“预发布版本”，也就是非稳定版本。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm version v1.2.3
+
+<span style="color:#008000"># 版本号从 1.2.3 变成 1.2.4-0，就是 1.2.4 版本的第一个预发布版本。</span>
+npm version prepatch
+
+<span style="color:#008000"># 版本号从 1.2.4-0 变成 1.3.0-0，就是 1.3.0 版本的第一个预发布版本。</span>
+npm version preminor
+
+<span style="color:#008000"># 版本号从 1.2.3 变成 2.0.0-0，就是 2.0.0 版本的第一个预发布版本。</span>
+npm version premajor
+
+<span style="color:#008000"># 版本号从 2.0.0-0 变成 2.0.0-1，就是使预发布版本号加一。</span>
+npm version prerelease
+</code></pre></div><blockquote>
+<p><strong>注意：</strong>
+version 命令默认会给你的 git 仓库自动 commit 一把，并打一个 tag。如果不想它动你的
+git 仓库，你应该使用 <code>--no-git-tag-version</code> 参数，例如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm --no-git-tag-version version patch
+</code></pre></div><p>如果你想一劳永逸，那么可以使用如下 NPM 设置彻底禁止它：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm config set git-tag-version false  <span style="color:#008000"># 不要自动打 tag</span>
+npm config set commit-hooks false     <span style="color:#008000"># 不要自动 commit</span>
+</code></pre></div></blockquote>
+<h3 id="42-使用标签">4.2. 使用标签</h3>
+<p>以 TypeScript 为例，通过 <code>npm info typescript</code> 可以看到 <code>dist-tags</code> 字段有着五个
+值，分别是 <code>latest</code>, <code>beta</code>, <code>rc</code>, <code>next</code>, <code>insiders</code>，这些都是 <code>dist-tag</code>，可以
+称之为标签——你可以把它理解为 git 里面的分支。</p>
+<p>有什么用呢？其实，我们平时用 <code>npm install xxxxxx</code> 的时候，是使用了一个潜在的选项
+<code>tag = latest</code>，可以通过 <code>npm config list -l | grep tag</code> 看到。</p>
+<p>因此实际上是执行了 <code>npm install xxxxxx@latest</code>。也就是安装了 <code>latest</code> 这个标签
+对应的最新版本。</p>
+<p>不同的标签可以有不同的版本，这就方便我们发表非稳定版本到 npm 上，与稳定版本分开。</p>
+<blockquote>
+<p>默认是发布到 latest 标签下的。</p>
+</blockquote>
+<p>例如 <code>npm publish --tag dev</code> 就可以发布一个版本到 dev 标签下。</p>
+<h3 id="43-使用前缀">4.3. 使用前缀</h3>
+<p>如果你使用过 AngularJS 或者 TypeScript，那么肯定知道有一些包的名字是这样的：</p>
+<ul>
+<li><code>@types/node</code></li>
+<li><code>@types/jquery</code></li>
+<li><code>@angular/core</code></li>
+</ul>
+<p>这里面的 <code>@types/</code> 和 <code>@angular/</code> 叫做包前缀（scope）。</p>
+<blockquote>
+<p>作者起初以为使用包前缀也是收费的，后来仔细阅读了文档才发现公开的包可以免费使用
+包前缀。</p>
+</blockquote>
+<p>那我们怎么使用呢？很简单，首先在 package.json 里面把 name 字段加上一个前缀。</p>
+<blockquote>
+<p>前缀必须是你 NPM 账户的用户名，比如你注册了一个用户名为 abc 的账户，则你只能使用
+<code>@abc/</code> 为你的包前缀。</p>
+</blockquote>
+<p>举个例子，将你的包名设置为 <code>@abc/test</code>。</p>
+<blockquote>
+<p>如果你要初始化一个带包前缀的包，则可以使用下面的命令。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm init --scope=abc <span style="color:#008000"># 当然你还可以加上个 `-y` 快速创建。</span>
+</code></pre></div><p>或者你想每次都使用 <code>@abc/</code> 包前缀？加个设置即可：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#008000"># 这样每次初始化新的 package.json，都将自动应用 @abc/ 包前缀。</span>
+npm config set scope abc
+</code></pre></div></blockquote>
+<p>现在，可以发布你的包到 <code>npmjs.org</code> 了。哦不，别忘了一点：</p>
+<blockquote>
+<p>官方文档表示：所有带前缀的包，在发布的时候，默认都是发布为私有包。</p>
+</blockquote>
+<p>这意味着你不能就这么发布，因为你（可能）不是付费用户，不能发布私有的包。那怎么办呢？别
+担心，<code>npm publish</code> 命令还有一个参数 <code>--access</code> ，通过这个参数可以指定发布的是公共包
+还是私有包。因此，只要用下面的命令就可以发布一个公共的，带包前缀的包了：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npm publish --access=public
+</code></pre></div><p>（完）</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2018/01/16/how-to-publish-typescript-package-to-npmjs/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

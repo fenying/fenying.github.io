@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>TypeScript 的声明文件的使用与编写 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="TypeScript 的声明文件的使用与编写" />
+<meta property="og:description" content="本文分享个人编写 TypeScript 声明文件的经验。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2016/09/19/how-to-write-typescript-definitions/" />
+<meta property="article:published_time" content="2016-09-19T21:53:00+08:00" />
+<meta property="article:modified_time" content="2016-09-19T21:53:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="TypeScript 的声明文件的使用与编写"/>
+<meta name="twitter:description" content="本文分享个人编写 TypeScript 声明文件的经验。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">19</span>
+							<span class="rest">Sep 2016</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">TypeScript 的声明文件的使用与编写</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/typescript">Category: TypeScript</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: Definition" href="/tags/definition">Definition</a class="category">
+						
+						<a class="tag" title="Tag: Module" href="/tags/module">Module</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+<aside class="toc">
+    <p class="toc-title">目录</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-什么是声明文件">1. 什么是声明文件？</a>
+      <ul>
+        <li><a href="#11-网页上引用非模块化的-javascript-文件里的名称">1.1. 网页上引用非模块化的 JavaScript 文件里的名称</a></li>
+        <li><a href="#12-使用第三方库">1.2. 使用第三方库</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-使用-typings-声明管理器">2. 使用 typings 声明管理器</a>
+      <ul>
+        <li><a href="#21-安装与基本使用">2.1. 安装与基本使用</a></li>
+        <li><a href="#22-definition-的源">2.2. Definition 的源</a></li>
+        <li><a href="#23-安装某个库特定版本的-definition">2.3. 安装某个库特定版本的 Definition</a></li>
+        <li><a href="#24-从-github-仓库安装-definition">2.4. 从 GitHub 仓库安装 Definition</a></li>
+        <li><a href="#25-使用-typingsjson-管理-definition">2.5. 使用 typings.json 管理 Definition</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-编写-definition">3. 编写 Definition</a>
+      <ul>
+        <li><a href="#31-nodejs-与-npm-模块">3.1 Node.js 与 NPM 模块</a></li>
+        <li><a href="#32-全局类型声明写法">3.2. 全局类型声明写法</a></li>
+        <li><a href="#33-模块导出声明写法">3.3. 模块导出声明写法</a></li>
+        <li><a href="#34-如何确定现有类的声明接口名称">3.4. 如何确定现有类的声明接口名称？</a></li>
+        <li><a href="#35-扩展-javascript-全局类对象">3.5. 扩展 JavaScript 全局类/对象</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-编写-definition-的注意事项">4. 编写 Definition 的注意事项</a>
+      <ul>
+        <li><a href="#41-不要使用内层-declare">4.1. 不要使用内层 declare</a></li>
+        <li><a href="#42-避免全局污染">4.2. 避免全局污染</a></li>
+        <li><a href="#43-注意声明冲突">4.3. 注意声明冲突</a></li>
+        <li><a href="#44-模块名称要区分大小写">4.4. 模块名称要区分大小写！</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</aside>
+
+
+	
+				<p>本文分享个人编写 TypeScript 声明文件的经验。</p>
+<h2 id="1-什么是声明文件">1. 什么是声明文件？</h2>
+<p>TypeScript 是 JavaScript 的超集，相比 JavaScript，其最关键的功能是静态类型
+检查 (Type Guard)。然而 JavaScript 本身是没有静态类型检查功能的，TypeScript
+编译器也仅提供了 ECMAScript 标准里的标准库类型声明，只能识别 TypeScript 代码
+里的类型。</p>
+<p>那么 TypeScript 中如何引用一个 JavaScript 文件呢？例如使用 lodash，async 等
+著名的 JavaScript 第三方库。答案是通过<strong>声明文件（Declaration Files）</strong>。</p>
+<p>这和 C/C++ 的 <code>*.h</code> 头文件（Header files）非常相似：当你在 C/C++ 程序中引
+用了一个第三方库（.lib/.dll/.so/.a/.la）时，C/C++ 编译器无法自动地识别库内
+导出名称和函数类型签名等，这就需要使用头文件进行接口声明了。</p>
+<p>同理地，TypeScript 的声明文件是一个以 <code>.d.ts</code> 为后缀的 TypeScript 代码文件，
+但它的作用是描述一个 JavaScript 模块（广义上的）内所有导出接口的类型信息。</p>
+<blockquote>
+<p>为了简洁，下面把 <strong>声明文件</strong> 简称为 <code>Definition</code>。</p>
+</blockquote>
+<h3 id="11-网页上引用非模块化的-javascript-文件里的名称">1.1. 网页上引用非模块化的 JavaScript 文件里的名称</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// &lt;script src=&#34;sample-00.js&#34;&gt;&lt;/script&gt;
+</span><span style="color:#008000"></span><span style="color:#008000">// 通过 script 标签引入名称到 JS 的全局命名空间中。
+</span><span style="color:#008000"></span><span style="color:#00f">var</span> name = <span style="color:#a31515">&#34;Mick&#34;</span>;
+
+<span style="color:#00f">function</span> test(inStr) {
+
+    <span style="color:#00f">return</span> inStr.substr(0, 4);
+}
+</code></pre></div><p>在另一个 TypeScript 文件里引用里面的名称，不可用</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File: test-01.ts
+</span><span style="color:#008000"></span>console.log(name); <span style="color:#008000">// 编译报错，name 不存在。
+</span><span style="color:#008000"></span>console.log(test(<span style="color:#a31515">&#34;hello&#34;</span>)); <span style="color:#008000">// 编译报错，test 不存在。
+</span></code></pre></div><p>因为 TypeScript 不能从纯 JavaScript 文件里摘取类型信息，所以 TypeScript 的
+编译器根本不知道变量 <code>name</code> 的存在。这一点和 C/C++ 非常相似，而解决方法也几乎
+一致：使用一个 Definition，把这个变量声明写进去，让其它需要使用这个变量的文件引用。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File sample-00.d.ts
+</span><span style="color:#008000"></span><span style="color:#00f">declare</span> <span style="color:#00f">let</span> name: <span style="color:#2b91af">string</span>;
+<span style="color:#00f">declare</span> <span style="color:#00f">let</span> test: (inStr: <span style="color:#2b91af">string</span>) =&gt; <span style="color:#2b91af">string</span>;
+</code></pre></div><p>在 TypeScript 文件里使用 <strong>三斜线指令</strong> 引用这个文件：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File: test-01.ts
+</span><span style="color:#008000"></span><span style="color:#008000">/// &lt;reference path=&#34;./sample-00.d.ts&#34;&gt;
+</span><span style="color:#008000"></span>console.log(name); <span style="color:#008000">// 编译通过。
+</span><span style="color:#008000"></span>console.log(test(<span style="color:#a31515">&#34;hello&#34;</span>)); <span style="color:#008000">// 编译通过。
+</span></code></pre></div><h3 id="12-使用第三方库">1.2. 使用第三方库</h3>
+<p>第三方库 async 也是纯 JavaScript 库，没有类型信息。要在 TypeScript 中使用，
+可以到 DefinitelyTyped 组织的 GitHub 仓库里面下载一份 <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/async/async.d.ts"><code>async.d.ts</code></a>
+文件，将之引用进来。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File: test-02.ts
+</span><span style="color:#008000"></span><span style="color:#008000">/// &lt;reference path=&#34;./async.d.ts&#34;&gt;
+</span><span style="color:#008000"></span><span style="color:#00f">import</span> async = require(<span style="color:#a31515">&#34;async&#34;</span>);
+
+async.series([
+
+    <span style="color:#00f">function</span>(next: <span style="color:#2b91af">ErrorCallback</span>): <span style="color:#00f">void</span> {
+
+        console.log(1);
+        next();
+    },
+
+    <span style="color:#00f">function</span>(next: <span style="color:#2b91af">ErrorCallback</span>): <span style="color:#00f">void</span> {
+
+        console.log(2);
+        next();
+    },
+
+    <span style="color:#00f">function</span>(next: <span style="color:#2b91af">ErrorCallback</span>): <span style="color:#00f">void</span> {
+
+        console.log(3);
+        next();
+    }
+
+], <span style="color:#00f">function</span>(err?: <span style="color:#2b91af">Error</span>): <span style="color:#00f">void</span> {
+
+    <span style="color:#00f">if</span> (err) {
+
+        console.log(err);
+
+        <span style="color:#00f">return</span>;
+    }
+
+    console.log(<span style="color:#a31515">&#34;Done&#34;</span>);
+
+});
+</code></pre></div><p>但是一个个库都去下载对应的 Definition ，实在太麻烦了，也不方便管理，所以我们可以
+使用 DefinitelyTyped 组织提供的声明管理器——typings。</p>
+<h2 id="2-使用-typings-声明管理器">2. 使用 typings 声明管理器</h2>
+<h3 id="21-安装与基本使用">2.1. 安装与基本使用</h3>
+<p>typings 是一个用 Node.js 编写的工具，托管在 NPM 仓库里，通过下面的命令可以安装</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">npm install typings -g
+</code></pre></div><p>现在我们要安装 async 库的 Definition 就简单了，直接一句命令行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">typings install dt~async --global
+</code></pre></div><blockquote>
+<p>提示：<code>install</code> 命令可以缩写为 <code>i</code>，且可以一次安装多个 Definition 。</p>
+</blockquote>
+<blockquote>
+<p>参数 <code>--global</code> 意义请参考我另一篇文章《TypeScript 的两种声明文件写法的
+区别和根本意义》。
+<code>--global</code> 可简写为 <code>-G</code>。</p>
+</blockquote>
+<p>这样， async 库的 Definition 就会被安装到 <code>./typings/globals/async/index.d.ts</code> 。</p>
+<p>可以自由地使用 async 库的 Definition 了。</p>
+<p>如果你觉得这个路径太长了，可以使用 <code>./typings/index.d.ts</code> 这个文件。这是一个
+统一索引文件，<strong>使用 typings 工具安装的所有 Definition 都会被引用添加到这个
+文件里</strong>，所以通过引用这个文件，就可以轻松引用所有安装过的 Definition ！</p>
+<h3 id="22-definition-的源">2.2. Definition 的源</h3>
+<p>还有，安装 Definition 命令里的 <code>dt~async</code> 是什么东西？<code>async</code> 当然是一个库的
+名称。那 <code>dt</code> 呢？其实 <code>dt</code> 是指<strong>源</strong>，表示这个 Definition 的来源。目前绝大
+多数的库 Definition 都是托管在 DefinitelyTyped 项目的 GitHub 仓库里面的，所以
+使用 <code>dt~库名称</code> 可以找到绝大部分库的 Definition 。</p>
+<p>如果你不确定某个库 Definition 的源，可以使用下面的命令查找</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">typings search --name 库准确名称
+</code></pre></div><p>一个输出例子是：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ typings search --name jquery
+Viewing 1 of 1
+
+NAME   SOURCE HOMEPAGE           DESCRIPTION VERSIONS UPDATED
+jquery dt     http://jquery.com/             1        2016-09-08T20:32:39.000Z
+</code></pre></div><p>可以看出，jquery 库 Definition 信息是存在的，对应的 源（SOURCE） 是 <code>dt</code>。</p>
+<h3 id="23-安装某个库特定版本的-definition">2.3. 安装某个库特定版本的 Definition</h3>
+<p>2016 年 9 月初，很多人发现通过 typings 安装的 <code>env~node</code> 在 TS 编译输出为 ES5
+标准的情况下不可用了，编译报错。原因是 DefinitelyTyped 库将 <code>env~node</code> 的最新
+版本更新为 6.0 版本，只支持 ES6 标准了。这导致很多编译目标为 ES5 甚至 ES3 的项目
+都因为无法识别里面的 ES6 标准元素而出错。</p>
+<p>解决方案是安装特定的兼容分支即可，如何安装特定版本的 Definition 呢？首先，通过
+typings 工具的 info 命令查看某个库声明的分支信息。例如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">$ typings info env~node --versions
+TAG                   VERSION LOCATION                                                            UPDATED
+6.0.0+20160902022231  6.0.0   github:types/env-node/6#30804787ed04e4d475046ef0335bef502f492da0    2016-09-02T02:22:31.000Z
+4.0.0+20160902022231  4.0.0   github:types/env-node/4#30804787ed04e4d475046ef0335bef502f492da0    2016-09-02T02:22:31.000Z
+0.12.0+20160902022231 0.12.0  github:types/env-node/0.12#30804787ed04e4d475046ef0335bef502f492da0 2016-09-02T02:22:31.000Z
+0.11.0+20160902022231 0.11.0  github:types/env-node/0.11#30804787ed04e4d475046ef0335bef502f492da0 2016-09-02T02:22:31.000Z
+0.10.0+20160902022231 0.10.0  github:types/env-node/0.10#30804787ed04e4d475046ef0335bef502f492da0 2016-09-02T02:22:31.000Z
+0.8.0+20160902022231  0.8.0   github:types/env-node/0.8#30804787ed04e4d475046ef0335bef502f492da0  2016-09-02T02:22:31.000Z
+</code></pre></div><p>可以看到 <code>env~node</code> 有 6 个分支(Tag)，对应 Node.js 的不同版本。</p>
+<blockquote>
+<p>这些分支对 Node.js 是版本号，但对于 typings 它们都是分支，而不是版本！</p>
+</blockquote>
+<p>然后通过</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">typings i env~node#4.0.0+20160902022231 --global
+</code></pre></div><p>就安装好了。</p>
+<h3 id="24-从-github-仓库安装-definition">2.4. 从 GitHub 仓库安装 Definition</h3>
+<p>可以使用 typings 从指定的 GitHub 仓库里下载安装 Definition</p>
+<p>命令格式有两种：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 文件式</span>
+typings i github:用户名/项目名称/文件路径 --global
+</code></pre></div><p>或</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 仓库式</span>
+typings i github:用户名/项目名称 --global
+</code></pre></div><h4 id="241-直接安装仓库里的某个文件作为-definition">2.4.1. 直接安装仓库里的某个文件作为 Definition</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 文件式</span>
+<span style="color:#008000"># 安装这个文件的最新 commit 版本</span>
+typings i github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts --global
+</code></pre></div><h4 id="242-使用特定-commit-版本作为-definition">2.4.2. 使用特定 commit 版本作为 Definition</h4>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 文件式</span>
+<span style="color:#008000"># 安装这个文件的 commit=5fd6d6b4eaabda87d19ad13b7d6709443617ddd8 的版本</span>
+typings i github:DefinitelyTyped/DefinitelyTyped/express/express.d.ts#5fd6d6b4eaabda87d19ad13b7d6709443617ddd8 --global
+</code></pre></div><h4 id="243-使用专用的-github-仓库">2.4.3. 使用专用的 GitHub 仓库</h4>
+<p>假设我为一个叫 ABCDEFG 的库写了一个 Definition，现在我要把它发布到 GitHub 上作
+为 typings 源。那么先建立一个 GitHub 项目，名字随意，这里假设是
+<code>https://github.com/sample/abcdefg-typings</code>。</p>
+<p>把 Definition 取名为 <code>index.d.ts</code>，再添加一个文件 <code>typings.json</code>，内容如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  &#34;name&#34;: <span style="color:#a31515">&#34;abcdefg&#34;</span>,
+  &#34;main&#34;: <span style="color:#a31515">&#34;index.d.ts&#34;</span>,
+  &#34;version&#34;: <span style="color:#a31515">&#34;0.1.0-demo&#34;</span>
+}
+</code></pre></div><p>将 <code>index.d.ts</code> 和 <code>typings.json</code> 两个文件提交到 GitHub 的
+sample/abcdefg-typings 仓库。现在，我们可以通过下面的命令安装了。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#008000"># 仓库式</span>
+<span style="color:#008000"># 安装这个仓库的最新 commit 版本</span>
+typings i github:sample/abcdefg-typings --global
+</code></pre></div><p>安装成功后可以看到控制台提示</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">typings WARN badlocation &#34;github:sample/abcdefg-typings&#34; is mutable and may change, consider specifying a commit hash
+abcdefg-typings@0.1.0-demo
+`-- (No dependencies)
+</code></pre></div><p>那句警告的意思是建议使用一个 commit ID，这个就随意了。</p>
+<h3 id="25-使用-typingsjson-管理-definition">2.5. 使用 typings.json 管理 Definition</h3>
+<p>看了上面的用法，为了更方便的管理一个项目依赖的 Definition （比如更新版本），
+typings 需要使用一个名为 <code>typings.json</code> 文件来记录我们安装过的 Definition 。</p>
+<p>先初始化它，</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">typings init
+</code></pre></div><p>这个命令初始化了 typings.json 文件，内容是一个空的 Definition 依赖记录表：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  &#34;dependencies&#34;: {}
+}
+</code></pre></div><p>现在我们来安装 Definition ，并记录到表中：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">typings i env~node dt~async --global --save
+</code></pre></div><p>后面的 <code>--save</code>（可简写为 <code>-S</code>） 会将 Definition 信息添加到 Definition 依赖记录表，
+比如现在的 typings.json 文件内容如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+  &#34;dependencies&#34;: {},
+  &#34;globalDependencies&#34;: {
+    &#34;async&#34;: <span style="color:#a31515">&#34;registry:dt/async#2.0.1+20160804113311&#34;</span>,
+    &#34;node&#34;: <span style="color:#a31515">&#34;registry:dt/node#6.0.0+20160915134512&#34;</span>
+  }
+}
+</code></pre></div><p>这样，发布项目时或者上传代码到 GitHub 的时候，typings 目录就可有可无了，需要的
+时候直接一句 <code>typings i</code> 就完成了 Definition 的安装。需要注意的是，typings
+默认安装最新版本的 Definition，如果你不想每次都安装最新的，可以通过
+<strong>2.4. 从 GitHub 仓库安装 Definition</strong> 的方法解决。</p>
+<h2 id="3-编写-definition">3. 编写 Definition</h2>
+<p>前面讲了很多关于如何使用 Definition 的内容，那都是“用”，下面来讲讲如何自己写
+一个 Definition。</p>
+<h3 id="31-nodejs-与-npm-模块">3.1 Node.js 与 NPM 模块</h3>
+<p>NPM 在某个项目内本地安装的模块都在项目的 <code>./node_modules</code> 目录下，一个模块一个
+目录，以模块名称为目录名。</p>
+<p>对于一个 NPM 模块，通过里面的 package.json 文件的 <code>main</code> 字段可以指定其默认的
+入口文件。在 Node.js 里通过 <code>require(&quot;模块名称&quot;)</code> 引用的就是这个默认的入口
+文件。如果未指定 package.json 文件的 <code>main</code> 字段，但是存在 index.js 文件，
+那么 index.js 也会被当成默认的入口文件。</p>
+<p>除此之外，在 Node.js 里面还可以单独引用 NPM 模块的其中一个文件，而不只是通过
+默认入口文件引用模块。例如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#00f">var</span> sample = require(<span style="color:#a31515">&#34;sample&#34;</span>);
+<span style="color:#00f">var</span> lib1 = require(<span style="color:#a31515">&#34;sample/lib1&#34;</span>);
+<span style="color:#00f">var</span> lib2 = require(<span style="color:#a31515">&#34;sample/lib2&#34;</span>);
+</code></pre></div><p>现在假设这三个文件的代码如下，我们将在后面以这三个文件为基础编写 Definition：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// File: ./node_modules/sample/index.js
+</span><span style="color:#008000"></span><span style="color:#00f">var</span> abc = 321;
+exports.setABC = <span style="color:#00f">function</span>(abcValue) {
+    abc = abcValue;
+};
+exports.getABC = <span style="color:#00f">function</span>() {
+    <span style="color:#00f">return</span> abc;
+};
+
+exports.defaultABC = abc;
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// File: ./node_modules/sample/lib1.js
+</span><span style="color:#008000"></span><span style="color:#00f">var</span> Hello = (<span style="color:#00f">function</span> () {
+    <span style="color:#00f">function</span> Hello(a) {
+        <span style="color:#00f">this</span>.valueA = a;
+    }
+    Object.defineProperty(Hello.prototype, <span style="color:#a31515">&#34;a&#34;</span>, {
+        get: <span style="color:#00f">function</span> () {
+            <span style="color:#00f">return</span> <span style="color:#00f">this</span>.valueA;
+        },
+        enumerable: <span style="color:#00f">true</span>,
+        configurable: <span style="color:#00f">true</span>
+    });
+    Hello.initClass = <span style="color:#00f">function</span> () {
+        Hello.instCount = 0;
+    };
+    <span style="color:#008000">/**
+</span><span style="color:#008000">     * 假设这是一个重载函数，支持多种调用方式
+</span><span style="color:#008000">     */</span>
+    Hello.prototype.setup = <span style="color:#00f">function</span> (x, b) {
+        <span style="color:#00f">if</span> (b === <span style="color:#00f">void</span> 0) { b = <span style="color:#00f">null</span>; }
+        <span style="color:#00f">return</span> <span style="color:#00f">false</span>;
+    };
+    <span style="color:#00f">return</span> Hello;
+}());
+exports.Hello = Hello;
+
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// File: ./node_modules/sample/lib2.js
+</span><span style="color:#008000"></span>
+<span style="color:#00f">var</span> randStrSeed = <span style="color:#a31515">&#34;abcdefghijklmnopqrstuvwxyz0123456789&#34;</span>;
+
+<span style="color:#00f">function</span> randomString(length) {
+
+    <span style="color:#00f">var</span> ret = <span style="color:#a31515">&#34;&#34;</span>;
+
+    <span style="color:#00f">while</span> (length-- &gt; 0) {
+
+        ret += randStrSeed[Math.floor(Math.random() * randStrSeed.length)];
+    }
+
+    <span style="color:#00f">return</span> ret;
+}
+
+module.exports = randomString;
+</code></pre></div><p>这是三个典型的模块类型，第一个导出了变量和函数，第二个导出了一个类，第三个则将
+一个函数作为一个模块导出。</p>
+<p>现在我们以这三个文件为例，分别以<strong>模块导出声明 (External Module Definition)</strong> 和
+<strong>全局类型声明(Global Type Definition)</strong> 两种写法编写 Definition。</p>
+<h3 id="32-全局类型声明写法">3.2. 全局类型声明写法</h3>
+<p>假如上面的3个文件同属一个模块 <strong>sample</strong>，但是它并不是我们自己在 NPM 上发布的，
+即是说我们无权给它添加内建 Definition。所以我们用全局类型声明写法。</p>
+<p>这是一个不是很复杂的模块，那么我们用一个 <code>.d.ts</code> 文件就可以了。</p>
+<p>第一个文件是模块的入口文件，可以直接当成模块 sample。定义如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample&#34;</span> {
+
+    <span style="color:#008000">// 导出函数 setABC
+</span><span style="color:#008000"></span>    <span style="color:#00f">export</span> <span style="color:#00f">function</span> setABC(abcValue: <span style="color:#2b91af">number</span>): <span style="color:#00f">void</span>;
+
+    <span style="color:#008000">// 导出函数 getABC
+</span><span style="color:#008000"></span>    <span style="color:#00f">export</span> <span style="color:#00f">function</span> getABC(): <span style="color:#2b91af">number</span>;
+
+    <span style="color:#008000">// 导出变量 defaultABC
+</span><span style="color:#008000"></span>    <span style="color:#00f">export</span> <span style="color:#00f">let</span> defaultABC: <span style="color:#2b91af">number</span>;
+}
+</code></pre></div><p>第二个文件是导出了两个类，可以当成模块 &ldquo;sample/lib1&rdquo;。下面来看看如何导出类。</p>
+<p>这个类里面有构造函数，有静态方法，有普通方法，有属性，也有静态属性，还有 getter。</p>
+<p>类有两种声明编写方式：<code>标准式</code>和<code>分离式</code>。</p>
+<p><code>标准式</code>很直接，就是像 C/C++ 的头文件里声明类一样只写类声明不写实现：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample/lib1&#34;</span> {
+
+    <span style="color:#00f">export</span> <span style="color:#00f">class</span> Hello {
+
+        <span style="color:#00f">private</span> valueA;
+
+        b: <span style="color:#2b91af">number</span>;
+
+        <span style="color:#00f">static</span> instCount: <span style="color:#2b91af">number</span>;
+
+        a: <span style="color:#2b91af">number</span>;
+
+        <span style="color:#00f">constructor</span>(a: <span style="color:#2b91af">number</span>);
+
+        <span style="color:#00f">static</span> initClass(): <span style="color:#00f">void</span>;
+
+        <span style="color:#008000">/**
+</span><span style="color:#008000">        * 假设这是一个重载函数，支持多种调用方式
+</span><span style="color:#008000">        */</span>
+        setup(name: <span style="color:#2b91af">string</span>): <span style="color:#00f">boolean</span>;
+
+        setup(name: <span style="color:#2b91af">string</span>, age: <span style="color:#2b91af">number</span>): <span style="color:#00f">boolean</span>;
+    }
+}
+</code></pre></div><p>但是这种写法也有不便的地方，比如扩展类不方便——JavaScript允许你随时扩展一个类的原型
+对象实现对类的扩展，或者随时给类添加静态成员。<code>标准式</code>写法很难实现扩展，因为你无法
+重复声明一个类。</p>
+<p>所以下面我们来看看所谓的<code>分离式</code>声明。在这之前我们要理解，JS 的类是用函数实现的，
+即是说 JS 的类本质上就是一个构造函数 + Prototype。Prototype 的成员就是类的成员；
+而类的静态方法就是这个构造函数对象本身的成员方法。</p>
+<p>因此我们可以分开写这两者的声明：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample/lib1&#34;</span> {
+
+    <span style="color:#008000">/**
+</span><span style="color:#008000">     * 在分离式写法里面，一个类的 Prototype 的声明是一个直接以类名称为名的
+</span><span style="color:#008000">     * interface。我们把成员函数和变量/getter/setter 都行写在 prototype
+</span><span style="color:#008000">     * 的接口里面。
+</span><span style="color:#008000">     *
+</span><span style="color:#008000">     * 注意：类原型的 interface 取名与类名一致。 
+</span><span style="color:#008000">     */</span>
+    <span style="color:#00f">export</span> <span style="color:#00f">interface</span> Hello {
+
+        <span style="color:#008000">/**
+</span><span style="color:#008000">         * 接口里面只写类的 public 属性
+</span><span style="color:#008000">         */</span>
+        <span style="color:#a31515">&#34;b&#34;</span>: <span style="color:#2b91af">number</span>;
+
+        <span style="color:#008000">/**
+</span><span style="color:#008000">         * Getter/Setter 直接成属性即可。
+</span><span style="color:#008000">         */</span>
+        <span style="color:#a31515">&#34;a&#34;</span>: <span style="color:#2b91af">number</span>;
+
+        <span style="color:#008000">/**
+</span><span style="color:#008000">         * 重载函数的声明写法
+</span><span style="color:#008000">         */</span> 
+        setup(name: <span style="color:#2b91af">string</span>): <span style="color:#00f">boolean</span>;
+        setup(name: <span style="color:#2b91af">string</span>, age: <span style="color:#2b91af">number</span>): <span style="color:#00f">boolean</span>;
+    }
+
+    <span style="color:#008000">/**
+</span><span style="color:#008000">     * 在分离式写法里面，一个类的构造函数对象也是一个 interface ，但是对
+</span><span style="color:#008000">     * 其命名无具体要求，合理即可。
+</span><span style="color:#008000">     * 
+</span><span style="color:#008000">     * 把类的静态方法和属性都写在这里面。
+</span><span style="color:#008000">     */</span>
+    <span style="color:#00f">export</span> <span style="color:#00f">interface</span> HelloConstructor {
+
+        <span style="color:#008000">/**
+</span><span style="color:#008000">         * 静态属性
+</span><span style="color:#008000">         */</span>
+        <span style="color:#a31515">&#34;instCount&#34;</span>: <span style="color:#2b91af">number</span>;
+
+        <span style="color:#008000">/**
+</span><span style="color:#008000">         * 静态方法
+</span><span style="color:#008000">         */</span>
+        initClass(): <span style="color:#00f">void</span>;
+
+        <span style="color:#008000">/**
+</span><span style="color:#008000">         * 构造函数！
+</span><span style="color:#008000">         * 使用 new 代替 constructor，并声明其返回值类型是该类的Prototype。
+</span><span style="color:#008000">         */</span>
+        <span style="color:#00f">new</span>(a: <span style="color:#2b91af">number</span>): Hello;
+    }
+
+    <span style="color:#008000">/**
+</span><span style="color:#008000">     * 将 Hello 覆盖声明为 HelloConstructor。
+</span><span style="color:#008000">     * 
+</span><span style="color:#008000">     * 这样，在需要作为类使用的时候它就是 HelloConstructor，
+</span><span style="color:#008000">     * 需要作为接口使用的时候就是 Hello（原型接口）。
+</span><span style="color:#008000">     */</span>
+    <span style="color:#00f">export</span> <span style="color:#00f">let</span> Hello: <span style="color:#2b91af">HelloConstructor</span>;
+}
+</code></pre></div><p>如上，就是导出类的两种姿势~</p>
+<p>接着看第三个文件，直接将一个函数作为模块导出，也是很简单的。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample/lib2&#34;</span> {
+
+    <span style="color:#00f">let</span> randomString: (length: <span style="color:#2b91af">number</span>) =&gt; <span style="color:#2b91af">string</span>;
+
+    <span style="color:#00f">export</span> = randomString;
+}
+</code></pre></div><p>最后把 3 个模块的声明合并成一个文件 sample.d.ts，在文件里用三斜线指令引用即可。</p>
+<h3 id="33-模块导出声明写法">3.3. 模块导出声明写法</h3>
+<p>模块导出声明写法里面不用注明是哪个模块，一般给每个导出的文件都配备一个以 <code>.d.ts</code>
+为后缀的 Definition。</p>
+<ul>
+<li>
+<p>文件 ./node_modules/sample/index.d.ts</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File: ./node_modules/sample/index.d.ts
+</span><span style="color:#008000"></span><span style="color:#008000">// 导出函数 setABC
+</span><span style="color:#008000"></span><span style="color:#00f">export</span> <span style="color:#00f">declare</span> <span style="color:#00f">function</span> setABC(abcValue: <span style="color:#2b91af">number</span>): <span style="color:#00f">void</span>;
+
+<span style="color:#008000">// 导出函数 getABC
+</span><span style="color:#008000"></span><span style="color:#00f">export</span> <span style="color:#00f">declare</span> <span style="color:#00f">function</span> getABC(): <span style="color:#2b91af">number</span>;
+
+<span style="color:#008000">// 导出变量 defaultABC
+</span><span style="color:#008000"></span><span style="color:#00f">export</span> <span style="color:#00f">declare</span> <span style="color:#00f">let</span> defaultABC: <span style="color:#2b91af">number</span>;
+</code></pre></div></li>
+<li>
+<p>文件 ./node_modules/sample/lib1.d.ts</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File: ./node_modules/sample/lib1.d.ts
+</span><span style="color:#008000"></span>
+<span style="color:#00f">export</span> <span style="color:#00f">class</span> Hello {
+
+    <span style="color:#00f">private</span> valueA;
+
+    b: <span style="color:#2b91af">number</span>;
+
+    <span style="color:#00f">static</span> instCount: <span style="color:#2b91af">number</span>;
+
+    a: <span style="color:#2b91af">number</span>;
+
+    <span style="color:#00f">constructor</span>(a: <span style="color:#2b91af">number</span>);
+
+    <span style="color:#00f">static</span> initClass(): <span style="color:#00f">void</span>;
+
+    <span style="color:#008000">/**
+</span><span style="color:#008000">    * 假设这是一个重载函数，支持多种调用方式
+</span><span style="color:#008000">    */</span>
+    setup(name: <span style="color:#2b91af">string</span>): <span style="color:#00f">boolean</span>;
+
+    setup(name: <span style="color:#2b91af">string</span>, age: <span style="color:#2b91af">number</span>): <span style="color:#00f">boolean</span>;
+}
+</code></pre></div></li>
+<li>
+<p>文件 ./node_modules/sample/lib2.d.ts</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File: ./node_modules/sample/lib2.d.ts
+</span><span style="color:#008000"></span>
+<span style="color:#00f">let</span> randomString: (length: <span style="color:#2b91af">number</span>) =&gt; <span style="color:#2b91af">string</span>;
+
+<span style="color:#00f">export</span> = randomString;
+</code></pre></div></li>
+</ul>
+<h3 id="34-如何确定现有类的声明接口名称">3.4. 如何确定现有类的声明接口名称？</h3>
+<p>以确认 <code>String</code> 类的声明接口名称为例。</p>
+<p>在 TypeScript 源码的 lib.d.ts 里面可以找到：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> <span style="color:#00f">var</span> String: StringConstructor;
+</code></pre></div><p>这就是 String 类的构造函数了，即是说 <code>StringConstructor</code> 定义了 <code>String</code>
+的静态方法。</p>
+<blockquote>
+<p>使用如 Visual Studio Code 的编辑器，在里面随意打开一个 <code>*.ts</code> 文件，
+然后输入比如 <code>String</code> ，鼠标移动上去，可以看到类型定义。</p>
+</blockquote>
+<p>然后查看 <code>StringConstructor</code> 的定义：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">/*
+</span><span style="color:#008000"> * 全局类/对象的声明都是在 lib.d.ts 里面定义的，即是说 TypeScript 通常会
+</span><span style="color:#008000"> * 默认引用一个 lib.d.ts 文件，所以这里面的内容无需引用声明即可使用。
+</span><span style="color:#008000"> *
+</span><span style="color:#008000"> * 也正因此 StringConstructor 不需要 declare 和 export。
+</span><span style="color:#008000"> *
+</span><span style="color:#008000"> */</span>
+<span style="color:#00f">interface</span> StringConstructor {
+    <span style="color:#00f">new</span> (value?: <span style="color:#2b91af">any</span>): String;
+    (value?: <span style="color:#2b91af">any</span>): <span style="color:#2b91af">string</span>;
+    prototype: <span style="color:#2b91af">String</span>;
+    fromCharCode(...codes: <span style="color:#2b91af">number</span>[]): <span style="color:#2b91af">string</span>;
+}
+</code></pre></div><p>这里可以看出，String 类的构造函数的声明是接口 <code>StringConstructor</code>，
+而其 <code>String.prototype</code> 的声明是接口 <code>String</code>，显然用了<code>分离式</code>写法。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">interface</span> String {
+
+    <span style="color:#008000">//...
+</span><span style="color:#008000"></span>}
+</code></pre></div><h3 id="35-扩展-javascript-全局类对象">3.5. 扩展 JavaScript 全局类/对象</h3>
+<p>前面我们实现了一个模块的声明文件。</p>
+<p>以 langext 的代码为例，试图为 JS 原生的 <code>String</code> 类添加一个 <code>random</code> 静态方法。</p>
+<p>如果直接写：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts">String.random = <span style="color:#00f">function</span>(len: <span style="color:#2b91af">number</span>): <span style="color:#2b91af">string</span> {
+
+    <span style="color:#00f">return</span> <span style="color:#a31515">&#39;...&#39;</span>;
+};
+</code></pre></div><p>是无法通过编译的，因为 TS 的类型检查，根据既有的 <code>String</code> 类定义，发现
+<code>random</code> 不是 <code>String</code> 类的静态成员。</p>
+<p>解决方法是使用一个声明文件，在里面写：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">interface</span> StringConstructor {
+
+    random(length: <span style="color:#2b91af">number</span>): <span style="color:#2b91af">string</span>;
+}
+</code></pre></div><p>然后引用这个定义文件即可。</p>
+<p>这是利用了 TS 的 interface 可分离定义特性，同名的 interface，只要字段定义不冲突
+就可以分开定义。【参考 4.2 节】</p>
+<h2 id="4-编写-definition-的注意事项">4. 编写 Definition 的注意事项</h2>
+<h3 id="41-不要使用内层-declare">4.1. 不要使用内层 declare</h3>
+<p>只能在 Definition 的顶层使用 <code>declare</code>，比如下面的写法都是<strong>错误</strong>的：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample&#34;</span> {
+
+    <span style="color:#008000">// 此处应当使用 export
+</span><span style="color:#008000"></span>    <span style="color:#00f">declare</span> <span style="color:#00f">let</span> a: <span style="color:#2b91af">string</span>;
+}
+
+<span style="color:#00f">declare</span> namespace Sample {
+
+    <span style="color:#008000">// 此处应当使用 export
+</span><span style="color:#008000"></span>    <span style="color:#00f">declare</span> <span style="color:#00f">let</span> a: <span style="color:#2b91af">string</span>;
+}
+</code></pre></div><h3 id="42-避免全局污染">4.2. 避免全局污染</h3>
+<p>虽然全局声明写法允许你引入名称到全局命名空间中，但这也意味着，引入的顶层名称
+都是全局的。所以应该将所有的模块内导出的元素都放进模块或者命名空间内：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample&#34;</span> {
+
+    <span style="color:#008000">/**
+</span><span style="color:#008000">     * 仅可通过 import { Person } from &#34;sample&#34; 访问。
+</span><span style="color:#008000">     */</span>
+    <span style="color:#00f">export</span> <span style="color:#00f">interface</span> Person {
+
+        name: <span style="color:#2b91af">string</span>;
+    }
+}
+
+<span style="color:#00f">declare</span> namespace Sample {
+
+    <span style="color:#00f">export</span> <span style="color:#00f">interface</span> Animal {
+
+        type: <span style="color:#2b91af">string</span>;
+    }
+}
+</code></pre></div><p><strong>而不是</strong></p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">/**
+</span><span style="color:#008000"> * 无需 import 即可使用，即全局的
+</span><span style="color:#008000"> */</span>
+<span style="color:#00f">interface</span> Person {
+
+    name: <span style="color:#2b91af">string</span>;
+}
+</code></pre></div><p>不过以下情况例外：</p>
+<ol>
+<li>
+<p>当在扩展全局对象/类的时候，允许这么写</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">interface</span> StringConstructor {
+
+    random(length: <span style="color:#2b91af">number</span>): <span style="color:#2b91af">string</span>;
+}
+</code></pre></div></li>
+<li>
+<p>当确实引入了新的全局名称时，比如 script 里的全局变量</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> <span style="color:#00f">let</span> globalName: <span style="color:#2b91af">string</span>;
+</code></pre></div></li>
+</ol>
+<h3 id="43-注意声明冲突">4.3. 注意声明冲突</h3>
+<p>module 和 namespace 都是可以重复声明的——但是里面的元素不能冲突。具体如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample&#34;</span> {
+
+    <span style="color:#00f">export</span> <span style="color:#00f">let</span> name: <span style="color:#2b91af">string</span>;
+
+    <span style="color:#00f">export</span> <span style="color:#00f">interface</span> ABC {
+
+        value: <span style="color:#2b91af">string</span>;
+    }
+}
+
+<span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample&#34;</span> {
+
+    <span style="color:#008000">// 冲突，因为 sample 模块里已经有了导出变量 name
+</span><span style="color:#008000"></span>    <span style="color:#00f">export</span> <span style="color:#00f">let</span> name: <span style="color:#2b91af">string</span>;
+
+    <span style="color:#008000">// 不冲突，因为两个内容不重复的重名 interface 可以合并。
+</span><span style="color:#008000"></span>    <span style="color:#00f">export</span> <span style="color:#00f">interface</span> ABC {
+
+        
+        name: <span style="color:#2b91af">string</span>;
+    }
+}
+
+<span style="color:#00f">declare</span> module <span style="color:#a31515">&#34;sample&#34;</span> {
+
+    <span style="color:#008000">// 冲突，因为前面的 sample.ABC 里面已经定义了 value 字段。
+</span><span style="color:#008000"></span>    <span style="color:#00f">export</span> <span style="color:#00f">interface</span> ABC {
+
+        
+        value: <span style="color:#2b91af">string</span>;
+    }
+}
+</code></pre></div><h3 id="44-模块名称要区分大小写">4.4. 模块名称要区分大小写！</h3>
+<p>这一点对于 Windows 上的 Node.js 开发人员很致命！因为在 Windows 下文件名不区分
+大小写，所以你不区分大小写都可以成功引用模块，
+<strong>但是，Node.js 并不认为仅仅名称大小写不一致的两个文件是同一个模块！</strong></p>
+<p>这将导致一个严重的后果——同一个模块被初始化为不同名称（大小写不一致）的多个实例，
+导致各处引用的不是同一个实例，从而造成数据不同步。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2016/09/19/how-to-write-typescript-definitions/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>如何彻底禁止 Redis 持久化功能 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="如何彻底禁止 Redis 持久化功能" />
+<meta property="og:description" content="这是一个关于 Redis 坑的故事。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2018/03/08/how-to-turn-off-redis-permanent-storage/" />
+<meta property="article:published_time" content="2018-03-08T15:10:00+08:00" />
+<meta property="article:modified_time" content="2018-03-08T15:10:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="如何彻底禁止 Redis 持久化功能"/>
+<meta name="twitter:description" content="这是一个关于 Redis 坑的故事。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">08</span>
+							<span class="rest">Mar 2018</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">如何彻底禁止 Redis 持久化功能</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/cache">Category: Cache</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: Redis" href="/tags/redis">Redis</a class="category">
+						
+						<a class="tag" title="Tag: Cache" href="/tags/cache">Cache</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+
+	
+				<p>这是一个关于 Redis 坑的故事。</p>
+<p>公司有一台测试服务器，其中跑着一个 WordPress 站点。不知道什么时候开始，每次服务器重启，WordPress 的一些数据（例如角色权限）会还原到N久之前的样子。各种查代码没看出来，直到今天手动重启了下 Redis，连进去发现里面居然有一大坨 WordPress 的缓存数据！！！！</p>
+<p>明明我关掉持久化了啊！！！刚刚重启过哪来的数据？？？</p>
+<p>反复重启 Redis，依然如此。检查 Redis 配置，save 也是配置为 <code>save &quot;&quot;</code> 了。直到我看到一行配置</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini">dir=<span style="color:#a31515">/www/data/redis/</span>
+</code></pre></div><p>然后在里面找到了一个 rdb 文件……</p>
+<p>删掉，重启 Redis，一切正常。简直吐血三升。</p>
+<p>原来 Redis 只要在配置的范围内有这个持久化文件就会自动加载……</p>
+<p><strong>重要的事情说三遍，禁止持久化，除了要设置 <code>save &quot;&quot;</code>，还要把持久化的本地文件干掉！</strong></p>
+<p><strong>重要的事情说三遍，禁止持久化，除了要设置 <code>save &quot;&quot;</code>，还要把持久化的本地文件干掉！</strong></p>
+<p><strong>重要的事情说三遍，禁止持久化，除了要设置 <code>save &quot;&quot;</code>，还要把持久化的本地文件干掉！</strong></p>
+<p>欲哭无泪。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2018/03/08/how-to-turn-off-redis-permanent-storage/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

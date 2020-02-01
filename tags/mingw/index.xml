@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MinGW on Fenying</title>
+    <link>https://fenying.github.io/tags/mingw/</link>
+    <description>Recent content in MinGW on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Mon, 12 Sep 2016 10:48:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/mingw/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在 MinGW 中使用 OpenSSL 创建证书时的 BUG</title>
+      <link>https://fenying.github.io/post/2016/09/12/openssl-bug-for-certificate-in-mingw/</link>
+      <pubDate>Mon, 12 Sep 2016 10:48:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2016/09/12/openssl-bug-for-certificate-in-mingw/</guid>
+      <description>&lt;p&gt;&lt;code&gt;openssl req&lt;/code&gt; 命令在 MinGW 环境下无法正确生成证书的 Bug。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
