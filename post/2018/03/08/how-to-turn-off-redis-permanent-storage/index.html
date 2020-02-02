@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>如何彻底禁止 Redis 持久化功能 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>如何彻底禁止 Redis 持久化功能 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580627105" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="如何彻底禁止 Redis 持久化功能" />
 <meta property="og:description" content="这是一个关于 Redis 坑的故事。" />
 <meta property="og:type" content="article" />
@@ -13,12 +13,12 @@
 <meta name="twitter:title" content="如何彻底禁止 Redis 持久化功能"/>
 <meta name="twitter:description" content="这是一个关于 Redis 坑的故事。"/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580627105" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580627105" />
 
-	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580627105"></script>
 	
-		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1580627105"></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1580627105" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -47,6 +47,10 @@
 			
 			<li>
 				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
 			</li>
 			
 			<li>
@@ -101,7 +105,7 @@
 			<div class="markdown">
 				
 
-	
+
 				<p>这是一个关于 Redis 坑的故事。</p>
 <p>公司有一台测试服务器，其中跑着一个 WordPress 站点。不知道什么时候开始，每次服务器重启，WordPress 的一些数据（例如角色权限）会还原到N久之前的样子。各种查代码没看出来，直到今天手动重启了下 Redis，连进去发现里面居然有一大坨 WordPress 的缓存数据！！！！</p>
 <p>明明我关掉持久化了啊！！！刚刚重启过哪来的数据？？？</p>
@@ -147,7 +151,7 @@
 	<nav class="nav">
 		<div>
 			 © Copyright 2020 Angus Fenying  |
-			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
 			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
 			<a href="/sitemap.xml">Site Map</a>
 		</div>

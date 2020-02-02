@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nginx on Fenying</title>
+    <link>https://fenying.github.io/tags/nginx/</link>
+    <description>Recent content in nginx on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Mon, 26 Dec 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>第五章 安装最新版 Nginx</title>
+      <link>https://fenying.github.io/books/minicentos-handbook/05.compile-nginx/</link>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/books/minicentos-handbook/05.compile-nginx/</guid>
+      <description>&lt;p&gt;本章编译安装 Nginx 服务器的 1.11.5 版本。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

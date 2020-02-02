@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Redis on Fenying</title>
+    <title>redis on Fenying</title>
     <link>https://fenying.github.io/tags/redis/</link>
-    <description>Recent content in Redis on Fenying</description>
+    <description>Recent content in redis on Fenying</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
@@ -28,6 +28,15 @@
       
       <guid>https://fenying.github.io/post/2018/03/08/how-to-turn-off-redis-permanent-storage/</guid>
       <description>&lt;p&gt;这是一个关于 Redis 坑的故事。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>第九章 编译安装 Redis 服务器</title>
+      <link>https://fenying.github.io/books/minicentos-handbook/09.compile-redis/</link>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/books/minicentos-handbook/09.compile-redis/</guid>
+      <description>&lt;p&gt;本章编译安装 Redis 3.2.5 。&lt;/p&gt;</description>
     </item>
     
   </channel>

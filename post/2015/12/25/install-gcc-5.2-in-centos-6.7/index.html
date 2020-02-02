@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>CentOS 6.7 x64 下更新 GCC 5.2 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580562733" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>CentOS 6.7 x64 下更新 GCC 5.2 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580627106" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="CentOS 6.7 x64 下更新 GCC 5.2" />
 <meta property="og:description" content="众所周知，CentOS作为服务器操作系统被广泛使用，然而其包含的 yum 源中提供的软件版本是非常旧的。比如 GCC，最新版本竟然还是 4.4.x。前天尝试编译 MongoDB 3.2.0，都要求使用 GCC 4.8.1了（GCC 4.8&#43;支持C&#43;&#43; 11）。
 只好手动编译一次GCC。注意这并不复杂，但是时间很长。且要预留6G以上的空间给编译器。" />
@@ -15,12 +15,12 @@
 <meta name="twitter:description" content="众所周知，CentOS作为服务器操作系统被广泛使用，然而其包含的 yum 源中提供的软件版本是非常旧的。比如 GCC，最新版本竟然还是 4.4.x。前天尝试编译 MongoDB 3.2.0，都要求使用 GCC 4.8.1了（GCC 4.8&#43;支持C&#43;&#43; 11）。
 只好手动编译一次GCC。注意这并不复杂，但是时间很长。且要预留6G以上的空间给编译器。"/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580562733" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580562733" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580627106" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580627106" />
 
-	<script src="https://fenying.github.io/js/feather.min.js?sv=1580562733"></script>
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580627106"></script>
 	
-		<script src="https://fenying.github.io/js/main.js?sv=1580562733"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1580627106"></script>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1580562733" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1580627106" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -49,6 +49,10 @@
 			
 			<li>
 				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
 			</li>
 			
 			<li>
@@ -106,7 +110,7 @@
 				</div><div class="markdown">
 				
 
-	
+
 				<p>众所周知，CentOS作为服务器操作系统被广泛使用，然而其包含的 yum 源中提供的软件版本是非常旧的。比如 GCC，最新版本竟然还是 4.4.x。前天尝试编译 MongoDB 3.2.0，都要求使用 GCC 4.8.1了（GCC 4.8+支持C++ 11）。</p>
 <p>只好手动编译一次GCC。注意这并不复杂，但是时间很长。且要预留6G以上的空间给编译器。</p>
 <p>官网下载 <code>gcc-5.2.0.tar.gz</code>，执行以下命令即可。</p>
@@ -191,7 +195,7 @@ rm -Rf gcc-5.2.0
 	<nav class="nav">
 		<div>
 			 © Copyright 2020 Angus Fenying  |
-			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo 0.63.1">Hugo</a> |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
 			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
 			<a href="/sitemap.xml">Site Map</a>
 		</div>

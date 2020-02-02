@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>DER 编码规范理解 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580627104" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="DER 编码规范理解" />
+<meta property="og:description" content="这几天在研究 X.509 证书和 DER 编码的解码信息。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2020/01/31/der-encoding/" />
+<meta property="article:published_time" content="2020-01-31T17:15:00+08:00" />
+<meta property="article:modified_time" content="2020-01-31T17:15:00+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="DER 编码规范理解"/>
+<meta name="twitter:description" content="这几天在研究 X.509 证书和 DER 编码的解码信息。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580627104" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580627104" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580627104"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580627104"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580627104" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+	
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">31</span>
+							<span class="rest">Jan 2020</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">DER 编码规范理解</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/encoding">Category: Encoding</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: der" href="/tags/der">der</a class="category">
+						
+						<a class="tag" title="Tag: x.509" href="/tags/x.509">x.509</a class="category">
+						
+						<a class="tag" title="Tag: encoding" href="/tags/encoding">encoding</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+
+
+				<p>这几天在研究 X.509 证书和 DER 编码的解码信息。</p>
+<h2 id="1-基本概念">1. 基本概念</h2>
+<p>在 TLS/SSL 协议中，服务端需要向客户端提供一个证书，以证明自己的身份。
+这个证书里面包含了服务端的加密公钥、一些用于描述自己身份的信息，以及一个签名。</p>
+<p>X.509 是现代公钥证书的格式规范，目前常用。</p>
+<blockquote>
+<ul>
+<li>
+<p>如果看到这里不理解什么是 X.509 证书，请自行补课。</p>
+</li>
+<li>
+<p>X.509 证书有很多种格式，本文只描述 DER 编码的格式。</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="2-证书结构">2. 证书结构</h2>
+<p>一个 X.509 证书，其结构使用 ASN.1 语法描述如下：</p>
+<blockquote>
+<p>此处只需随便看一眼，具体解释看下文。</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">Certificate  ::=  SEQUENCE  {
+    tbsCertificate       TBSCertificate,
+    signatureAlgorithm   AlgorithmIdentifier,
+    signatureValue       BIT STRING
+}
+
+TBSCertificate  ::=  SEQUENCE  {
+    version         [0]  EXPLICIT Version DEFAULT v1,
+    serialNumber         CertificateSerialNumber,
+    signature            AlgorithmIdentifier,
+    issuer               Name,
+    validity             Validity,
+    subject              Name,
+    subjectPublicKeyInfo SubjectPublicKeyInfo,
+    issuerUniqueID  [1]  IMPLICIT UniqueIdentifier OPTIONAL,
+                            -- If present, version MUST be v2 or v3
+
+    subjectUniqueID [2]  IMPLICIT UniqueIdentifier OPTIONAL,
+                            -- If present, version MUST be v2 or v3
+    extensions      [3]  EXPLICIT Extensions OPTIONAL
+                            -- If present, version MUST be v3
+}
+
+Version  ::=  INTEGER  {  v1(0), v2(1), v3(2)  }
+
+CertificateSerialNumber  ::=  INTEGER
+
+Validity ::= SEQUENCE {
+    notBefore      Time,
+    notAfter       Time
+}
+
+Time ::= CHOICE {
+    utcTime        UTCTime,
+    generalTime    GeneralizedTime
+}
+
+UniqueIdentifier  ::=  BIT STRING
+
+SubjectPublicKeyInfo  ::=  SEQUENCE  {
+    algorithm            AlgorithmIdentifier,
+    subjectPublicKey     BIT STRING
+}
+
+Extensions  ::=  SEQUENCE SIZE (1..MAX) OF Extension
+
+Extension  ::=  SEQUENCE  {
+    extnID      OBJECT IDENTIFIER,
+    critical    BOOLEAN DEFAULT FALSE,
+    extnValue   OCTET STRING
+                -- contains the DER encoding of an ASN.1 value
+                -- corresponding to the extension type identified
+                -- by extnID
+}
+
+</code></pre></div>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2020/01/31/der-encoding/
+</div><div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

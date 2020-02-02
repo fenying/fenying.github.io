@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nodejs on Fenying</title>
+    <title>nodejs on Fenying</title>
     <link>https://fenying.github.io/tags/nodejs/</link>
-    <description>Recent content in Nodejs on Fenying</description>
+    <description>Recent content in nodejs on Fenying</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
@@ -19,6 +19,15 @@
       
       <guid>https://fenying.github.io/post/2018/11/25/ecdsa-with-nodejs/</guid>
       <description>&lt;p&gt;最近有个朋友问我关于 Node.js 下使用 ECDSA 的问题，主要是使用 Node.js 的 Crypto 模块无法校验网络传输过来的签名结果。在踩坑无数后，终于搞清楚了原因。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>第十章 通过 NVM 安装 Node.js</title>
+      <link>https://fenying.github.io/books/minicentos-handbook/10.install-nodejs/</link>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/books/minicentos-handbook/10.install-nodejs/</guid>
+      <description>&lt;p&gt;本章通过 NVM 安装 Node.js 的最新稳定版本。&lt;/p&gt;</description>
     </item>
     
   </channel>

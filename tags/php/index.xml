@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PHP on Fenying</title>
+    <title>php on Fenying</title>
     <link>https://fenying.github.io/tags/php/</link>
-    <description>Recent content in PHP on Fenying</description>
+    <description>Recent content in php on Fenying</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
@@ -19,6 +19,15 @@
       
       <guid>https://fenying.github.io/post/2019/09/24/deploy-php-fpm-with-docker/</guid>
       <description>&lt;p&gt;使用 Docker 部署 PHP-FPM 的例子。（包括 Redis 等扩展）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>第八章 编译安装 PHP</title>
+      <link>https://fenying.github.io/books/minicentos-handbook/08.compile-php/</link>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/books/minicentos-handbook/08.compile-php/</guid>
+      <description>&lt;p&gt;本章编译安装 PHP 7.1.0 。&lt;/p&gt;</description>
     </item>
     
   </channel>

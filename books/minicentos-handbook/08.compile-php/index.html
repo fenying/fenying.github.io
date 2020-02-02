@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>第八章 编译安装 PHP - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580627106" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="第八章 编译安装 PHP" />
+<meta property="og:description" content="本章编译安装 PHP 7.1.0 。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/books/minicentos-handbook/08.compile-php/" />
+<meta property="article:published_time" content="2016-12-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-12-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="第八章 编译安装 PHP"/>
+<meta name="twitter:description" content="本章编译安装 PHP 7.1.0 。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580627106" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580627106" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580627106"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580627106"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580627106" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/books/minicentos-handbook/07.compile-mysql/">&lt;&lt;&lt; 第七章 安装最新版 MySQL</a>
+        </div><div class="nav-item back-to-catalog">
+        <a href="/books/minicentos-handbook">返回目录</a>
+    </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/books/minicentos-handbook/09.compile-redis/">第九章 编译安装 Redis 服务器 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">26</span>
+							<span class="rest">Dec 2016</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">第八章 编译安装 PHP</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						<a class="book" href="/books/minicentos-handbook">Book: MiniCentOS Handbook</a>
+					
+					
+						
+						<a class="tag" title="Tag: centos" href="/tags/centos">centos</a class="category">
+						
+						<a class="tag" title="Tag: minimal" href="/tags/minimal">minimal</a class="category">
+						
+						<a class="tag" title="Tag: compile" href="/tags/compile">compile</a class="category">
+						
+						<a class="tag" title="Tag: php" href="/tags/php">php</a class="category">
+						
+						<a class="tag" title="Tag: linux" href="/tags/linux">linux</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+
+
+				<p>本章编译安装 PHP 7.1.0 。</p>
+<h2 id="0-准备安装包和依赖包">0. 准备安装包和依赖包</h2>
+<h3 id="00-依赖列表">0.0. 依赖列表</h3>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>版本</th>
+<th>官网</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>libiconv</td>
+<td>1.1.4</td>
+<td><a href="http://www.gnu.org/software/libiconv/">http://www.gnu.org/software/libiconv/</a></td>
+</tr>
+<tr>
+<td>libmcrypt</td>
+<td>2.5.7</td>
+<td><a href="http://mcrypt.hellug.gr/lib/">http://mcrypt.hellug.gr/lib/</a></td>
+</tr>
+<tr>
+<td>mcrypt</td>
+<td>2.6.8</td>
+<td><a href="http://mcrypt.sourceforge.net/">http://mcrypt.sourceforge.net/</a></td>
+</tr>
+<tr>
+<td>mhash</td>
+<td>0.9.9.9</td>
+<td><a href="http://mhash.sourceforge.net/">http://mhash.sourceforge.net/</a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="01-下载-php-等源码">0.1. 下载 PHP 等源码</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">wget http://hk1.php.net/get/php-7.1.0.tar.gz/from/this/mirror -O php-7.1.0.tar.gz
+</code></pre></div><h3 id="02-编译安装-libiconv">0.2. 编译安装 libiconv</h3>
+<blockquote>
+<p>在编译安装 Git 时已经安装，</p>
+</blockquote>
+<h3 id="03-编译安装-libmcrypt">0.3. 编译安装 libmcrypt</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tar -xzvf libmcrypt-2.5.7.tar.gz
+cd libmcrypt-2.5.7
+./configure
+make -j 4 &amp;&amp; make install
+/sbin/ldconfig
+cd libltdl/
+./configure --enable-ltdl-install
+make -j 4 &amp;&amp; make install
+cd ../..
+rm -Rf libmcrypt-2.5.7
+ln -s /usr/local/lib/libmcrypt.la /usr/lib/libmcrypt.la
+ln -s /usr/local/lib/libmcrypt.so /usr/lib/libmcrypt.so
+ln -s /usr/local/lib/libmcrypt.so.4 /usr/lib/libmcrypt.so.4
+ln -s /usr/local/lib/libmcrypt.so.4.4.7 /usr/lib/libmcrypt.so.4.4.7
+ln -s /usr/local/bin/libmcrypt_config /usr/bin/libmcrypt_config
+</code></pre></div><h3 id="04-编译安装-mhash">0.4. 编译安装 mhash</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tar -zxvf mhash-0.9.9.9.tar.gz
+cd mhash-0.9.9.9
+./configure
+make -j 4 &amp;&amp; make install
+cd ..
+rm -Rf mhash-0.9.9.9
+ln -s /usr/local/lib/libmhash.la /usr/lib/libmhash.la
+ln -s /usr/local/lib/libmhash.a /usr/lib/libmhash.a
+ln -s /usr/local/lib/libmhash.so.2 /usr/lib/libmhash.so.2
+ln -s /usr/local/lib/libmhash.so.2.0.1 /usr/lib/libmhash.so.2.0.1
+/sbin/ldconfig
+</code></pre></div><h3 id="05-编译安装-mcrypt">0.5. 编译安装 mcrypt</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">tar -xzvf mcrypt-2.6.7.tar.gz
+cd mcrypt-2.6.7
+
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64:$LD_LIBRARY_PATH
+./configure
+make -j 4 &amp;&amp; make install
+
+cd ..
+rm -Rf mcrypt-2.6.7
+</code></pre></div><blockquote>
+<p>如果在 <code>./configure</code> 这一步报错，则执行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">./configure --with-libmcrypt-prefix=/usr/local
+</code></pre></div></blockquote>
+<h3 id="06-安装其他依赖">0.6. 安装其他依赖</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">yum -y install <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  make <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  cmake <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  autoconf <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  automake <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  bison <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  flex <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  freetype <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  freetype-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  fontconfig-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  gettext-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libjpeg <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libjpeg-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libpng <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libpng-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libxml2 <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libxml2-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libtool <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libtool-ltdl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libtool-ltdl-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libtiff-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libXpm-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libicu <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libicu-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libidn <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libidn-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libxslt <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libxslt-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  bzip2 <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  bzip2-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  ncurses <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  ncurses-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  curl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  curl-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  e2fsprogs <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  e2fsprogs-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  krb5 <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  krb5-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  openldap <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  openldap-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  nss_ldap <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  openldap-clients <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  openldap-servers <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  pam-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  vim-enhanced <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  net-snmp-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libxml2 <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libxml2-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libcurl-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libjpeg <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libjpeg-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libpng <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libpng-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libwebp <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  libwebp-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  freetype <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  freetype-devel <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  gd <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>  gd-devel
+</code></pre></div><div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">
+  zlib \
+  zlib-devel \
+  glibc \
+  glibc-devel \
+  glib2 \
+  glib2-devel \
+  openssl \
+  openssl-devel \
+  pcre \
+  pcre-devel \
+</code></pre></div><p>保存，执行</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">ldconfig
+</code></pre></div><h2 id="1-编译-php">1. 编译 PHP</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">
+tar -zxvf php-7.1.0.tar.gz
+cd php-7.1.0
+./configure <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--prefix=$PHP_ROOT <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-config-file-path=$PHP_CONFIG <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-mcrypt <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-mhash <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-mysqli=mysqlnd <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-pdo-mysql=mysqlnd <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-gd <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-iconv <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-zlib <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-xmlrpc <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-gettext <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-curl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-jpeg-dir <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-freetype-dir <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-fpm-user=webhost <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--with-fpm-group=staff <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--disable-debug <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--disable-rpath <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-shared <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-bcmath <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-fpm <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-ftp <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-gd-native-ttf <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-gd-jis-conv <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-inline-optimization <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-mbregex <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-mbstring <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-opcache <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-pcntl <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-session <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-shmop <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-soap <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-sockets <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-sysvsem <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-xml <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--enable-zip <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--without-gdbm <span style="color:#a31515">\
+</span><span style="color:#a31515"></span>--disable-fileinfo
+
+make ZEND_EXTRA_LIBS=<span style="color:#a31515">&#39;-liconv&#39;</span> -j 4 &amp;&amp; make install
+
+sudo -u admin mkdir $PHP_CONFIG/php-fpm.d/
+
+cp $PHP_ROOT/etc/php-fpm.conf.default $PHP_CONFIG/php-fpm.conf
+
+cp $PHP_ROOT/etc/php-fpm.d/www.conf.default $PHP_CONFIG/php-fpm.d/www.conf
+
+cp php.ini-production $PHP_CONFIG/php.ini
+
+cp php.ini-* $PHP_ROOT/etc/
+
+cp -f sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
+
+chmod 0700 /etc/init.d/php-fpm
+</code></pre></div><h2 id="2-配置-php">2. 配置 PHP</h2>
+<p>编辑 <strong>/www/config/php/php-fpm.conf</strong>，修改如下内容：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini">pid = <span style="color:#a31515">/www/pids/php-fpm.pid</span>
+
+<span style="color:#008000"># PHP-FPM 的错误日志</span>
+error_log = <span style="color:#a31515">/www/logs/php-fpm.log</span>
+
+include=<span style="color:#a31515">/www/config/php/php-fpm.d/*.conf</span>
+</code></pre></div><p>保存，接着修改 <strong>/www/config/php/php-fpm.d/www.conf</strong>，修改如下内容：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#008000"># listen 部分可以不修改，默认监听 tcp://127.0.0.1:9000</span>
+listen = <span style="color:#a31515">/www/socks/php-fpm.sock</span>
+listen.owner = <span style="color:#a31515">webhost</span>
+listen.group = <span style="color:#a31515">staff</span>
+listen.mode = <span style="color:#a31515">0660</span>
+
+<span style="color:#008000"># 最大子进程数量控制</span>
+pm.max_children = <span style="color:#a31515">32</span>
+pm.min_spare_servers = <span style="color:#a31515">2</span>
+pm.max_spare_servers = <span style="color:#a31515">8</span>
+pm.max_requests = <span style="color:#a31515">1024</span>
+
+<span style="color:#008000"># FPM 状态查询页面地址，可以注释掉，从而禁止查看</span>
+pm.status_path = <span style="color:#a31515">/php/fpm/status</span>
+
+<span style="color:#008000"># 访问日志，可以注释掉，则不开启</span>
+access.log = <span style="color:#a31515">/www/logs/$pool.access.log</span>
+access.format = <span style="color:#a31515">&#34;%R - %u %t \&#34;%m %r%Q%q\&#34; %s %f %{mili}d %{kilo}M %C%%&#34;</span>
+
+<span style="color:#008000"># 慢速日志，即执行比较慢的请求的日志，通过 request_slowlog_timeout 配置“慢速”指多慢。</span>
+slowlog = <span style="color:#a31515">/www/logs/$pool.slow.log</span>
+request_slowlog_timeout = <span style="color:#a31515">5s</span>
+</code></pre></div><p>保存，修改 <strong>/www/config/php/php.ini</strong> 文件，修改如下部分：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#008000"># 开启短标记 &lt;? ?&gt;</span>
+short_open_tag = <span style="color:#a31515">On</span>
+
+<span style="color:#008000"># POST 最大的数据长度，具体大小自行决定</span>
+post_max_size = <span style="color:#a31515">256M</span>
+
+<span style="color:#008000"># POST 上传文件的临时目录</span>
+upload_tmp_dir = <span style="color:#a31515">/www/tmp/php/upload/</span>
+
+<span style="color:#008000"># POST 上传文件最大长度，具体大小自行决定</span>
+upload_max_filesize = <span style="color:#a31515">64M</span>
+
+<span style="color:#008000"># 设置错误日志</span>
+error_log = <span style="color:#a31515">/www/logs/php_errors.log</span>
+
+<span style="color:#008000"># 显示错误提示</span>
+display_errors = <span style="color:#a31515">On</span>
+
+<span style="color:#008000"># 默认的 MINE 类型</span>
+default_mimetype = <span style="color:#a31515">&#34;text/html&#34;</span>
+
+<span style="color:#008000"># 设置默认时区</span>
+date.timezone = <span style="color:#a31515">Asia/Shanghai</span>
+
+<span style="color:#008000"># 设置 Session 储存目录</span>
+session.save_path = <span style="color:#a31515">&#34;/www/tmp/php/sessions&#34;</span>
+
+<span style="color:#008000"># Session 使用的 Cookies 名称</span>
+session.name = <span style="color:#a31515">PHPSESSID</span>
+</code></pre></div><p>保存，修改文件 <strong>/etc/init.d/php-fpm</strong>，修改如下内容</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">php_fpm_CONF=/www/config/php/php-fpm.conf
+php_fpm_PID=/www/pids/php-fpm.pid
+</code></pre></div><p>保存。现在可以通过下面的命令启动和关闭 php-fpm 了。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">service php-fpm start
+service php-fpm stop
+</code></pre></div>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/books/minicentos-handbook/08.compile-php/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/books/minicentos-handbook/07.compile-mysql/">&lt;&lt;&lt; 第七章 安装最新版 MySQL</a>
+        </div><div class="nav-item back-to-catalog">
+        <a href="/books/minicentos-handbook">返回目录</a>
+    </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/books/minicentos-handbook/09.compile-redis/">第九章 编译安装 Redis 服务器 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>

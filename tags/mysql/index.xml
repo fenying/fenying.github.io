@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>MySQL on Fenying</title>
+    <title>mysql on Fenying</title>
     <link>https://fenying.github.io/tags/mysql/</link>
-    <description>Recent content in MySQL on Fenying</description>
+    <description>Recent content in mysql on Fenying</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
@@ -28,6 +28,15 @@
       
       <guid>https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/</guid>
       <description>&lt;p&gt;一次 MySQL 备份事故——不要试图用系统自带 yum 源安装 mysql/php/node/git/nginx 之流！&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>第七章 安装最新版 MySQL</title>
+      <link>https://fenying.github.io/books/minicentos-handbook/07.compile-mysql/</link>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/books/minicentos-handbook/07.compile-mysql/</guid>
+      <description>&lt;p&gt;本章编译安装 MySQL 服务器的 5.7.16 版本。&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>OpenSSL on Fenying</title>
+    <title>openssl on Fenying</title>
     <link>https://fenying.github.io/tags/openssl/</link>
-    <description>Recent content in OpenSSL on Fenying</description>
+    <description>Recent content in openssl on Fenying</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
-    <lastBuildDate>Thu, 10 Nov 2016 22:35:00 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 26 Dec 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fenying.github.io/tags/openssl/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>第四章 编译安装 OpenSSL</title>
+      <link>https://fenying.github.io/books/minicentos-handbook/04.compile-openssl/</link>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/books/minicentos-handbook/04.compile-openssl/</guid>
+      <description>&lt;p&gt;本章编译安装 OpenSSL 的 1.1.0c 版本。&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>OpenSSL 之 RSA 相关命令学习笔记</title>

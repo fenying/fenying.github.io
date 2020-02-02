@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>group on Fenying</title>
+    <link>https://fenying.github.io/tags/group/</link>
+    <description>Recent content in group on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Mon, 26 Dec 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/group/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>第三章 初始化系统环境</title>
+      <link>https://fenying.github.io/books/minicentos-handbook/03.initial-system/</link>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/books/minicentos-handbook/03.initial-system/</guid>
+      <description>&lt;p&gt;CentOS 是一个多用户系统，支持多用户同时使用。而且一般我们会给不同的程序
+配以不同的用户及对应权限，以限制其访问额外资源。&lt;/p&gt;
+&lt;p&gt;本章节我们先初始化一些基本用户。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

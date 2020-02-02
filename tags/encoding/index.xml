@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>encoding on Fenying</title>
+    <link>https://fenying.github.io/tags/encoding/</link>
+    <description>Recent content in encoding on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Fri, 31 Jan 2020 17:15:00 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/encoding/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>DER 编码规范理解</title>
+      <link>https://fenying.github.io/post/2020/01/31/der-encoding/</link>
+      <pubDate>Fri, 31 Jan 2020 17:15:00 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2020/01/31/der-encoding/</guid>
+      <description>&lt;p&gt;这几天在研究 X.509 证书和 DER 编码的解码信息。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>第一章 安装 CentOS - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580627106" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="第一章 安装 CentOS" />
+<meta property="og:description" content="本章进行系统安装和 SSH 配置。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/books/minicentos-handbook/01.system-installation/" />
+<meta property="article:published_time" content="2016-12-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-12-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="第一章 安装 CentOS"/>
+<meta name="twitter:description" content="本章进行系统安装和 SSH 配置。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580627106" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580627106" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580627106"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580627106"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580627106" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <span class="no-nav">已经是第一节了</span>
+        </div><div class="nav-item back-to-catalog">
+        <a href="/books/minicentos-handbook">返回目录</a>
+    </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/books/minicentos-handbook/02.compile-latest-gcc/">第二章 安装最新版 GCC >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">26</span>
+							<span class="rest">Dec 2016</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">第一章 安装 CentOS</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						<a class="book" href="/books/minicentos-handbook">Book: MiniCentOS Handbook</a>
+					
+					
+						
+						<a class="tag" title="Tag: centos" href="/tags/centos">centos</a class="category">
+						
+						<a class="tag" title="Tag: minimal" href="/tags/minimal">minimal</a class="category">
+						
+						<a class="tag" title="Tag: installation" href="/tags/installation">installation</a class="category">
+						
+						<a class="tag" title="Tag: configuration" href="/tags/configuration">configuration</a class="category">
+						
+						<a class="tag" title="Tag: linux" href="/tags/linux">linux</a class="category">
+						
+					
+				</div>
+				
+			<div class="markdown">
+				
+
+
+				<p>本章进行系统安装和 SSH 配置。</p>
+<h2 id="a-在-virtualbox-中安装-centos">A. 在 VirtualBox 中安装 CentOS</h2>
+<ol>
+<li>
+<p>从 <a href="https://www.centos.org/">CentOS 官网</a> 下载
+<code>CentOS-7-x86_64-Minimal-1511.iso</code>。</p>
+</li>
+<li>
+<p>在 VirtualBox 中创建适用于 <code>Red Hat x64</code> 系统的虚拟机，内存 2GB
+，硬盘容量 40GB 。</p>
+<blockquote>
+<p>这里我将虚拟机命名为 <code>MiniCentOS</code>。</p>
+</blockquote>
+</li>
+<li>
+<p>在虚拟机 <code>MiniCentOS</code> 的设置页面中，修改 <strong>储存\控制器: IDE</strong>，
+在里面添加 <code>CentOS-7-x86_64-Minimal-1511.iso</code> 作为光驱。</p>
+</li>
+<li>
+<p>启动虚拟机，按指示完成安装，记得设置 <code>root</code> 账号的密码。</p>
+</li>
+<li>
+<p>安装完成后，重启进入系统，使用 <code>root</code> 账号登录。</p>
+</li>
+</ol>
+<h2 id="b-启动网络">B. 启动网络</h2>
+<p>CentOS Minimal 系统里默认不开启网络，因此需要手动开启，方法如下：</p>
+<ol>
+<li>
+<p>执行 <code>vi /etc/sysconfig/network-scripts/ifcfg-enp0s3</code>，
+将 ONBOOT 改为 yes，保存。</p>
+</li>
+<li>
+<p>执行 <code>systemctl restart network</code>，重启网络服务。</p>
+</li>
+</ol>
+<p>这样，网络就启动了。</p>
+<h2 id="c-安装基本网络组件">C. 安装基本网络组件</h2>
+<p>默认情况下， <code>wget, curl, ifconfig</code> 等命令都无法使用，因此需要手动安装。</p>
+<p>执行命令 <code>yum install wget curl net-tools psmisc -y</code>。</p>
+<h2 id="d-配置-ssh-远程登录">D. 配置 SSH 远程登录</h2>
+<p>为了方便操作，我们一般使用 PuTTY 通过 SSH 对虚拟机进行远程操作，而不在虚拟机
+窗口中直接操作。</p>
+<ol>
+<li>
+<p>在虚拟机内执行 <code>ifconfig</code>，查到虚拟机系统 IP 为 <code>10.0.2.15</code>。</p>
+</li>
+<li>
+<p>打开虚拟机 MiniCentOS 的设置页面，点开 <strong>网络\网卡1\端口转发规则</strong>，
+在里面添加一个主机地址 <code>127.0.0.8:22</code>，子系统地址 <code>10.0.2.15:22</code>，将规则
+命名为 <strong>SSH</strong>，保存。</p>
+</li>
+<li>
+<p>在虚拟机中，编辑文件 /etc/ssh/sshd_config，找到下面一行</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">#UseDNS yes
+</code></pre></div><p>去掉前面的 <code>#</code> 号，并将 yes 改为 no，保存。再重启 SSHD 服务：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">service sshd restart
+</code></pre></div><p>完成。</p>
+<blockquote>
+<p>这个操作解决了虚拟机开机后第一次通过 SSH 连接虚拟机时极其缓慢的问题。</p>
+</blockquote>
+<ol start="4">
+<li>打开 PuTTY，在地址里输入 <code>127.0.0.8</code>，端口 <code>22</code>，协议为 <code>SSH</code>，连接，
+即可登录虚拟机。</li>
+</ol>
+<h2 id="e-配置-iptables">E. 配置 iptables</h2>
+<p>我记得 CentOS 7.0 的时候是把 <code>iptables</code> 替换成了 <code>firewall</code>，不知道为什么 <code>1511</code>
+版本又把 <code>firewall</code> 去掉了，而且连 <code>iptables</code> 都没有。所以需要先安装：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">yum install iptables-services -y
+</code></pre></div><p>由于是开发环境，因此我把所有端口都暴露出来了。当然，如果真的要给主机使用，
+还需要在虚拟机配置页面里面添加端口转发规则。</p>
+<p>将下面的内容保存为 <code>setup-iptables.sh</code>，设置权限 <code>0700</code>，并执行。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">systemctl start iptables.service
+
+# Clean up
+iptables -F
+iptables -X
+
+# Initilization
+iptables -P INPUT DROP
+iptables -P OUTPUT ACCEPT
+iptables -P FORWARD DROP
+
+# For HTTP(S)
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+
+# For PHP-FPM
+## iptables -A INPUT -p tcp --dport 9000 -j ACCEPT
+
+# For MySQL
+## iptables -A INPUT -p tcp --dport 3306 -j ACCEPT
+
+# For Memcached
+## iptables -A INPUT -p tcp --dport 11211 -j ACCEPT
+
+# For SSH
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+
+# For FTP
+## iptables -A INPUT -p tcp --dport 21 -j ACCEPT
+## iptables -A INPUT -p tcp --dport 20 -j ACCEPT
+
+# For PING
+iptables -A INPUT -p icmp -j ACCEPT
+iptables -A INPUT -i lo -p all -j ACCEPT
+iptables -A OUTPUT -o lo -p all -j ACCEPT
+
+# Prevent from attacking.
+iptables -A FORWARD -f -m limit --limit 100/s --limit-burst 100 -j ACCEPT
+iptables -A FORWARD -p icmp -m limit --limit 1/s --limit-burst 10 -j ACCEPT
+
+# Loopback
+
+iptables -A INPUT -i lo -p all -j ACCEPT
+iptables -A OUTPUT -o lo -p all -j ACCEPT
+
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+# Save
+service iptables save
+systemctl restart iptables.service
+
+# Enable boot of iptables
+systemctl enable iptables.service
+</code></pre></div><h2 id="f-关闭-selinux">F. 关闭 SELinux</h2>
+<p>一般来说，SELinux 我个人是用不上的，所以我选择将其关闭。</p>
+<p>编辑 <code>/etc/selinux/config</code>，将</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">SELINUX=enforcing
+</code></pre></div><p>改成</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">SELINUX=disabled
+</code></pre></div><p>保存，重启系统。</p>
+<h2 id="g-添加新的临时硬盘">G. 添加新的临时硬盘</h2>
+<p>因为编译会用到大量空间，导致主硬盘被大量扩大，因此我们在虚拟机设置里添加两个新的
+硬盘，依次命名为 <code>Temp</code> 和 <code>Data</code>，均设置为 64G 容量。</p>
+<p>回到虚拟机里如下操作：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">mkfs -t ext3 /dev/sdb
+mkfs -t ext3 /dev/sdC
+mkdir /mnt/temp -p
+mkdir /mnt/data -p
+chmod 0777 /mnt
+chmod 0777 /mnt/temp
+chmod 0777 /mnt/data
+mount -t ext3 /dev/sdb /mnt/temp
+mount -t ext3 /dev/sdc /mnt/data
+
+# CentOS 7 开始 /etc/rc.local 默认不被开机执行，这里将其设置为开机执行
+chmod +x /etc/rc.d/rc.local
+
+# 将挂载分区任务添加到自动启动脚本
+echo &#34;mount -t ext3 /dev/sdb /mnt/temp&#34; &gt;&gt; /etc/rc.local
+echo &#34;mount -t ext3 /dev/sdc /mnt/data&#34; &gt;&gt; /etc/rc.local
+</code></pre></div><h2 id="h-解除最大打开文件数和进程数限制">H. 解除最大打开文件数和进程数限制</h2>
+<p>在文件 <strong>/etc/security/limits.conf</strong> 末尾添加如下内容，然后重新登录即可。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">* soft noproc 11000
+* hard noproc 11000
+* soft nofile 32768
+* hard nofile 65536
+</code></pre></div>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/books/minicentos-handbook/01.system-installation/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <span class="no-nav">已经是第一节了</span>
+        </div><div class="nav-item back-to-catalog">
+        <a href="/books/minicentos-handbook">返回目录</a>
+    </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/books/minicentos-handbook/02.compile-latest-gcc/">第二章 安装最新版 GCC >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div>
+
+<script>feather.replace()</script>
+</body>
+</html>
