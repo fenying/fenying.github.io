@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>VB调用C函数时数组传参的问题 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="VB调用C函数时数组传参的问题" />
+<meta property="og:description" content="其实这是对《VC&#43;&#43;写DLL给VB使用》一文的补充，网易不让编辑太古老的文章……" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2013/06/23/pass-array-from-vb-to-c/" />
+<meta property="article:published_time" content="2013-06-23T13:21:02+08:00" />
+<meta property="article:modified_time" content="2013-06-23T13:21:02+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VB调用C函数时数组传参的问题"/>
+<meta name="twitter:description" content="其实这是对《VC&#43;&#43;写DLL给VB使用》一文的补充，网易不让编辑太古老的文章……"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2013/07/27/vc-lnk4221-warning/">&lt;&lt;&lt; VC 的 warning LNK4221 警告</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2012/06/09/memory-of-graduation-day/">写在今年的6月9日 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">23</span>
+							<span class="rest">Jun 2013</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">VB调用C函数时数组传参的问题</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: vc" href="/tags/vc">vc</a class="category">
+						
+						<a class="tag" title="Tag: warning" href="/tags/warning">warning</a class="category">
+						
+						<a class="tag" title="Tag: lnk4221" href="/tags/lnk4221">lnk4221</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/10205599320135231255816/" target="_blank">http://fenying.blog.163.com/blog/static/10205599320135231255816/</a>。
+				</div><div class="markdown">
+				
+
+
+				<p>其实这是对《VC++写DLL给VB使用》一文的补充，网易不让编辑太古老的文章……</p>
+<p>今天有人找我问关于VB调用DLL里函数的问题，该函数如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> func1(<span style="color:#2b91af">char</span> *pStr, mystruct mst[]);
+</code></pre></div><p>在VB里声明如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> func1 <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">dll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByRef</span> aStr <span style="color:#00f">As</span> <span style="color:#2b91af">String</span>, <span style="color:#00f">ByRef</span> pMST <span style="color:#00f">As</span> mystruct) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+</code></pre></div><p>调用方式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Dim</span> MSTs(100) <span style="color:#00f">As</span> mystruct
+MsgBox func1(str1, MSTs(0))
+</code></pre></div><p>这里解释下，<code>ByRef MSTs(0)</code> 其实就是取数组首地址，因此就是数组的引用传递了。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2013/06/23/pass-array-from-vb-to-c/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2013/07/27/vc-lnk4221-warning/">&lt;&lt;&lt; VC 的 warning LNK4221 警告</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2012/06/09/memory-of-graduation-day/">写在今年的6月9日 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gpt on Fenying</title>
+    <link>https://fenying.github.io/tags/gpt/</link>
+    <description>Recent content in gpt on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Sat, 21 Jun 2014 00:06:31 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/gpt/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Windows 8.1 无法安装到GPT硬盘的解决方案</title>
+      <link>https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/</link>
+      <pubDate>Sat, 21 Jun 2014 00:06:31 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/</guid>
+      <description>&lt;p&gt;今天安装Windows 8.1 Enterprise With Update En-Us，安装到选择分区时提示 Windows can&amp;rsquo;t be installed to this disk. This disk is of GPT style.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

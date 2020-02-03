@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>exit on Fenying</title>
+    <link>https://fenying.github.io/tags/exit/</link>
+    <description>Recent content in exit on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Sun, 28 Sep 2014 20:51:08 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/exit/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>register_shutdown_function 使用及注意事项</title>
+      <link>https://fenying.github.io/post/2014/09/28/usage-of-register_shutdown_function-in-php/</link>
+      <pubDate>Sun, 28 Sep 2014 20:51:08 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/09/28/usage-of-register_shutdown_function-in-php/</guid>
+      <description>&lt;p&gt;PHP 中的 register_shutdown_function 函数可以用来注册一个“在脚本结束时运行的函数”。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

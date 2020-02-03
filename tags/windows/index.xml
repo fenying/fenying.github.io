@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Windows on Fenying</title>
+    <title>windows on Fenying</title>
     <link>https://fenying.github.io/tags/windows/</link>
-    <description>Recent content in Windows on Fenying</description>
+    <description>Recent content in windows on Fenying</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
@@ -28,6 +28,33 @@
       
       <guid>https://fenying.github.io/post/2016/02/26/install-mysql-5.7.11-in-windows/</guid>
       <description>&lt;p&gt;今天下载了一个 mysql-5.7.11-winx64.zip，发现里面没有 data 目录了，看了下以前的笔记整理下安装命令。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Memcached-win64-1.4.24-alpha 发布</title>
+      <link>https://fenying.github.io/post/2015/07/10/announcing-of-memcached-win64-1.4.24-alpha/</link>
+      <pubDate>Fri, 10 Jul 2015 20:37:03 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/07/10/announcing-of-memcached-win64-1.4.24-alpha/</guid>
+      <description>&lt;p&gt;目前网络上流行的 memcached-win32 都是 1.2.x 版本，过于古老。后来在网上找到一个 1.4.5 版本的 memcached-win32 服务端程序。于是尝试自己编译一个适用于 Windows 的 memcached-1.4.24 最新版本。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Windows 8.1 无法安装到GPT硬盘的解决方案</title>
+      <link>https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/</link>
+      <pubDate>Sat, 21 Jun 2014 00:06:31 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/</guid>
+      <description>&lt;p&gt;今天安装Windows 8.1 Enterprise With Update En-Us，安装到选择分区时提示 Windows can&amp;rsquo;t be installed to this disk. This disk is of GPT style.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Windows 标准控件：按钮控件的使用</title>
+      <link>https://fenying.github.io/post/2011/07/20/windows-sdk-command-button/</link>
+      <pubDate>Wed, 20 Jul 2011 21:34:45 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2011/07/20/windows-sdk-command-button/</guid>
+      <description>&lt;p&gt;本文展示 Windows 标准控件之按钮控件的使用方法。&lt;/p&gt;</description>
     </item>
     
   </channel>

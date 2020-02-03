@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>def on Fenying</title>
+    <link>https://fenying.github.io/tags/def/</link>
+    <description>Recent content in def on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Thu, 30 Jan 2014 11:52:51 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/def/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>将无源代码的 lib 内函数添加到 dll 输出函数</title>
+      <link>https://fenying.github.io/post/2014/01/30/expose-method-in-dll-from-static-library/</link>
+      <pubDate>Thu, 30 Jan 2014 11:52:51 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/01/30/expose-method-in-dll-from-static-library/</guid>
+      <description>&lt;p&gt;今天想把一个用汇编写的 lib 整合到一个 dll 的输出函数中，用 &lt;code&gt;_declspec(dllexport)&lt;/code&gt; 导出该函数不可行，最后用 def 模块导出文件，终于在 Visual Studio 2012 下成功通过测试。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

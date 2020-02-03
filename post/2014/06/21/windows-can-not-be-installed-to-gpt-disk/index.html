@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Windows 8.1 无法安装到GPT硬盘的解决方案 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Windows 8.1 无法安装到GPT硬盘的解决方案" />
+<meta property="og:description" content="今天安装Windows 8.1 Enterprise With Update En-Us，安装到选择分区时提示 Windows can&rsquo;t be installed to this disk. This disk is of GPT style." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/" />
+<meta property="article:published_time" content="2014-06-21T00:06:31+08:00" />
+<meta property="article:modified_time" content="2014-06-21T00:06:31+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Windows 8.1 无法安装到GPT硬盘的解决方案"/>
+<meta name="twitter:description" content="今天安装Windows 8.1 Enterprise With Update En-Us，安装到选择分区时提示 Windows can&rsquo;t be installed to this disk. This disk is of GPT style."/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/07/30/simulate-enigma-by-c-language/">&lt;&lt;&lt; 利用计算机模拟实现 Enigma 加密机（C语言版）</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/">关于 PHP 获取 IP 的方法与安全问题 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">21</span>
+							<span class="rest">Jun 2014</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Windows 8.1 无法安装到GPT硬盘的解决方案</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/os">Category: OS</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: windows" href="/tags/windows">windows</a class="category">
+						
+						<a class="tag" title="Tag: gpt" href="/tags/gpt">gpt</a class="category">
+						
+						<a class="tag" title="Tag: install" href="/tags/install">install</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/10205599320145210631739/" target="_blank">http://fenying.blog.163.com/blog/static/10205599320145210631739/</a>。
+				</div><div class="markdown">
+				
+
+
+				<p>今天安装Windows 8.1 Enterprise With Update En-Us，安装到选择分区时提示 Windows can&rsquo;t be installed to this disk. This disk is of GPT style.</p>
+<p>之前第一次安装Windows 8.1 Pro时，就是因为要求使用GPT分区才允许安装，于是我用DiskGenius把分区表改成GPT。现在倒好，是GPT反而不让安装了。</p>
+<p>正在奇怪的时候，重启进入BIOS，发现BOOT选项里除了原来的Windows Boot Management和PS DVD，还多了一个UEFI DVD启动项……</p>
+<p>于是立即把UEFI DVD设置为第一启动项，但重启却直接进了系统。只好再进入BIOS把除了UEFI之外的全部启动项取消掉，终于成功安装！</p>
+<p>也就是说，其实这个安装盘有两种启动方式，根据需要启动即可～</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/07/30/simulate-enigma-by-c-language/">&lt;&lt;&lt; 利用计算机模拟实现 Enigma 加密机（C语言版）</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/">关于 PHP 获取 IP 的方法与安全问题 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

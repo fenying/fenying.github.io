@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>object on Fenying</title>
+    <link>https://fenying.github.io/tags/object/</link>
+    <description>Recent content in object on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Wed, 01 Oct 2014 12:49:02 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/object/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>PHP 类成员属性的析构顺序</title>
+      <link>https://fenying.github.io/post/2014/10/01/destruct-order-of-object-properties-in-php/</link>
+      <pubDate>Wed, 01 Oct 2014 12:49:02 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/10/01/destruct-order-of-object-properties-in-php/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;接前文：&lt;a href=&#34;https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/&#34;&gt;PHP 类静态成员的奇怪析构现象&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;前文提到：多个类的静态成员析构顺序与构造顺序一致，本文演示另一种类似情况。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -243,12 +243,12 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/tags/database/</loc>
+    <loc>https://fenying.github.io/categories/database/</loc>
     <lastmod>2017-12-20T14:49:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/categories/database/</loc>
+    <loc>https://fenying.github.io/tags/database/</loc>
     <lastmod>2017-12-20T14:49:00+08:00</lastmod>
   </url>
   
@@ -403,12 +403,12 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/tags/c/c&#43;&#43;/</loc>
+    <loc>https://fenying.github.io/categories/c/c&#43;&#43;/</loc>
     <lastmod>2016-09-25T22:21:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/categories/c/c&#43;&#43;/</loc>
+    <loc>https://fenying.github.io/tags/c/c&#43;&#43;/</loc>
     <lastmod>2016-09-25T22:21:00+08:00</lastmod>
   </url>
   
@@ -585,6 +585,631 @@
   <url>
     <loc>https://fenying.github.io/post/2015/11/27/compile-latest-git-in-gcc-6.7/</loc>
     <lastmod>2015-11-27T17:24:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/c4661/</loc>
+    <lastmod>2015-09-11T13:44:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/warning/</loc>
+    <lastmod>2015-09-11T13:44:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/09/11/warning-c4661-in-visual-c&#43;&#43;/</loc>
+    <lastmod>2015-09-11T13:44:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/memcached/</loc>
+    <lastmod>2015-07-10T20:37:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/07/10/announcing-of-memcached-win64-1.4.24-alpha/</loc>
+    <lastmod>2015-07-10T20:37:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/migration/</loc>
+    <lastmod>2015-07-10T20:37:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/in_array/</loc>
+    <lastmod>2015-06-17T15:43:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/performance/</loc>
+    <lastmod>2015-06-17T15:43:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/switch/</loc>
+    <lastmod>2015-06-17T15:43:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/06/17/performance-between-in-array-and-switch-in-php/</loc>
+    <lastmod>2015-06-17T15:43:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/assembly/</loc>
+    <lastmod>2015-05-26T21:14:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/boss/</loc>
+    <lastmod>2015-05-26T21:14:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/deassembly/</loc>
+    <lastmod>2015-05-26T21:14:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/pcik/</loc>
+    <lastmod>2015-05-26T21:14:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/05/26/deassembly-in-pcik-server-for-boss-huodao/</loc>
+    <lastmod>2015-05-26T21:14:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/const/</loc>
+    <lastmod>2015-01-05T23:09:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/define/</loc>
+    <lastmod>2015-01-05T23:09:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/difference/</loc>
+    <lastmod>2015-01-05T23:09:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2015/01/05/difference-between-const-and-define-in-php/</loc>
+    <lastmod>2015-01-05T23:09:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/num_rows/</loc>
+    <lastmod>2014-12-21T01:04:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/12/21/no-num-rows-for-sqlite3-in-php/</loc>
+    <lastmod>2014-12-21T01:04:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/sqlite3/</loc>
+    <lastmod>2014-12-21T01:04:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/convert/</loc>
+    <lastmod>2014-10-19T23:57:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/integer/</loc>
+    <lastmod>2014-10-19T23:57:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/10/19/big-integer-convert-in-php/</loc>
+    <lastmod>2014-10-19T23:57:19+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/class/</loc>
+    <lastmod>2014-10-01T12:49:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/destruct/</loc>
+    <lastmod>2014-10-01T12:49:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/object/</loc>
+    <lastmod>2014-10-01T12:49:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/order/</loc>
+    <lastmod>2014-10-01T12:49:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/10/01/destruct-order-of-object-properties-in-php/</loc>
+    <lastmod>2014-10-01T12:49:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/property/</loc>
+    <lastmod>2014-10-01T12:49:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/exit/</loc>
+    <lastmod>2014-09-28T20:51:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/quit/</loc>
+    <lastmod>2014-09-28T20:51:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/register/</loc>
+    <lastmod>2014-09-28T20:51:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/09/28/usage-of-register_shutdown_function-in-php/</loc>
+    <lastmod>2014-09-28T20:51:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/shutdown/</loc>
+    <lastmod>2014-09-28T20:51:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/</loc>
+    <lastmod>2014-09-27T11:39:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/static/</loc>
+    <lastmod>2014-09-27T11:39:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/08/04/missing-reserving-registers-when-mixing-c-and-assembly/</loc>
+    <lastmod>2014-08-04T23:34:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/protection/</loc>
+    <lastmod>2014-08-04T23:34:50+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/ipv6/</loc>
+    <lastmod>2014-07-30T21:18:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/07/30/ipv6-conflicts-about-mencached/</loc>
+    <lastmod>2014-07-30T21:18:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/localhost/</loc>
+    <lastmod>2014-07-30T21:18:22+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/encryption/</loc>
+    <lastmod>2014-07-30T20:37:04+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/enigma/</loc>
+    <lastmod>2014-07-30T20:37:04+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/security/</loc>
+    <lastmod>2014-07-30T20:37:04+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/07/30/simulate-enigma-by-c-language/</loc>
+    <lastmod>2014-07-30T20:37:04+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/gpt/</loc>
+    <lastmod>2014-06-21T00:06:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/install/</loc>
+    <lastmod>2014-06-21T00:06:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/os/</loc>
+    <lastmod>2014-06-21T00:06:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/</loc>
+    <lastmod>2014-06-21T00:06:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/client/</loc>
+    <lastmod>2014-04-27T18:09:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/ip/</loc>
+    <lastmod>2014-04-27T18:09:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/</loc>
+    <lastmod>2014-04-27T18:09:27+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/def/</loc>
+    <lastmod>2014-01-30T11:52:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/dll/</loc>
+    <lastmod>2014-01-30T11:52:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/lib/</loc>
+    <lastmod>2014-01-30T11:52:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2014/01/30/expose-method-in-dll-from-static-library/</loc>
+    <lastmod>2014-01-30T11:52:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/burn/</loc>
+    <lastmod>2013-11-15T00:27:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/cue/</loc>
+    <lastmod>2013-11-15T00:27:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2013/11/15/cue-file-format/</loc>
+    <lastmod>2013-11-15T00:27:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/file/</loc>
+    <lastmod>2013-11-15T00:27:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/format/</loc>
+    <lastmod>2013-11-15T00:27:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/music/</loc>
+    <lastmod>2013-11-15T00:27:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/compiler/</loc>
+    <lastmod>2013-08-25T11:32:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/constants/</loc>
+    <lastmod>2013-08-25T11:32:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/win32/</loc>
+    <lastmod>2013-08-25T11:32:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/win64/</loc>
+    <lastmod>2013-08-25T11:32:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2013/08/25/vc-compilation-constants/</loc>
+    <lastmod>2013-08-25T11:32:23+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/boot/</loc>
+    <lastmod>2013-08-22T21:25:07+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/mbr/</loc>
+    <lastmod>2013-08-22T21:25:07+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2013/08/22/mbr-the-boot-story/</loc>
+    <lastmod>2013-08-22T21:25:07+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/sector/</loc>
+    <lastmod>2013-08-22T21:25:07+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/story/</loc>
+    <lastmod>2013-08-22T21:25:07+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/detect/</loc>
+    <lastmod>2013-08-22T17:03:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/platform/</loc>
+    <lastmod>2013-08-22T17:03:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/x64/</loc>
+    <lastmod>2013-08-22T17:03:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2013/08/22/detect-if-x64-on-runtime/</loc>
+    <lastmod>2013-08-22T17:03:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/blood/</loc>
+    <lastmod>2013-08-13T23:08:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/noble/</loc>
+    <lastmod>2013-08-13T23:08:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/vampire/</loc>
+    <lastmod>2013-08-13T23:08:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2013/08/13/chronicle-of-novel-noble-blood/</loc>
+    <lastmod>2013-08-13T23:08:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/independent/</loc>
+    <lastmod>2013-08-02T20:14:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/runtime/</loc>
+    <lastmod>2013-08-02T20:14:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/vc/</loc>
+    <lastmod>2013-08-02T20:14:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2013/08/02/build-program-without-vc-runtime/</loc>
+    <lastmod>2013-08-02T20:14:20+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/lnk4221/</loc>
+    <lastmod>2013-07-27T14:28:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2013/07/27/vc-lnk4221-warning/</loc>
+    <lastmod>2013-07-27T14:28:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2013/06/23/pass-array-from-vb-to-c/</loc>
+    <lastmod>2013-06-23T13:21:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/graduation/</loc>
+    <lastmod>2012-06-09T13:21:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2012/06/09/memory-of-graduation-day/</loc>
+    <lastmod>2012-06-09T13:21:02+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2011/09/13/fiction-of-graduation-day/</loc>
+    <lastmod>2011-09-13T14:56:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/button/</loc>
+    <lastmod>2011-07-20T21:34:45+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/command/</loc>
+    <lastmod>2011-07-20T21:34:45+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/controls/</loc>
+    <lastmod>2011-07-20T21:34:45+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2011/07/20/windows-sdk-command-button/</loc>
+    <lastmod>2011-07-20T21:34:45+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/funny/</loc>
+    <lastmod>2010-12-25T20:34:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/physicist/</loc>
+    <lastmod>2010-12-25T20:34:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/science/</loc>
+    <lastmod>2010-12-25T20:34:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2010/12/25/what-would-physicists-say-in-a-bbs-topic/</loc>
+    <lastmod>2010-12-25T20:34:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2010/10/28/c-memory-functions-source-in-assembly/</loc>
+    <lastmod>2010-10-28T13:26:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/function/</loc>
+    <lastmod>2010-10-28T13:26:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/library/</loc>
+    <lastmod>2010-10-28T13:26:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/memory/</loc>
+    <lastmod>2010-10-28T13:26:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/standard/</loc>
+    <lastmod>2010-10-28T13:26:24+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/charset/</loc>
+    <lastmod>2010-07-12T11:26:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2010/07/12/character-set-and-encoding/</loc>
+    <lastmod>2010-07-12T11:26:57+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/chinese/</loc>
+    <lastmod>2010-07-03T11:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2010/07/03/chinese-garbled-in-vc-wprintf/</loc>
+    <lastmod>2010-07-03T11:56:33+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/regexp/</loc>
+    <lastmod>2009-08-22T15:45:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/visual-basic/</loc>
+    <lastmod>2009-08-22T15:45:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2009/08/22/regexp-in-visual-basic/</loc>
+    <lastmod>2009-08-22T15:45:16+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/garbage/</loc>
+    <lastmod>2009-08-09T16:30:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/generator/</loc>
+    <lastmod>2009-08-09T16:30:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2009/08/09/garbage-generator/</loc>
+    <lastmod>2009-08-09T16:30:37+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/calender/</loc>
+    <lastmod>2009-08-09T15:08:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/maya/</loc>
+    <lastmod>2009-08-09T15:08:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2009/08/09/mystery-maya-calender/</loc>
+    <lastmod>2009-08-09T15:08:56+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/api/</loc>
+    <lastmod>2009-08-09T14:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2009/08/09/provide-api-for-vb-from-c/</loc>
+    <lastmod>2009-08-09T14:04:01+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/algorithm/</loc>
+    <lastmod>2009-06-20T18:11:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/generate/</loc>
+    <lastmod>2009-06-20T18:11:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/id/</loc>
+    <lastmod>2009-06-20T18:11:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/verify/</loc>
+    <lastmod>2009-06-20T18:11:10+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/post/2009/06/20/chinese-id-number-generating-algorithm/</loc>
+    <lastmod>2009-06-20T18:11:10+08:00</lastmod>
   </url>
   
   <url>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Assembly on Fenying</title>
+    <link>https://fenying.github.io/categories/assembly/</link>
+    <description>Recent content in Assembly on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Tue, 26 May 2015 21:14:09 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/categories/assembly/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>【反汇编练习】《破天一剑》服务端：BOSS篇【2】(火刀)</title>
+      <link>https://fenying.github.io/post/2015/05/26/deassembly-in-pcik-server-for-boss-huodao/</link>
+      <pubDate>Tue, 26 May 2015 21:14:09 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/05/26/deassembly-in-pcik-server-for-boss-huodao/</guid>
+      <description>&lt;p&gt;一次逆向练手记录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43;与汇编混合编程中的函数声明</title>
+      <link>https://fenying.github.io/post/2014/08/04/missing-reserving-registers-when-mixing-c-and-assembly/</link>
+      <pubDate>Mon, 04 Aug 2014 23:34:50 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/08/04/missing-reserving-registers-when-mixing-c-and-assembly/</guid>
+      <description>&lt;p&gt;最近写一个C小程序时尝试了下用汇编写一部分代码，封装成函数供 VC （2013）调用。Debug模式一切正常，但是到了Release模式下就直接崩溃了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C标准库内存操作函数汇编源代码</title>
+      <link>https://fenying.github.io/post/2010/10/28/c-memory-functions-source-in-assembly/</link>
+      <pubDate>Thu, 28 Oct 2010 13:26:24 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2010/10/28/c-memory-functions-source-in-assembly/</guid>
+      <description>&lt;p&gt;C语言标准库内，内存操作函数的汇编源代码。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

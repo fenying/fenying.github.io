@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>PHP 里大整数类型转换问题 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="PHP 里大整数类型转换问题" />
+<meta property="og:description" content="最近在写 tracker，遇到大整数类型转换溢出问题。具体表现为两个问题。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2014/10/19/big-integer-convert-in-php/" />
+<meta property="article:published_time" content="2014-10-19T23:57:19+08:00" />
+<meta property="article:modified_time" content="2014-10-19T23:57:19+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="PHP 里大整数类型转换问题"/>
+<meta name="twitter:description" content="最近在写 tracker，遇到大整数类型转换溢出问题。具体表现为两个问题。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/12/21/no-num-rows-for-sqlite3-in-php/">&lt;&lt;&lt; PHP 下 SQLite3 的没有 num_rows 的问题</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2014/10/01/destruct-order-of-object-properties-in-php/">PHP 类成员属性的析构顺序 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">19</span>
+							<span class="rest">Oct 2014</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">PHP 里大整数类型转换问题</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/php">Category: PHP</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: integer" href="/tags/integer">integer</a class="category">
+						
+						<a class="tag" title="Tag: convert" href="/tags/convert">convert</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993201491911463579/" target="_blank">http://fenying.blog.163.com/blog/static/102055993201491911463579/</a>。
+				</div><div class="markdown">
+				
+
+
+				<p>最近在写 tracker，遇到大整数类型转换溢出问题。具体表现为两个问题。</p>
+<h2 id="1-大整数处理">1. 大整数处理</h2>
+<p>问题源码如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+<span style="color:#008000">#.....
+</span><span style="color:#008000"></span><span style="color:#00f">foreach</span> ([<span style="color:#a31515">&#39;uploaded&#39;</span>, <span style="color:#a31515">&#39;downloaded&#39;</span>, <span style="color:#a31515">&#39;port&#39;</span>, <span style="color:#a31515">&#39;left&#39;</span>] <span style="color:#00f">as</span> $x)
+  $this-&gt;args[$x] = (int)$_GET[$x];
+<span style="color:#008000">#.....
+</span></code></pre></div><p>乍看之下没问题，一开始测试也没问题。但当 <code>uploaded</code> 和 <code>downloaded</code>, <code>left</code> 超过 2GB 时，立即崩溃了。原因是 <code>(int)</code> 强制类型转换的实质是 <code>intval</code> 。如下代码：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+<span style="color:#00f">echo</span> intval(<span style="color:#a31515">&#39;10000000000&#39;</span>).<span style="color:#a31515">&#39;&lt;br&gt;&#39;</span>; <span style="color:#008000"># 2147483647
+</span><span style="color:#008000"></span><span style="color:#00f">echo</span> (int)<span style="color:#a31515">&#39;10000000000&#39;</span>.<span style="color:#a31515">&#39;&lt;br&gt;&#39;</span>; <span style="color:#008000"># 2147483647
+</span><span style="color:#008000"></span><span style="color:#00f">echo</span> (0 + <span style="color:#a31515">&#39;10000000000&#39;</span>).<span style="color:#a31515">&#39;&lt;br&gt;&#39;</span>; <span style="color:#008000"># 10000000000 right~
+</span></code></pre></div><p>问题解决，下面看第二个问题。</p>
+<h2 id="2-32位有符号整数溢出">2. 32位有符号整数溢出</h2>
+<p>问题源码如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+<span style="color:#00f">echo</span> ip2long(<span style="color:#a31515">&#39;255.255.255.255&#39;</span>); <span style="color:#008000"># echo -1
+</span></code></pre></div><p>这个，正确的说，其实没错，但是如果我们希望用无符号32位整数表示，那么就郁闷了，尤其是数据库用 <code>INT UNSIGNED</code> 类型储存 IP 的时候。</p>
+<p>解决方法很巧妙，源自<a href="http://cn2.php.net/manual/en/function.ip2long.php">php doc</a>：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#00f">&lt;?php</span>
+<span style="color:#00f">echo</span> sprintf(<span style="color:#a31515">&#34;%u&#34;</span>, ip2long(<span style="color:#a31515">&#39;255.255.255.255&#39;</span>));
+</code></pre></div>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2014/10/19/big-integer-convert-in-php/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/12/21/no-num-rows-for-sqlite3-in-php/">&lt;&lt;&lt; PHP 下 SQLite3 的没有 num_rows 的问题</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2014/10/01/destruct-order-of-object-properties-in-php/">PHP 类成员属性的析构顺序 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

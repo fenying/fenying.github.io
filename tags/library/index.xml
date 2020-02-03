@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>library on Fenying</title>
+    <link>https://fenying.github.io/tags/library/</link>
+    <description>Recent content in library on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Thu, 28 Oct 2010 13:26:24 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/library/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C标准库内存操作函数汇编源代码</title>
+      <link>https://fenying.github.io/post/2010/10/28/c-memory-functions-source-in-assembly/</link>
+      <pubDate>Thu, 28 Oct 2010 13:26:24 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2010/10/28/c-memory-functions-source-in-assembly/</guid>
+      <description>&lt;p&gt;C语言标准库内，内存操作函数的汇编源代码。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

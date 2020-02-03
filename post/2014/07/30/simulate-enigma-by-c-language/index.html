@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>利用计算机模拟实现 Enigma 加密机（C语言版） - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="利用计算机模拟实现 Enigma 加密机（C语言版）" />
+<meta property="og:description" content="Enigma，二战时期与德国战车捆绑的顶级加密机，它是世界上首台具有比较强悍的加密算法的加密机器，它彻底淘汰了手功加密。而为了破解它，英国政府几乎倾家荡产。（可阅读《密码传奇》）" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2014/07/30/simulate-enigma-by-c-language/" />
+<meta property="article:published_time" content="2014-07-30T20:37:04+08:00" />
+<meta property="article:modified_time" content="2014-07-30T20:37:04+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="利用计算机模拟实现 Enigma 加密机（C语言版）"/>
+<meta name="twitter:description" content="Enigma，二战时期与德国战车捆绑的顶级加密机，它是世界上首台具有比较强悍的加密算法的加密机器，它彻底淘汰了手功加密。而为了破解它，英国政府几乎倾家荡产。（可阅读《密码传奇》）"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/07/30/ipv6-conflicts-about-mencached/">&lt;&lt;&lt; IPv6 服务开启时 PHP 连接 memcached 失败的原因 </a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/">Windows 8.1 无法安装到GPT硬盘的解决方案 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">30</span>
+							<span class="rest">Jul 2014</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">利用计算机模拟实现 Enigma 加密机（C语言版）</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: enigma" href="/tags/enigma">enigma</a class="category">
+						
+						<a class="tag" title="Tag: security" href="/tags/security">security</a class="category">
+						
+						<a class="tag" title="Tag: encryption" href="/tags/encryption">encryption</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993201463065923293/" target="_blank">http://fenying.blog.163.com/blog/static/102055993201463065923293/</a>。
+				</div><div class="markdown">
+				
+
+
+				<p>Enigma，二战时期与德国战车捆绑的顶级加密机，它是世界上首台具有比较强悍的加密算法的加密机器，它彻底淘汰了手功加密。而为了破解它，英国政府几乎倾家荡产。（可阅读《密码传奇》）</p>
+<p>现在我们来用计算机模拟一个使用 Enigma 加密算法的加密器，这个加密器使用 C 语言实现，在 Visual Studio 2013 + Windows 8.1 英文企业版下测试通过。（文末会附上代码）</p>
+<p>如果您不了解 Enigma 的机器结构，点击 <a href="http://zh.wikipedia.org/wiki/Enigma">http://zh.wikipedia.org/wiki/Enigma</a>，您必须了解其结构才能理解接下来的加密算法。这里实现的加密方式是，以字节为单位进行加密。</p>
+<p>（3个转轮的）Enigma 的加密流程是：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">输入字符 → 输入轮（一个简单的单表加密，这里简化掉了） → 转轮A → 转轮B → 转轮C → 反射板 → 转轮C → 转轮B → 转轮A → 显示
+</code></pre></div><p>1、数据结构</p>
+<p>Enigma 的核心是 转轮（Wheel） 和反射板（ReflectBoard）。每个转轮就是一个会转动的1对1映射表，而反射板则是具有 a→b→a 关系的映射表。</p>
+<p>假设有3个转轮，每个的结构都是</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">typedef</span> <span style="color:#00f">struct</span> {
+    <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> uElems[256]; <span style="color:#008000">/* 每个字节可以有 0 到255 这 256 个状态。*/</span>
+    <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> urElems[256]; <span style="color:#008000">/* 反向映射表 */</span>
+    <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> uPos; <span style="color:#008000">/* 转轮位置，初始化时应该设置为 0。*/</span>
+} EnigmaWheel;
+</code></pre></div><p>由于经过反射板之后，还要依次反向通过转轮加密，所以还得有一个反向映射表。</p>
+<p>而反射板只有一个，这里不考虑反射板转动的情况，那么结构很简单，直接用</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#00f">typedef</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> EnigmaRefBoard[256];
+</code></pre></div><p>即可。</p>
+<p>2、构造转轮和反射板</p>
+<p>如上所述，转轮是单表加密的映射表，也就是说每个字节的 256 种值每个对应唯一的映射结果。绝无重复——但是可以映射为本身，不要忽略这个情况。</p>
+<p>举个实际的例子：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">0 -&gt; 233
+1 -&gt; 7
+2 -&gt; 254
+3 -&gt; 255
+4 -&gt; 31
+...
+253 -&gt; 111
+254 -&gt; 213
+255 -&gt; 99
+</code></pre></div><p>那么一个字节 4 经过这个转轮时就变成了 31。以此类推，经过所有转轮后进入了反射板。</p>
+<p>再根据上表构造一个反向映射表：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">...
+7 -&gt; 1
+...
+31 -&gt; 4
+...
+99 -&gt; 255
+...
+111 -&gt; 253
+...
+</code></pre></div><p>反射板的的特点是：a → b → a。也就是，{x | x = f(f(x))}。</p>
+<p>举个例子就是</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">0 -&gt; 255
+1 -&gt; 100
+2 -&gt; 123
+3 -&gt; 4
+4 -&gt; 3
+...
+100 -&gt; 1
+...
+123 -&gt; 2
+...
+255 -&gt; 0
+</code></pre></div><p>这里我不说构造的算法，因为构造反射板和转轮的算法可以随意创造，甚至可以你手动设置。当然，文末附带的代码里有一个可用的算法。</p>
+<p>但是可以说一下转轮反向映射表的构造方法，假设正向映射表已经构造完毕。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#2b91af">void</span> enigmaRWheel(EnigmaWheel *pW) {
+    <span style="color:#2b91af">int</span> i;
+    <span style="color:#00f">for</span> (i = 0; i &lt; 256; i++)
+        pW-&gt;m_uElems[pW-&gt;m_uElems[i]] = i;
+}
+</code></pre></div><p>3、加密过程</p>
+<p>现在我们假设反射板和转轮的设置好了，那么就可以开始加密了。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#008000">/* 此函数把一个字节输入到某个转轮中，得到转换结果 */</span>
+<span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> enigmaWheelDo(EnigmaWheel *pWheel, <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> bIn) {
+    <span style="color:#008000">/**
+</span><span style="color:#008000">     * 转轮转动的实质是 uElems 表转动到 uPos 位置，那么实际上就是
+</span><span style="color:#008000">     *    pWheel-&gt;uElems[bIn + pWheel-&gt;uPos] 
+</span><span style="color:#008000">     * 但是考虑到 uElems 只有 256 个元素，所以应该写成如下形式
+</span><span style="color:#008000">     */</span>
+    <span style="color:#00f">return</span> pWheel-&gt;uElems[(bIn + pWheel-&gt;uPos) % 256];
+}
+
+<span style="color:#008000">/* 此函数把一个字节反向输入到某个转轮中，得到转换结果 */</span>
+<span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> enigmaWheelRDo(EnigmaWheel *pWheel, <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> bIn) {
+    <span style="color:#008000">/**
+</span><span style="color:#008000">     * 转轮转动的实质是 uElems 表在 uPos 位置，那么实际上就是
+</span><span style="color:#008000">     * pWheel-&gt;urElems[bIn] - pWheel-&gt;uPos
+</span><span style="color:#008000">     */</span>
+    <span style="color:#00f">return</span> pWheel-&gt;urElems[bIn] - pWheel-&gt;uPos;
+}
+
+<span style="color:#008000">/* 此函数对一个缓冲区进行加密，并写回原缓冲区中。 */</span>
+<span style="color:#2b91af">void</span> enigmad(
+    EnigmaRefBoard pRB, <span style="color:#008000">/* 反射板 */</span>
+    EnigmaWheel pWheels[3], <span style="color:#008000">/* 转轮 */</span>
+    <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> *pBuf <span style="color:#008000">/* 输入输出缓冲区 */</span>,
+    size_t uBufSize <span style="color:#008000">/* 缓冲区大小 */</span>
+) {
+    <span style="color:#2b91af">int</span> i, j;
+    <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span> t;
+
+    <span style="color:#00f">for</span> (i = 0; i &lt; uBufSize; i++) {
+
+        t = pBuf[i];
+
+        <span style="color:#00f">for</span> (j = 0; j &lt; 3; j++) <span style="color:#008000">/* 正向通过转轮组 */</span>
+            t = enigmaWheelDo(&amp;pWheels[j], t);
+
+        t = pRB[t]; <span style="color:#008000">/* 反射板 */</span>
+
+        <span style="color:#00f">for</span> (j = 3; j &gt; 0; ) <span style="color:#008000">/* 反向通过转轮组 */</span>
+            t = enigmaWheelRDo(&amp;pWheels[--j], t);
+
+        pBuf[i] = t;
+
+        <span style="color:#008000">/* 一轮转换完毕，第一个转轮转动一位，如果进位，那么uPos变成0 */</span>
+
+        t = 1; <span style="color:#008000">/* 用 t 为 1 表示要进位，0 表示不需要*/</span>
+        <span style="color:#00f">for</span> (j = 0; t &amp;&amp; j &lt; 3; j++)
+            <span style="color:#00f">if</span> (++pWheels[j].uPos)
+                t = 0;
+        <span style="color:#008000">/* 注：其实这里可以利用 C 语言的语言特性进行快捷进位，但是为了描述算法，就不这么做了。 */</span>
+    }
+}
+</code></pre></div><p>好了，算法到此结束。其实 Enigma 是个非常简单的加密算法，但是破解方法却非常复杂，至少人力是很难做到的。而且，如果密文量不够，那是几乎无法破解的。此外，Enigma 算法的加密速度非常快，在个人电脑上实测，100M的文件，只需要 2 秒即可完成加密，而且是未经过优化的情况下。</p>
+<p>最后，附上可用代码一份：<a href="https://github.com/fenying/libenigma">fenying/libenigma</a>。</p>
+<p>程序命令行是</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">enigma &lt;WHEELS-QUANTITY&gt; &lt;KEY&gt; &lt;INFILE&gt; &lt;OUTFILE&gt;
+</code></pre></div><p>感谢阅读。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2014/07/30/simulate-enigma-by-c-language/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/07/30/ipv6-conflicts-about-mencached/">&lt;&lt;&lt; IPv6 服务开启时 PHP 连接 memcached 失败的原因 </a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/">Windows 8.1 无法安装到GPT硬盘的解决方案 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

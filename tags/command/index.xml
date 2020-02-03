@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>command on Fenying</title>
+    <link>https://fenying.github.io/tags/command/</link>
+    <description>Recent content in command on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Wed, 20 Jul 2011 21:34:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/command/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Windows 标准控件：按钮控件的使用</title>
+      <link>https://fenying.github.io/post/2011/07/20/windows-sdk-command-button/</link>
+      <pubDate>Wed, 20 Jul 2011 21:34:45 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2011/07/20/windows-sdk-command-button/</guid>
+      <description>&lt;p&gt;本文展示 Windows 标准控件之按钮控件的使用方法。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

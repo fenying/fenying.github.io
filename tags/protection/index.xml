@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>protection on Fenying</title>
+    <link>https://fenying.github.io/tags/protection/</link>
+    <description>Recent content in protection on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Mon, 04 Aug 2014 23:34:50 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/protection/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C/C&#43;&#43;与汇编混合编程中的函数声明</title>
+      <link>https://fenying.github.io/post/2014/08/04/missing-reserving-registers-when-mixing-c-and-assembly/</link>
+      <pubDate>Mon, 04 Aug 2014 23:34:50 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/08/04/missing-reserving-registers-when-mixing-c-and-assembly/</guid>
+      <description>&lt;p&gt;最近写一个C小程序时尝试了下用汇编写一部分代码，封装成函数供 VC （2013）调用。Debug模式一切正常，但是到了Release模式下就直接崩溃了。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

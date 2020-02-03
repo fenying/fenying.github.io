@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>id on Fenying</title>
+    <link>https://fenying.github.io/tags/id/</link>
+    <description>Recent content in id on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Sat, 20 Jun 2009 18:11:10 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/id/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>中国大陆18位身份证算法</title>
+      <link>https://fenying.github.io/post/2009/06/20/chinese-id-number-generating-algorithm/</link>
+      <pubDate>Sat, 20 Jun 2009 18:11:10 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2009/06/20/chinese-id-number-generating-algorithm/</guid>
+      <description>&lt;p&gt;经常看到网上有验证18位身份证号码的网站，他是怎么验证的？其实是存在算法的。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

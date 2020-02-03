@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>generator on Fenying</title>
+    <link>https://fenying.github.io/tags/generator/</link>
+    <description>Recent content in generator on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Sun, 09 Aug 2009 16:30:37 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/generator/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>无聊之作，仿曾经的垃圾大王</title>
+      <link>https://fenying.github.io/post/2009/08/09/garbage-generator/</link>
+      <pubDate>Sun, 09 Aug 2009 16:30:37 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2009/08/09/garbage-generator/</guid>
+      <description>&lt;p&gt;一个恶意程序源码，源自于曾经在《电脑报》上看过的恶意程序“垃圾大王”。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

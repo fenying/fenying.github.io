@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>在Visual Basic 6.0中使用正则表达式 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="在Visual Basic 6.0中使用正则表达式" />
+<meta property="og:description" content="今天下午把微软VBS的正则表达式库写成了几个实用函数。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2009/08/22/regexp-in-visual-basic/" />
+<meta property="article:published_time" content="2009-08-22T15:45:16+08:00" />
+<meta property="article:modified_time" content="2009-08-22T15:45:16+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在Visual Basic 6.0中使用正则表达式"/>
+<meta name="twitter:description" content="今天下午把微软VBS的正则表达式库写成了几个实用函数。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2010/07/03/chinese-garbled-in-vc-wprintf/">&lt;&lt;&lt; 关于 VC2008 中 wprintf 输出中文乱码问题</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2009/08/09/garbage-generator/">无聊之作，仿曾经的垃圾大王 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">22</span>
+							<span class="rest">Aug 2009</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">在Visual Basic 6.0中使用正则表达式</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/visual-basic">Category: Visual Basic</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: regexp" href="/tags/regexp">regexp</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993200972234516326/" target="_blank">http://fenying.blog.163.com/blog/static/102055993200972234516326/</a>。
+				</div><div class="markdown">
+				
+
+
+				<p>今天下午把微软VBS的正则表达式库写成了几个实用函数。</p>
+<p>将以下代码保存为Mod_RegExp.bas，添加到工程中即可使用。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Option</span> Explicit
+
+<span style="color:#008000">Rem &lt;!-- File Mod_RegExp.bas Begin --&gt;
+</span><span style="color:#008000"></span>
+<span style="color:#008000">&#39;-------------------------------------------------------------
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;File Name:     Mod_RegExp.bas
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;Module Name:   Mod_RegExp
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;Module Author: Fenying
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;Time:          2009-08-22
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;Using MicroSoft VBScript Regular Expressions Engine 5.5
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;All CopyRight Fenying Studio 2007-2009 Reserved.
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;To Get More...
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;   http://fenying.blog.163.com
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;-------------------------------------------------------------
+</span><span style="color:#008000"></span>
+<span style="color:#008000">&#39;MatchCollection 对象说明：
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;MatchCollection：匹配结果集。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;MatchCollection.Count：表示有多少个匹配结果。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;MatchCollection.Item(Index)：获取指定结果（下标为 0 ～ Count - 1）。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;MatchCollection.Item(Index).Value：指定结果的内容。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;MatchCollection.Item(Index).FirstIndex：匹配结果字符串的起始位置。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;MatchCollection.Item(Index).Length：匹配结果字符串的长度。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;MatchCollection.Item(Index).SubMatches.Count：匹配结果中的括号中的结果数。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;MatchCollection.Item(Index).SubMatches(Index)：匹配结果中的括号中的内容。
+</span><span style="color:#008000"></span>
+<span style="color:#008000">&#39;STATIC_REGEXP_OBJECT：
+</span><span style="color:#008000"></span>
+<span style="color:#008000">&#39;说明：静态开关（建议开启）
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;如果开启，则始终只使用一个RegExp对象，否则每个函数都会自动创建一个RegExp对象并在使用完以后删除。
+</span><span style="color:#008000"></span>
+<span style="color:#00f">#Const</span> STATIC_REGEXP_OBJECT = <span style="color:#00f">True</span>
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT = True Then</span>
+
+<span style="color:#00f">Private</span> oRegExp <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>
+
+<span style="color:#008000">&#39;函数：ereg_Init()
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;作用：静态模式下，必须先调用本函数初始化静态 RegExp 对象。
+</span><span style="color:#008000"></span>
+<span style="color:#00f">Public</span> <span style="color:#00f">Function</span> ereg_Init() <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span>
+    <span style="color:#00f">On</span> <span style="color:#00f">Error</span> <span style="color:#00f">GoTo</span> Failed
+    <span style="color:#00f">Set</span> oRegExp = CreateObject(<span style="color:#a31515">&#34;</span><span style="color:#a31515">VBScript.RegExp</span><span style="color:#a31515">&#34;</span>)
+    ereg_Init = <span style="color:#00f">True</span>
+    <span style="color:#00f">Exit</span> <span style="color:#00f">Function</span>
+Failed:
+    ereg_Init = <span style="color:#00f">False</span>
+<span style="color:#00f">End</span> <span style="color:#00f">Function</span>
+
+<span style="color:#008000">&#39;函数：ereg_UnInit()
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;作用：卸载静态 RegExp 对象。
+</span><span style="color:#008000"></span>
+<span style="color:#00f">Public</span> <span style="color:#00f">Sub</span> ereg_UnInit()
+    <span style="color:#00f">Set</span> oRegExp = <span style="color:#00f">Nothing</span>
+<span style="color:#00f">End</span> <span style="color:#00f">Sub</span>
+
+<span style="color:#00f">#End If</span>
+
+<span style="color:#008000">&#39;通用参数说明：（以下参数所有函数均可通用）
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;NoCase As Boolean：可选，False 表示区分大小写，True 则不区分。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;MultiLine As Boolean：可选，False 表示只在第一行查找，True 则全串查找。
+</span><span style="color:#008000"></span>
+<span style="color:#008000">&#39;函数：ereg_Fit(Pattern$, sSrc$, [NoCase As Boolean = False, [MultiLine As Boolean = False]])
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;返回类型：Boolean
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;说明：用Pattern去匹配字符串sSrc，如果成功，返回True，否则返回False。
+</span><span style="color:#008000"></span>
+<span style="color:#00f">Public</span> <span style="color:#00f">Function</span> ereg_Fit(<span style="color:#00f">ByVal</span> Pattern<span style="">$</span>, <span style="color:#00f">ByVal</span> sSrc<span style="">$</span>, <span style="color:#00f">Optional</span> NoCase <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>, <span style="color:#00f">Optional</span> MultiLine <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span>
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Dim</span> oRegExp <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>
+    <span style="color:#00f">Set</span> oRegExp = CreateObject(<span style="color:#a31515">&#34;</span><span style="color:#a31515">VBScript.RegExp</span><span style="color:#a31515">&#34;</span>)
+<span style="color:#00f">#End If</span>
+
+    oRegExp.Pattern = Pattern
+    oRegExp.IgnoreCase = NoCase
+    oRegExp.Global = <span style="color:#00f">False</span>
+    oRegExp.MultiLine = MultiLine
+    ereg_Fit = oRegExp.Test(sSrc)
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Set</span> oRegExp = <span style="color:#00f">Nothing</span>
+<span style="color:#00f">#End If</span>
+
+<span style="color:#00f">End</span> <span style="color:#00f">Function</span>
+
+<span style="color:#008000">&#39;函数：ereg_Match(Pattern$, sSrc$, [NoCase As Boolean = False, [MultiLine As Boolean = False]])
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;返回类型：MatchCollection
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;说明：用Pattern去匹配字符串sSrc，仅匹配一个合适项，返回一个 MatchCollection。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;例子：
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    Dim rt As Object
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    Set rt = ereg_Match(&#34;[a-z]+&#34;, &#34;fenying&#34;)
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    If rt.Count Then MsgBox rt(0)
+</span><span style="color:#008000"></span>
+<span style="color:#00f">Public</span> <span style="color:#00f">Function</span> ereg_Match(<span style="color:#00f">ByVal</span> Pattern<span style="">$</span>, <span style="color:#00f">ByVal</span> sSrc<span style="">$</span>, <span style="color:#00f">Optional</span> NoCase <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>, <span style="color:#00f">Optional</span> MultiLine <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Dim</span> oRegExp <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>
+    <span style="color:#00f">Set</span> oRegExp = CreateObject(<span style="color:#a31515">&#34;</span><span style="color:#a31515">VBScript.RegExp</span><span style="color:#a31515">&#34;</span>)
+<span style="color:#00f">#End If</span>
+
+    oRegExp.Pattern = Pattern
+    oRegExp.IgnoreCase = NoCase
+    oRegExp.Global = <span style="color:#00f">False</span>
+    oRegExp.MultiLine = MultiLine
+
+    <span style="color:#00f">Set</span> ereg_Match = oRegExp.Execute(sSrc)
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Set</span> oRegExp = <span style="color:#00f">Nothing</span>
+<span style="color:#00f">#End If</span>
+
+<span style="color:#00f">End</span> <span style="color:#00f">Function</span>
+
+<span style="color:#008000">&#39;函数：ereg_Match_All(Pattern$, sSrc$, [NoCase As Boolean = False, [MultiLine As Boolean = False]])
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;返回类型：MatchCollection
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;说明：用Pattern去匹配字符串sSrc，匹配所有匹配项，返回一个 MatchCollection。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;例子：
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    Dim rt As Object
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    Set rt = ereg_Match_All(&#34;([a-zA-Z]+)&#34;, &#34;fenying Fenying&#34;)
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    If rt.Count Then MsgBox rt(1).SubMatches(0)
+</span><span style="color:#008000"></span>
+<span style="color:#008000">&#39;//注：SubMatches包含的是每个括号里的匹配结果。在上面的例子里可以写成下面的也一样
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    If rt.Count Then MsgBox rt(1)
+</span><span style="color:#008000"></span>
+<span style="color:#00f">Public</span> <span style="color:#00f">Function</span> ereg_Match_All(<span style="color:#00f">ByVal</span> Pattern<span style="">$</span>, <span style="color:#00f">ByVal</span> sSrc<span style="">$</span>, <span style="color:#00f">Optional</span> NoCase <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>, <span style="color:#00f">Optional</span> MultiLine <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Dim</span> oRegExp <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>
+    <span style="color:#00f">Set</span> oRegExp = CreateObject(<span style="color:#a31515">&#34;</span><span style="color:#a31515">VBScript.RegExp</span><span style="color:#a31515">&#34;</span>)
+<span style="color:#00f">#End If</span>
+
+    oRegExp.Pattern = Pattern
+    oRegExp.IgnoreCase = NoCase
+    oRegExp.Global = <span style="color:#00f">True</span>
+    oRegExp.MultiLine = MultiLine
+    <span style="color:#00f">Set</span> ereg_Match_All = oRegExp.Execute(sSrc)
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Set</span> oRegExp = <span style="color:#00f">Nothing</span>
+<span style="color:#00f">#End If</span>
+
+<span style="color:#00f">End</span> <span style="color:#00f">Function</span>
+
+<span style="color:#008000">&#39;函数：ereg_Replace_Once(Pattern$, sDst$, sSrc$, [NoCase As Boolean = False, [MultiLine As Boolean = False]])
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;返回类型：String
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;说明：用Pattern去匹配字符串sSrc并替换为sDst，仅替换一次，返回一个 String。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;例子：
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    MsgBox ereg_Replace_Once(&#34;[abc]+&#34;, vbNewLine, &#34;abc   abc&#34;)
+</span><span style="color:#008000"></span>
+<span style="color:#00f">Public</span> <span style="color:#00f">Function</span> ereg_Replace_Once<span style="">$</span>(<span style="color:#00f">ByVal</span> Pattern<span style="">$</span>, <span style="color:#00f">ByVal</span> sDst<span style="">$</span>, <span style="color:#00f">ByVal</span> sSrc<span style="">$</span>, <span style="color:#00f">Optional</span> NoCase <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>, <span style="color:#00f">Optional</span> MultiLine <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>)
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Dim</span> oRegExp <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>
+    <span style="color:#00f">Set</span> oRegExp = CreateObject(<span style="color:#a31515">&#34;</span><span style="color:#a31515">VBScript.RegExp</span><span style="color:#a31515">&#34;</span>)
+<span style="color:#00f">#End If</span>
+
+    oRegExp.Pattern = Pattern
+    oRegExp.IgnoreCase = NoCase
+    oRegExp.Global = <span style="color:#00f">False</span>
+    oRegExp.MultiLine = MultiLine
+    ereg_Replace_Once = oRegExp.Replace(sSrc, sDst)
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Set</span> oRegExp = <span style="color:#00f">Nothing</span>
+<span style="color:#00f">#End If</span>
+
+<span style="color:#00f">End</span> <span style="color:#00f">Function</span>
+
+<span style="color:#008000">&#39;函数：ereg_Replace(Pattern$, sDst$, sSrc$, [NoCase As Boolean = False, [MultiLine As Boolean = False]])
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;返回类型：String
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;说明：用Pattern去匹配字符串sSrc并替换为sDst，替换全部，并返回一个 String。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;例子：
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    MsgBox ereg_Replace(&#34;\s+\r\n&#34;, vbNewLine, &#34;abc   &#34; &amp; vbNewLine &amp; &#34;abc&#34;)
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;//替换行尾空白
+</span><span style="color:#008000"></span>
+<span style="color:#00f">Public</span> <span style="color:#00f">Function</span> ereg_Replace<span style="">$</span>(<span style="color:#00f">ByVal</span> Pattern<span style="">$</span>, <span style="color:#00f">ByVal</span> sDst<span style="">$</span>, <span style="color:#00f">ByVal</span> sSrc<span style="">$</span>, <span style="color:#00f">Optional</span> NoCase <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>, <span style="color:#00f">Optional</span> MultiLine <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>)
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Dim</span> oRegExp <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>
+    <span style="color:#00f">Set</span> oRegExp = CreateObject(<span style="color:#a31515">&#34;</span><span style="color:#a31515">VBScript.RegExp</span><span style="color:#a31515">&#34;</span>)
+<span style="color:#00f">#End If</span>
+
+    oRegExp.Pattern = Pattern
+    oRegExp.IgnoreCase = NoCase
+    oRegExp.Global = <span style="color:#00f">True</span>
+    oRegExp.MultiLine = MultiLine
+    ereg_Replace = oRegExp.Replace(sSrc, sDst)
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Set</span> oRegExp = <span style="color:#00f">Nothing</span>
+<span style="color:#00f">#End If</span>
+
+<span style="color:#00f">End</span> <span style="color:#00f">Function</span>
+
+<span style="color:#008000">&#39;函数：ereg_ReplaceEx(Pattern$, sDst$, sSrc$, [NoCase As Boolean = False, [MultiLine As Boolean = False]])
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;返回类型：String
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;说明：用Pattern去匹配字符串sSrc，并将sDst中的如\1,\2...替换为表达式对应括号里的内容，并返回一个 String。
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;例子：
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;
+</span><span style="color:#008000"></span><span style="color:#008000">&#39;    MsgBox ereg_ReplaceEx(&#34;([a-z]+),\s*(\d+)&#34;, &#34;Name: \1, Age: \2&#34;, &#34;Fenying,   17&#34;)
+</span><span style="color:#008000"></span>
+<span style="color:#00f">Public</span> <span style="color:#00f">Function</span> ereg_ReplaceEx<span style="">$</span>(<span style="color:#00f">ByVal</span> Pattern<span style="">$</span>, <span style="color:#00f">ByVal</span> sDst<span style="">$</span>, <span style="color:#00f">ByVal</span> sSrc<span style="">$</span>, <span style="color:#00f">Optional</span> NoCase <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>, <span style="color:#00f">Optional</span> MultiLine <span style="color:#00f">As</span> <span style="color:#2b91af">Boolean</span> = <span style="color:#00f">False</span>)
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Dim</span> oRegExp <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>
+    <span style="color:#00f">Set</span> oRegExp = CreateObject(<span style="color:#a31515">&#34;</span><span style="color:#a31515">VBScript.RegExp</span><span style="color:#a31515">&#34;</span>)
+<span style="color:#00f">#End If</span>
+
+    <span style="color:#00f">Dim</span> oTemp <span style="color:#00f">As</span> <span style="color:#2b91af">Object</span>, sMatchStr<span style="">$</span>, C#, i#
+
+    oRegExp.Pattern = Pattern
+    oRegExp.IgnoreCase = NoCase
+    oRegExp.Global = <span style="color:#00f">True</span>
+    oRegExp.MultiLine = MultiLine
+
+    <span style="color:#00f">Set</span> oTemp = ereg_Match(Pattern, sSrc, NoCase, MultiLine)
+
+    sMatchStr = sDst
+    <span style="color:#00f">If</span> oTemp.Count &gt; 0 <span style="color:#00f">Then</span>
+        C = oTemp.Item(0).SubMatches.Count
+        <span style="color:#00f">For</span> i = 1 <span style="color:#00f">To</span> C
+            sMatchStr = ereg_Replace(<span style="color:#a31515">&#34;</span><span style="color:#a31515">(?=[^\\]?)\\</span><span style="color:#a31515">&#34;</span> &amp; i, oTemp.Item(0).SubMatches(i - 1), sMatchStr)
+        <span style="color:#00f">Next</span>
+    <span style="color:#00f">End</span> <span style="color:#00f">If</span>
+
+    ereg_ReplaceEx = sMatchStr
+
+    <span style="color:#00f">Set</span> oTemp = <span style="color:#00f">Nothing</span>
+
+<span style="color:#00f">#If STATIC_REGEXP_OBJECT &lt;&gt; True Then</span>
+    <span style="color:#00f">Set</span> oRegExp = <span style="color:#00f">Nothing</span>
+<span style="color:#00f">#End If</span>
+
+<span style="color:#00f">End</span> <span style="color:#00f">Function</span>
+
+<span style="color:#008000">Rem &lt;!-- File End --&gt;
+</span></code></pre></div>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2009/08/22/regexp-in-visual-basic/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2010/07/03/chinese-garbled-in-vc-wprintf/">&lt;&lt;&lt; 关于 VC2008 中 wprintf 输出中文乱码问题</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2009/08/09/garbage-generator/">无聊之作，仿曾经的垃圾大王 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

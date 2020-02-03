@@ -305,5 +305,337 @@
       <description>&lt;p&gt;由于 yum 里面的 Git 居然还是 1.7.3 版本的，简直不能忍。于是下载了源码编译安装一个。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>关于 Visual C&#43;&#43; 里面的 warning C4661</title>
+      <link>https://fenying.github.io/post/2015/09/11/warning-c4661-in-visual-c&#43;&#43;/</link>
+      <pubDate>Fri, 11 Sep 2015 13:44:41 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/09/11/warning-c4661-in-visual-c&#43;&#43;/</guid>
+      <description>&lt;p&gt;最近写 C++ 类模板时遇到的一个 C4661 warning，记载于此。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Memcached-win64-1.4.24-alpha 发布</title>
+      <link>https://fenying.github.io/post/2015/07/10/announcing-of-memcached-win64-1.4.24-alpha/</link>
+      <pubDate>Fri, 10 Jul 2015 20:37:03 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/07/10/announcing-of-memcached-win64-1.4.24-alpha/</guid>
+      <description>&lt;p&gt;目前网络上流行的 memcached-win32 都是 1.2.x 版本，过于古老。后来在网上找到一个 1.4.5 版本的 memcached-win32 服务端程序。于是尝试自己编译一个适用于 Windows 的 memcached-1.4.24 最新版本。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于 in_array 和 switch 的比较</title>
+      <link>https://fenying.github.io/post/2015/06/17/performance-between-in-array-and-switch-in-php/</link>
+      <pubDate>Wed, 17 Jun 2015 15:43:03 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/06/17/performance-between-in-array-and-switch-in-php/</guid>
+      <description>&lt;p&gt;很多时候会用 in_array 判断一个值是否在允许值内，比如 in_array (&amp;lsquo;apple&amp;rsquo;, $fruits) 就可以判断是否水果。&lt;/p&gt;
+&lt;p&gt;理论上这一点也可以用 switch 实现，但是问题就在于，switch 并不是可以随意改动的，而数组可以存放到配置文件里。而且另一个问题在于，尽管不如 in_array 方便，可 switch 是语言结构的一部分，性能上绝对比 in_array 高得多。而优化的条件就取决于，两者的性能差异有多大，如果不大，那么用 switch 对 in_array 进行优化毫无意义。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>【反汇编练习】《破天一剑》服务端：BOSS篇【2】(火刀)</title>
+      <link>https://fenying.github.io/post/2015/05/26/deassembly-in-pcik-server-for-boss-huodao/</link>
+      <pubDate>Tue, 26 May 2015 21:14:09 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/05/26/deassembly-in-pcik-server-for-boss-huodao/</guid>
+      <description>&lt;p&gt;一次逆向练手记录。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 中新增 const 常量与 define 的异同</title>
+      <link>https://fenying.github.io/post/2015/01/05/difference-between-const-and-define-in-php/</link>
+      <pubDate>Mon, 05 Jan 2015 23:09:59 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/01/05/difference-between-const-and-define-in-php/</guid>
+      <description>&lt;p&gt;PHP 5.3 中新增了 &lt;code&gt;const&lt;/code&gt; 关键词用于定义常量，本文介绍其与 &lt;code&gt;define&lt;/code&gt; 直接的区别。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 下 SQLite3 的没有 num_rows 的问题</title>
+      <link>https://fenying.github.io/post/2014/12/21/no-num-rows-for-sqlite3-in-php/</link>
+      <pubDate>Sun, 21 Dec 2014 01:04:16 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/12/21/no-num-rows-for-sqlite3-in-php/</guid>
+      <description>&lt;p&gt;最近在项目里用到了SQLite，而 PHP 中的 SQLite3 类去没有提供类似 MySQL 里的 &lt;code&gt;num_rows&lt;/code&gt; 函数。官方说法是 SQLite3 并不缓冲结果集，所以无法直接获取 &lt;code&gt;num_rows&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 里大整数类型转换问题</title>
+      <link>https://fenying.github.io/post/2014/10/19/big-integer-convert-in-php/</link>
+      <pubDate>Sun, 19 Oct 2014 23:57:19 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/10/19/big-integer-convert-in-php/</guid>
+      <description>&lt;p&gt;最近在写 tracker，遇到大整数类型转换溢出问题。具体表现为两个问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 类成员属性的析构顺序</title>
+      <link>https://fenying.github.io/post/2014/10/01/destruct-order-of-object-properties-in-php/</link>
+      <pubDate>Wed, 01 Oct 2014 12:49:02 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/10/01/destruct-order-of-object-properties-in-php/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;接前文：&lt;a href=&#34;https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/&#34;&gt;PHP 类静态成员的奇怪析构现象&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;前文提到：多个类的静态成员析构顺序与构造顺序一致，本文演示另一种类似情况。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>register_shutdown_function 使用及注意事项</title>
+      <link>https://fenying.github.io/post/2014/09/28/usage-of-register_shutdown_function-in-php/</link>
+      <pubDate>Sun, 28 Sep 2014 20:51:08 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/09/28/usage-of-register_shutdown_function-in-php/</guid>
+      <description>&lt;p&gt;PHP 中的 register_shutdown_function 函数可以用来注册一个“在脚本结束时运行的函数”。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 类静态成员的奇怪析构现象</title>
+      <link>https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/</link>
+      <pubDate>Sat, 27 Sep 2014 11:39:41 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/</guid>
+      <description>&lt;p&gt;本文介绍 PHP 中静态成员属性的析构顺序问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43;与汇编混合编程中的函数声明</title>
+      <link>https://fenying.github.io/post/2014/08/04/missing-reserving-registers-when-mixing-c-and-assembly/</link>
+      <pubDate>Mon, 04 Aug 2014 23:34:50 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/08/04/missing-reserving-registers-when-mixing-c-and-assembly/</guid>
+      <description>&lt;p&gt;最近写一个C小程序时尝试了下用汇编写一部分代码，封装成函数供 VC （2013）调用。Debug模式一切正常，但是到了Release模式下就直接崩溃了。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>IPv6 服务开启时 PHP 连接 memcached 失败的原因 </title>
+      <link>https://fenying.github.io/post/2014/07/30/ipv6-conflicts-about-mencached/</link>
+      <pubDate>Wed, 30 Jul 2014 21:18:22 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/07/30/ipv6-conflicts-about-mencached/</guid>
+      <description>&lt;p&gt;之前一直用 127.0.0.1 链接 memcached ，最近偷懒改用APMServ搭建服务器，结果用 localhost 却发现怎么也无法接通 memcached。查了许久发现是 IPv6 的问题。附上原因。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>利用计算机模拟实现 Enigma 加密机（C语言版）</title>
+      <link>https://fenying.github.io/post/2014/07/30/simulate-enigma-by-c-language/</link>
+      <pubDate>Wed, 30 Jul 2014 20:37:04 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/07/30/simulate-enigma-by-c-language/</guid>
+      <description>&lt;p&gt;Enigma，二战时期与德国战车捆绑的顶级加密机，它是世界上首台具有比较强悍的加密算法的加密机器，它彻底淘汰了手功加密。而为了破解它，英国政府几乎倾家荡产。（可阅读《密码传奇》）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Windows 8.1 无法安装到GPT硬盘的解决方案</title>
+      <link>https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/</link>
+      <pubDate>Sat, 21 Jun 2014 00:06:31 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/06/21/windows-can-not-be-installed-to-gpt-disk/</guid>
+      <description>&lt;p&gt;今天安装Windows 8.1 Enterprise With Update En-Us，安装到选择分区时提示 Windows can&amp;rsquo;t be installed to this disk. This disk is of GPT style.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于 PHP 获取 IP 的方法与安全问题</title>
+      <link>https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/</link>
+      <pubDate>Sun, 27 Apr 2014 18:09:27 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/</guid>
+      <description>&lt;p&gt;今日为学校开发网站时，要加入限制外网 IP 段访问网站的功能。由于网站使用的是一个建站程序，我直接使用了其中内置的 &lt;code&gt;getip&lt;/code&gt; 函数获取客户端 IP，然后根据 IP 网段限制访问。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>将无源代码的 lib 内函数添加到 dll 输出函数</title>
+      <link>https://fenying.github.io/post/2014/01/30/expose-method-in-dll-from-static-library/</link>
+      <pubDate>Thu, 30 Jan 2014 11:52:51 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/01/30/expose-method-in-dll-from-static-library/</guid>
+      <description>&lt;p&gt;今天想把一个用汇编写的 lib 整合到一个 dll 的输出函数中，用 &lt;code&gt;_declspec(dllexport)&lt;/code&gt; 导出该函数不可行，最后用 def 模块导出文件，终于在 Visual Studio 2012 下成功通过测试。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CUE 文件及其格式说明</title>
+      <link>https://fenying.github.io/post/2013/11/15/cue-file-format/</link>
+      <pubDate>Fri, 15 Nov 2013 00:27:16 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2013/11/15/cue-file-format/</guid>
+      <description>&lt;p&gt;CUE 文件，即 CUESheets ，光盘镜像辅助文件。通常用于光盘刻录、音乐播放等等。比如用 EAC 刻录CD光盘，或者用 Foobar2000 播放整轨音乐文件。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于VC预定义常量_WIN32，WIN32，_WIN64</title>
+      <link>https://fenying.github.io/post/2013/08/25/vc-compilation-constants/</link>
+      <pubDate>Sun, 25 Aug 2013 11:32:23 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2013/08/25/vc-compilation-constants/</guid>
+      <description>&lt;p&gt;VC2012 下写 Windows 程序时，有时需要判断编译环境。在之前的文章《判断程序是否运行在 Windows x64 系统下。》里说过如何在运行期间判断系统环境，但在编译时如何判断？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MBR 与 Boot：一切从 First Sector 开始</title>
+      <link>https://fenying.github.io/post/2013/08/22/mbr-the-boot-story/</link>
+      <pubDate>Thu, 22 Aug 2013 21:25:07 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2013/08/22/mbr-the-boot-story/</guid>
+      <description>&lt;p&gt;本文从 Boot 程序开始，逐步讨论硬盘、MBR、分区表等与 Boot 相关的知识，最终完成 Boot 的基本探讨。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>判断程序是否运行在 Windows x64 系统下</title>
+      <link>https://fenying.github.io/post/2013/08/22/detect-if-x64-on-runtime/</link>
+      <pubDate>Thu, 22 Aug 2013 17:03:24 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2013/08/22/detect-if-x64-on-runtime/</guid>
+      <description>&lt;p&gt;以下功能代码判断是否运行在 Windows x64 下。本例使用 Windows API 函数 IsWow64Process，具体请参考MSDN文档：http://msdn.microsoft.com/en-us/library/ms684139(VS.85).aspx&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>小说《血之沙漏》编年史</title>
+      <link>https://fenying.github.io/post/2013/08/13/chronicle-of-novel-noble-blood/</link>
+      <pubDate>Tue, 13 Aug 2013 23:08:16 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2013/08/13/chronicle-of-novel-noble-blood/</guid>
+      <description>&lt;p&gt;小说《血之沙漏》的时间线整理文档。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>用 VC2012 产生脱离VC运行库的 C/C&#43;&#43; 程序</title>
+      <link>https://fenying.github.io/post/2013/08/02/build-program-without-vc-runtime/</link>
+      <pubDate>Fri, 02 Aug 2013 20:14:20 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2013/08/02/build-program-without-vc-runtime/</guid>
+      <description>&lt;p&gt;最近在研究如何使一个VC编译的程序脱离VC运行库，也就是msvcrXX.dll。经过多次尝试，总算有所收获。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VC 的 warning LNK4221 警告</title>
+      <link>https://fenying.github.io/post/2013/07/27/vc-lnk4221-warning/</link>
+      <pubDate>Sat, 27 Jul 2013 14:28:13 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2013/07/27/vc-lnk4221-warning/</guid>
+      <description>&lt;p&gt;今天编译静态链接库时，VC提示了 LNK4221 警告。虽然没什么影响（起码暂时没遇到），也特别去查了下警告的由来。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VB调用C函数时数组传参的问题</title>
+      <link>https://fenying.github.io/post/2013/06/23/pass-array-from-vb-to-c/</link>
+      <pubDate>Sun, 23 Jun 2013 13:21:02 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2013/06/23/pass-array-from-vb-to-c/</guid>
+      <description>&lt;p&gt;其实这是对《VC++写DLL给VB使用》一文的补充，网易不让编辑太古老的文章……&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>写在今年的6月9日</title>
+      <link>https://fenying.github.io/post/2012/06/09/memory-of-graduation-day/</link>
+      <pubDate>Sat, 09 Jun 2012 13:21:02 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2012/06/09/memory-of-graduation-day/</guid>
+      <description>&lt;p&gt;高考结束，高中毕业那晚的回忆。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>写在明年的6月9日</title>
+      <link>https://fenying.github.io/post/2011/09/13/fiction-of-graduation-day/</link>
+      <pubDate>Tue, 13 Sep 2011 14:56:31 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2011/09/13/fiction-of-graduation-day/</guid>
+      <description>&lt;p&gt;我在期待什么？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Windows 标准控件：按钮控件的使用</title>
+      <link>https://fenying.github.io/post/2011/07/20/windows-sdk-command-button/</link>
+      <pubDate>Wed, 20 Jul 2011 21:34:45 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2011/07/20/windows-sdk-command-button/</guid>
+      <description>&lt;p&gt;本文展示 Windows 标准控件之按钮控件的使用方法。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>如果物理学是一个帖子</title>
+      <link>https://fenying.github.io/post/2010/12/25/what-would-physicists-say-in-a-bbs-topic/</link>
+      <pubDate>Sat, 25 Dec 2010 20:34:01 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2010/12/25/what-would-physicists-say-in-a-bbs-topic/</guid>
+      <description>&lt;p&gt;如果历史上各位伟大的科学家聚集在一个论坛主题里，他们会说些什么呢？&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>C标准库内存操作函数汇编源代码</title>
+      <link>https://fenying.github.io/post/2010/10/28/c-memory-functions-source-in-assembly/</link>
+      <pubDate>Thu, 28 Oct 2010 13:26:24 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2010/10/28/c-memory-functions-source-in-assembly/</guid>
+      <description>&lt;p&gt;C语言标准库内，内存操作函数的汇编源代码。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>扫盲：字符编码与字符集的区别</title>
+      <link>https://fenying.github.io/post/2010/07/12/character-set-and-encoding/</link>
+      <pubDate>Mon, 12 Jul 2010 11:26:57 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2010/07/12/character-set-and-encoding/</guid>
+      <description>&lt;p&gt;近来学习字符编码，发现网络上总是把“字符集（Character Set）”与“字符编码（Encode）”搞混了，我也给弄得晕头转向。&lt;/p&gt;
+&lt;p&gt;遂写此文，以明其意。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于 VC2008 中 wprintf 输出中文乱码问题</title>
+      <link>https://fenying.github.io/post/2010/07/03/chinese-garbled-in-vc-wprintf/</link>
+      <pubDate>Sat, 03 Jul 2010 11:56:33 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2010/07/03/chinese-garbled-in-vc-wprintf/</guid>
+      <description>&lt;p&gt;最近写编码转换，发现MB编码转换成 Unicode 后，中文总是乱码。
+起初以为是自己写错了，但测试后发现转换结果是完全正确的。
+再测试一下，发现居然连常字符串都不能正常输出……&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>在Visual Basic 6.0中使用正则表达式</title>
+      <link>https://fenying.github.io/post/2009/08/22/regexp-in-visual-basic/</link>
+      <pubDate>Sat, 22 Aug 2009 15:45:16 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2009/08/22/regexp-in-visual-basic/</guid>
+      <description>&lt;p&gt;今天下午把微软VBS的正则表达式库写成了几个实用函数。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>无聊之作，仿曾经的垃圾大王</title>
+      <link>https://fenying.github.io/post/2009/08/09/garbage-generator/</link>
+      <pubDate>Sun, 09 Aug 2009 16:30:37 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2009/08/09/garbage-generator/</guid>
+      <description>&lt;p&gt;一个恶意程序源码，源自于曾经在《电脑报》上看过的恶意程序“垃圾大王”。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>神秘的玛雅历法</title>
+      <link>https://fenying.github.io/post/2009/08/09/mystery-maya-calender/</link>
+      <pubDate>Sun, 09 Aug 2009 15:08:56 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2009/08/09/mystery-maya-calender/</guid>
+      <description>&lt;p&gt;关于玛雅历的一些个人整理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VC&#43;&#43;写DLL给VB使用</title>
+      <link>https://fenying.github.io/post/2009/08/09/provide-api-for-vb-from-c/</link>
+      <pubDate>Sun, 09 Aug 2009 14:04:01 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2009/08/09/provide-api-for-vb-from-c/</guid>
+      <description>&lt;p&gt;之前用VC写了一个DLL封装了MySQL的CAPI给VB使用。&lt;/p&gt;
+&lt;p&gt;在写DLL时遇到了一箩筐问题，现在总结了一些经验，特地写在这里记下来以免遗忘。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>中国大陆18位身份证算法</title>
+      <link>https://fenying.github.io/post/2009/06/20/chinese-id-number-generating-algorithm/</link>
+      <pubDate>Sat, 20 Jun 2009 18:11:10 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2009/06/20/chinese-id-number-generating-algorithm/</guid>
+      <description>&lt;p&gt;经常看到网上有验证18位身份证号码的网站，他是怎么验证的？其实是存在算法的。&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

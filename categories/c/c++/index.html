@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>C/C&#43;&#43; - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580627106" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>C/C&#43;&#43; - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704264" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="alternate" type="application/rss+xml" href="https://fenying.github.io/categories/c/c++/index.xml" title="Fenying" />
 	<meta property="og:title" content="C/C&#43;&#43;" />
 <meta property="og:description" content="Angus&#39; Home." />
@@ -13,12 +13,12 @@
 <meta name="twitter:title" content="C/C&#43;&#43;"/>
 <meta name="twitter:description" content="Angus&#39; Home."/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580627106" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580627106" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704264" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704264" />
 
-	<script src="https://fenying.github.io/js/feather.min.js?sv=1580627106"></script>
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704264"></script>
 	
-		<script src="https://fenying.github.io/js/main.js?sv=1580627106"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1580704264"></script>
 </head>
 
 
@@ -28,7 +28,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1580627106" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1580704264" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -214,21 +214,394 @@
         
     </div>
 </div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">11</span>
+            <span class="rest">Sep 2015</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2015/09/11/warning-c4661-in-visual-c&#43;&#43;/">关于 Visual C&#43;&#43; 里面的 warning C4661</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>最近写 C++ 类模板时遇到的一个 C4661 warning，记载于此。</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/warning">Warning</a class="category">
+                    
+                    <a class="tag" href="/tags/c4661">C4661</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">30</span>
+            <span class="rest">Jul 2014</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2014/07/30/simulate-enigma-by-c-language/">利用计算机模拟实现 Enigma 加密机（C语言版）</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>Enigma，二战时期与德国战车捆绑的顶级加密机，它是世界上首台具有比较强悍的加密算法的加密机器，它彻底淘汰了手功加密。而为了破解它，英国政府几乎倾家荡产。（可阅读《密码传奇》）</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/enigma">enigma</a class="category">
+                    
+                    <a class="tag" href="/tags/security">security</a class="category">
+                    
+                    <a class="tag" href="/tags/encryption">encryption</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">30</span>
+            <span class="rest">Jan 2014</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2014/01/30/expose-method-in-dll-from-static-library/">将无源代码的 lib 内函数添加到 dll 输出函数</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>今天想把一个用汇编写的 lib 整合到一个 dll 的输出函数中，用 <code>_declspec(dllexport)</code> 导出该函数不可行，最后用 def 模块导出文件，终于在 Visual Studio 2012 下成功通过测试。</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/dll">dll</a class="category">
+                    
+                    <a class="tag" href="/tags/lib">lib</a class="category">
+                    
+                    <a class="tag" href="/tags/def">def</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">25</span>
+            <span class="rest">Aug 2013</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2013/08/25/vc-compilation-constants/">关于VC预定义常量_WIN32，WIN32，_WIN64</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>VC2012 下写 Windows 程序时，有时需要判断编译环境。在之前的文章《判断程序是否运行在 Windows x64 系统下。》里说过如何在运行期间判断系统环境，但在编译时如何判断？</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/win32">win32</a class="category">
+                    
+                    <a class="tag" href="/tags/win64">win64</a class="category">
+                    
+                    <a class="tag" href="/tags/compiler">compiler</a class="category">
+                    
+                    <a class="tag" href="/tags/constants">constants</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">22</span>
+            <span class="rest">Aug 2013</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2013/08/22/detect-if-x64-on-runtime/">判断程序是否运行在 Windows x64 系统下</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>以下功能代码判断是否运行在 Windows x64 下。本例使用 Windows API 函数 IsWow64Process，具体请参考MSDN文档：http://msdn.microsoft.com/en-us/library/ms684139(VS.85).aspx</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/x64">x64</a class="category">
+                    
+                    <a class="tag" href="/tags/detect">detect</a class="category">
+                    
+                    <a class="tag" href="/tags/platform">platform</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">02</span>
+            <span class="rest">Aug 2013</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2013/08/02/build-program-without-vc-runtime/">用 VC2012 产生脱离VC运行库的 C/C&#43;&#43; 程序</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>最近在研究如何使一个VC编译的程序脱离VC运行库，也就是msvcrXX.dll。经过多次尝试，总算有所收获。</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/vc">vc</a class="category">
+                    
+                    <a class="tag" href="/tags/runtime">runtime</a class="category">
+                    
+                    <a class="tag" href="/tags/independent">independent</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">27</span>
+            <span class="rest">Jul 2013</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2013/07/27/vc-lnk4221-warning/">VC 的 warning LNK4221 警告</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>今天编译静态链接库时，VC提示了 LNK4221 警告。虽然没什么影响（起码暂时没遇到），也特别去查了下警告的由来。</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/vc">vc</a class="category">
+                    
+                    <a class="tag" href="/tags/warning">warning</a class="category">
+                    
+                    <a class="tag" href="/tags/lnk4221">lnk4221</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">23</span>
+            <span class="rest">Jun 2013</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2013/06/23/pass-array-from-vb-to-c/">VB调用C函数时数组传参的问题</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>其实这是对《VC++写DLL给VB使用》一文的补充，网易不让编辑太古老的文章……</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/vc">vc</a class="category">
+                    
+                    <a class="tag" href="/tags/warning">warning</a class="category">
+                    
+                    <a class="tag" href="/tags/lnk4221">lnk4221</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">20</span>
+            <span class="rest">Jul 2011</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2011/07/20/windows-sdk-command-button/">Windows 标准控件：按钮控件的使用</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>本文展示 Windows 标准控件之按钮控件的使用方法。</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/windows">windows</a class="category">
+                    
+                    <a class="tag" href="/tags/controls">controls</a class="category">
+                    
+                    <a class="tag" href="/tags/button">button</a class="category">
+                    
+                    <a class="tag" href="/tags/command">command</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</li><li class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">03</span>
+            <span class="rest">Jul 2010</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small">
+            <a href="/post/2010/07/03/chinese-garbled-in-vc-wprintf/">关于 VC2008 中 wprintf 输出中文乱码问题</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>最近写编码转换，发现MB编码转换成 Unicode 后，中文总是乱码。
+起初以为是自己写错了，但测试后发现转换结果是完全正确的。
+再测试一下，发现居然连常字符串都不能正常输出……</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/charset">charset</a class="category">
+                    
+                    <a class="tag" href="/tags/encoding">encoding</a class="category">
+                    
+                    <a class="tag" href="/tags/chinese">chinese</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
 </li></ul>
 	</div>
 
 	<div class="footer wrapper">
 	<nav class="nav">
 		<div>
+			Last updated on 2020-02-03 |
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
 			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
 			<a href="/sitemap.xml">Site Map</a>
 		</div>
 	</nav>
-</div>
-
-<script>feather.replace()</script>
+</div><script>feather.replace()</script>
 </body>
 
 </html>

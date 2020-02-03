@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>regexp on Fenying</title>
+    <link>https://fenying.github.io/tags/regexp/</link>
+    <description>Recent content in regexp on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Sat, 22 Aug 2009 15:45:16 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/regexp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在Visual Basic 6.0中使用正则表达式</title>
+      <link>https://fenying.github.io/post/2009/08/22/regexp-in-visual-basic/</link>
+      <pubDate>Sat, 22 Aug 2009 15:45:16 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2009/08/22/regexp-in-visual-basic/</guid>
+      <description>&lt;p&gt;今天下午把微软VBS的正则表达式库写成了几个实用函数。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

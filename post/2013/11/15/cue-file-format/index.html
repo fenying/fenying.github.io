@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>CUE 文件及其格式说明 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="CUE 文件及其格式说明" />
+<meta property="og:description" content="CUE 文件，即 CUESheets ，光盘镜像辅助文件。通常用于光盘刻录、音乐播放等等。比如用 EAC 刻录CD光盘，或者用 Foobar2000 播放整轨音乐文件。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2013/11/15/cue-file-format/" />
+<meta property="article:published_time" content="2013-11-15T00:27:16+08:00" />
+<meta property="article:modified_time" content="2013-11-15T00:27:16+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CUE 文件及其格式说明"/>
+<meta name="twitter:description" content="CUE 文件，即 CUESheets ，光盘镜像辅助文件。通常用于光盘刻录、音乐播放等等。比如用 EAC 刻录CD光盘，或者用 Foobar2000 播放整轨音乐文件。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/01/30/expose-method-in-dll-from-static-library/">&lt;&lt;&lt; 将无源代码的 lib 内函数添加到 dll 输出函数</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2013/08/25/vc-compilation-constants/">关于VC预定义常量_WIN32，WIN32，_WIN64 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">15</span>
+							<span class="rest">Nov 2013</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">CUE 文件及其格式说明</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/music">Category: Music</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: CUE" href="/tags/cue">CUE</a class="category">
+						
+						<a class="tag" title="Tag: file" href="/tags/file">file</a class="category">
+						
+						<a class="tag" title="Tag: format" href="/tags/format">format</a class="category">
+						
+						<a class="tag" title="Tag: burn" href="/tags/burn">burn</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/1020559932013101292332552/" target="_blank">http://fenying.blog.163.com/blog/static/1020559932013101292332552/</a>。
+				</div><div class="markdown">
+				
+<aside class="toc">
+    <p class="toc-title">目录</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-cue-基本规范">1. CUE 基本规范</a></li>
+    <li><a href="#2-cue-命令参考">2. CUE 命令参考</a>
+      <ul>
+        <li><a href="#21-文件头">2.1. 文件头</a>
+          <ul>
+            <li><a href="#211-title-命令头部">2.1.1. TITLE 命令（头部）</a></li>
+            <li><a href="#212-performer-命令头部">2.1.2. PERFORMER 命令（头部）</a></li>
+            <li><a href="#213-songwriter-命令头部">2.1.3. SONGWRITER 命令（头部）</a></li>
+            <li><a href="#214-rem-命令头部">2.1.4. REM 命令（头部）</a>
+              <ul>
+                <li><a href="#2141-rem-genre-class-names">2.1.4.1. REM GENRE <class-names></a></li>
+                <li><a href="#2142-rem-discid-cd-id">2.1.4.2. REM DISCID <cd-id></a></li>
+                <li><a href="#2143-rem-date-date">2.1.4.3. REM DATE <date></a></li>
+                <li><a href="#2144-rem-comment-comment-string">2.1.4.4. REM COMMENT <comment-string></a></li>
+              </ul>
+            </li>
+            <li><a href="#215-catalog-命令">2.1.5. CATALOG 命令</a></li>
+            <li><a href="#216-cdtextfile-命令">2.1.6. CDTEXTFILE 命令</a></li>
+          </ul>
+        </li>
+        <li><a href="#22-数据轨描述表">2.2. 数据轨描述表</a>
+          <ul>
+            <li><a href="#221-file-命令">2.2.1. FILE 命令</a></li>
+            <li><a href="#222-track-命令">2.2.2. TRACK 命令</a></li>
+            <li><a href="#223-index-命令">2.2.3. INDEX 命令</a></li>
+            <li><a href="#224-pregap-命令">2.2.4. PREGAP 命令</a></li>
+            <li><a href="#225-postgap-命令">2.2.5. POSTGAP 命令</a></li>
+            <li><a href="#226-titlesongwriterperformer-命令">2.2.6. TITLE、SONGWRITER、PERFORMER 命令</a></li>
+            <li><a href="#227-isrc-命令">2.2.7. ISRC 命令</a></li>
+            <li><a href="#228-falgs-命令">2.2.8. FALGS 命令</a></li>
+            <li><a href="#229-rem-命令">2.2.9. REM 命令</a>
+              <ul>
+                <li><a href="#2291-rem-replaygain_track_gain----db">2.2.9.1. REM REPLAYGAIN_TRACK_GAIN +/- *.** dB</a></li>
+                <li><a href="#2292-rem-replaygain_track_peak-">2.2.9.2. REM REPLAYGAIN_TRACK_PEAK *.******</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#3-范例解析">3. 范例解析</a>
+      <ul>
+        <li><a href="#31-实例-1">3.1. 实例 1</a></li>
+        <li><a href="#32-实例-2">3.2. 实例 2</a></li>
+        <li><a href="#33-实例-3">3.3. 实例 3</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</aside>
+
+
+
+				<p>CUE 文件，即 CUESheets ，光盘镜像辅助文件。通常用于光盘刻录、音乐播放等等。比如用 EAC 刻录CD光盘，或者用 Foobar2000 播放整轨音乐文件。</p>
+<p>CUE 文件是非常好的音乐专辑信息载体，使用它可以使专辑信息和音乐文件分离，从而达到播放整轨 WAV、FLAC、APE 等文件的目的。</p>
+<p>由于篇幅有限，本文只描述音乐文件播放相关的内容，因此和刻录有关的信息可能不大详细，敬请原谅。</p>
+<h2 id="1-cue-基本规范">1. CUE 基本规范</h2>
+<ol>
+<li>
+<p>CUE 是使用 ANSI 编码文本 格式储存的，以 .cue 为后缀储存的文件。</p>
+</li>
+<li>
+<p>其内容分为 Header 文件头，和 Tracks-Info 数据轨描述表两部分。其中 Header 文件头是可选的。</p>
+</li>
+<li>
+<p>CUE 文件必须与文件内描述的数据文件位于同一目录下。（FLAC 音频文件可以内嵌 CUE 文件）</p>
+</li>
+<li>
+<p>CUE 文件的修改与数据文件无关，因而 CUE 文件的丢失对数据文件无实质影响。</p>
+</li>
+</ol>
+<h2 id="2-cue-命令参考">2. CUE 命令参考</h2>
+<h3 id="21-文件头">2.1. 文件头</h3>
+<p>首先我们来看看 Header 文件头，其常见格式如下：（文件头是可选的，其全部内容都不是必须的）</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TITLE &lt;cd-title&gt;
+
+PERFORMER &lt;performer-name&gt;
+
+SONGWRITER &lt;writer-name&gt;
+
+CATALOG &lt;catalog-id&gt;
+
+REM DATE &lt;date&gt;
+
+REM DISCID &lt;discid-id&gt;
+
+REM GENRE &lt;classes&gt;
+
+REM COMMENT &lt;comments&gt;
+
+CDTEXTFILE &lt;cd-text-file-name&gt;
+</code></pre></div><p>这里出现了如下命令：（也许你发现了，这些命令全部用大写，其实大小写没关系，但是为了格式化，所以命令再次统一用大写的）</p>
+<ul>
+<li><code>TITLE</code></li>
+<li><code>CATALOG</code></li>
+<li><code>SONGWRITER</code></li>
+<li><code>PERFORMER</code></li>
+<li><code>REM</code></li>
+<li><code>CDTEXTFILE</code></li>
+</ul>
+<p>下面我们对上面的命令逐行分析，记住 头部信息全部都是可有可无的，当然有就最好不过了。</p>
+<h4 id="211-title-命令头部">2.1.1. TITLE 命令（头部）</h4>
+<p>这条命令很明显，指定唱片标题。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TITLE &lt;title&gt;
+</code></pre></div><p>比如MJ的专辑《Thriller》：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TITLE &#34;Thriller&#34;
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p><code>&lt;title&gt;</code> 必须小于80个字符。</p>
+</li>
+<li>
+<p>对于长且有空格的名称，必须用半角双引号引起来。这里建议在任何情况下都把 <code>&lt;title&gt;</code> 用双引号引起来。</p>
+</li>
+<li>
+<p>刻录时，如果刻录机不支持 CD-TEXT，则此命令将被忽略。但是在播放器里是有效的。</p>
+</li>
+</ol>
+<h4 id="212-performer-命令头部">2.1.2. PERFORMER 命令（头部）</h4>
+<p>这条命令也很简单，指定唱片演唱者。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">PERFORMER &lt;performer-name&gt;
+</code></pre></div><p>比如MJ的专辑《Thriller》</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">PERFORMER &#34;Michelle Jackson&#34;
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p><code>&lt;performer-name&gt;</code> 必须小于80个字符。</p>
+</li>
+<li>
+<p>对于长且有空格的名称，必须用半角双引号引起来。这里建议在任何情况下都把 <code>&lt;performer-name&gt;</code> 用双引号引起来。</p>
+</li>
+<li>
+<p>刻录时，如果刻录机不支持 CD-TEXT，则此命令将被忽略。但是在播放器里是有效的。</p>
+</li>
+</ol>
+<h4 id="213-songwriter-命令头部">2.1.3. SONGWRITER 命令（头部）</h4>
+<p>这条命令也很简单，指定唱片乐曲编曲者。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">SONGWRITER &lt;writer-name&gt;
+</code></pre></div><p>比如冯曦妤的歌曲《幸运儿》</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">SONGWRITER &#34;冯曦妤&#34;
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p><code>&lt;writer-name&gt;</code> 必须小于80个字符。</p>
+</li>
+<li>
+<p>对于长且有空格的名称，必须用半角双引号引起来。这里建议在任何情况下都把 <code>&lt;writer-name&gt;</code> 用双引号引起来。</p>
+</li>
+<li>
+<p>刻录时，如果刻录机不支持 CD-TEXT，则此命令将被忽略。但是在播放器里是有效的。</p>
+</li>
+</ol>
+<h4 id="214-rem-命令头部">2.1.4. REM 命令（头部）</h4>
+<p>这条命令表示注释，通常用来标明一些 CUE 阅读说明。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">REM &lt;comments&gt;
+</code></pre></div><p>比如</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">REM 这是说明哦。
+</code></pre></div><p>但是 REM 命令通常不会被这么使用，因为 CUE 文件格式简单，不需要写什么注释。于是 REM 就被用来指定各种 CUE 的扩展命令，这些扩展命令一般也是用于头部信息（音轨信息部分也有，后面会提到），一般作用于 Foobar2000 等音乐播放器。下面将逐个说明：</p>
+<h5 id="2141-rem-genre-class-names">2.1.4.1. REM GENRE <code>&lt;class-names&gt;</code></h5>
+<p>这个命令用于指定唱片、专辑的分类，建议后面的 <code>&lt;class-names&gt;</code> 用半角双引号引起来。</p>
+<p>例如贝多芬精选集里其中一张 CD：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">REM GENRE &#34;Classical&#34;
+</code></pre></div><h5 id="2142-rem-discid-cd-id">2.1.4.2. REM DISCID <code>&lt;cd-id&gt;</code></h5>
+<p>这个命令用于指定 CD 的唯一编号，建议后面的 <!-- raw HTML omitted --> 用半角双引号引起来。</p>
+<p>例如贝多芬精选集里其中一张 CD：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">REM DISCID &#34;5C0D6808&#34;
+</code></pre></div><h5 id="2143-rem-date-date">2.1.4.3. REM DATE <code>&lt;date&gt;</code></h5>
+<p>这个命令用于指定光盘的发行时间，精确到年。其中<!-- raw HTML omitted -->可以用半角双引号引起来。</p>
+<p>例如，一张 2009 年发布的 CD：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">REM DATE 2009
+</code></pre></div><h5 id="2144-rem-comment-comment-string">2.1.4.4. REM COMMENT <code>&lt;comment-string&gt;</code></h5>
+<p>这个命令用于指定 CUE 的生成说明，建议后面的 <!-- raw HTML omitted --> 用半角双引号引起来。</p>
+<p>例如使用 EAC 生成的 CUE 文件一般都带如下类似信息：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">REM COMMENT &#34;ExactAudioCopy v0.99pb4&#34;
+</code></pre></div><h4 id="215-catalog-命令">2.1.5. CATALOG 命令</h4>
+<p>这条命令用于指定唱片的唯一 EAN 编号。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">CATALOG &lt;catalog-id&gt;
+</code></pre></div><p>比如 George Michael 的专辑 《Songs From The Last Century》。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">CATALOG &#34;7243848740251&#34;
+</code></pre></div><p>这是个比较重要的玩意儿，它表示这张唱片的身份证，是一个 13 位的数字，通常和唱片的 EAN 码一致。也就是说，这张唱片的唯一编号。世界上不会有两张唱片的 CATALOG 相同的。关于这个 CATALOG 码，要了解更多请参考百度百科。</p>
+<p>注意：</p>
+<ol>
+<li>
+<p><code>&lt;catalog-id&gt;</code> 必须为13个字符。</p>
+</li>
+<li>
+<p>这里建议把 <code>&lt;catalog-id&gt;</code> 用半角双引号引起来。</p>
+</li>
+<li>
+<p>注意本命令最多只能在 CUE 文件内出现一次，可以没有。通常位于头部。</p>
+</li>
+</ol>
+<h4 id="216-cdtextfile-命令">2.1.6. CDTEXTFILE 命令</h4>
+<p>这条命令用于指定光盘上使用的 CD-TEXT 信息文件的名称，具体用途不在此说明，需要的请自行查阅相关文献。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">CDTEXTFILE &lt;cd-text-filename&gt;
+</code></pre></div><p>比如</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">CDTEXTFILE &#34;cd-text1.cdt&#34;
+
+CDTEXTFILE &#34;c:\cds\cd-text2.cdt&#34;
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p><code>&lt;cd-text-filename&gt;</code> 可以是文件名，也可以包含文件路径。</p>
+</li>
+<li>
+<p>如果 <code>&lt;cd-text-filename&gt;</code> 内包含空格，那么必须用半角双引号引起来。这里建议总是把 <code>&lt;cd-text-filename&gt;</code> 用半角双引号引起来。</p>
+</li>
+<li>
+<p>如果刻录机不支持 CD-TEXT，那么此命令将被忽略。</p>
+</li>
+</ol>
+<hr>
+<p>至此，头部信息文件介绍完毕。</p>
+<h3 id="22-数据轨描述表">2.2. 数据轨描述表</h3>
+<p>数据轨描述表分为两部分：</p>
+<p>一、核心部分，即下面格式中未被[]包含的内容，这一部分是必须存在的；</p>
+<p>二、单轨描述信息，即下面格式中被[]包含的部分。</p>
+<p>数据轨描述表的格式如下：（注意[]不是内容，只是表示其里面的内容为可选段）</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">FILE &lt;data-file-name&gt; &lt;file-type&gt;
+
+  TRACK &lt;track-id&gt; &lt;track-data-type&gt;
+
+    INDEX 01 &lt;track-begin-time&gt;
+
+    [TITLE &lt;track-title&gt;]
+
+    [PERFORMER &lt;performer-name&gt;]
+
+    [SONGWRITER &lt;writer-name&gt;]
+    [ISRC &lt;isrc-code&gt;]
+
+    [FLAGS &lt;flags&gt;]
+
+    [PREGAP &lt;pre-mute-time&gt;]
+    [POSTGAP &lt;post-mute-time&gt;]
+
+    [REM REPLAYGAIN_TRACK_GAIN +/- *.** dB]
+
+    [REM REPLAYGAIN_TRACK_PEAK *.******]
+
+    [INDEX &lt;index&gt; &lt;track-begin-time&gt;]
+</code></pre></div><p>数据信息描述表格式如上所示，其中 FILE 命令可以有多条，而每条 FILE 命令下又可以有多条 TRACK 命令。下面介绍各条命令。</p>
+<h4 id="221-file-命令">2.2.1. FILE 命令</h4>
+<p>这条命令用于声明一个数据文件。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">FILE &lt;data-file-name&gt; &lt;file-type&gt;
+</code></pre></div><p>其中 <code>&lt;data-file-name&gt;</code> 是位于 CUE 文件 相同目录下的数据文件名称。<code>&lt;file-type&gt;</code> 为文件的数据类型：</p>
+<table class="mark-el">
+<thead>
+<tr>
+<th align="center">File Type</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">BINARY</td>
+<td>二进制数据文件，必须是 Little-Endian 编码格式。</td>
+</tr>
+<tr>
+<td align="center">MOTOROLA</td>
+<td>二进制数据文件，必须是 Big-Endian 编码格式。</td>
+</tr>
+<tr>
+<td align="center">AIFF</td>
+<td>AIFF 音频文件</td>
+</tr>
+<tr>
+<td align="center">WAVE</td>
+<td>WAVE 音频文件（WAV/FLAC/APE）</td>
+</tr>
+<tr>
+<td align="center">MP3</td>
+<td>MP3 音频文件</td>
+</tr>
+</tbody>
+</table>
+<p>不同的文件应该对应不同的文件类型。</p>
+<p>比如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">FILE &#34;01 - Niki Nana (We&#39;re One).flac&#34; WAVE
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p>每个 CUE 文件内至少含有一条 <code>FILE</code> 命令。</p>
+</li>
+<li>
+<p><code>&lt;data-file-name&gt;</code> 必须用半角双引号引起来。</p>
+</li>
+<li>
+<p>注意 <code>&lt;data-file-name&gt;</code> 必须与 CUE 文件位于相同目录下。</p>
+</li>
+</ol>
+<h4 id="222-track-命令">2.2.2. TRACK 命令</h4>
+<p>这条命令用于声明某个数据文件内的一条数据轨段。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TRACK &lt;track-id&gt; &lt;track-data-type&gt;
+</code></pre></div><p>其中 <code>&lt;track-id&gt;</code> 是轨段编号，取值必须在 <code>01</code> 到 <code>99</code> 之内。<code>&lt;track-data-type&gt;</code> 为轨段的数据类型，与刻录机型号有关，一般为 AUDIO，其他 <code>&lt;track-data-type&gt;</code> 类型请自行查阅相关文献。</p>
+<p>比如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TRACK 01 AUDIO
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p>每个 <code>FILE</code> 命令内至少含有一条 <code>TRACK</code> 命令。</p>
+</li>
+<li>
+<p><code>&lt;track-id&gt;</code> 即为播放器内识别的音轨号。</p>
+</li>
+</ol>
+<h4 id="223-index-命令">2.2.3. INDEX 命令</h4>
+<p>这条命令对某个数据文件内的一条数据轨进行分段。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">INDEX &lt;index&gt; &lt;begin-time&gt;
+</code></pre></div><p>其中 <code>&lt;index&gt;</code> 是子轨段编号，取值必须在 <code>00</code> 到 <code>99</code> 之内。<code>&lt;begin-time&gt;</code> 为子轨段的时间起点。对于 <code>&lt;index&gt;</code>，其中00和01为比较特殊的点。<code>00</code> 为要跳过的轨内空白段，而 <code>01</code> 为轨段的有效起点。</p>
+<p>比如一个 <code>TRACK</code> 和前一个 <code>TRACK</code> 之间有 <code>50</code> 秒的空档：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TRACK 01 AUDIO
+
+  INDEX 01 00:00:00
+
+  REM 每个文件的第一个 TRACK 不能有 INDEX 00，其 INDEX 01 必须为 00:00:00。
+
+TRACK 02 AUDIO
+
+  INDEX 00 00:05:00
+
+  REM 此处跳过 50s 的空档，直接到 05:50 继续播放。
+
+  REM 因为 INDEX 01 才是 TRACK 02 的开始，所以 INDEX 00 可以
+
+  REM 看作是 TRACK 01 的有效结束时间。
+
+  INDEX 01 00:05:50
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p>每个 <code>TRACK</code> 命令内至少含有 <code>INDEX 01</code>。</p>
+</li>
+<li>
+<p>每个文件第一个 <code>TRACK</code> 的 <code>INDEX 01</code> 都应从 <code>00:00:00</code> 开始，且不得有 <code>INDEX 00</code>。很多 CUE 文件无法被 Foobar2000 识别，就是因为这个错误。</p>
+</li>
+</ol>
+<h4 id="224-pregap-命令">2.2.4. PREGAP 命令</h4>
+<p>这条命令类似于 <code>INDEX 00</code>，但又略有所不同。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">PREGAP &lt;skip-time&gt;
+</code></pre></div><p>这条命令的作用和 <code>INDEX 00</code> 相似，但却又不相同。其中 <code>&lt;skip-time&gt;</code> 是要插入的空白时间长度。区别在于：</p>
+<ol>
+<li>
+<p><code>PREGAP</code> 是在该轨段前硬性加入一段空白时间（数据全为0），常用于刻录中，Foobar2000 不支持。</p>
+</li>
+<li>
+<p><code>PREGAP</code> 是在轨段前插入真实数据，而 <code>INDEX 00</code> 只是跳过轨段内部的一段数据，因此两者不同。</p>
+</li>
+<li>
+<p><code>PREGAP</code> 可以用于文件的第一个 <code>TRACK</code> 中，而 <code>INDEX 00</code> 不可以。</p>
+</li>
+</ol>
+<p>比如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TRACK 01 AUDIO
+
+  PREGAP 00:02:00
+
+  INDEX 01 00:00:00
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p>每个 <code>TRACK</code> 命令内最多只能有一条 <code>PREGAP</code> 命令。</p>
+</li>
+<li>
+<p><code>PREGAP</code> 必须位于 <code>TRACK</code> 命令后，所有 <code>INDEX</code> 命令之前。</p>
+</li>
+</ol>
+<h4 id="225-postgap-命令">2.2.5. POSTGAP 命令</h4>
+<p>这条命令类似于 <code>INDEX 00</code>，但又略有所不同。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">POSTGAP &lt;skip-time&gt;
+</code></pre></div><p>这条命令的作用和 <code>INDEX 00</code> 相似，但却又不相同。其中 <code>&lt;skip-time&gt;</code> 是要插入的空白时间长度。区别在于：</p>
+<ol>
+<li>
+<p><code>POSTGAP</code> 是在该轨段后硬性加入一段空白时间（数据全为0），常用于刻录中，Foobar2000 不支持。</p>
+</li>
+<li>
+<p><code>POSTGAP</code> 是在轨段后插入真实数据，而 <code>INDEX 00</code> 只是跳过轨段内部的一段数据，因此两者不同。</p>
+</li>
+<li>
+<p><code>POSTGAP</code> 可以文件的第一个 <code>TRACK</code> 中，而 <code>INDEX 00</code> 不可以。</p>
+</li>
+</ol>
+<p>比如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TRACK 01 AUDIO
+
+  INDEX 01 00:00:00
+
+  POSTGAP 00:02:00
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p>每个 <code>TRACK</code> 命令内最多只能有一条 <code>POSTGAP</code> 命令。</p>
+</li>
+<li>
+<p><code>POSTGAP</code> 必须位于所有 <code>INDEX</code> 命令之后。</p>
+</li>
+</ol>
+<h4 id="226-titlesongwriterperformer-命令">2.2.6. TITLE、SONGWRITER、PERFORMER 命令</h4>
+<p>用于描述每条数据轨段的信息，用法参考 Header 部分。</p>
+<p>注意：</p>
+<ul>
+<li>在数据轨描述表内，这3条命令必须在 <code>TRACK</code> 命令后使用。</li>
+</ul>
+<h4 id="227-isrc-命令">2.2.7. ISRC 命令</h4>
+<p>该命令指定数据轨的 ISRC 码（参考百度百科）。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">ISRC &lt;isrc-code&gt;
+</code></pre></div><p>例如 NightWish 的《Imaginearum》专辑里第1轨：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">ISRC FI3SN1100001
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p>该命令是单轨信息部分，必须出现在 <code>TRACK</code> 命令后面，且每轨只能有一条 <code>ISRC</code> 命令。</p>
+</li>
+<li>
+<p><code>&lt;isrc-code&gt;</code> 可以并建议用半角双引号引起来。</p>
+</li>
+</ol>
+<h4 id="228-falgs-命令">2.2.8. FALGS 命令</h4>
+<p>该命令指定数据轨的 SUBCODES，用于刻录中。格式为：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">FLAGS &lt;sub-codes&gt;
+</code></pre></div><p>可用 <code>SUBCODES</code> 如下：</p>
+<table class="mark-el">
+<thead>
+<tr>
+<th align="center">Sub Code</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">DCP</td>
+<td>允许数位复制。</td>
+</tr>
+<tr>
+<td align="center">PRE</td>
+<td>允许预加重。</td>
+</tr>
+<tr>
+<td align="center">4CH</td>
+<td>四声道音讯。</td>
+</tr>
+<tr>
+<td align="center">SCMS</td>
+<td>连续复制管理系统。</td>
+</tr>
+</tbody>
+</table>
+<p>例如 Bandari 的《Emerald Valley》专辑里第1轨：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">FLAGS DCP
+</code></pre></div><p>注意：</p>
+<ol>
+<li>
+<p>该命令是单轨信息部分，必须出现在 <code>TRACK</code> 命令后面，且每轨只能有一条 <code>FLAGS</code> 命令。</p>
+</li>
+<li>
+<p><code>FLAGS</code> 命令一次可以指定多条 subcode。</p>
+</li>
+</ol>
+<h4 id="229-rem-命令">2.2.9. REM 命令</h4>
+<p>REM 命令在头部信息中已经描述过，此处对其扩展命令的用法进行补充说明，只用于 TRACK 命令中。格式为：</p>
+<h5 id="2291-rem-replaygain_track_gain----db">2.2.9.1. REM REPLAYGAIN_TRACK_GAIN <code>+/- *.** dB</code></h5>
+<p>这个命令用于指定音轨的增益回放信息，用于提高/降低音量。</p>
+<p>例如Groove Coverage的《21st Century》第02轨：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">REM REPLAYGAIN_TRACK_GAIN -10.22 dB
+</code></pre></div><h5 id="2292-rem-replaygain_track_peak-">2.2.9.2. REM REPLAYGAIN_TRACK_PEAK <code>*.******</code></h5>
+<p>这个命令用于指定音轨的增益回放信息，指定音轨峰值。</p>
+<p>例如Groove Coverage的《21st Century》第02轨：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">REM REPLAYGAIN_TRACK_PEAK 0.977142
+</code></pre></div><h2 id="3-范例解析">3. 范例解析</h2>
+<h3 id="31-实例-1">3.1. 实例 1</h3>
+<blockquote>
+<p>此处 <code>/* ... */</code> 表示我的注释，注意 <code>/* ... */</code> 并非CUE内容，下同。</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">PERFORMER &#34;Nightwish&#34;                                   /* 指定音乐光盘作者 */
+TITLE &#34;Nemo, CDS, Normal Version&#34;                       /* 指定光盘标题 */
+REM GENRE &#34;Heavy Metal&#34;                                 /* 音乐分类 */
+REM DATE 2004                                           /* 发行年份 */
+REM DISCID 3F054305                                     /* 光盘 DISCID 编码 */
+REM COMMENT &#34;ExactAudioCopy v0.99pb4&#34;                   /* CUE 生成信息 */
+FILE &#34;Nightwish - Nemo, CDS, Normal Version.ape&#34; WAVE   /* FILE 命令，指定音乐文件 */
+  TRACK 01 AUDIO                                        /* 第一个音轨 */
+    TITLE &#34;Nemo (From The Album &#39;Once&#39;)&#34;                /* 音轨标题 */
+    PERFORMER &#34;Nightwish&#34;                               /* 音乐演唱者 */
+    INDEX 01 00:00:00                                   /* 第一轨 INDEX 01 必须从 00:00:00 开始 */
+  TRACK 02 AUDIO                                        /* 第二个音轨 */
+    TITLE &#34;Planet Hell(From The Album &#39;Once&#39;)&#34;          /* 音轨标题 */
+    PERFORMER &#34;Nightwish&#34;                               /* 音乐演唱者 */
+    REM REPLAYGAIN_TRACK_GAIN -8.32 dB                  /* 音乐增益回放信息 */
+    REM REPLAYGAIN_TRACK_PEAK 0.977234                  /* 音乐增益回放信息 */
+    INDEX 00 04:29:03                                   /* 跳过两轨间的空档 */
+    INDEX 01 04:29:04                                   /* 第二个音轨的起点 */
+</code></pre></div><h3 id="32-实例-2">3.2. 实例 2</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TITLE &#34;Imaginaerum&#34;
+PERFORMER &#34;Nightwish&#34;
+REM GENRE &#34;Symphonic Metal&#34;
+REM DATE 2011
+REM DISCID BA118E0D
+REM COMMENT &#34;ExactAudioCopy v1.0b3&#34;
+FILE &#34;01 - Taikatalvi.flac&#34; WAVE            /* 第一个文件 */ 
+  TRACK 01 AUDIO                            /* 只有一个 TRACK */
+    TITLE &#34;Taikatalvi&#34;
+    PERFORMER &#34;Nightwish&#34;
+    REM REPLAYGAIN_TRACK_GAIN -5.14 dB
+    REM REPLAYGAIN_TRACK_PEAK 0.977142
+    ISRC FI3SN1100001                       /* 指定音轨的 ISRC 编号 */
+    INDEX 01 00:00:00                       /* 每个文件第一个 TRACK 的 INDEX 01 必须从 00:00:00 开始，且不能有 INDEX 00*/
+FILE &#34;02 - Storytime.flac&#34; WAVE             /* 第二个文件 */ 
+  TRACK 02 AUDIO                            /* 只有一个 TRACK */
+    TITLE &#34;Storytime&#34;
+    PERFORMER &#34;Nightwish&#34;
+    ISRC FI3SN1100002                       /* 指定音轨的 ISRC 编号 */
+    INDEX 01 00:00:00                       /* 每个文件第一个 TRACK 的 INDEX 01 必须从 00:00:00 开始，且不能有 INDEX 00*/
+</code></pre></div><h3 id="33-实例-3">3.3. 实例 3</h3>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">TITLE &#34;Example&#34;
+PERFORMER &#34;Unknown&#34;
+FILE &#34;exp1.wav&#34; WAVE            /* 第一个文件 */
+  TRACK 01 AUDIO                /* 文件的第一个音轨 */
+    TITLE &#34;Track 01&#34;
+    INDEX 01 00:00:00
+  TRACK 02 AUDIO                /* 文件的第二个音轨 */
+    TITLE &#34;Track 02&#34;
+    INDEX 00 00:04:49           /* 跳过其中 7s 空白*/
+    INDEX 01 00:04:56
+FILE &#34;exp2.wav&#34; WAVE            /* 第二个文件 */
+  TRACK 03 AUDIO                /* 文件的第一个音轨 */
+    TITLE &#34;Track 03&#34;
+    INDEX 01 00:00:00
+</code></pre></div><p>（全文完）</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2013/11/15/cue-file-format/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/01/30/expose-method-in-dll-from-static-library/">&lt;&lt;&lt; 将无源代码的 lib 内函数添加到 dll 输出函数</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2013/08/25/vc-compilation-constants/">关于VC预定义常量_WIN32，WIN32，_WIN64 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

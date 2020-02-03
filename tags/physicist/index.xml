@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>physicist on Fenying</title>
+    <link>https://fenying.github.io/tags/physicist/</link>
+    <description>Recent content in physicist on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Sat, 25 Dec 2010 20:34:01 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/physicist/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>如果物理学是一个帖子</title>
+      <link>https://fenying.github.io/post/2010/12/25/what-would-physicists-say-in-a-bbs-topic/</link>
+      <pubDate>Sat, 25 Dec 2010 20:34:01 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2010/12/25/what-would-physicists-say-in-a-bbs-topic/</guid>
+      <description>&lt;p&gt;如果历史上各位伟大的科学家聚集在一个论坛主题里，他们会说些什么呢？&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

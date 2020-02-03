@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>将无源代码的 lib 内函数添加到 dll 输出函数 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="将无源代码的 lib 内函数添加到 dll 输出函数" />
+<meta property="og:description" content="今天想把一个用汇编写的 lib 整合到一个 dll 的输出函数中，用 _declspec(dllexport) 导出该函数不可行，最后用 def 模块导出文件，终于在 Visual Studio 2012 下成功通过测试。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2014/01/30/expose-method-in-dll-from-static-library/" />
+<meta property="article:published_time" content="2014-01-30T11:52:51+08:00" />
+<meta property="article:modified_time" content="2014-01-30T11:52:51+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="将无源代码的 lib 内函数添加到 dll 输出函数"/>
+<meta name="twitter:description" content="今天想把一个用汇编写的 lib 整合到一个 dll 的输出函数中，用 _declspec(dllexport) 导出该函数不可行，最后用 def 模块导出文件，终于在 Visual Studio 2012 下成功通过测试。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/">&lt;&lt;&lt; 关于 PHP 获取 IP 的方法与安全问题</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2013/11/15/cue-file-format/">CUE 文件及其格式说明 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">30</span>
+							<span class="rest">Jan 2014</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">将无源代码的 lib 内函数添加到 dll 输出函数</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: dll" href="/tags/dll">dll</a class="category">
+						
+						<a class="tag" title="Tag: lib" href="/tags/lib">lib</a class="category">
+						
+						<a class="tag" title="Tag: def" href="/tags/def">def</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/1020559932014030113854151/" target="_blank">http://fenying.blog.163.com/blog/static/1020559932014030113854151/</a>。
+				</div><div class="markdown">
+				
+
+
+				<p>今天想把一个用汇编写的 lib 整合到一个 dll 的输出函数中，用 <code>_declspec(dllexport)</code> 导出该函数不可行，最后用 def 模块导出文件，终于在 Visual Studio 2012 下成功通过测试。</p>
+<p>以 lib 函数 <code>myfunc1</code> 为例：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> myfunc1(); 
+</code></pre></div><p>在 dllTest.h 内应该声明：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">ifdef _USRDLL</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">	pragma comment(lib, &#34;libMyFunc.lib&#34;) </span><span style="color:#008000">/* Sources static library */</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">else</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">	pragma comment(lib, &#34;dllTest.lib&#34;) </span><span style="color:#008000">/* Lib for dll. */</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+
+<span style="color:#00f">#</span><span style="color:#00f">ifdef __cplusplus </span><span style="color:#008000">/* myfunc1 is written in Assembly. */</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">extern</span> <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">C</span><span style="color:#a31515">&#34;</span>
+<span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> myfunc1();
+</code></pre></div><p>然后使用 dllTest.def 模块定义文件，写如下内容：（Visual Studio 2012下，把“项目属性\连接器\输入\模块定义文件”修改为&quot;dllTest.def&rdquo;）</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-def" data-lang="def">LIBRARY dllTest
+EXPORTS
+myfunc1
+</code></pre></div><p>编译，即可生成 dllTest.dll 和 dllTest.lib。</p>
+<p>下面写个程序测试下。</p>
+<p>新建项目 testDll，然后把 dllTest.h, dllTest.dll, dllTest.lib 都复制到新项目的目录下。</p>
+<p>在 <code>main</code> 函数里调用 <code>myfunc1</code>，测试 OK！</p>
+<hr>
+<p>由此，可以知道用 def 模块定义文件可以导出 <code>_declspec(dllexport)</code> 所不能导出函数（主要是从其它库导入的函数），而<code>_declspec(dllexport)</code> 适合导出项目内的 C++ 函数和 C++ 类。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2014/01/30/expose-method-in-dll-from-static-library/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/">&lt;&lt;&lt; 关于 PHP 获取 IP 的方法与安全问题</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2013/11/15/cue-file-format/">CUE 文件及其格式说明 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

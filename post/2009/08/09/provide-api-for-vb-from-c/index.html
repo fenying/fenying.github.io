@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>VC&#43;&#43;写DLL给VB使用 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="VC&#43;&#43;写DLL给VB使用" />
+<meta property="og:description" content="之前用VC写了一个DLL封装了MySQL的CAPI给VB使用。
+在写DLL时遇到了一箩筐问题，现在总结了一些经验，特地写在这里记下来以免遗忘。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2009/08/09/provide-api-for-vb-from-c/" />
+<meta property="article:published_time" content="2009-08-09T14:04:01+08:00" />
+<meta property="article:modified_time" content="2009-08-09T14:04:01+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="VC&#43;&#43;写DLL给VB使用"/>
+<meta name="twitter:description" content="之前用VC写了一个DLL封装了MySQL的CAPI给VB使用。
+在写DLL时遇到了一箩筐问题，现在总结了一些经验，特地写在这里记下来以免遗忘。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2009/08/09/mystery-maya-calender/">&lt;&lt;&lt; 神秘的玛雅历法</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2009/06/20/chinese-id-number-generating-algorithm/">中国大陆18位身份证算法 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">09</span>
+							<span class="rest">Aug 2009</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">VC&#43;&#43;写DLL给VB使用</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/visual-basic">Category: Visual Basic</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: api" href="/tags/api">api</a class="category">
+						
+						<a class="tag" title="Tag: dll" href="/tags/dll">dll</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993200979241103/" target="_blank">http://fenying.blog.163.com/blog/static/102055993200979241103/</a>。
+				</div><div class="markdown">
+				
+<aside class="toc">
+    <p class="toc-title">目录</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#准备">准备</a></li>
+    <li><a href="#第一个标准函数">第一个标准函数</a></li>
+    <li><a href="#引用形参地址传递">引用形参（地址传递）</a></li>
+    <li><a href="#空类型函数void-type-function">空类型函数(void-type-function)</a></li>
+    <li><a href="#自定义类型">自定义类型</a></li>
+    <li><a href="#回调函数">回调函数</a></li>
+    <li><a href="#智能字符串">智能字符串</a></li>
+  </ul>
+</nav>
+</aside>
+
+
+
+				<p>之前用VC写了一个DLL封装了MySQL的CAPI给VB使用。</p>
+<p>在写DLL时遇到了一箩筐问题，现在总结了一些经验，特地写在这里记下来以免遗忘。</p>
+<h2 id="准备">准备</h2>
+<p>测试环境是：VC6.0 简体中文企业版，VB6.0 简体中文企业版，Windows XP Professional SP3 简体中文版</p>
+<p>用VC++建立一个Win32 DLL工程（Win32 Dynamic-Link Library），命名为“MyDll1”，注意选择“空工程”。</p>
+<p>恩，好了，下面添加文件。按下Ctrl + N，添加一个头文件，命名“MyDll1.h”，再添加一个源文件，命名为“MyDll1.cpp”。</p>
+<p>好了？不，还差一个文件，小巧精悍的*.def文件，这个是在向导里选择“文本文件”，然后名字必须是“*.def”格式，一字不漏。</p>
+<p>首先打开MyDll1.h，添加第一行代码：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;windows.h&gt;</span><span style="color:#00f">
+</span></code></pre></div><p>接着是在MyDll1.cpp里添加</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&#34;MyDll1.h&#34;</span><span style="color:#00f">
+</span></code></pre></div><p>开始吧～</p>
+<h2 id="第一个标准函数">第一个标准函数</h2>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#008000">//在MyDll1.h里添加
+</span><span style="color:#008000"></span><span style="color:#2b91af">int</span> WINAPI Add(<span style="color:#2b91af">int</span> a, <span style="color:#2b91af">int</span> b); <span style="color:#008000">//呵呵，现在可不是写Hello World!了
+</span><span style="color:#008000"></span>
+<span style="color:#008000">//注意格式必须是：函数类型 WINAPI 函数名(参数表)
+</span><span style="color:#008000"></span>
+<span style="color:#008000">//在MyDll1.cpp里添加
+</span><span style="color:#008000"></span><span style="color:#2b91af">int</span> WINAPI Add(<span style="color:#2b91af">int</span> a, <span style="color:#2b91af">int</span> b)
+{
+    <span style="color:#00f">return</span> <span style="color:#2b91af">int</span>(a + b);
+}
+</code></pre></div><p>然后在MyDll1.def里写</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">LIBRARY            &#34;MyDll1&#34;
+EXPORTS            Add
+</code></pre></div><p>其中MyDll1是链接库的名称，当然你可以随便写。</p>
+<p>Def文件定义了Dll的导出表，用“EXPORTS 函数名称”格式，一行一个函数。而且函数必须用WINAPI声明（包括定义也是）。</p>
+<p>保存，按下F7（组建），就会生成一个Dll了，这里直接使用了Win32 Release配置，生成发布版本。</p>
+<p>在工程目录的Release文件夹里找到MyDll1.dll，复制到 <code>C:\Windows\System32\</code> 下。</p>
+<p>下面是VB部分。</p>
+<p>启动VB，创建“标准EXE”工程，双击窗体，输入代码：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> Add <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByVal</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+<span style="color:#008000">&#39;//注意声明方式，后面会深入探讨。
+</span><span style="color:#008000"></span>
+<span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
+    MsgBox Add(1, 2)
+<span style="color:#00f">End</span> <span style="color:#00f">Sub</span>
+</code></pre></div><p>按下 F5，运行。结果是什么？如无意外应该是 3。</p>
+<h2 id="引用形参地址传递">引用形参（地址传递）</h2>
+<p>第一步测试完成了，第二个问题——引用传递。</p>
+<p>想必大家都知道VB函数的参数声明有一个 <code>ByRef</code> 声明前缀类型吧？是什么意思呢？运行下面一个程序你就知道了。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Function</span> Func1(<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+
+    a = a + b
+    Func1 = a
+
+<span style="color:#00f">End</span> <span style="color:#00f">Function</span>
+
+<span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
+
+    <span style="color:#00f">Dim</span> i <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+    i = 123
+    Msgbox Func1(i, 5)
+    Msgbox i
+
+<span style="color:#00f">End</span> <span style="color:#00f">Sub</span>
+</code></pre></div><p><code>ByVal</code> 是值传递，<code>ByRef</code> 是地址传递。</p>
+<p>C++也有引用，但这里可不用用所谓意义上的引用，应该用指针。C++的内存世界丰富多彩，指针是开启内存世界大门的金钥匙。</p>
+<p>下面用C++实现和上面Func1完全一样的函数给VB调用。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#008000">//在MyDll1.h里添加
+</span><span style="color:#008000"></span><span style="color:#2b91af">int</span> WINAPI AddEx(<span style="color:#2b91af">int</span> *a, <span style="color:#2b91af">int</span> b);
+
+<span style="color:#008000">//在MyDll1.cpp里添加
+</span><span style="color:#008000"></span><span style="color:#2b91af">int</span> WINAPI AddEx(<span style="color:#2b91af">int</span> *a, <span style="color:#2b91af">int</span> b)
+{
+    <span style="color:#00f">return</span> (*a += b);
+}
+</code></pre></div><p>在MyDll1.def里添加</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">EXPORTS            AddEx
+</code></pre></div><p>保存，按下F7，再次复制到 <code>C:\Windows\System32\</code>。</p>
+<p>回到VB，使用下面的代码：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> AddEx <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+<span style="color:#008000">&#39;ByRef调用方式
+</span><span style="color:#008000"></span><span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
+
+    <span style="color:#00f">Dim</span> i <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+    i = 123
+    MsgBox AddEx(i, 5) <span style="color:#008000">&#39;改了名字而已，调用方式一致。
+</span><span style="color:#008000"></span>    MsgBox i
+
+<span style="color:#00f">End</span> <span style="color:#00f">Sub</span>
+</code></pre></div><p>按下F5，运行，结果是否和刚才的一样？</p>
+<h2 id="空类型函数void-type-function">空类型函数(void-type-function)</h2>
+<p>VB中有一种“过程”，它没有返回值，相当于C/C++中的 <code>void</code> 型函数。例如:</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Sub1()
+
+    Msgbox <span style="color:#a31515">&#34;</span><span style="color:#a31515">Sub1!</span><span style="color:#a31515">&#34;</span>
+
+<span style="color:#00f">End</span> <span style="color:#00f">Sub</span>
+</code></pre></div><p>在C/C++里是这样定义的</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#2b91af">void</span> func1()
+{
+    cout &lt;&lt; <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">func1</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>;
+}
+</code></pre></div><p>用VC写一个给VB用下试试。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#008000">//在MyDll1.h里添加
+</span><span style="color:#008000"></span><span style="color:#2b91af">void</span> WINAPI NAdd(<span style="color:#2b91af">int</span> *a, <span style="color:#2b91af">int</span> b);
+
+<span style="color:#008000">//在MyDll1.cpp里添加
+</span><span style="color:#008000"></span><span style="color:#2b91af">void</span> WINAPI NAdd(<span style="color:#2b91af">int</span> *a, <span style="color:#2b91af">int</span> b)
+{
+    *a += b;
+}
+</code></pre></div><p>在MyDll1.def里添加</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">EXPORTS            NAdd
+</code></pre></div><p>回到VB，使用如下代码：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Sub</span> NAdd <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>)
+<span style="color:#008000">&#39;Sub声明方式，不是Function哦
+</span><span style="color:#008000"></span><span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
+
+    <span style="color:#00f">Dim</span> i <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+    i = 123
+    NAdd i, 5
+    MsgBox i
+
+<span style="color:#00f">End</span> <span style="color:#00f">Sub</span>
+</code></pre></div><h2 id="自定义类型">自定义类型</h2>
+<p>好了，传递方式都搞清楚了，不过上面传递的都是基本类型，如果是自定义类型怎么办？例如有：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> Type mytype
+    i <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+    b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+<span style="color:#00f">End</span> Type
+</code></pre></div><p>如何传递？很简单，回到VC，开始第四步实践。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#008000">//在MyDll1.h里添加
+</span><span style="color:#008000"></span><span style="color:#00f">struct</span> <span style="color:#2b91af">mytype</span> <span style="color:#008000">//当然得有相同的类型
+</span><span style="color:#008000"></span>{
+    <span style="color:#2b91af">int</span> i;
+    <span style="color:#2b91af">int</span> b;
+};
+<span style="color:#2b91af">void</span>    WINAPI    TypeTest(mytype *a); <span style="color:#008000">//采用地址传递方式，为了方面就用了空类型函数了。
+</span><span style="color:#008000"></span>
+<span style="color:#008000">//在MyDll1.cpp里添加
+</span><span style="color:#008000"></span><span style="color:#2b91af">void</span> WINAPI TypeTest(mytype *a)
+{
+    a-&gt;b = 123;
+    a-&gt;i = 321;
+}
+</code></pre></div><p>在MyDll1.def里添加</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">EXPORTS            TypeTest
+</code></pre></div><p>VB程序如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Sub</span> TypeTest <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> mytype)
+<span style="color:#00f">Private</span> Type mytype
+    i <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+    b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+<span style="color:#00f">End</span> Type
+
+<span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
+
+    <span style="color:#00f">Dim</span> x <span style="color:#00f">As</span> mytype
+    TypeTest x
+
+    MsgBox x.b
+    MsgBox x.i
+
+<span style="color:#00f">End</span> <span style="color:#00f">Sub</span>
+</code></pre></div><h2 id="回调函数">回调函数</h2>
+<p>回调函数是什么这里做下简单介绍：</p>
+<p>每个函数都有一个地址，通过这个地址就可以直接或间接调用函数了。现在假设有函数A，你把函数A的地址以参数的形式传递给函数B，然后函数B又通过这个地址调用函数A，此时函数A就是“回调函数”了。回调函数最常见的形式就是排序函数了。</p>
+<p>C++中，函数名就是一个指针，指向这个函数的地址。VB呢？VB没有指针概念啊！别急，有一个 <code>AddressOf</code> 操作符呢。</p>
+<p><code>AddressOf</code> 操作符可以获取一个全局函数（注意，必须是在模块中声明的 <code>Public</code> 全局函数）的地址。</p>
+<p>例如有一个全局函数FuncA，那么 <code>AddressOf FuncA</code> 就可以获取它的地址了。</p>
+<p>下面开始实践。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#008000">//在MyDll1.h里添加
+</span><span style="color:#008000"></span><span style="color:#00f">typedef</span> int (*myfunc)(); <span style="color:#008000">//函数指针类型
+</span><span style="color:#008000"></span><span style="color:#2b91af">int</span> WINAPI GetBack(myfunc tp);
+
+<span style="color:#008000">//在MyDll1.cpp里添加
+</span><span style="color:#008000"></span><span style="color:#2b91af">int</span> WINAPI GetBack(myfunc tp)
+{
+    <span style="color:#00f">return</span> tp(); <span style="color:#008000">//调用函数，并返回结果
+</span><span style="color:#008000"></span>}
+</code></pre></div><p>在MyDll1.def里添加</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">EXPORTS            GetBack
+</code></pre></div><p>回到VB，添加一个模块，在模块里写：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Public</span> <span style="color:#00f">Function</span> func1() <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+    func1 = 123
+<span style="color:#00f">End</span> <span style="color:#00f">Function</span>
+</code></pre></div><p>再在窗体里写：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> GetBack <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByVal</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+
+<span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
+
+    MsgBox GetBack(<span style="color:#00f">AddressOf</span> func1)
+
+<span style="color:#00f">End</span> <span style="color:#00f">Sub</span>
+</code></pre></div><p>执行查看效果。</p>
+<h2 id="智能字符串">智能字符串</h2>
+<p>最后介绍一个API函数SysAllocString，它可以把C++的字符串（char *）转换成VB的字符串（BSTR），用它就可以写出返回String型的函数了，而且它会在VB中自动释放掉，不需要担心内存泄露问题。</p>
+<p>下面是写MySQL API For Visual Basic时用到的：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp">BSTR WINAPI MySQL_Escape_String(<span style="color:#00f">const</span> <span style="color:#2b91af">char</span> *tString)
+{
+    UINT SLen = strlen(tString);
+    <span style="color:#2b91af">char</span> *cBuffer = <span style="color:#00f">new</span> <span style="color:#2b91af">char</span>[SLen * 2];
+
+    <span style="color:#00f">if</span> (!mysql_escape_string(cBuffer, tString, SLen)) {
+
+        <span style="color:#00f">delete</span> []cBuffer;
+        <span style="color:#00f">return</span> NULL;
+    }
+
+    BSTR RTN = SysAllocString((BSTR)cBuffer);
+
+    <span style="color:#00f">delete</span> []cBuffer;
+
+    <span style="color:#00f">return</span> RTN;
+}
+</code></pre></div><p>OK，本文就讲到这里了，更多的就大家自己摸索吧。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2009/08/09/provide-api-for-vb-from-c/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2009/08/09/mystery-maya-calender/">&lt;&lt;&lt; 神秘的玛雅历法</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2009/06/20/chinese-id-number-generating-algorithm/">中国大陆18位身份证算法 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

@@ -21,5 +21,26 @@
       <description>&lt;p&gt;这几天在研究 X.509 证书和 DER 编码的解码信息。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>扫盲：字符编码与字符集的区别</title>
+      <link>https://fenying.github.io/post/2010/07/12/character-set-and-encoding/</link>
+      <pubDate>Mon, 12 Jul 2010 11:26:57 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2010/07/12/character-set-and-encoding/</guid>
+      <description>&lt;p&gt;近来学习字符编码，发现网络上总是把“字符集（Character Set）”与“字符编码（Encode）”搞混了，我也给弄得晕头转向。&lt;/p&gt;
+&lt;p&gt;遂写此文，以明其意。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于 VC2008 中 wprintf 输出中文乱码问题</title>
+      <link>https://fenying.github.io/post/2010/07/03/chinese-garbled-in-vc-wprintf/</link>
+      <pubDate>Sat, 03 Jul 2010 11:56:33 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2010/07/03/chinese-garbled-in-vc-wprintf/</guid>
+      <description>&lt;p&gt;最近写编码转换，发现MB编码转换成 Unicode 后，中文总是乱码。
+起初以为是自己写错了，但测试后发现转换结果是完全正确的。
+再测试一下，发现居然连常字符串都不能正常输出……&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>mbr on Fenying</title>
+    <link>https://fenying.github.io/tags/mbr/</link>
+    <description>Recent content in mbr on Fenying</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Copyright 2020 Angus Fenying</copyright>
+    <lastBuildDate>Thu, 22 Aug 2013 21:25:07 +0800</lastBuildDate>
+    
+	<atom:link href="https://fenying.github.io/tags/mbr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>MBR 与 Boot：一切从 First Sector 开始</title>
+      <link>https://fenying.github.io/post/2013/08/22/mbr-the-boot-story/</link>
+      <pubDate>Thu, 22 Aug 2013 21:25:07 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2013/08/22/mbr-the-boot-story/</guid>
+      <description>&lt;p&gt;本文从 Boot 程序开始，逐步讨论硬盘、MBR、分区表等与 Boot 相关的知识，最终完成 Boot 的基本探讨。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>扫盲：字符编码与字符集的区别 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="扫盲：字符编码与字符集的区别" />
+<meta property="og:description" content="近来学习字符编码，发现网络上总是把“字符集（Character Set）”与“字符编码（Encode）”搞混了，我也给弄得晕头转向。
+遂写此文，以明其意。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2010/07/12/character-set-and-encoding/" />
+<meta property="article:published_time" content="2010-07-12T11:26:57+08:00" />
+<meta property="article:modified_time" content="2010-07-12T11:26:57+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="扫盲：字符编码与字符集的区别"/>
+<meta name="twitter:description" content="近来学习字符编码，发现网络上总是把“字符集（Character Set）”与“字符编码（Encode）”搞混了，我也给弄得晕头转向。
+遂写此文，以明其意。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2010/10/28/c-memory-functions-source-in-assembly/">&lt;&lt;&lt; C标准库内存操作函数汇编源代码</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2010/07/03/chinese-garbled-in-vc-wprintf/">关于 VC2008 中 wprintf 输出中文乱码问题 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">12</span>
+							<span class="rest">Jul 2010</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">扫盲：字符编码与字符集的区别</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/encoding">Category: Encoding</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: charset" href="/tags/charset">charset</a class="category">
+						
+						<a class="tag" title="Tag: encoding" href="/tags/encoding">encoding</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993201061211265761/" target="_blank">http://fenying.blog.163.com/blog/static/102055993201061211265761/</a>。
+				</div><div class="markdown">
+				
+<aside class="toc">
+    <p class="toc-title">目录</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#字符character">字符（Character）</a></li>
+    <li><a href="#字符集character-set">字符集（Character Set）</a></li>
+    <li><a href="#字符编码encode">字符编码（Encode）</a></li>
+    <li><a href="#字符集类型">字符集类型</a></li>
+    <li><a href="#常见的字符集">常见的字符集</a></li>
+    <li><a href="#常见的字符编码">常见的字符编码</a></li>
+    <li><a href="#字符集转换">字符集转换</a></li>
+    <li><a href="#字符编码转换">字符编码转换</a></li>
+  </ul>
+</nav>
+</aside>
+
+
+
+				<p>近来学习字符编码，发现网络上总是把“字符集（Character Set）”与“字符编码（Encode）”搞混了，我也给弄得晕头转向。</p>
+<p>遂写此文，以明其意。</p>
+<p>其实字符编码与字符集在本质上就是不同的东西。</p>
+<h2 id="字符character">字符（Character）</h2>
+<p>一个文字就是一个字符。在计算机中，字符是用数字来表示的，不同的文字用不同的数字表示。</p>
+<h2 id="字符集character-set">字符集（Character Set）</h2>
+<p>既然是“集”，也就是“集合”，“字符集”自然就是“一定量字符的集合”。</p>
+<p>一个字符集包含了固定数量的字符，如ASCII字符集包含A-Z、a-z、0-9、半角标点符号和特殊控制符号（如换行符）在内的128个字符。</p>
+<h2 id="字符编码encode">字符编码（Encode）</h2>
+<p>编码，意思是指将数据通过一定方式表达或储存，这个方式就叫<strong>编码</strong>。所以字符编码就是字符的表现、储存方式，也就是字符集的<strong>实现方式</strong>。但需要注意的是：<strong>有的字符编码和字符集的名称是一致的。</strong></p>
+<p>从上可以看出，字符集是字符的集合，字符编码是把字符集的实现方式。</p>
+<h2 id="字符集类型">字符集类型</h2>
+<p>先看下字符的表达方式。看下表（表1）。</p>
+<table class="mark-el">
+<thead>
+<tr>
+<th align="center">字符编码</th>
+<th>每个字符字节数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">ASCII</td>
+<td>1</td>
+</tr>
+<tr>
+<td align="center">UCS-2(Unicode)</td>
+<td>2</td>
+</tr>
+<tr>
+<td align="center">UCS-4(Unicode)</td>
+<td>4</td>
+</tr>
+<tr>
+<td align="center">UTF-8(Unicode)</td>
+<td>1 - 6</td>
+</tr>
+<tr>
+<td align="center">UTF-16(Unicode)</td>
+<td>2 - 4</td>
+</tr>
+<tr>
+<td align="center">GBK/GB2312(中文)</td>
+<td>1 - 2</td>
+</tr>
+<tr>
+<td align="center">GB18030(CJK)</td>
+<td>1 - 4</td>
+</tr>
+</tbody>
+</table>
+<p>从上表可以看出，不同的字符编码用不同的方式表达字符集。</p>
+<p>所以，根据所需要的字节数不同，把恒用2个字节表示一个字符的字符集（编码），叫做<strong>双字节字符集（Double-Byte Character Set，DBCS）</strong>，其他的叫做<strong>多字节字符集（Multi-Byte Character Set，MBCS）</strong>。如上表中只有UCS-2才是DBCS字符集。</p>
+<h2 id="常见的字符集">常见的字符集</h2>
+<ul>
+<li>Unicode：也叫统一字符集，它包含了几乎世界上所有的已经发现且需要使用的字符（如中文、日文、英文、德文等）。</li>
+<li>ASCII：早期的计算机系统只能处理英文，所以ASCII也就成为了计算机的缺省字符集，包含了英文所需要的所有字符。</li>
+<li>GB2312：中文字符集，包含ASCII字符集。ASCII部分用单字节表示，剩余部分用双字节表示。</li>
+<li>GBK：GB2312的扩展，但完整包含了GB2312的所有内容。</li>
+<li>GB18030：GBK字符集的超集，常叫大汉字字符集，也叫CJK（Chinese，Japanese，Korea）字符集，包含了中、日、韩三国语言中的所有字符。</li>
+</ul>
+<h2 id="常见的字符编码">常见的字符编码</h2>
+<p>见表1。</p>
+<h2 id="字符集转换">字符集转换</h2>
+<p>从一种字符集转换到另一种字符集，由于某些字符集的并不包含原先字符集中的字符，所以有可能会导致某些字符丢失。
+例如GBK转换成ASCII字符集，就会导致除了单字节字符（ASCII部分）外的所有字符丢失。</p>
+<p>注意，计算机上以ASCII方式（其实，ASCII代表了所有的MBCS字符集）储存文件虽然可以储存中文，但实质上是因为GB2312和GBK等字符集是MBCS字符集，所以才归类到ASCII中，其实本质上还是是GBK字符集而不是ASCII字符集。</p>
+<h2 id="字符编码转换">字符编码转换</h2>
+<p>由于字符编码是基于字符集的，所以字符编码不同也可能导致部分字符丢失。但如果是相同字符集，例如UTF-8(Unicode)到UTF-16(Unicode)编码，那么是不会丢失的，因为它们是同一种字符集的不同表现形式。</p>
+<p>因此，希望某些网站、作者、技术人员别把字符集和字符编码搞混了。否则字符集、字符编码本身就晦涩难懂，再搞混了就更难懂了。</p>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2010/07/12/character-set-and-encoding/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2010/10/28/c-memory-functions-source-in-assembly/">&lt;&lt;&lt; C标准库内存操作函数汇编源代码</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2010/07/03/chinese-garbled-in-vc-wprintf/">关于 VC2008 中 wprintf 输出中文乱码问题 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

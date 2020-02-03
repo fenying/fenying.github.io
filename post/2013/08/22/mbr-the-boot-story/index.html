@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>MBR 与 Boot：一切从 First Sector 开始 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="MBR 与 Boot：一切从 First Sector 开始" />
+<meta property="og:description" content="本文从 Boot 程序开始，逐步讨论硬盘、MBR、分区表等与 Boot 相关的知识，最终完成 Boot 的基本探讨。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2013/08/22/mbr-the-boot-story/" />
+<meta property="article:published_time" content="2013-08-22T21:25:07+08:00" />
+<meta property="article:modified_time" content="2013-08-22T21:25:07+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MBR 与 Boot：一切从 First Sector 开始"/>
+<meta name="twitter:description" content="本文从 Boot 程序开始，逐步讨论硬盘、MBR、分区表等与 Boot 相关的知识，最终完成 Boot 的基本探讨。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2013/08/25/vc-compilation-constants/">&lt;&lt;&lt; 关于VC预定义常量_WIN32，WIN32，_WIN64</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2013/08/22/detect-if-x64-on-runtime/">判断程序是否运行在 Windows x64 系统下 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">22</span>
+							<span class="rest">Aug 2013</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">MBR 与 Boot：一切从 First Sector 开始</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/story">Category: Story</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: mbr" href="/tags/mbr">mbr</a class="category">
+						
+						<a class="tag" title="Tag: boot" href="/tags/boot">boot</a class="category">
+						
+						<a class="tag" title="Tag: sector" href="/tags/sector">sector</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993201372284151804/" target="_blank">http://fenying.blog.163.com/blog/static/102055993201372284151804/</a>。
+				</div><div class="markdown">
+				
+<aside class="toc">
+    <p class="toc-title">目录</p>
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#第一节-什么是-boot-程序">第一节 什么是 Boot 程序？</a></li>
+    <li><a href="#第二节-硬盘是怎么样的">第二节 硬盘是怎么样的？</a></li>
+    <li><a href="#第三节-mbr与分区表">第三节 MBR与分区表</a></li>
+    <li><a href="#附录参考文献">附录：参考文献</a></li>
+  </ul>
+</nav>
+</aside>
+
+
+
+				<p>本文从 Boot 程序开始，逐步讨论硬盘、MBR、分区表等与 Boot 相关的知识，最终完成 Boot 的基本探讨。</p>
+<blockquote>
+<p>阅读提示：阅读本文，您需要一定的 C 语言，汇编语言知识，以及足够的计算机基础知识。本文数据描述使用 Little-Endian 。</p>
+</blockquote>
+<h2 id="第一节-什么是-boot-程序">第一节 什么是 Boot 程序？</h2>
+<p>Boot 程序，即计算机的启动引导程序。为何叫 Boot 呢？Boot 在英语中原意为“鞋子”，而英语中“鞋带”的单词是“Bootstrap”，即是说，Boot 其实是 Bootstrap 的缩写。在计算机发展初期，计算机工程师发现，要启动计算机，就必须先运行程序。可还没启动计算机，没法运行程序啊！这是矛盾的，于是当时有人调侃道：“Pull oneself up by one&rsquo;s bootstrap.”（扯着鞋带把自己拉起来）。后来，在计算机刚开机时导入的一段程序，就叫做 Boot 程序，工程师们称之为“拉鞋带”。</p>
+<p>说到这里，你该明白了什么是 Boot 程序了，即为了启动计算机而编写的一段关键代码。为了更详细的解释，那么就要从计算机的启动过程说起。</p>
+<p>计算机启动过程并不复杂：</p>
+<ol>
+<li>
+<p>主板等设备通电；</p>
+</li>
+<li>
+<p>由于此时主板等设备电压不稳定，主板芯片组会向 CPU 不停发送 RST#（Reset，重置） 信号，直到电压稳定（时间几乎是瞬间），才撤去 RST# 信号。</p>
+</li>
+<li>
+<p>得到 RST# 信号的 CPU 会开始重置工作，当 RST# 信号消失后， CPU 开始工作，它从内存地址 0FFFFh 处开始执行指令。而 0FFFFh 属于 BIOS （Basic Input/Ouput System，基本输入输出系统）的内容，此处是一条跳转指令。这条指令使 CPU 跳转到真正的 BIOS 启动地址，开始执行。至此，计算机的“硬启动过程”结束（在此之前有一段“硬件自检过程”，此处不描述，详细请查看参考文献3）。下面是 BIOS 负责的软启动过程。</p>
+</li>
+<li>
+<p>POST （Power－OnSelfTest）自检：这一步检测各种硬件的状态，如果出现错误，主机会发出蜂鸣，启动终止。若正常，则 BIOS 会寻找并装载显卡的 BIOS ROM，初始化显示设备。初始化完成后，BIOS 向显示终端（显示器）输出 BIOS、CPU、内存、硬盘的相关信息。然后检测所有可用内存，并输出测试结果。至此，标准设备检测完成。</p>
+</li>
+<li>
+<p>BIOS 开始检测其它设备，完成后，BIOS 将把数据更新到 ESCD （Extended System Configuration Data，拓展系统配置数据）中，这是位于 CMOS（Complementary Metal Oxide Semiconductor，互补金属氧化物半导体）芯片上的一小块储存区。至此，BIOS 自检完成。</p>
+</li>
+<li>
+<p>BIOS 开始读取 CMOS 中的“设备启动顺序”，然后根据其中储存的顺序，从硬盘、光驱、软驱甚至 USB 储存器中逐个加载每一个储存设备的第一扇区，并将其加载到内存 0000:7C00h 处，然后 BIOS 将检查 0000:7DFEh 和 0000:7DFFh 是否等于 055h 和 0AAh。如果是，则说明这是一个正确的 Boot 启动扇区（什么是扇区？下面将介绍），BIOS 将 CPU 控制器交给 0000:7C00h 处的程序，而 Boot 程序将自己复制到 0000:0600h 处执行。如果不是，则继续检测下一个储存设备。如果未找到 Boot 启动扇区，屏幕将显示“Unfound Operating System”（未找到操作系统）。</p>
+</li>
+</ol>
+<p>好了，到这里，我们知道 Boot 程序的作用了，就是在 BIOS 完成计算机初始化工作后，衔接 OS （Operating System，操作系统）启动程序的一段代码。</p>
+<h2 id="第二节-硬盘是怎么样的">第二节 硬盘是怎么样的？</h2>
+<p>知道了 Boot 程序，那么，Boot 程序有多大？有什么其它要求吗？为了描述这个问题，您需要先了解硬盘结构。</p>
+<p>请在脑海里，描绘这么一副画面：N 张CD光盘整齐地叠放在一起（不紧贴，彼此有间距），每张CD光盘的上下方都有一个探头贴着盘面，这种探头共有X个，每张CD盘上有Y个同心环，其中每个环都被切割成Z块等大的扇形。这就是硬盘的物理抽象结构。如果把这些当成硬盘的储存结构，那么每个扇形就是一个最小储存单位，叫做 Sector （扇区），一个 Sector 等于 512 Bytes。而那些环道就叫做 Track（磁道），探头叫做 Head （磁头）。这里说明下，由于碟片的两面都可以储存数据，因此 Head 总数为偶数。可见，硬盘的总储量就是 每个磁道上扇区数 * 每个碟片上磁道总数 * 磁头数，换算成字节就是 Sectors * Tracks * Heads * 512 Bytes。此外，所有碟片的所有半径相同的 Track 构成一个 Cylinder （柱面），因此，每个碟片有多少磁道，那硬盘就有多少柱面。</p>
+<p>此外，关于硬盘（以及内存等）的容量单位问题，工业上用 10 进制（SI Units），即 1 TB = 1000 GB = 1 * 10 ^ 6 MB。而计算机内用的是 1024（2 ^ 10） 进制（IEC Units），即 1 TB = 2 ^ 10 GB = 2 ^ 20 MB。本文使用后者，即 IEC Units 。</p>
+<p>下面我们来看看硬盘的寻址方式，以下内容中部分需要汇编语言基础知识，如果您不懂汇编语言，可以跳过该部分。</p>
+<p>我们已经知道了硬盘使用 CHS （Cylinder/Head/Sector）结构，那么，要读取硬盘数据，其实只要指定 C/H/S 各自的序号即可（这里我们可以看出，从硬盘内读写数据，最小单位就是扇区），比如 C = 1，H = 3，S = 5 （这里须注意，扇区编址从 1开始，即扇区号只能是1-255，共255个）。因此，我们有两种硬盘访问机制，都使用 CHS 寻址方式，分别是 IDE （Integrated Drive Electronics，电子集成驱动器）的 ATA（Advanced Technology Attachment，高技术配置）接口，以及 BIOS 的 13 号中断。下面逐个介绍。</p>
+<p>IDE （ATA）：使用 16-Bits Cylinder 地址、4-Bits Head 地址、8-Bits Sector 地址，一共 28 位编址。</p>
+<p>如果按照 CHS 编址方式，有 65536 个柱面号，16 个磁头号，255 个扇区号，则一共可以寻址 65536 * 16 * 255 = 267386880 个扇区，换算成字节是 136902082560 Bytes = 127.5 GB。</p>
+<p>如果按照 LBA 编址方式（后面会提到），有 65536 个柱面号，16 个磁头号，256 个扇区号，则一共可以寻址 65536 * 16 * 256 = 268435456 个扇区，换算成字节是 137438953472 Bytes = 128 GB。也就是说，这种访问机制最多支持 128 GB 容量的硬盘。</p>
+<p>BIOS INT 13：使用 10-Bits Cylinder 地址、8-Bits Head 地址、6-Bits Sector 地址，一共 24 位编址：</p>
+<p>按照 CHS 编址方式，那么有 1024 个柱面号，256 个磁头号，63 个扇区号，则一共可以寻址 1024 * 256 * 63 = 16515072 个扇区，换算成字节是 8455716864 Bytes = 7.875 GB；</p>
+<p>按照 LBA 编址方式，那么有 1024 个柱面号，256 个磁头号，64 个扇区号，则一共可以寻址 1024 * 256 * 64 = 16777216 个扇区，换算成字节是 8589934592 Bytes = 8 GB。因此使用 BIOS INT 13 中断也最多只能管理 8 GB 容量的硬盘。</p>
+<p>对于如今 TB 级储存器逐渐普及的状况，IDE（ATA）的 127.5 GB 容量限制似乎显得微乎其微，甚至已经可以忽略不计。为此，我们需要了解另一种寻址方式，也就是我们前面提到的 LBA （Logical Block Address，逻辑区块地址）。</p>
+<p>LBA：这是一种新的寻址方式，它的优点是，你可以像访问内存一般使用线性地址来访问硬盘，因此你可以理解为 Lined Blocks Address，即线性区块地址。而且，它是一种国际规范，不仅可以使用于硬盘，还可以用于其它储存设备。</p>
+<p>LBA和CHS可以互转， LBA = (C * H + h) * S + s – 1，其中C、h、s分别是磁柱、磁头、扇区的编号，LBA 是逻辑区块编号，H 是每个磁柱的磁头数，S 是每磁道的扇区数；</p>
+<p>BIOS INT 13 Extension：由于有了 LBA，于是就有了新的硬盘访问机制，叫做，即扩展的 BIOS INT 13。这是非常强大的机制，它支持使用64-Bits 的LBA线性地址来寻址，足以支持到 8 ZB （8,589,934,592 TB）。当然，目前还没有那么大的硬盘，因此也没有如此大的技术支持。ATA-1 只支持 28-Bits LBA，而到了2002年，ATA-6 采用了 48-Bits LBA，使硬盘寻址可达 128 PB。</p>
+<p>或许你想问，对于如此大容量的硬盘，是否已经抛弃了CHS寻址方式？不，没有放弃，LBA本质上还是对应了CHS寻址方式。但是此时，不论是硬盘内部，还是软件技术中，CHS参数其实都不再使用。</p>
+<p>以上，就是关于硬盘的相关知识。了解了这些内容，下面我们来了解 MBR 和分区表。</p>
+<h2 id="第三节-mbr与分区表">第三节 MBR与分区表</h2>
+<p>如前所述，由于早期只有硬盘、软盘、光盘，因此都是采用这种 CHS 储存结构。于是，位于 Head = 0, Cylinder = 0, Sector = 1 处的第一个扇区，称为 Boot Sector（引导扇区）。那么，Boot Sector 储存什么呢？只是 Boot 程序吗？不对，准确地讲，应该是 MBR （Master Boot Record，主引导记录）。主引导记录，包括 Boot 程序，DPT（Disk Partition Table，硬盘分区表）以及 MBR 标志（AA55h），一共 512 Bytes，下面详细描述。先来看 MBR 结构的 C 语言描述：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">typedef</span> <span style="color:#00f">struct</span> tagMBRStruct {
+
+    byte bBoot[446]; <span style="color:#008000">/* The binary instruction codes of boot program. # Boot 程序，一共 446 Bytes。*/</span>
+
+    PartitionStruct aDPT[4]; <span style="color:#008000">/* The disk partitions table. # 分区表，一共 64 Bytes，可以储存 4 个主分区。*/</span>
+
+    word wMBRSign; <span style="color:#008000">/* 0xAA55, sign of MBR. # MBR 标志。*/</span>
+
+} MBRStructure; <span style="color:#008000">/* sizeof (MBRStructure) == 512 # 总大小为一个 Sector，512 Bytes。*/</span>
+</code></pre></div><p>如上所示，MBR 的前 446 个字节均为 Boot 程序的内容，而DPT开始，才是分区表的内容。下面看看分区表内每个分区的信息，结构如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">typedef</span> <span style="color:#00f">struct</span> tagPartitionStruct { <span style="color:#008000">/* Partition Structure. # 分区结构。*/</span>
+
+    byte bBoot; <span style="color:#008000">/* 0x80 if bootable, or 0x00. # 是否为可引导分区，是为 0x80 ，否则为 0x00。*/</span>
+
+    byte bBeginHead; <span style="color:#008000">/* The beginning head of this partition. # 该分区的起始磁头。*/</span>
+
+    byte bBeginSector; <span style="color:#008000">/* The beginning sector of this partition. # 该分区的起始扇区。*/</span>
+
+    byte bBeginCylinder; <span style="color:#008000">/* The beginning cylinder of this partition. # 该分区的起始柱面。*/</span>
+
+    byte bFSType; <span style="color:#008000">/* The type of file system. # 文件系统类型。*/</span>
+
+    byte bEndHead; <span style="color:#008000">/* The ending head of this partition. # 该分区的结束磁头。*/</span>
+
+    byte bEndSector; <span style="color:#008000">/* The ending sector of this partition. # 该分区的结束扇区。*/</span>
+
+    byte bEndCylinder; <span style="color:#008000">/* The ending cylinder of this partition. # 该分区的结束柱面。*/</span>
+
+    dword dwFirstSector; <span style="color:#008000">/* The index of first sector of this partition. # 该分区的第一个扇区，LBA 索引，从0开始。*/</span>
+
+    dword dwSectors; <span style="color:#008000">/* The number of sectors of this partition. # 该分区的扇区总数。*/</span>
+
+} PartitionStruct; <span style="color:#008000">/* sizeof (PartitionStruct) == 16 # 每个分区用 16 Bytes 描述。*/</span>
+</code></pre></div><p>看完这个结构，你是否发现，这里采用的居然是 CHS 寻址方式？其实不是。在早期操作系统中，当时硬盘还很小，在因此可以用 CHS 寻址。可是后来的硬盘增长速度远超当初设计者的想象，于是就有了折中的解决办法：对于大小超过了 8 GB 的分区，将其中的 bEndHead，bEndSector，bEndCylinder 分别设为 0FEh，0FFh，0FFh，并用 dwSectors 表示分区容量。因此是否也可以推理，对于起始扇区超过了 8G 限制的分区，也使用这个方法处理？并且将 dwFirstSector 设置为 LBA 地址？我想是的。</p>
+<p>网上盛传 MBR 最多支持 2 TB 的硬盘，理由是 dwSectors 可以表示的最大值为 2 ^ 32，即 4294967296 个扇区，相当于2 TB。但事实上呢？如果第N分区的起始扇区 dwFirstSector为 0FFFFFFFFh，容量 dwSectors 为 0FFFFFFFFh，那么又会如何呢？这不就支持了 4 TB硬盘了吗？当然这是我猜测，也许还有技术细节上的限制？</p>
+<p>还有要注意的是，分区起点不得跨柱面。也就是说，分区起点扇区号必为 1（对于LBA，则是要求LBA地址为柱面总数的倍数）。</p>
+<p>除了 MBR，还有一种引导记录，叫做 DBR （DOS Boot Record），这是在 Cylinder = 0，Head = 1，Sector = 1 处的一个引导扇区。原本这是用于 DOS 启动的引导扇区，如今 DOS 已经淘汰，但 DBR 却仍旧在使用，不过也许应该改成 OBR （OS Boot Record）。这是系统启动引导程序所在的引导扇区，当然，只有当这个分区被设置为活动分区时， OBR 才是有意义的。</p>
+<p>前面说了，DPT 只有四个空位，而在 Windows 系统里却可以支持多达 26 个分区，显然不可能单靠一个 MBR 实现，于是就引出了扩展分区（Windows Extended Partition），这个分区类型号是 0Fh。</p>
+<p>（未完待续）</p>
+<h2 id="附录参考文献">附录：参考文献</h2>
+<ul>
+<li>
+<p>《百度文库：计算机启动过程（BIOS段）》 By zswxhh：http://wenku.baidu.com/view/0af6f5ddb14e852458fb572b.html</p>
+</li>
+<li>
+<p>《计算机启动过程》 By 网友：http://www.360doc.com/content/10/1129/12/435529_73374870.shtml</p>
+</li>
+<li>
+<p>《百度知道：启动自检》 By A0328S：http://zhidao.baidu.com/link?url=fNzg4MXbHbcCkSUDFl2U-hIYJFbY33e-YIWdX-x3pO01g5IGWAIzKXtUrVgbQjdN6N9BKEkTVkdx3ofdoWywBq</p>
+</li>
+<li>
+<p>《百度百科：硬盘扇区》 By 网友：http://baike.baidu.com/link?url=FaHeYnyfmH5PzxD_8fviBW2cj0yLojPBhkCe7BS1gs9BiryZ9B5yRrFPVR6mNsyAyl9s3XqZcdjnFeCg_Gnnyq</p>
+</li>
+<li>
+<p>《维基百科：主引导记录》 By 网友：http://zh.wikipedia.org/wiki/MBR</p>
+</li>
+<li>
+<p>《百度百科：硬盘容量限制》 By 网友：http://baike.baidu.com/view/1329184.htm</p>
+</li>
+<li>
+<p>《维基百科：逻辑区块地址》 By 网友：http://zh.wikipedia.org/wiki/%E9%82%8F%E8%BC%AF%E5%8D%80%E5%A1%8A%E4%BD%8D%E5%9D%80</p>
+</li>
+<li>
+<p>《维基百科：全局唯一标识分区表》 By 网友：http://zh.wikipedia.org/wiki/%E5%85%A8%E5%B1%80%E5%94%AF%E4%B8%80%E6%A8%99%E8%AD%98%E5%88%86%E5%8D%80%E8%A1%A8</p>
+</li>
+<li>
+<p>《MBR分析》 By peterorguang：http://netos.blog.51cto.com/330590/95350</p>
+</li>
+<li>
+<p>《BIOS Int 13 Extension》 By 网友：http://blog.tianya.cn/blogger/post_show.asp?BlogID=420361&amp;PostID=5211755</p>
+</li>
+</ul>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2013/08/22/mbr-the-boot-story/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2013/08/25/vc-compilation-constants/">&lt;&lt;&lt; 关于VC预定义常量_WIN32，WIN32，_WIN64</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2013/08/22/detect-if-x64-on-runtime/">判断程序是否运行在 Windows x64 系统下 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

@@ -21,5 +21,81 @@
       <description>&lt;p&gt;两则 PHP 连接 MySQL 失败的记录。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>关于 in_array 和 switch 的比较</title>
+      <link>https://fenying.github.io/post/2015/06/17/performance-between-in-array-and-switch-in-php/</link>
+      <pubDate>Wed, 17 Jun 2015 15:43:03 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/06/17/performance-between-in-array-and-switch-in-php/</guid>
+      <description>&lt;p&gt;很多时候会用 in_array 判断一个值是否在允许值内，比如 in_array (&amp;lsquo;apple&amp;rsquo;, $fruits) 就可以判断是否水果。&lt;/p&gt;
+&lt;p&gt;理论上这一点也可以用 switch 实现，但是问题就在于，switch 并不是可以随意改动的，而数组可以存放到配置文件里。而且另一个问题在于，尽管不如 in_array 方便，可 switch 是语言结构的一部分，性能上绝对比 in_array 高得多。而优化的条件就取决于，两者的性能差异有多大，如果不大，那么用 switch 对 in_array 进行优化毫无意义。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 中新增 const 常量与 define 的异同</title>
+      <link>https://fenying.github.io/post/2015/01/05/difference-between-const-and-define-in-php/</link>
+      <pubDate>Mon, 05 Jan 2015 23:09:59 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2015/01/05/difference-between-const-and-define-in-php/</guid>
+      <description>&lt;p&gt;PHP 5.3 中新增了 &lt;code&gt;const&lt;/code&gt; 关键词用于定义常量，本文介绍其与 &lt;code&gt;define&lt;/code&gt; 直接的区别。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 下 SQLite3 的没有 num_rows 的问题</title>
+      <link>https://fenying.github.io/post/2014/12/21/no-num-rows-for-sqlite3-in-php/</link>
+      <pubDate>Sun, 21 Dec 2014 01:04:16 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/12/21/no-num-rows-for-sqlite3-in-php/</guid>
+      <description>&lt;p&gt;最近在项目里用到了SQLite，而 PHP 中的 SQLite3 类去没有提供类似 MySQL 里的 &lt;code&gt;num_rows&lt;/code&gt; 函数。官方说法是 SQLite3 并不缓冲结果集，所以无法直接获取 &lt;code&gt;num_rows&lt;/code&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 里大整数类型转换问题</title>
+      <link>https://fenying.github.io/post/2014/10/19/big-integer-convert-in-php/</link>
+      <pubDate>Sun, 19 Oct 2014 23:57:19 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/10/19/big-integer-convert-in-php/</guid>
+      <description>&lt;p&gt;最近在写 tracker，遇到大整数类型转换溢出问题。具体表现为两个问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 类成员属性的析构顺序</title>
+      <link>https://fenying.github.io/post/2014/10/01/destruct-order-of-object-properties-in-php/</link>
+      <pubDate>Wed, 01 Oct 2014 12:49:02 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/10/01/destruct-order-of-object-properties-in-php/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;接前文：&lt;a href=&#34;https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/&#34;&gt;PHP 类静态成员的奇怪析构现象&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;前文提到：多个类的静态成员析构顺序与构造顺序一致，本文演示另一种类似情况。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>register_shutdown_function 使用及注意事项</title>
+      <link>https://fenying.github.io/post/2014/09/28/usage-of-register_shutdown_function-in-php/</link>
+      <pubDate>Sun, 28 Sep 2014 20:51:08 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/09/28/usage-of-register_shutdown_function-in-php/</guid>
+      <description>&lt;p&gt;PHP 中的 register_shutdown_function 函数可以用来注册一个“在脚本结束时运行的函数”。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 类静态成员的奇怪析构现象</title>
+      <link>https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/</link>
+      <pubDate>Sat, 27 Sep 2014 11:39:41 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/</guid>
+      <description>&lt;p&gt;本文介绍 PHP 中静态成员属性的析构顺序问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于 PHP 获取 IP 的方法与安全问题</title>
+      <link>https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/</link>
+      <pubDate>Sun, 27 Apr 2014 18:09:27 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/</guid>
+      <description>&lt;p&gt;今日为学校开发网站时，要加入限制外网 IP 段访问网站的功能。由于网站使用的是一个建站程序，我直接使用了其中内置的 &lt;code&gt;getip&lt;/code&gt; 函数获取客户端 IP，然后根据 IP 网段限制访问。&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

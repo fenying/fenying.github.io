@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>C/C&#43;&#43;与汇编混合编程中的函数声明 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="C/C&#43;&#43;与汇编混合编程中的函数声明" />
+<meta property="og:description" content="最近写一个C小程序时尝试了下用汇编写一部分代码，封装成函数供 VC （2013）调用。Debug模式一切正常，但是到了Release模式下就直接崩溃了。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2014/08/04/missing-reserving-registers-when-mixing-c-and-assembly/" />
+<meta property="article:published_time" content="2014-08-04T23:34:50+08:00" />
+<meta property="article:modified_time" content="2014-08-04T23:34:50+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C/C&#43;&#43;与汇编混合编程中的函数声明"/>
+<meta name="twitter:description" content="最近写一个C小程序时尝试了下用汇编写一部分代码，封装成函数供 VC （2013）调用。Debug模式一切正常，但是到了Release模式下就直接崩溃了。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/">&lt;&lt;&lt; PHP 类静态成员的奇怪析构现象</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2014/07/30/ipv6-conflicts-about-mencached/">IPv6 服务开启时 PHP 连接 memcached 失败的原因  >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">04</span>
+							<span class="rest">Aug 2014</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">C/C&#43;&#43;与汇编混合编程中的函数声明</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/assembly">Category: Assembly</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: register" href="/tags/register">register</a class="category">
+						
+						<a class="tag" title="Tag: protection" href="/tags/protection">protection</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993201474111228639/" target="_blank">http://fenying.blog.163.com/blog/static/102055993201474111228639/</a>。
+				</div><div class="markdown">
+				
+
+
+				<p>最近写一个C小程序时尝试了下用汇编写一部分代码，封装成函数供 VC （2013）调用。Debug模式一切正常，但是到了Release模式下就直接崩溃了。</p>
+<p>举个例子，memcpy 函数原型：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">MemCpyB	PROC stdcall, pDst: DWORD, pSrc: DWORD, dwItems: DWORD
+
+	cld
+
+	mov esi, pSrc
+
+	mov edi, pDst
+
+	mov ecx, dwItems
+
+	rep movsb
+
+	mov eax, pDst
+
+	ret
+
+MemCpyB ENDP
+</code></pre></div><p>一段示例代码：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">extern</span> <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">C</span><span style="color:#a31515">&#34;</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> MemCpyB(<span style="color:#2b91af">void</span> *pDst, <span style="color:#2b91af">void</span> *pSrc, <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> uBytes);
+<span style="color:#00f">#</span><span style="color:#00f">pragma comment(lib, &#34;mem.lib&#34;) </span><span style="color:#008000">/*把汇编代码编译成 lib 使用*/</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#2b91af">int</span> main() {
+    <span style="color:#2b91af">char</span> k[255];
+    MemCpyB(k, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello World!</span><span style="color:#a31515">&#34;</span>, 13);
+    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, k);
+    <span style="color:#00f">return</span> 0;
+}
+</code></pre></div><p>这个函数在静态栈里面工作完全正常，Release 模式也一样。但是如果是动态内存那就不一样了，比如：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">extern</span> <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">C</span><span style="color:#a31515">&#34;</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> MemCpyB(<span style="color:#2b91af">void</span> *pDst, <span style="color:#2b91af">void</span> *pSrc, <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> uBytes);
+
+<span style="color:#00f">#</span><span style="color:#00f">pragma comment(lib, &#34;mem.lib&#34;) </span><span style="color:#008000">/*把汇编代码编译成 lib 使用*/</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+<span style="color:#2b91af">int</span> main() {
+    <span style="color:#2b91af">char</span> *k;
+    k = (<span style="color:#2b91af">char</span> *)malloc(255);
+    MemCpyB(k, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello World!</span><span style="color:#a31515">&#34;</span>, 13);
+    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, k);
+    free(k);
+    <span style="color:#00f">return</span> 0;
+}
+</code></pre></div><p>查看了下VC的汇编输出，如下图：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm"><span style="color:#008000">; Listing generated by Microsoft (R) Optimizing Compiler Version 18.00.30501.0 
+</span><span style="color:#008000"></span>
+	TITLE	E:<span style="">\</span>Coding<span style="">\</span>test<span style="">\</span>test<span style="">\</span>test.cpp
+	.686P
+	.XMM
+	include listing.inc
+	.model	flat
+
+INCLUDELIB OLDNAMES
+
+PUBLIC	<span style="">?</span><span style="">?</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@			<span style="color:#008000">; `string&#39;
+</span><span style="color:#008000"></span>PUBLIC	<span style="">?</span><span style="">?</span>_C@_0N@GCDOMLDM@Hello<span style="">?</span>5World<span style="">?</span>$CB<span style="">?</span>$AA@		<span style="color:#008000">; `string&#39;
+</span><span style="color:#008000"></span>PUBLIC	<span style="">?</span><span style="">?</span>_C@_03OFAPEBGM@<span style="">?</span>$CFs<span style="">?</span>6<span style="">?</span>$AA@			<span style="color:#008000">; `string&#39;
+</span><span style="color:#008000"></span>EXTRN	_MemCpyB@12:PROC
+EXTRN	__imp__printf:PROC
+EXTRN	__imp__malloc:PROC
+EXTRN	__imp__free:PROC
+<span style="color:#008000">;	COMDAT ??_C@_03OFAPEBGM@?$CFs?6?$AA@
+</span><span style="color:#008000"></span>CONST	SEGMENT
+<span style="">?</span><span style="">?</span>_C@_03OFAPEBGM@<span style="">?</span>$CFs<span style="">?</span>6<span style="">?</span>$AA@ DB <span style="">&#39;</span>%s<span style="">&#39;</span>, 0aH, 00H		<span style="color:#008000">; `string&#39;
+</span><span style="color:#008000"></span>CONST	ENDS
+<span style="color:#008000">;	COMDAT ??_C@_0N@GCDOMLDM@Hello?5World?$CB?$AA@
+</span><span style="color:#008000"></span>CONST	SEGMENT
+<span style="">?</span><span style="">?</span>_C@_0N@GCDOMLDM@Hello<span style="">?</span>5World<span style="">?</span>$CB<span style="">?</span>$AA@ DB <span style="">&#39;</span>Hello World!<span style="">&#39;</span>, 00H <span style="color:#008000">; `string&#39;
+</span><span style="color:#008000"></span>CONST	ENDS
+<span style="color:#008000">;	COMDAT ??_C@_05CNOPHDHD@?$CF08x?6?$AA@
+</span><span style="color:#008000"></span>CONST	SEGMENT
+<span style="">?</span><span style="">?</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@ DB <span style="">&#39;</span><span style="">%</span>08x<span style="">&#39;</span>, 0aH, 00H	<span style="color:#008000">; `string&#39;
+</span><span style="color:#008000"></span>CONST	ENDS
+PUBLIC	_main
+<span style="color:#008000">; Function compile flags: /Ogtp
+</span><span style="color:#008000"></span><span style="color:#008000">; File e:\coding\test\test\test.cpp
+</span><span style="color:#008000"></span><span style="color:#008000">;	COMDAT _main
+</span><span style="color:#008000"></span>_TEXT	SEGMENT
+_main	PROC						<span style="color:#008000">; COMDAT
+</span><span style="color:#008000"></span>
+<span style="color:#008000">; 8    : int main() {
+</span><span style="color:#008000"></span>
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span>	<span style="">5</span><span style="">6</span>		 push	 esi
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span>	<span style="">5</span><span style="">7</span>		 push	 edi
+
+<span style="color:#008000">; 9    : 	char *k;
+</span><span style="color:#008000"></span><span style="color:#008000">; 10   : 	k = (char *)malloc(255);
+</span><span style="color:#008000"></span>
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span>	<span style="">6</span><span style="">8</span> ff 00 00 00	 push	 255			<span style="color:#008000">; 000000ffH
+</span><span style="color:#008000"></span>  00007	ff 15 00 00 00
+	<span style="">0</span><span style="">0</span>		 call	 DWORD PTR __imp__malloc
+
+<span style="color:#008000">; 11   : 	printf(&#34;%08x\n&#34;, k);
+</span><span style="color:#008000"></span>
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span>d	8b 35 00 00 00
+	<span style="">0</span><span style="">0</span>		 mov	 esi, DWORD PTR __imp__printf
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span><span style="">3</span>	<span style="">8</span>b f8		 mov	 edi, eax
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span><span style="">5</span>	<span style="">5</span><span style="">7</span>		 push	 edi
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span><span style="">6</span>	<span style="">6</span><span style="">8</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span>	 push	 OFFSET <span style="">?</span><span style="">?</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span>b	ff d6		 call	 esi
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span>d	83 c4 0c	 add	 esp, 12			<span style="color:#008000">; 0000000cH
+</span><span style="color:#008000"></span>
+<span style="color:#008000">; 12   : 	MemCpyB(k, &#34;Hello World!&#34;, 13);
+</span><span style="color:#008000"></span>
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span><span style="">0</span>	<span style="">6</span>a 0d		 push	 13			<span style="color:#008000">; 0000000dH
+</span><span style="color:#008000"></span>  00022	68 00 00 00 00	 push	 OFFSET <span style="">?</span><span style="">?</span>_C@_0N@GCDOMLDM@Hello<span style="">?</span>5World<span style="">?</span>$CB<span style="">?</span>$AA@
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span><span style="">7</span>	<span style="">5</span><span style="">7</span>		 push	 edi
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span><span style="">8</span>	e8 00 00 00 00	 call	 _MemCpyB@12
+
+<span style="color:#008000">; 13   : 	printf(&#34;%08x\n&#34;, k);
+</span><span style="color:#008000"></span>
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span>d	57		 push	 edi
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span>e	68 00 00 00 00	 push	 OFFSET <span style="">?</span><span style="">?</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span><span style="">3</span>	ff d6		 call	 esi
+
+<span style="color:#008000">; 14   : 	printf(&#34;%s\n&#34;, k);
+</span><span style="color:#008000"></span>
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span><span style="">5</span>	<span style="">5</span><span style="">7</span>		 push	 edi
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span><span style="">6</span>	<span style="">6</span><span style="">8</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span>	 push	 OFFSET <span style="">?</span><span style="">?</span>_C@_03OFAPEBGM@<span style="">?</span>$CFs<span style="">?</span>6<span style="">?</span>$AA@
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span>b	ff d6		 call	 esi
+
+<span style="color:#008000">; 15   : 	free(k);
+</span><span style="color:#008000"></span>
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span>d	57		 push	 edi
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span>e	ff 15 00 00 00
+	<span style="">0</span><span style="">0</span>		 call	 DWORD PTR __imp__free
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span><span style="">4</span>	<span style="">8</span><span style="">3</span> c4 14	 add	 esp, 20			<span style="color:#008000">; 00000014H
+</span><span style="color:#008000"></span>
+<span style="color:#008000">; 16   : 	return 0;
+</span><span style="color:#008000"></span>
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span><span style="">7</span>	<span style="">3</span><span style="">3</span> c0		 xor	 eax, eax
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span><span style="">9</span>	<span style="">5</span>f		 pop	 edi
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span>a	5e		 pop	 esi
+
+<span style="color:#008000">; 17   : }
+</span><span style="color:#008000"></span>
+  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span>b	c3		 ret	 0
+_main	ENDP
+_TEXT	ENDS
+END
+</code></pre></div><p>Release版本的代码是经过优化的，所以很多地方已经看不出原来的痕迹了。但是注意到一个很关键的东西，那就是edi, esi寄存器的使用。在我的函数里也用到了它，显然修改了它们的值又没有恢复回去，于是程序本身的节奏就错乱了。这些寄存器都应该在函数入口处保护好，如下：</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">MemCpyB	PROC stdcall USES edi esi ecx , pDst: DWORD, pSrc: DWORD, dwItems: DWORD
+
+	cld
+
+	mov esi, pSrc
+
+	mov edi, pDst
+
+	mov ecx, dwItems
+
+	rep movsb
+
+	mov eax, pDst
+
+	ret
+
+MemCpyB ENDP
+</code></pre></div>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2014/08/04/missing-reserving-registers-when-mixing-c-and-assembly/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2014/09/27/destruct-order-of-class-static-properties-in-php/">&lt;&lt;&lt; PHP 类静态成员的奇怪析构现象</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2014/07/30/ipv6-conflicts-about-mencached/">IPv6 服务开启时 PHP 连接 memcached 失败的原因  >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

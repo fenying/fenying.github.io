@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Windows 标准控件：按钮控件的使用 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="Windows 标准控件：按钮控件的使用" />
+<meta property="og:description" content="本文展示 Windows 标准控件之按钮控件的使用方法。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2011/07/20/windows-sdk-command-button/" />
+<meta property="article:published_time" content="2011-07-20T21:34:45+08:00" />
+<meta property="article:modified_time" content="2011-07-20T21:34:45+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Windows 标准控件：按钮控件的使用"/>
+<meta name="twitter:description" content="本文展示 Windows 标准控件之按钮控件的使用方法。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2011/09/13/fiction-of-graduation-day/">&lt;&lt;&lt; 写在明年的6月9日</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2010/12/25/what-would-physicists-say-in-a-bbs-topic/">如果物理学是一个帖子 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">20</span>
+							<span class="rest">Jul 2011</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">Windows 标准控件：按钮控件的使用</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: windows" href="/tags/windows">windows</a class="category">
+						
+						<a class="tag" title="Tag: controls" href="/tags/controls">controls</a class="category">
+						
+						<a class="tag" title="Tag: button" href="/tags/button">button</a class="category">
+						
+						<a class="tag" title="Tag: command" href="/tags/command">command</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993201162092619233/" target="_blank">http://fenying.blog.163.com/blog/static/102055993201162092619233/</a>。
+				</div><div class="markdown">
+				
+
+
+				<p>本文展示 Windows 标准控件之按钮控件的使用方法。</p>
+<p>以下程序在 Windows 7 简体中文破解版、Visual C++ 2008 专业版、Windows 7 SDK 环境下编译通过。</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#008000">/* File Begin */</span>
+<span style="color:#008000">// wTest.cpp : 定义应用程序的入口点。
+</span><span style="color:#008000"></span><span style="color:#008000">// This is a Win32 Application C Project.
+</span><span style="color:#008000"></span><span style="color:#008000">// Author: Fenying
+</span><span style="color:#008000"></span><span style="color:#008000">// Time: 2011-07-20
+</span><span style="color:#008000"></span><span style="color:#008000">// Version: 0.0.0.1
+</span><span style="color:#008000"></span><span style="color:#008000">// (C) Maple Knights &amp; Fenying Studio Reserved.
+</span><span style="color:#008000"></span><span style="color:#008000">// Description： Windows 7 Ultimate SP1 &amp; Visual C++ 2008 Pro &amp; Windows 7 SDK &amp; Win32 Application C Project are required.
+</span><span style="color:#008000"></span>
+<span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;tchar.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;Windows.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;CommCtrl.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+<span style="color:#00f">#</span><span style="color:#00f">ifdef NULL</span><span style="color:#00f">
+</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">undef NULL</span><span style="color:#00f">
+</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">define NULL 0</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">else</span><span style="color:#00f">
+</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">define NULL 0</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+<span style="color:#008000">//[0] 使用系统主题
+</span><span style="color:#008000"></span><span style="color:#00f">#</span><span style="color:#00f">pragma comment(linker, &#34;</span><span style="color:#00f">/</span><span style="color:#00f">manifestdependency:\&#34;type=&#39;win32&#39; name=&#39;Microsoft.Windows.Common-Controls&#39; version=&#39;6.0.0.0&#39; processorArchitecture=&#39;*&#39; publicKeyToken=&#39;6595b64144ccf1df&#39; language=&#39;*&#39;\&#34;&#34;)</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+<span style="color:#008000">//[A] 全局变量:
+</span><span style="color:#008000"></span>HINSTANCE hInst;                                <span style="color:#008000">// 当前实例
+</span><span style="color:#008000"></span>LPCTSTR szTitle;                                <span style="color:#008000">// 标题栏文本
+</span><span style="color:#008000"></span>LPCTSTR szWindowClass;                          <span style="color:#008000">// 主窗口类名
+</span><span style="color:#008000"></span>HWND hBtnO;                                     <span style="color:#008000">// 第一个按钮句柄
+</span><span style="color:#008000"></span>HFONT hForeFont;                                <span style="color:#008000">// 默认字体
+</span><span style="color:#008000"></span>
+<span style="color:#008000">//[B] 此代码模块中包含的函数的前向声明:
+</span><span style="color:#008000"></span>LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
+INT_PTR CALLBACK    About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
+<span style="color:#2b91af">void</span> SetFont(HWND hWndDst);
+HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT width, INT height, WORD wID);
+
+<span style="color:#008000">//[C] 宏常量
+</span><span style="color:#008000"></span>
+<span style="color:#00f">#</span><span style="color:#00f">define GLOBAL_FORE_FONT_NAME        _T(&#34;Tahoma&#34;)</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_PUSHBUTTON               1</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_DEFPUSHBUTTON            2</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_CHECKBOX                 3</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_AUTOCHECKBOX             4</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_3STATECHECKBOX           5</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_AUTO3STATECHECKBOX       6</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_GROUPBOX                 7</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_RADIOBOX                 8</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_AUTORADIOBOX             9</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_COMMNADLINK              10</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_DEFCOMMNADLINK           11</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_SPLITBUTTON              12</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_DEFSPLITBUTTON           13</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+<span style="color:#008000">//[D] 主函数
+</span><span style="color:#008000"></span><span style="color:#2b91af">int</span> APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, <span style="color:#2b91af">int</span> nCmdShow) {
+
+    MSG msg;
+    WNDCLASSEX wcex;
+    HWND hWnd;
+
+    <span style="color:#008000">// 初始化字符串
+</span><span style="color:#008000"></span>    szWindowClass = _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">my_wnd_cls</span><span style="color:#a31515">&#34;</span>);
+    szTitle = _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello World</span><span style="color:#a31515">&#34;</span>);
+
+    <span style="color:#008000">// 初始化默认字体
+</span><span style="color:#008000"></span>    hForeFont = CreateFontW(14,0,0,0,0,0,0,0,DEFAULT_CHARSET,0,0,0,0, GLOBAL_FORE_FONT_NAME);
+
+    <span style="color:#008000">// 注册窗口类
+</span><span style="color:#008000"></span>    wcex.cbSize = <span style="color:#00f">sizeof</span>(WNDCLASSEX);
+
+    wcex.style            = CS_HREDRAW | CS_VREDRAW;
+    wcex.lpfnWndProc      = WndProc;
+    wcex.cbClsExtra       = 0;
+    wcex.cbWndExtra       = 0;
+    wcex.hInstance        = hInstance;
+    wcex.hIcon            = NULL;
+    wcex.hCursor          = LoadCursor(NULL, IDC_ARROW);
+    wcex.hbrBackground    = (HBRUSH)(COLOR_WINDOW+1);
+    wcex.lpszMenuName     = NULL;
+    wcex.lpszClassName    = szWindowClass;
+    wcex.hIconSm          = NULL;
+
+    RegisterClassEx(&amp;wcex);
+
+    <span style="color:#008000">// 创建窗体
+</span><span style="color:#008000"></span>    hInst = hInstance; <span style="color:#008000">// 将实例句柄存储在全局变量中
+</span><span style="color:#008000"></span>
+    hWnd = CreateWindow(szWindowClass, szTitle, WS_TABSTOP|WS_OVERLAPPEDWINDOW, 200, 0, 800, 600, NULL, NULL, hInstance, NULL);
+
+    <span style="color:#00f">if</span> (!hWnd) {
+        MessageBox(NULL,_T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Failed to create a window.</span><span style="color:#a31515">&#34;</span>), szTitle, MB_OK);
+        <span style="color:#00f">return</span> FALSE;
+    }
+
+    ShowWindow(hWnd, nCmdShow);
+    UpdateWindow(hWnd);
+
+    <span style="color:#008000">// 主消息循环:
+</span><span style="color:#008000"></span>    <span style="color:#00f">while</span> (GetMessage(&amp;msg, NULL, 0, 0)) {
+        TranslateMessage(&amp;msg);
+        DispatchMessage(&amp;msg);
+    }
+
+    <span style="color:#00f">return</span> (<span style="color:#2b91af">int</span>) msg.wParam;
+}
+
+<span style="color:#008000">//[E] 消息回调函数
+</span><span style="color:#008000"></span>LRESULT CALLBACK WndProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
+    <span style="color:#2b91af">int</span> wmId, wmEvent;
+    HWND hCtl;
+
+    <span style="color:#00f">switch</span> (uMsg) {
+    <span style="color:#00f">case</span> WM_CREATE: <span style="color:#008000">// 当窗体被创建时
+</span><span style="color:#008000"></span>
+        <span style="color:#008000">// 创建一个标准命令按钮 Push Button
+</span><span style="color:#008000"></span>        hBtnO = CreateButton(BS_PUSHBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Button</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 50, 200, 32, BTN_PUSHBUTTON);
+
+        <span style="color:#008000">// 创建一个缺省标准命令按钮 Default Push Button
+</span><span style="color:#008000"></span>         CreateButton(BS_DEFPUSHBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Default Button</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 85, 200, 32, BTN_DEFPUSHBUTTON);
+
+        <span style="color:#008000">// 创建一个二态复选框 CheckBox，其被单击时不会自动改变选择状态
+</span><span style="color:#008000"></span>        CreateButton(BS_CHECKBOX, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">CheckBox</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 120, 200, 24, BTN_CHECKBOX);
+
+        <span style="color:#008000">// 创建一个二态自动复选框 Auto CheckBox，其被单击时会自动改变选择状态
+</span><span style="color:#008000"></span>        CreateButton(BS_AUTOCHECKBOX, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Auto CheckBox</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 150, 200, 24, BTN_AUTOCHECKBOX);
+
+        <span style="color:#008000">// 创建一个三态复选框 3 State CheckBox，其被单击时不会自动改变选择状态
+</span><span style="color:#008000"></span>        CreateButton(BS_3STATE, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">3 State CheckBox</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 180, 200, 24, BTN_3STATECHECKBOX);
+
+        <span style="color:#008000">// 创建一个三态自动复选框 Auto 3 State CheckBox，其被单击时会自动改变选择状态
+</span><span style="color:#008000"></span>        CreateButton(BS_AUTO3STATE, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Auto 3 State CheckBox</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 210, 200, 24, BTN_AUTO3STATECHECKBOX);
+
+        <span style="color:#008000">// 创建一个组合框 Group Box
+</span><span style="color:#008000"></span>        CreateButton(BS_GROUPBOX, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Group Box</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 240, 200, 100, BTN_GROUPBOX);
+
+        <span style="color:#008000">// 创建一个单选框 Radio Box，其被单击时不会自动改变选择状态
+</span><span style="color:#008000"></span>        CreateButton(BS_RADIOBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Radio Box</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 350, 200, 24, BTN_RADIOBOX);
+
+        <span style="color:#008000">// 创建一个自动单选框 Auto Radio Box，其被单击时会自动改变选择状态
+</span><span style="color:#008000"></span>        CreateButton(BS_AUTORADIOBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Auto Radio Box</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 380, 200, 24, BTN_AUTORADIOBOX);
+
+        <span style="color:#008000">// 创建一个自动单选框 Auto Radio Box，其被单击时会自动改变选择状态
+</span><span style="color:#008000"></span>        CreateButton(BS_AUTORADIOBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Auto Radio Box</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 410, 200, 24, BTN_AUTORADIOBOX);
+
+        <span style="color:#008000">// Windows Vista Required.
+</span><span style="color:#008000"></span><span style="color:#00f">#</span><span style="color:#00f">if _WIN32_WINNT &gt;= 0x600</span><span style="color:#00f">
+</span><span style="color:#00f"></span>
+        <span style="color:#008000">// 创建一个命令链接按钮 Command Link
+</span><span style="color:#008000"></span>        CreateButton(BS_COMMANDLINK, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Command Link</span><span style="color:#a31515">&#34;</span>), hWnd, 300, 50, 200, 48, BTN_COMMNADLINK);
+
+        <span style="color:#008000">// 创建一个缺省命令链接按钮 Def Command Link
+</span><span style="color:#008000"></span>        CreateButton(BS_DEFCOMMANDLINK, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Def Command Link</span><span style="color:#a31515">&#34;</span>), hWnd, 300, 100, 200, 48, BTN_DEFCOMMNADLINK);
+
+        <span style="color:#008000">// 创建一个分割按钮 Split Button
+</span><span style="color:#008000"></span>        CreateButton(BS_SPLITBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Split Button</span><span style="color:#a31515">&#34;</span>), hWnd, 300, 150, 200, 48, BTN_SPLITBUTTON);
+
+        <span style="color:#008000">// 创建一个缺省分割按钮 Def Split Button
+</span><span style="color:#008000"></span>        CreateButton(BS_DEFSPLITBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Def Split Button</span><span style="color:#a31515">&#34;</span>), hWnd, 300, 200, 200, 48, BTN_DEFSPLITBUTTON);
+
+<span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+</span><span style="color:#00f"></span>        <span style="color:#008000">//
+</span><span style="color:#008000"></span>
+        <span style="color:#00f">break</span>;
+
+    <span style="color:#00f">case</span> WM_COMMAND:  <span style="color:#008000">//控件事件
+</span><span style="color:#008000"></span>        hCtl    = (HWND)lParam;
+        wmId    = LOWORD(wParam); <span style="color:#008000">// wParam 的低字表示控件标识，即 CreateWindowEx 函数的 hMenu 参数
+</span><span style="color:#008000"></span>        wmEvent = HIWORD(wParam); <span style="color:#008000">// wParam 的高字表示控件事件
+</span><span style="color:#008000"></span>        <span style="color:#00f">if</span> (lParam)
+            <span style="color:#00f">switch</span> (wmId) {
+            <span style="color:#00f">case</span> BTN_PUSHBUTTON:    <span style="color:#008000">//命令按钮的事件
+</span><span style="color:#008000"></span>                <span style="color:#00f">switch</span> (wmEvent) {
+                <span style="color:#00f">case</span> BN_CLICKED: <span style="color:#008000">// 单击事件。
+</span><span style="color:#008000"></span>                    <span style="color:#008000">/*******************************************************
+</span><span style="color:#008000">                     * 单击事件消息。
+</span><span style="color:#008000">                     *******************************************************/</span>
+                    MessageBox(hWnd, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hi, You clicked the command button</span><span style="color:#a31515">&#34;</span>), szTitle, MB_OK);
+                    <span style="color:#00f">break</span>;
+                <span style="color:#00f">case</span> BN_DOUBLECLICKED:
+                    <span style="color:#008000">/*******************************************************
+</span><span style="color:#008000">                     * 双击事件消息。
+</span><span style="color:#008000">                     * 此消息不能和 BN_CLICKED 同时处理，否则无法接收此消息。
+</span><span style="color:#008000">                     * BS_USERBUTTON, BS_RADIOBUTTON, BS_OWNERDRAW 三种按钮可
+</span><span style="color:#008000">                     * 以自动支持此消息，其他按钮必须添加 BS_NOTIFY 样式。
+</span><span style="color:#008000">                     *******************************************************/</span>
+                    MessageBox(hWnd, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hi, You double clicked the command button</span><span style="color:#a31515">&#34;</span>), szTitle, MB_OK);
+                    <span style="color:#00f">break</span>;
+                <span style="color:#00f">default</span>:
+                    <span style="color:#00f">goto</span> onNothing;
+                }
+                <span style="color:#00f">break</span>;
+
+            <span style="color:#00f">case</span> BTN_DEFPUSHBUTTON:    <span style="color:#008000">//缺省命令按钮的事件
+</span><span style="color:#008000"></span>                <span style="color:#00f">switch</span> (wmEvent) {
+                <span style="color:#00f">case</span> BN_CLICKED: <span style="color:#008000">// 单击事件。
+</span><span style="color:#008000"></span>                    <span style="color:#00f">switch</span> (SendMessage(hBtnO, BM_GETSTATE, 0, 0)) {
+                    <span style="color:#008000">/*******************************************************
+</span><span style="color:#008000">                     * BM_GETSTATE - 获取 Push Button 的状态，
+</span><span style="color:#008000">                     * 返回值取如下值：
+</span><span style="color:#008000">                     *    BST_PUSHED       -    已按下
+</span><span style="color:#008000">                     *    BST_UNCHECKED    -    未按下
+</span><span style="color:#008000">                     *******************************************************/</span>
+                    <span style="color:#00f">case</span> BST_PUSHED:
+                        SendMessage(hBtnO, BM_SETSTATE, BST_UNCHECKED, 0);
+                    <span style="color:#008000">/*******************************************************
+</span><span style="color:#008000">                     * BM_SETSTATE - 设置 Push Button 的状态，
+</span><span style="color:#008000">                     * 其第三个参数 wParam 决定按钮的状态
+</span><span style="color:#008000">                     *    BST_PUSHED       -    已按下
+</span><span style="color:#008000">                     *    BST_UNCHECKED    -    未按下
+</span><span style="color:#008000">                     *******************************************************/</span>
+                        <span style="color:#00f">break</span>;
+                    <span style="color:#00f">case</span> BST_UNCHECKED:
+                        SendMessage(hBtnO, BM_SETSTATE, BST_PUSHED, 0);
+                        <span style="color:#00f">break</span>;
+                    <span style="color:#00f">default</span>:
+                        <span style="color:#00f">goto</span> onNothing;
+                    }
+                    <span style="color:#00f">break</span>;
+                <span style="color:#00f">default</span>:
+                    <span style="color:#00f">goto</span> onNothing;
+                }
+                <span style="color:#00f">break</span>;
+
+            <span style="color:#00f">case</span> BTN_COMMNADLINK: <span style="color:#008000">//命令链接按钮
+</span><span style="color:#008000"></span>                <span style="color:#00f">switch</span> (wmEvent) {
+                <span style="color:#00f">case</span> BN_CLICKED: <span style="color:#008000">// 单击事件。
+</span><span style="color:#008000"></span>                    MessageBox(hWnd, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hi, You clicked the default command button</span><span style="color:#a31515">&#34;</span>), szTitle, MB_OK);
+                    <span style="color:#00f">break</span>;
+                <span style="color:#00f">default</span>:
+                    <span style="color:#00f">goto</span> onNothing;
+                }
+                <span style="color:#00f">break</span>;
+
+
+            <span style="color:#00f">case</span> BTN_CHECKBOX:    <span style="color:#008000">//二态复选框的事件
+</span><span style="color:#008000"></span>                <span style="color:#00f">switch</span> (wmEvent) {
+                <span style="color:#00f">case</span> BN_CLICKED:
+                    <span style="color:#00f">switch</span> (SendMessage(hCtl, BM_GETCHECK, 0, 0)) {
+                        <span style="color:#008000">/*******************************************************
+</span><span style="color:#008000">                         * BM_GETCHECK - 获取单/复选框选中状态
+</span><span style="color:#008000">                         * 其返回值可取如下：
+</span><span style="color:#008000">                         *    BST_CHECKED          -    已选中状态
+</span><span style="color:#008000">                         *    BST_UNCHECKED        -    未选中状态
+</span><span style="color:#008000">                         *    BST_INDETERMINATE    -    默认选中状态（三态复选框支持）
+</span><span style="color:#008000">                         *******************************************************/</span>
+                    <span style="color:#00f">case</span> BST_CHECKED:
+                        SendMessage(hCtl, BM_SETCHECK, BST_UNCHECKED, 0); <span style="color:#008000">//设置为灰色钩
+</span><span style="color:#008000"></span>                        <span style="color:#008000">/*******************************************************
+</span><span style="color:#008000">                         * BM_SETCHECK - 设置单/复选框选中状态
+</span><span style="color:#008000">                         * 其第三个参数 wParam 可取如下值作为单/复选框的选中状态：
+</span><span style="color:#008000">                         *    BST_CHECKED          -    已选中状态
+</span><span style="color:#008000">                         *    BST_UNCHECKED        -    未选中状态
+</span><span style="color:#008000">                         *    BST_INDETERMINATE    -    默认选中状态（三态复选框支持）
+</span><span style="color:#008000">                         *******************************************************/</span>
+                        <span style="color:#00f">break</span>;
+                    <span style="color:#00f">case</span> BST_UNCHECKED: <span style="color:#008000">//未选中时
+</span><span style="color:#008000"></span>                        SendMessage(hCtl, BM_SETCHECK, BST_CHECKED, 0);
+                        <span style="color:#00f">break</span>;
+                    <span style="color:#00f">default</span>:
+                        <span style="color:#00f">goto</span> onNothing;
+                    }
+                    <span style="color:#00f">break</span>;
+                <span style="color:#00f">case</span> BN_SETFOCUS:
+                    <span style="color:#008000">/*******************************************************
+</span><span style="color:#008000">                     * BN_SETFOCUS - 获取焦点通知
+</span><span style="color:#008000">                     * 当一个按钮具有 BS_NOTIFY 时，如果获得了焦点，会收到此
+</span><span style="color:#008000">                     * 通知消息。
+</span><span style="color:#008000">                     *******************************************************/</span>
+                    SetWindowText(hCtl, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">With Focus.</span><span style="color:#a31515">&#34;</span>));
+                    <span style="color:#00f">break</span>;
+                <span style="color:#00f">case</span> BN_KILLFOCUS:
+                    <span style="color:#008000">/*******************************************************
+</span><span style="color:#008000">                     * BN_KILLFOCUS - 失去焦点通知
+</span><span style="color:#008000">                     * 当一个按钮具有 BS_NOTIFY 时，如果失去了焦点，会收到此
+</span><span style="color:#008000">                     * 通知消息。
+</span><span style="color:#008000">                     *******************************************************/</span>
+                    SetWindowText(hCtl, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Without Focus.</span><span style="color:#a31515">&#34;</span>));
+                    <span style="color:#00f">break</span>;
+                <span style="color:#00f">default</span>:
+                    <span style="color:#00f">goto</span> onNothing;
+                }
+                <span style="color:#00f">break</span>;
+
+            <span style="color:#00f">case</span> BTN_3STATECHECKBOX: <span style="color:#008000">//三态复选框的事件
+</span><span style="color:#008000"></span>                <span style="color:#00f">switch</span> (wmEvent) {
+                <span style="color:#00f">case</span> BN_CLICKED:
+                    <span style="color:#00f">switch</span> (SendMessage(hCtl, BM_GETCHECK, 0, 0)) {
+                    <span style="color:#00f">case</span> BST_CHECKED: <span style="color:#008000">// 选中时
+</span><span style="color:#008000"></span>                        SendMessage(hCtl, BM_SETCHECK, BST_INDETERMINATE, 0); <span style="color:#008000">// 设置为灰色钩
+</span><span style="color:#008000"></span>                        <span style="color:#00f">break</span>;
+                    <span style="color:#00f">case</span> BST_UNCHECKED: <span style="color:#008000">// 未选中时
+</span><span style="color:#008000"></span>                        SendMessage(hCtl, BM_SETCHECK, BST_CHECKED, 0); <span style="color:#008000">// 设置为选中
+</span><span style="color:#008000"></span>                        <span style="color:#00f">break</span>;
+                    <span style="color:#00f">case</span> BST_INDETERMINATE: <span style="color:#008000">//灰色钩子时，这个灰色钩子必须有 BS_AUTO3STATE 的样式
+</span><span style="color:#008000"></span>                        SendMessage(hCtl, BM_SETCHECK, BST_UNCHECKED, 0); <span style="color:#008000">// 设置为未选中
+</span><span style="color:#008000"></span>                        <span style="color:#00f">break</span>;
+                    <span style="color:#00f">default</span>:
+                        <span style="color:#00f">goto</span> onNothing;
+                    }
+                    <span style="color:#00f">break</span>;
+                <span style="color:#00f">default</span>:
+                    <span style="color:#00f">goto</span> onNothing;
+                }
+                <span style="color:#00f">break</span>;
+
+            <span style="color:#00f">case</span> BTN_RADIOBOX: <span style="color:#008000">//单选框的事件
+</span><span style="color:#008000"></span>                <span style="color:#00f">switch</span> (wmEvent) {
+                <span style="color:#00f">case</span> BN_CLICKED:
+                    <span style="color:#00f">switch</span> (SendMessage(hCtl, BM_GETCHECK, 0, 0)) {
+                    <span style="color:#00f">case</span> BST_CHECKED: <span style="color:#008000">// 选中时
+</span><span style="color:#008000"></span>                        SendMessage(hCtl, BM_SETCHECK, BST_UNCHECKED, 0); <span style="color:#008000">// 设置为灰色钩
+</span><span style="color:#008000"></span>                        <span style="color:#00f">break</span>;
+                    <span style="color:#00f">case</span> BST_UNCHECKED: <span style="color:#008000">// 未选中时
+</span><span style="color:#008000"></span>                        SendMessage(hCtl, BM_SETCHECK, BST_CHECKED, 0); <span style="color:#008000">// 设置为选中
+</span><span style="color:#008000"></span>                        <span style="color:#00f">break</span>;
+                    <span style="color:#00f">default</span>:
+                        <span style="color:#00f">goto</span> onNothing;
+                    }
+                    <span style="color:#00f">break</span>;
+                <span style="color:#00f">default</span>:
+                    <span style="color:#00f">goto</span> onNothing;
+                }
+                <span style="color:#00f">break</span>;
+
+            <span style="color:#00f">default</span>:
+                <span style="color:#00f">goto</span> onNothing;
+            }
+        <span style="color:#008000">// 分析菜单选择:
+</span><span style="color:#008000"></span>        <span style="color:#00f">break</span>;
+    <span style="color:#00f">case</span> WM_DESTROY:
+        PostQuitMessage(0);
+        <span style="color:#00f">break</span>;
+    <span style="color:#00f">default</span>:
+        <span style="color:#00f">goto</span> onNothing;
+    }
+    <span style="color:#00f">return</span> 0;
+onNothing:
+    <span style="color:#00f">return</span> DefWindowProc(hWnd, uMsg, wParam, lParam);
+}
+
+<span style="color:#008000">//[F] 设置字体
+</span><span style="color:#008000"></span><span style="color:#2b91af">void</span> SetFont(HWND hWndDst) {
+    PostMessage(hWndDst, WM_SETFONT, (WPARAM)hForeFont, 1);
+}
+
+<span style="color:#008000">//[G] 创建按钮控件
+</span><span style="color:#008000"></span>HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT width, INT height, WORD wID) {
+    HWND hTmp;
+    <span style="color:#00f">if</span> (hTmp =  CreateWindowEx(NULL, WC_BUTTON, pTitle, BS_NOTIFY|WS_TABSTOP|WS_CHILD|WS_VISIBLE| dwStyle, x, y, width, height, hParent, (HMENU)wID, hInst, NULL))
+        SetFont(hTmp);
+
+    <span style="color:#00f">return</span> hTmp;
+}
+
+<span style="color:#008000">/* File End */</span>
+</code></pre></div>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2011/07/20/windows-sdk-command-button/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2011/09/13/fiction-of-graduation-day/">&lt;&lt;&lt; 写在明年的6月9日</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2010/12/25/what-would-physicists-say-in-a-bbs-topic/">如果物理学是一个帖子 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

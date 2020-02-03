@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>【反汇编练习】《破天一剑》服务端：BOSS篇【2】(火刀) - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704265" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta property="og:title" content="【反汇编练习】《破天一剑》服务端：BOSS篇【2】(火刀)" />
+<meta property="og:description" content="一次逆向练手记录。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://fenying.github.io/post/2015/05/26/deassembly-in-pcik-server-for-boss-huodao/" />
+<meta property="article:published_time" content="2015-05-26T21:14:09+08:00" />
+<meta property="article:modified_time" content="2015-05-26T21:14:09+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【反汇编练习】《破天一剑》服务端：BOSS篇【2】(火刀)"/>
+<meta name="twitter:description" content="一次逆向练手记录。"/>
+<link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704265" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704265" />
+
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704265"></script>
+	
+		<script src="https://fenying.github.io/js/main.js?sv=1580704265"></script>
+</head>
+
+<body>
+	<div class="container wrapper">
+		<div class="header">
+	
+		<div class="avatar">
+			<a href="https://fenying.github.io/">
+				<img src="/logo/128x128.png?sv=1580704265" alt="Fenying" />
+			</a>
+		</div>
+	
+	<h1 class="site-title">
+		<a href="https://fenying.github.io/">Fenying</a><sup class="mirror-tips">--mirror-from "<a href="https://fenying.net/">https://fenying.net/</a>"</sup></h1>
+	<div class="site-description"><p>Angus&rsquo; Home.</p><nav class="nav social">
+			<ul class="flat"><li><a href="https://github.com/fenying" title="Github"><i data-feather="github"></i></a></li><li><a href="https://twitter.com/angusfenying" title="Twitter"><i data-feather="twitter"></i></a></li><li><a href="https://t.me/fenying" title="Telegram"><i data-feather="telegram"></i></a></li><li><a href="/index.xml" title="RSS"><i data-feather="rss"></i></a></li></ul>
+		</nav>
+	</div>
+
+	<nav class="nav">
+		<ul class="flat">
+			
+			<li>
+				<a href="/">Home</a>
+			</li>
+			
+			<li>
+				<a href="/post/">Posts</a>
+			</li>
+			
+			<li>
+				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/tags/">Tags</a>
+			</li>
+			
+			<li>
+				<a href="/categories/">Categories</a>
+			</li>
+			
+			<li>
+				<a href="/about/">About</a>
+			</li>
+			
+		</ul>
+	</nav>
+</div>
+
+
+		<div class="post">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2015/06/17/performance-between-in-array-and-switch-in-php/">&lt;&lt;&lt; 关于 in_array 和 switch 的比较</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2015/01/05/difference-between-const-and-define-in-php/">PHP 中新增 const 常量与 define 的异同 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
+			<div class="post-header">
+				
+					<div class="meta">
+						<div class="date">
+							<span class="day">26</span>
+							<span class="rest">May 2015</span>
+						</div>
+					</div>
+				
+				<div class="matter">
+					<h1 class="title">【反汇编练习】《破天一剑》服务端：BOSS篇【2】(火刀)</h1>
+				</div>
+			</div>
+			
+				
+				<div class="tags">
+					
+						
+						<a class="category" href="/categories/assembly">Category: Assembly</a>
+						
+					
+					
+						
+						<a class="tag" title="Tag: deassembly" href="/tags/deassembly">deassembly</a class="category">
+						
+						<a class="tag" title="Tag: pcik" href="/tags/pcik">pcik</a class="category">
+						
+						<a class="tag" title="Tag: boss" href="/tags/boss">boss</a class="category">
+						
+					
+				</div>
+				
+			<div class="migration">
+					该文章迁移自作者的旧博客站点。<br>
+					源地址：<a href="http://fenying.blog.163.com/blog/static/102055993201542575410843/" target="_blank">http://fenying.blog.163.com/blog/static/102055993201542575410843/</a>。
+				</div><div class="markdown">
+				
+
+
+				<p>一次逆向练手记录。</p>
+<p>火刀的源代码已经大概复原。先看看汇编代码，</p>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-asm" data-lang="asm">boss_call_huodao proc near        <span style="color:#008000">; CODE XREF: boss_caller+D3p
+</span><span style="color:#008000"></span>
+var1        <span style="">=</span> byte ptr -4
+
+        push    ecx
+        push    ebx
+        push    ebp
+        push    esi
+        push    edi
+        mov     edi, MON_HASH_CODE_HUODAO_S_KULOU <span style="color:#008000">; 刷火刀时会先爆各种骷髅
+</span><span style="color:#008000"></span>        mov     ebp, 3B9D59Fh
+        mov     ebx, 674B78h    <span style="color:#008000">; 小怪和火刀的ID、坐标等
+</span><span style="color:#008000"></span>
+on_creating_monster:            <span style="color:#008000">; CODE XREF: boss_call_huodao+9Fj
+</span><span style="color:#008000"></span>        mov     eax, [ebx-8]
+        push    eax
+        mov     dword ptr [esp<span style="">+</span>18h<span style="">+</span>var1], eax <span style="color:#008000">;    此处参数1被当成一个临时变量用了。
+</span><span style="color:#008000"></span>        call    monster_get_info_by_id
+        mov     esi, eax
+        mov     eax, dword ptr [esp<span style="">+</span>18h<span style="">+</span>var1]
+        add     esp, 4
+        test    esi, esi
+        jnz     short on_found_monster
+        push    eax        <span style="color:#008000">; Monster id
+</span><span style="color:#008000"></span>        push    offset aMonsterPutEr_5 <span style="color:#008000">; &#34;Monster put error #1 : %d&#34;
+</span><span style="color:#008000"></span>        call    log_write
+        add     esp, 8
+        jmp     short loc_41A116
+<span style="color:#008000">; ---------------------------------------------------------------------------
+</span><span style="color:#008000"></span>
+on_found_monster:            <span style="color:#008000">; CODE XREF: boss_call_huodao+2Cj
+</span><span style="color:#008000"></span>        mov     ecx, [esi<span style="">+</span>Monster_Info.moveSpeed]
+        mov     edx, [esi<span style="">+</span>Monster_Info.unknown10]
+        push    0
+        push    ecx
+        push    2
+        push    0
+        push    2
+        push    edx
+        push    eax
+        push    edi
+        call    monster_call
+                    <span style="color:#008000">; 假如用GS修改工具7.3修改过，取消了爆骷髅X小怪，那么这里是
+</span><span style="color:#008000"></span>                    <span style="color:#008000">; jmp 004ca900h
+</span><span style="color:#008000"></span>                    <span style="color:#008000">; 这段地址IDA无法识别，此处给出真实代码：
+</span><span style="color:#008000"></span>                    <span style="color:#008000">; 004ca900   cmp eax, 18h    ; 18h 即火刀ID 24
+</span><span style="color:#008000"></span>                    <span style="color:#008000">; 004ca903   je    004ca90ah
+</span><span style="color:#008000"></span>                    <span style="color:#008000">; 004ca905   jmp loc_41A0D5
+</span><span style="color:#008000"></span>                    <span style="color:#008000">; 004ca90a   call monster_call
+</span><span style="color:#008000"></span>                    <span style="color:#008000">; 004ca90f   jmp loc_41A0D5
+</span><span style="color:#008000"></span>
+loc_41A0D5:
+        mov     ecx, [ebx]
+        mov     edx, [ebx-4]
+        push    ecx
+        push    edx
+        push    edi
+        call    monster_pos_set
+        mov     eax, [esi<span style="">+</span>Monster_Info.unknown14]
+        mov     ecx, [esi<span style="">+</span>Monster_Info.defense]
+        mov     edx, [esi<span style="">+</span>Monster_Info.hp]
+        push    0
+        push    eax
+        push    ecx
+        push    edx
+        push    edi
+        call    monster_set_basic_info
+        add     esp, 40h
+        mov     byte ptr [ebp-496h], 0
+        mov     byte ptr [ebp<span style="">+</span>0], 0
+        mov     word ptr [ebp-48Dh], 0
+        add     edi, 1
+        add     ebp, 725h
+
+loc_41A116:                <span style="color:#008000">; CODE XREF: boss_call_huodao+3Cj
+</span><span style="color:#008000"></span>        add     ebx, 0Ch
+        cmp     ebx, BOSS_TIME_CHUAN
+        jl      on_creating_monster
+        pop     edi
+        pop     esi
+        pop     ebp
+        mov     dword ptr ds:8210430h, 0
+        pop     ebx
+        pop     ecx
+        retn
+boss_call_huodao endp
+</code></pre></div>
+			</div>
+
+			<div class="authorization authorized">
+    该文章根据
+    <a
+        href="https://creativecommons.org/licenses/by/4.0/deed"
+        target="_blank"
+    >CC-BY-4.0</a>
+    协议发表，转载请遵循该协议。<br>
+
+    本文地址：https://fenying.github.io/post/2015/05/26/deassembly-in-pcik-server-for-boss-huodao/
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2015/06/17/performance-between-in-array-and-switch-in-php/">&lt;&lt;&lt; 关于 in_array 和 switch 的比较</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2015/01/05/difference-between-const-and-define-in-php/">PHP 中新增 const 常量与 define 的异同 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+	(function () {
+		
+		
+		if (window.location.hostname == "localhost")
+			return;
+
+		var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+		var disqus_shortname = 'fenying';
+		dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+</script>
+<noscript>Please enable JavaScript to view the </a></noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+	</div>
+	<div class="footer wrapper">
+	<nav class="nav">
+		<div>
+			Last updated on 2020-02-03 |
+			 © Copyright 2020 Angus Fenying  |
+			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
+			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
+			<a href="/sitemap.xml">Site Map</a>
+		</div>
+	</nav>
+</div><script>feather.replace()</script>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Linux 登陆用户时启动 ssh-agent 并复用 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580627105" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Linux 登陆用户时启动 ssh-agent 并复用 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1580704264" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="Linux 登陆用户时启动 ssh-agent 并复用" />
 <meta property="og:description" content="使用 Git/SSH/SCP 之类操作的时候，一般都是用 ssh 密钥的，但是每次都要先启动 ssh-agent 才能注册密钥，挺烦的，于是尝试了一下，能不能在登陆终端的时候自动启动 ssh-agent，并在下次启动终端时复用该 ssh-agent。" />
 <meta property="og:type" content="article" />
@@ -13,12 +13,12 @@
 <meta name="twitter:title" content="Linux 登陆用户时启动 ssh-agent 并复用"/>
 <meta name="twitter:description" content="使用 Git/SSH/SCP 之类操作的时候，一般都是用 ssh 密钥的，但是每次都要先启动 ssh-agent 才能注册密钥，挺烦的，于是尝试了一下，能不能在登陆终端的时候自动启动 ssh-agent，并在下次启动终端时复用该 ssh-agent。"/>
 <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580627105" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580627105" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1580704264" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1580704264" />
 
-	<script src="https://fenying.github.io/js/feather.min.js?sv=1580627105"></script>
+	<script src="https://fenying.github.io/js/feather.min.js?sv=1580704264"></script>
 	
-		<script src="https://fenying.github.io/js/main.js?sv=1580627105"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1580704264"></script>
 </head>
 
 <body>
@@ -27,7 +27,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1580627105" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1580704264" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -71,7 +71,13 @@
 
 
 		<div class="post">
-	
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2018/01/16/how-to-publish-typescript-package-to-npmjs/">&lt;&lt;&lt; 如何发布一个 TypeScript 编写的包到 NPM 官方仓库</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/">旧版本 mysql 命令行客户端导致 mysqlbinlog 出错 >>></a>
+        </div></div>
+<hr class="chpater-nav-delimiter">
+
 			<div class="post-header">
 				
 					<div class="meta">
@@ -131,7 +137,15 @@ trap <span style="color:#a31515">&#39;test -n &#34;$SSH_AGENT_PID&#34; &amp;&amp
     协议发表，转载请遵循该协议。<br>
 
     本文地址：https://fenying.github.io/post/2017/12/20/auto-init-ssh-agent/
-</div><div id="disqus_thread"></div>
+</div>
+
+			<hr class="chpater-nav-delimiter">
+<div class="chpater-nav"><div class="nav-item prev-chapter">
+            <a href="https://fenying.github.io/post/2018/01/16/how-to-publish-typescript-package-to-npmjs/">&lt;&lt;&lt; 如何发布一个 TypeScript 编写的包到 NPM 官方仓库</a>
+        </div><div class="nav-item next-chapter">
+            <a href="https://fenying.github.io/post/2017/12/20/failure-with-old-mysqlbinlog/">旧版本 mysql 命令行客户端导致 mysqlbinlog 出错 >>></a>
+        </div></div>
+<div id="disqus_thread"></div>
 <script type="text/javascript">
 	(function () {
 		
@@ -152,14 +166,13 @@ trap <span style="color:#a31515">&#39;test -n &#34;$SSH_AGENT_PID&#34; &amp;&amp
 	<div class="footer wrapper">
 	<nav class="nav">
 		<div>
+			Last updated on 2020-02-03 |
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
 			With theme <a href="https://github.com/fenying/hugo-ink" target="_blank">Ink</a> |
 			<a href="/sitemap.xml">Site Map</a>
 		</div>
 	</nav>
-</div>
-
-<script>feather.replace()</script>
+</div><script>feather.replace()</script>
 </body>
 </html>
