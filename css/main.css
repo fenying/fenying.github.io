@@ -1,23 +1,6 @@
-@font-face {
-    font-family: 'Inter';
-    font-display: auto;
-    font-style:  normal;
-    font-weight: 400;
-    src: url("https://rsms.me/inter/font-files/Inter-Regular.woff2") format("woff2"),
-         url("https://rsms.me/inter/font-files/Inter-Regular.woff") format("woff");
-  }
-  
-@font-face {
-    font-family: 'Inter';
-    font-display: auto;
-    font-style:  normal;
-    font-weight: 500;
-    src: url("https://rsms.me/inter/font-files/Inter-Medium.woff2") format("woff2"),
-            url("https://rsms.me/inter/font-files/Inter-Medium.woff") format("woff");
-}
 
 body {
-    font-family: "Inter", sans-serif;
+    font-family: "Fira Code", sans-serif;
     font-weight: 400;
     color: #333;
     line-height: 1.8em;
@@ -209,6 +192,8 @@ ul {
 code {
     
     font-family: 'Fira Code', 'fira mono',cousine,Monaco,Menlo,'source code pro',monospace;
+    font-feature-settings: "calt";
+    font-variant-ligatures: contextual;
 }
 
 p code, li code {
