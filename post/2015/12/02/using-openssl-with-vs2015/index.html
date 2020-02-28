@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Visual Studio 2015 中使用 OpenSSL - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142658" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Visual Studio 2015 中使用 OpenSSL - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="Visual Studio 2015 中使用 OpenSSL" />
 <meta property="og:description" content="在 Visual Studio 2015 中使用 OpenSSL 的记录。" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Visual Studio 2015 中使用 OpenSSL"/>
 <meta name="twitter:description" content="在 Visual Studio 2015 中使用 OpenSSL 的记录。"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142658" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142658" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142658"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142658" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -154,14 +158,14 @@
 </li>
 <li>
 <p>打开 e_os.h，跳到 319 行，把这一行</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">    if _MSC_VER&gt;=1300</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#    if _MSC_VER&gt;=1300
 </span></code></pre></div><p>替换成如下内容并保存。否则会导致链接错误，因为 VC2015 中标准IO流的定义被修改了。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">    if _MSC_VER&gt;=1400</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#    if _MSC_VER&gt;=1400
 </span><span style="color:#00f"></span>_ACRTIMP_ALT FILE* <span style="color:#00f">__cdecl</span> __acrt_iob_func(<span style="color:#2b91af">unsigned</span>);
-<span style="color:#00f">#</span><span style="color:#00f">        define stdin  (__acrt_iob_func(0))</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">        define stdout (__acrt_iob_func(1))</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">        define stderr (__acrt_iob_func(2))</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">    elif _MSC_VER&gt;=1300</span><span style="color:#00f">
+<span style="color:#00f">#        define stdin  (__acrt_iob_func(0))
+</span><span style="color:#00f">#        define stdout (__acrt_iob_func(1))
+</span><span style="color:#00f">#        define stderr (__acrt_iob_func(2))
+</span><span style="color:#00f">#    elif _MSC_VER&gt;=1300
 </span></code></pre></div></li>
 <li>
 <p>现在，开始编译。</p>
@@ -178,22 +182,22 @@ nmake -f ms<span style="color:#a31515">\n</span>tdll.mak clean
 <p>测试代码，如果遇到报错</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">OPENSSL_Uplink(006E9000,08): no OPENSSL_Applink
 </code></pre></div><p>则包含文件</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/applink.c&gt;</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;openssl/applink.c&gt;</span><span style="color:#00f">
 </span></code></pre></div></li>
 </ol>
 <h2 id="2-测试">2. 测试</h2>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;stdlib.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;string.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/rsa.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/pem.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/err.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/applink.c&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/md5.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;openssl/sha.h&gt;</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;stdlib.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;string.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;openssl/rsa.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;openssl/pem.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;openssl/err.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;openssl/applink.c&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;openssl/md5.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;openssl/sha.h&gt;</span><span style="color:#00f">
 </span><span style="color:#00f"></span>
-<span style="color:#00f">#</span><span style="color:#00f">define OPENSSLKEY	&#34;test.key&#34;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define PUBLICKEY	&#34;test_pub.key&#34;</span><span style="color:#00f">
+<span style="color:#00f">#define OPENSSLKEY	&#34;test.key&#34;
+</span><span style="color:#00f">#define PUBLICKEY	&#34;test_pub.key&#34;
 </span><span style="color:#00f"></span>
 <span style="color:#00f">typedef</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">char</span>			byte_t;
 
@@ -203,7 +207,7 @@ byte_t *rsaEncrypt(byte_t *inputData, size_t *inputLength, byte_t *pBuffer, size
     FILE *hFile;
     size_t lenRSA;
 
-    <span style="color:#00f">if</span> ((hFile = fopen(priKeyPath, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">r</span><span style="color:#a31515">&#34;</span>)) == NULL)
+    <span style="color:#00f">if</span> ((hFile = fopen(priKeyPath, <span style="color:#a31515">&#34;r&#34;</span>)) == NULL)
         <span style="color:#00f">return</span> NULL;
 
     <span style="color:#00f">if</span> ((pRSA = PEM_read_RSA_PUBKEY(hFile, NULL, NULL, NULL)) == NULL)
@@ -233,7 +237,7 @@ byte_t *rsaDecrypt(byte_t *inputData, size_t inputLength, byte_t *pBuffer, size_
     FILE *hFile;
     <span style="color:#2b91af">int</span> lenRSA;
 
-    <span style="color:#00f">if</span> ((hFile = fopen(path_key, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">r</span><span style="color:#a31515">&#34;</span>)) == NULL)
+    <span style="color:#00f">if</span> ((hFile = fopen(path_key, <span style="color:#a31515">&#34;r&#34;</span>)) == NULL)
         <span style="color:#00f">return</span> NULL;
 
     <span style="color:#00f">if</span> ((pRSA = PEM_read_RSAPrivateKey(hFile, NULL, NULL, NULL)) == NULL)
@@ -255,23 +259,23 @@ byte_t *rsaDecrypt(byte_t *inputData, size_t inputLength, byte_t *pBuffer, size_
 }
 
 <span style="color:#2b91af">int</span> main(<span style="color:#2b91af">int</span> argc, <span style="color:#2b91af">char</span>** argv) {
-    <span style="color:#2b91af">char</span> *pData = <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello RSA, This is a test.</span><span style="color:#a31515">&#34;</span>;
+    <span style="color:#2b91af">char</span> *pData = <span style="color:#a31515">&#34;Hello RSA, This is a test.&#34;</span>;
     MD5_CTX md5Data;
     SHA_CTX sha1Data;
     byte_t encBuf[512], decBuf[512];
     size_t lenInput;
     <span style="color:#2b91af">int</span> i;
-    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Input Data:%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, pData);
+    printf(<span style="color:#a31515">&#34;Input Data:%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, pData);
 
     <span style="color:#008000">/* RSA */</span>
 
     lenInput = strlen(pData);
 
     rsaEncrypt((byte_t*)pData, &amp;lenInput, encBuf, <span style="color:#00f">sizeof</span>(encBuf), PUBLICKEY);
-    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">after encrypt[%lu]:%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, lenInput, encBuf);
+    printf(<span style="color:#a31515">&#34;after encrypt[%lu]:%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, lenInput, encBuf);
 
     rsaDecrypt(encBuf, lenInput, decBuf, <span style="color:#00f">sizeof</span>(decBuf), OPENSSLKEY);
-    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">after decrypt:%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, decBuf);
+    printf(<span style="color:#a31515">&#34;after decrypt:%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, decBuf);
 
     <span style="color:#008000">/* MD5 */</span>
 
@@ -282,10 +286,10 @@ byte_t *rsaDecrypt(byte_t *inputData, size_t inputLength, byte_t *pBuffer, size_
     MD5_Update(&amp;md5Data, pData, lenInput);
     MD5_Final(encBuf, &amp;md5Data);
 
-    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">MD5: </span><span style="color:#a31515">&#34;</span>);
+    printf(<span style="color:#a31515">&#34;MD5: &#34;</span>);
     <span style="color:#00f">for</span> (i = 0; i &lt; 16; i++)
-        printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">%02x</span><span style="color:#a31515">&#34;</span>, encBuf[i]);
-    putchar(<span style="color:#a31515"></span><span style="color:#a31515">&#39;</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#39;</span>);
+        printf(<span style="color:#a31515">&#34;%02x&#34;</span>, encBuf[i]);
+    putchar(<span style="color:#a31515">&#39;\n&#39;</span>);
 
     <span style="color:#008000">/* SHA-1 */</span>
 
@@ -296,10 +300,10 @@ byte_t *rsaDecrypt(byte_t *inputData, size_t inputLength, byte_t *pBuffer, size_
     SHA1_Update(&amp;sha1Data, pData, lenInput);
     SHA1_Final(encBuf, &amp;sha1Data);
 
-    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">SHA-1: </span><span style="color:#a31515">&#34;</span>);
+    printf(<span style="color:#a31515">&#34;SHA-1: &#34;</span>);
     <span style="color:#00f">for</span> (i = 0; i &lt; 20; i++)
-        printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">%02x</span><span style="color:#a31515">&#34;</span>, encBuf[i]);
-    putchar(<span style="color:#a31515"></span><span style="color:#a31515">&#39;</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#39;</span>);
+        printf(<span style="color:#a31515">&#34;%02x&#34;</span>, encBuf[i]);
+    putchar(<span style="color:#a31515">&#39;\n&#39;</span>);
 
     <span style="color:#00f">return</span> 0;
 }
@@ -345,7 +349,7 @@ byte_t *rsaDecrypt(byte_t *inputData, size_t inputLength, byte_t *pBuffer, size_
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

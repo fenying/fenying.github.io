@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://fenying.github.io/</loc>
+    <lastmod>2020-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/project/litert/timezone.js/</loc>
+    <lastmod>2020-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/project/</loc>
+    <lastmod>2020-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/</loc>
+    <lastmod>2020-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/timezone/</loc>
+    <lastmod>2020-02-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fenying.github.io/categories/</loc>
     <lastmod>2020-01-31T17:15:00+08:00</lastmod>
   </url>
@@ -28,17 +53,7 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/</loc>
-    <lastmod>2020-01-31T17:15:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://fenying.github.io/post/</loc>
-    <lastmod>2020-01-31T17:15:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fenying.github.io/tags/</loc>
     <lastmod>2020-01-31T17:15:00+08:00</lastmod>
   </url>
   
@@ -58,12 +73,12 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/categories/docker/</loc>
+    <loc>https://fenying.github.io/tags/docker/</loc>
     <lastmod>2020-01-20T18:32:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/tags/docker/</loc>
+    <loc>https://fenying.github.io/categories/docker/</loc>
     <lastmod>2020-01-20T18:32:00+08:00</lastmod>
   </url>
   
@@ -75,6 +90,86 @@
   <url>
     <loc>https://fenying.github.io/post/2020/01/20/deploy-mongodb-with-docker/</loc>
     <lastmod>2020-01-20T18:32:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/cache/</loc>
+    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/client/</loc>
+    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/project/litert/redis.js/</loc>
+    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/protocol/</loc>
+    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/redis/</loc>
+    <lastmod>2020-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/generate/</loc>
+    <lastmod>2019-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/project/litert/otp.js/</loc>
+    <lastmod>2019-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/otp/</loc>
+    <lastmod>2019-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/password/</loc>
+    <lastmod>2019-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/security/</loc>
+    <lastmod>2019-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/verification/</loc>
+    <lastmod>2019-12-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/base32/</loc>
+    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/base62x/</loc>
+    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/base64/</loc>
+    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/base64url/</loc>
+    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/project/litert/encoding.js/</loc>
+    <lastmod>2019-12-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -103,6 +198,21 @@
   </url>
   
   <url>
+    <loc>https://fenying.github.io/tags/data/</loc>
+    <lastmod>2019-08-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/project/litert/typeguard.js/</loc>
+    <lastmod>2019-08-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/validate/</loc>
+    <lastmod>2019-08-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fenying.github.io/tags/mysql/</loc>
     <lastmod>2019-02-23T14:04:00+08:00</lastmod>
   </url>
@@ -119,11 +229,6 @@
   
   <url>
     <loc>https://fenying.github.io/tags/certificate/</loc>
-    <lastmod>2018-11-29T13:10:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fenying.github.io/categories/security/</loc>
     <lastmod>2018-11-29T13:10:00+08:00</lastmod>
   </url>
   
@@ -150,11 +255,6 @@
   <url>
     <loc>https://fenying.github.io/tags/nodejs/</loc>
     <lastmod>2018-11-25T18:14:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fenying.github.io/tags/redis/</loc>
-    <lastmod>2018-11-25T16:28:00+08:00</lastmod>
   </url>
   
   <url>
@@ -190,11 +290,6 @@
   <url>
     <loc>https://fenying.github.io/categories/typescript/</loc>
     <lastmod>2018-08-07T18:39:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fenying.github.io/categories/cache/</loc>
-    <lastmod>2018-03-08T15:10:00+08:00</lastmod>
   </url>
   
   <url>
@@ -243,12 +338,12 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/categories/database/</loc>
+    <loc>https://fenying.github.io/tags/database/</loc>
     <lastmod>2017-12-20T14:49:00+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/tags/database/</loc>
+    <loc>https://fenying.github.io/categories/database/</loc>
     <lastmod>2017-12-20T14:49:00+08:00</lastmod>
   </url>
   
@@ -258,7 +353,37 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/</loc>
+    <loc>https://fenying.github.io/project/le-alidns/</loc>
+    <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/lets-encrypt/</loc>
+    <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/ssl/</loc>
+    <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/algorithm/</loc>
+    <lastmod>2017-11-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/wordpress/</loc>
+    <lastmod>2017-11-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/project/wp-passhash.js/</loc>
+    <lastmod>2017-11-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/book/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -298,12 +423,17 @@
   </url>
   
   <url>
+    <loc>https://fenying.github.io/tags/install/</loc>
+    <lastmod>2016-12-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fenying.github.io/tags/installation/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -333,52 +463,52 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/01.system-installation/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/01.system-installation/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/07.compile-mysql/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/07.compile-mysql/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/03.initial-system/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/03.initial-system/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/09.compile-redis/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/09.compile-redis/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/02.compile-latest-gcc/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/02.compile-latest-gcc/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/05.compile-nginx/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/05.compile-nginx/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/08.compile-php/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/08.compile-php/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/06.compile-git/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/06.compile-git/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/10.install-nodejs/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/10.install-nodejs/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/books/minicentos-handbook/04.compile-openssl/</loc>
+    <loc>https://fenying.github.io/book/minicentos-handbook/04.compile-openssl/</loc>
     <lastmod>2016-12-26T00:00:00+00:00</lastmod>
   </url>
   
@@ -403,18 +533,13 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/categories/c/c&#43;&#43;/</loc>
-    <lastmod>2016-09-25T22:21:00+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fenying.github.io/tags/c/c&#43;&#43;/</loc>
-    <lastmod>2016-09-25T22:21:00+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://fenying.github.io/post/2016/09/25/compile-libuv-with-vs2015/</loc>
     <lastmod>2016-09-25T22:21:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/def/</loc>
+    <lastmod>2016-09-19T21:53:00+08:00</lastmod>
   </url>
   
   <url>
@@ -485,6 +610,11 @@
   <url>
     <loc>https://fenying.github.io/post/2016/08/27/use-aws-sns-with-a-http-endpoint/</loc>
     <lastmod>2016-08-27T17:46:00+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/lib/</loc>
+    <lastmod>2016-07-07T09:54:31+00:00</lastmod>
   </url>
   
   <url>
@@ -604,7 +734,17 @@
   
   <url>
     <loc>https://fenying.github.io/tags/memcached/</loc>
-    <lastmod>2015-07-10T20:37:03+08:00</lastmod>
+    <lastmod>2015-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/project/memcached-win64/</loc>
+    <lastmod>2015-07-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/win32/</loc>
+    <lastmod>2015-07-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -788,6 +928,11 @@
   </url>
   
   <url>
+    <loc>https://fenying.github.io/tags/ip/</loc>
+    <lastmod>2014-07-30T21:18:22+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://fenying.github.io/tags/ipv6/</loc>
     <lastmod>2014-07-30T21:18:22+08:00</lastmod>
   </url>
@@ -828,11 +973,6 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/tags/install/</loc>
-    <lastmod>2014-06-21T00:06:31+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://fenying.github.io/categories/os/</loc>
     <lastmod>2014-06-21T00:06:31+08:00</lastmod>
   </url>
@@ -843,32 +983,12 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/tags/client/</loc>
-    <lastmod>2014-04-27T18:09:27+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fenying.github.io/tags/ip/</loc>
-    <lastmod>2014-04-27T18:09:27+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://fenying.github.io/post/2014/04/27/how-to-get-client-ip-in-php/</loc>
     <lastmod>2014-04-27T18:09:27+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://fenying.github.io/tags/def/</loc>
-    <lastmod>2014-01-30T11:52:51+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://fenying.github.io/tags/dll/</loc>
-    <lastmod>2014-01-30T11:52:51+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fenying.github.io/tags/lib/</loc>
     <lastmod>2014-01-30T11:52:51+08:00</lastmod>
   </url>
   
@@ -914,11 +1034,6 @@
   
   <url>
     <loc>https://fenying.github.io/tags/constants/</loc>
-    <lastmod>2013-08-25T11:32:23+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://fenying.github.io/tags/win32/</loc>
     <lastmod>2013-08-25T11:32:23+08:00</lastmod>
   </url>
   
@@ -1193,11 +1308,6 @@
   </url>
   
   <url>
-    <loc>https://fenying.github.io/tags/generate/</loc>
-    <lastmod>2009-06-20T18:11:10+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://fenying.github.io/tags/id/</loc>
     <lastmod>2009-06-20T18:11:10+08:00</lastmod>
   </url>
@@ -1214,6 +1324,14 @@
   
   <url>
     <loc>https://fenying.github.io/books/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/tags/c/c&#43;&#43;/</loc>
+  </url>
+  
+  <url>
+    <loc>https://fenying.github.io/categories/c/c&#43;&#43;/</loc>
   </url>
   
   <url>

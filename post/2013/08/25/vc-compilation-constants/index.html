@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>关于VC预定义常量_WIN32，WIN32，_WIN64 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142658" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>关于VC预定义常量_WIN32，WIN32，_WIN64 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="关于VC预定义常量_WIN32，WIN32，_WIN64" />
 <meta property="og:description" content="VC2012 下写 Windows 程序时，有时需要判断编译环境。在之前的文章《判断程序是否运行在 Windows x64 系统下。》里说过如何在运行期间判断系统环境，但在编译时如何判断？" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="关于VC预定义常量_WIN32，WIN32，_WIN64"/>
 <meta name="twitter:description" content="VC2012 下写 Windows 程序时，有时需要判断编译环境。在之前的文章《判断程序是否运行在 Windows x64 系统下。》里说过如何在运行期间判断系统环境，但在编译时如何判断？"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142658" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142658" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142658"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142658" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -119,26 +123,26 @@
 				<p>VC2012 下写 Windows 程序时，有时需要判断编译环境。在之前的文章《判断程序是否运行在 Windows x64 系统下。》里说过如何在运行期间判断系统环境，但在编译时如何判断？</p>
 <p>MSDN 里说，VC 有 3 个预处理常量，分别是 <code>_WIN32</code>，<code>_WIN64</code>，<code>WIN32</code>。这三个常量如何使用呢？看起来简单，其实是很困惑的。</p>
 <p>在 Win32 配置下，<code>WIN32</code> 在“项目属性-C/C++-预处理器-预处理器定义”里声明了，而在 x64 配置下，这个常量并不在项目预定义列表中。这是否说明可以根据 <code>WIN32</code> 来判断是否在 x64 平台呢？不。在 Windows SDK 的 minwindef.h 下第 37 行有如下定义：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">ifndef WIN32</span><span style="color:#00f">
-</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">define WIN32</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#ifndef WIN32
+</span><span style="color:#00f"></span>    <span style="color:#00f">#define WIN32
+</span><span style="color:#00f">#endif
 </span></code></pre></div><p>即是说，只要包含了 Windows.h，那么 <code>WIN32</code> 常量是肯定定义了的，所以不能用于判断平台环境。但是如果在预处理定义里删掉 <code>WIN32</code>，又不包含 Windows.h，那么 <code>WIN32</code> 未定义。</p>
 <p>下面看 <code>_WIN32</code> 和 <code>_WIN64</code>，这两个比较特别，没有任何显式定义。在 Windows.h 里没有，在“项目属性-C/C++-预处理器-预处理器定义”下也没有。根据 MSDN，这是由编译器（ml.exe/ml64.exe）内部定义的。具体描述是</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">_WIN32：Defined for applications for Win32 and Win64. Always defined.
 
 _WIN64：Defined for applications for Win64.
 </code></pre></div><p>下面看一段程序：（分别在 Win32 和 x64 配置下运行一次）</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;iostream&gt;</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;iostream&gt;</span><span style="color:#00f">
 </span><span style="color:#00f"></span>using namespace std;
 <span style="color:#2b91af">int</span> main() {
 
-<span style="color:#00f">#</span><span style="color:#00f">ifdef _WIN64</span><span style="color:#00f">
-</span><span style="color:#00f"></span>	cout &lt;&lt; <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">_WIN64 is defined as </span><span style="color:#a31515">&#34;</span> &lt;&lt; _WIN64 &lt;&lt; endl;
-<span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+<span style="color:#00f">#ifdef _WIN64
+</span><span style="color:#00f"></span>	cout &lt;&lt; <span style="color:#a31515">&#34;_WIN64 is defined as &#34;</span> &lt;&lt; _WIN64 &lt;&lt; endl;
+<span style="color:#00f">#endif
 </span><span style="color:#00f"></span>
-<span style="color:#00f">#</span><span style="color:#00f">ifdef _WIN32</span><span style="color:#00f">
-</span><span style="color:#00f"></span>	cout &lt;&lt; <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">_WIN32 is defined as </span><span style="color:#a31515">&#34;</span> &lt;&lt; _WIN32 &lt;&lt; endl;
-<span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+<span style="color:#00f">#ifdef _WIN32
+</span><span style="color:#00f"></span>	cout &lt;&lt; <span style="color:#a31515">&#34;_WIN32 is defined as &#34;</span> &lt;&lt; _WIN32 &lt;&lt; endl;
+<span style="color:#00f">#endif
 </span><span style="color:#00f"></span>
 	cin.get();
 	<span style="color:#00f">return</span> 0;
@@ -211,7 +215,7 @@ _WIN64：Defined for applications for Win64.
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

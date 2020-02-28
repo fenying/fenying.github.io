@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>记一次 libiconv 编译错误 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142657" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>记一次 libiconv 编译错误 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="记一次 libiconv 编译错误" />
 <meta property="og:description" content="今天编译 PHP 时漏了安装 libiconv，于是去编译了一次 libiconv，结果编译报错了。" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="记一次 libiconv 编译错误"/>
 <meta name="twitter:description" content="今天编译 PHP 时漏了安装 libiconv，于是去编译了一次 libiconv，结果编译报错了。"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142657" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142657" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142657"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142657" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -114,12 +118,12 @@
 <p>报错如下：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">In file included from progname.c:26:0:
 ./stdio.h:1010:1: error: <span style="">‘</span>gets<span style="">’</span> undeclared here (not in a function)
-_GL_WARN_ON_USE (gets, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">gets is a security hole - use fgets instead</span><span style="color:#a31515">&#34;</span>);
+_GL_WARN_ON_USE (gets, <span style="color:#a31515">&#34;gets is a security hole - use fgets instead&#34;</span>);
 ^
 make[1]: *** [progname.o] Error 1
 </code></pre></div><p>谷歌了一番，在 这里 找到了解决方案：</p>
 <p>在文件 libiconv/srclib/stdio.in.h 中找到行</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">_GL_WARN_ON_USE (gets, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">gets is a security hole - use fgets instead</span><span style="color:#a31515">&#34;</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">_GL_WARN_ON_USE (gets, <span style="color:#a31515">&#34;gets is a security hole - use fgets instead&#34;</span>);
 </code></pre></div><p>将其注释掉，然后重新编译</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">make clean &amp;&amp; make &amp;&amp; make install
 </code></pre></div><p>一切搞定。</p>
@@ -159,7 +163,7 @@ make[1]: *** [progname.o] Error 1
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

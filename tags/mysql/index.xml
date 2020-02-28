@@ -32,10 +32,10 @@
     
     <item>
       <title>第七章 安装最新版 MySQL</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/07.compile-mysql/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/07.compile-mysql/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/07.compile-mysql/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/07.compile-mysql/</guid>
       <description>&lt;p&gt;本章编译安装 MySQL 服务器的 5.7.16 版本。&lt;/p&gt;</description>
     </item>
     

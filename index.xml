@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
-    <lastBuildDate>Fri, 31 Jan 2020 17:15:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 27 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fenying.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LiteRT/TimeZone.js</title>
+      <link>https://fenying.github.io/project/litert/timezone.js/</link>
+      <pubDate>Thu, 27 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/litert/timezone.js/</guid>
+      <description>TypeScript 编写的为 JavaScript 提供时区信息的库。</description>
+    </item>
     
     <item>
       <title>DER 编码规范理解</title>
@@ -40,6 +49,34 @@
     </item>
     
     <item>
+      <title>LiteRT/Redis.js</title>
+      <link>https://fenying.github.io/project/litert/redis.js/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/litert/redis.js/</guid>
+      <description>TypeScript 编写的为 Node.js 提供 Redis 客户端的功能库，全面使用 Promise ，支持事务和消息。</description>
+    </item>
+    
+    <item>
+      <title>LiteRT/OTP.js</title>
+      <link>https://fenying.github.io/project/litert/otp.js/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/litert/otp.js/</guid>
+      <description>TypeScript 编写的为 Node.js 提供 One-Time Password 支持的工具库，支持 HOTP 和 TOTP。</description>
+    </item>
+    
+    <item>
+      <title>LiteRT/Encodings.js</title>
+      <link>https://fenying.github.io/project/litert/encoding.js/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/litert/encoding.js/</guid>
+      <description>TypeScript 编写的为 Node.js 提供各种常见编码支持的简单 API 封装库，包括：
+ base64 base64url base62x base32 base16(hex) urlencode  </description>
+    </item>
+    
+    <item>
       <title>使用 Docker 部署 RabbitMQ</title>
       <link>https://fenying.github.io/post/2019/11/12/deploy-rabbitmq-with-docker/</link>
       <pubDate>Tue, 12 Nov 2019 16:47:00 +0800</pubDate>
@@ -55,6 +92,15 @@
       
       <guid>https://fenying.github.io/post/2019/09/24/deploy-php-fpm-with-docker/</guid>
       <description>&lt;p&gt;使用 Docker 部署 PHP-FPM 的例子。（包括 Redis 等扩展）&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LiteRT/TypeGuard.js</title>
+      <link>https://fenying.github.io/project/litert/typeguard.js/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/litert/typeguard.js/</guid>
+      <description>TypeScript 编写的为 JavaScript 提供结构化数据校验的工具库。</description>
     </item>
     
     <item>
@@ -140,38 +186,56 @@
     </item>
     
     <item>
+      <title>LE-AliDNS</title>
+      <link>https://fenying.github.io/project/le-alidns/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/le-alidns/</guid>
+      <description>这是一个基于 Certbot + 阿里云 DNS 为 Let&amp;rsquo;s Encrypt 提供 DNS 验证的 Shell 工具包。</description>
+    </item>
+    
+    <item>
+      <title>WP-Passhash.js</title>
+      <link>https://fenying.github.io/project/wp-passhash.js/</link>
+      <pubDate>Sat, 25 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/wp-passhash.js/</guid>
+      <description>这是一个用于在 Node.js 中对 WordPress 的用户登录口令哈希值进行校验的库，一般用于整合 WordPress ，或者从 WordPress 迁移。</description>
+    </item>
+    
+    <item>
       <title>MiniCentOS Handbook</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/</guid>
       <description>&lt;p&gt;这是一份在 CentOS 7 Minimal 上安装和配置各种服务器软件的实践手册。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>第一章 安装 CentOS</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/01.system-installation/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/01.system-installation/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/01.system-installation/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/01.system-installation/</guid>
       <description>&lt;p&gt;本章进行系统安装和 SSH 配置。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>第七章 安装最新版 MySQL</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/07.compile-mysql/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/07.compile-mysql/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/07.compile-mysql/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/07.compile-mysql/</guid>
       <description>&lt;p&gt;本章编译安装 MySQL 服务器的 5.7.16 版本。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>第三章 初始化系统环境</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/03.initial-system/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/03.initial-system/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/03.initial-system/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/03.initial-system/</guid>
       <description>&lt;p&gt;CentOS 是一个多用户系统，支持多用户同时使用。而且一般我们会给不同的程序
 配以不同的用户及对应权限，以限制其访问额外资源。&lt;/p&gt;
 &lt;p&gt;本章节我们先初始化一些基本用户。&lt;/p&gt;</description>
@@ -179,64 +243,64 @@
     
     <item>
       <title>第九章 编译安装 Redis 服务器</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/09.compile-redis/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/09.compile-redis/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/09.compile-redis/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/09.compile-redis/</guid>
       <description>&lt;p&gt;本章编译安装 Redis 3.2.5 。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>第二章 安装最新版 GCC</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/02.compile-latest-gcc/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/02.compile-latest-gcc/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/02.compile-latest-gcc/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/02.compile-latest-gcc/</guid>
       <description>&lt;p&gt;本章编译安装最新版本的 GCC 编译器。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>第五章 安装最新版 Nginx</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/05.compile-nginx/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/05.compile-nginx/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/05.compile-nginx/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/05.compile-nginx/</guid>
       <description>&lt;p&gt;本章编译安装 Nginx 服务器的 1.11.5 版本。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>第八章 编译安装 PHP</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/08.compile-php/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/08.compile-php/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/08.compile-php/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/08.compile-php/</guid>
       <description>&lt;p&gt;本章编译安装 PHP 7.1.0 。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>第六章 安装最新版 Git 客户端</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/06.compile-git/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/06.compile-git/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/06.compile-git/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/06.compile-git/</guid>
       <description>&lt;p&gt;本章编译安装 Git 客户端的 2.11.0 版本。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>第十章 通过 NVM 安装 Node.js</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/10.install-nodejs/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/10.install-nodejs/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/10.install-nodejs/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/10.install-nodejs/</guid>
       <description>&lt;p&gt;本章通过 NVM 安装 Node.js 的最新稳定版本。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>第四章 编译安装 OpenSSL</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/04.compile-openssl/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/04.compile-openssl/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/04.compile-openssl/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/04.compile-openssl/</guid>
       <description>&lt;p&gt;本章编译安装 OpenSSL 的 1.1.0c 版本。&lt;/p&gt;</description>
     </item>
     
@@ -413,6 +477,15 @@
       
       <guid>https://fenying.github.io/post/2015/09/11/warning-c4661-in-visual-c&#43;&#43;/</guid>
       <description>&lt;p&gt;最近写 C++ 类模板时遇到的一个 C4661 warning，记载于此。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Memcached for Windows x64</title>
+      <link>https://fenying.github.io/project/memcached-win64/</link>
+      <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/memcached-win64/</guid>
+      <description>知名 Key-Value 缓存服务器的 Windows x64 移植版。</description>
     </item>
     
     <item>
@@ -754,7 +827,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://fenying.github.io/about/</guid>
-      <description>当前  就职于 Reolink Innovation Limited（2016 ~ ） 担任开源组织 LiteRT 首席开发者（2014 ~） 担任开源组织 迈云 技术顾问（2007 ~） 担任百度贴吧吧主·血之沙漏吧（2009 ~）  曾经  担任广东工业大学内网 PT 站 GDPT 主要开发人员（2013 ~ 2016） 就读于广东工业大学（2012 ~ 2016） 担任齐乐乐游戏论坛·网页游戏板块版主（2007 ~ 2009） 担任齐乐乐游戏论坛·枫叶骑士团家族版主（2009 ~ 2014）  </description>
+      <description>当前  就职于 Reolink Innovation Limited（2016 ~ ） 担任开源组织 LiteRT 主要开发者（2014 ~） 担任开源组织 迈云 技术顾问（2007 ~） 担任百度贴吧吧主·血之沙漏吧（2009 ~）  曾经  担任广东工业大学内网 PT 站 GDPT 主要开发人员（2013 ~ 2016） 就读于广东工业大学（2012 ~ 2016） 担任齐乐乐游戏论坛·网页游戏板块版主（2007 ~ 2009） 担任齐乐乐游戏论坛·枫叶骑士团家族版主（2009 ~ 2014）  </description>
     </item>
     
   </channel>

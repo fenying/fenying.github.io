@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
-    <lastBuildDate>Fri, 31 Jan 2020 17:15:00 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 27 Feb 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fenying.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>timezone</title>
+      <link>https://fenying.github.io/tags/timezone/</link>
+      <pubDate>Thu, 27 Feb 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/timezone/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>der</title>
@@ -58,6 +67,105 @@
     </item>
     
     <item>
+      <title>client</title>
+      <link>https://fenying.github.io/tags/client/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/client/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>protocol</title>
+      <link>https://fenying.github.io/tags/protocol/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/protocol/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>redis</title>
+      <link>https://fenying.github.io/tags/redis/</link>
+      <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/redis/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>generate</title>
+      <link>https://fenying.github.io/tags/generate/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/generate/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>otp</title>
+      <link>https://fenying.github.io/tags/otp/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/otp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>password</title>
+      <link>https://fenying.github.io/tags/password/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/password/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>verification</title>
+      <link>https://fenying.github.io/tags/verification/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/verification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>base32</title>
+      <link>https://fenying.github.io/tags/base32/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/base32/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>base62x</title>
+      <link>https://fenying.github.io/tags/base62x/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/base62x/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>base64</title>
+      <link>https://fenying.github.io/tags/base64/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/base64/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>base64url</title>
+      <link>https://fenying.github.io/tags/base64url/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/base64url/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>RabbitMQ</title>
       <link>https://fenying.github.io/tags/rabbitmq/</link>
       <pubDate>Tue, 12 Nov 2019 16:47:00 +0800</pubDate>
@@ -81,6 +189,24 @@
       <pubDate>Tue, 24 Sep 2019 11:44:00 +0800</pubDate>
       
       <guid>https://fenying.github.io/tags/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>data</title>
+      <link>https://fenying.github.io/tags/data/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>validate</title>
+      <link>https://fenying.github.io/tags/validate/</link>
+      <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/validate/</guid>
       <description></description>
     </item>
     
@@ -135,15 +261,6 @@
       <pubDate>Sun, 25 Nov 2018 18:14:00 +0800</pubDate>
       
       <guid>https://fenying.github.io/tags/nodejs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>redis</title>
-      <link>https://fenying.github.io/tags/redis/</link>
-      <pubDate>Sun, 25 Nov 2018 16:28:00 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/tags/redis/</guid>
       <description></description>
     </item>
     
@@ -238,6 +355,42 @@
     </item>
     
     <item>
+      <title>let&#39;s encrypt</title>
+      <link>https://fenying.github.io/tags/lets-encrypt/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/lets-encrypt/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ssl</title>
+      <link>https://fenying.github.io/tags/ssl/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/ssl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>algorithm</title>
+      <link>https://fenying.github.io/tags/algorithm/</link>
+      <pubDate>Sat, 25 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>wordpress</title>
+      <link>https://fenying.github.io/tags/wordpress/</link>
+      <pubDate>Sat, 25 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/wordpress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>centos</title>
       <link>https://fenying.github.io/tags/centos/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
@@ -297,6 +450,15 @@
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
       <guid>https://fenying.github.io/tags/initialization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>install</title>
+      <link>https://fenying.github.io/tags/install/</link>
+      <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/install/</guid>
       <description></description>
     </item>
     
@@ -364,11 +526,11 @@
     </item>
     
     <item>
-      <title>C/C&#43;&#43;</title>
-      <link>https://fenying.github.io/tags/c/c&#43;&#43;/</link>
-      <pubDate>Sun, 25 Sep 2016 22:21:00 +0800</pubDate>
+      <title>def</title>
+      <link>https://fenying.github.io/tags/def/</link>
+      <pubDate>Mon, 19 Sep 2016 21:53:00 +0800</pubDate>
       
-      <guid>https://fenying.github.io/tags/c/c&#43;&#43;/</guid>
+      <guid>https://fenying.github.io/tags/def/</guid>
       <description></description>
     </item>
     
@@ -441,6 +603,15 @@
       <pubDate>Sat, 27 Aug 2016 17:46:00 +0800</pubDate>
       
       <guid>https://fenying.github.io/tags/sns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>lib</title>
+      <link>https://fenying.github.io/tags/lib/</link>
+      <pubDate>Thu, 07 Jul 2016 09:54:31 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/lib/</guid>
       <description></description>
     </item>
     
@@ -546,9 +717,18 @@
     <item>
       <title>memcached</title>
       <link>https://fenying.github.io/tags/memcached/</link>
-      <pubDate>Fri, 10 Jul 2015 20:37:03 +0800</pubDate>
+      <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
       
       <guid>https://fenying.github.io/tags/memcached/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>win32</title>
+      <link>https://fenying.github.io/tags/win32/</link>
+      <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/win32/</guid>
       <description></description>
     </item>
     
@@ -778,6 +958,15 @@
     </item>
     
     <item>
+      <title>IP</title>
+      <link>https://fenying.github.io/tags/ip/</link>
+      <pubDate>Wed, 30 Jul 2014 21:18:22 +0800</pubDate>
+      
+      <guid>https://fenying.github.io/tags/ip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>ipv6</title>
       <link>https://fenying.github.io/tags/ipv6/</link>
       <pubDate>Wed, 30 Jul 2014 21:18:22 +0800</pubDate>
@@ -832,56 +1021,11 @@
     </item>
     
     <item>
-      <title>install</title>
-      <link>https://fenying.github.io/tags/install/</link>
-      <pubDate>Sat, 21 Jun 2014 00:06:31 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/tags/install/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>client</title>
-      <link>https://fenying.github.io/tags/client/</link>
-      <pubDate>Sun, 27 Apr 2014 18:09:27 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/tags/client/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>IP</title>
-      <link>https://fenying.github.io/tags/ip/</link>
-      <pubDate>Sun, 27 Apr 2014 18:09:27 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/tags/ip/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>def</title>
-      <link>https://fenying.github.io/tags/def/</link>
-      <pubDate>Thu, 30 Jan 2014 11:52:51 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/tags/def/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>dll</title>
       <link>https://fenying.github.io/tags/dll/</link>
       <pubDate>Thu, 30 Jan 2014 11:52:51 +0800</pubDate>
       
       <guid>https://fenying.github.io/tags/dll/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>lib</title>
-      <link>https://fenying.github.io/tags/lib/</link>
-      <pubDate>Thu, 30 Jan 2014 11:52:51 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/tags/lib/</guid>
       <description></description>
     </item>
     
@@ -936,15 +1080,6 @@
       <pubDate>Sun, 25 Aug 2013 11:32:23 +0800</pubDate>
       
       <guid>https://fenying.github.io/tags/constants/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>win32</title>
-      <link>https://fenying.github.io/tags/win32/</link>
-      <pubDate>Sun, 25 Aug 2013 11:32:23 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/tags/win32/</guid>
       <description></description>
     </item>
     
@@ -1237,15 +1372,6 @@
     </item>
     
     <item>
-      <title>generate</title>
-      <link>https://fenying.github.io/tags/generate/</link>
-      <pubDate>Sat, 20 Jun 2009 18:11:10 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/tags/generate/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>id</title>
       <link>https://fenying.github.io/tags/id/</link>
       <pubDate>Sat, 20 Jun 2009 18:11:10 +0800</pubDate>
@@ -1260,6 +1386,15 @@
       <pubDate>Sat, 20 Jun 2009 18:11:10 +0800</pubDate>
       
       <guid>https://fenying.github.io/tags/verify/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C/C&#43;&#43;</title>
+      <link>https://fenying.github.io/tags/c/c&#43;&#43;/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/c/c&#43;&#43;/</guid>
       <description></description>
     </item>
     

@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="generator" content="Hugo 0.63.2" />
+	<meta name="generator" content="Hugo 0.65.3" />
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Fenying - Angus&#39; Home. </title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142656" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Fenying - Angus&#39; Home. </title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887250" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="alternate" type="application/rss+xml" href="https://fenying.github.io/index.xml" title="Fenying" />
 	<meta property="og:title" content="Fenying" />
 <meta property="og:description" content="Angus&#39; Home." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://fenying.github.io/" />
-<meta property="og:updated_time" content="2020-01-31T17:15:00+08:00" />
+<meta property="og:updated_time" content="2020-02-27T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Fenying"/>
 <meta name="twitter:description" content="Angus&#39; Home."/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142656" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142656" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887250" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887250" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142656"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887250"></script>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142656" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887250" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -49,6 +49,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -77,16 +81,15 @@
 					<div class="post"><div class="post-header">
     <div class="meta">
         <div class="date">
-            <span class="day">05</span>
-            <span class="rest">Feb 2016</span>
+            <span class="day">12</span>
+            <span class="rest">Sep 2016</span>
         </div>
     </div>
     <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2016/02/05/notice-about-subst-in-windows-8.1/">Windows 8.1 下 subst 命令使用注意事项一例</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <h4 class="title small"><a href="/post/2016/09/12/openssl-bug-for-certificate-in-mingw/">在 MinGW 中使用 OpenSSL 创建证书时的 BUG</a></h4>
         <span class="description">
             
-                <p>由于笔记本加装了SSD，新装了Win8.1后，主分区是SSD，导致机械盘的分区全部都乱了，于是想到用 subst 命令来实现固定化路径。</p>
+                <p><code>openssl req</code> 命令在 MinGW 环境下无法正确生成证书的 Bug。</p>
             
         </span>
         
@@ -94,16 +97,16 @@
             <div class="tags">
                 
                     
-                    <a class="category" href="/categories/shell">Category: Shell</a>
+                    <a class="category" href="/categories/security">Category: Security</a>
                     
                 
                 
                     
-                    <a class="tag" href="/tags/subst">Subst</a class="category">
+                    <a class="tag" href="/tags/openssl">OpenSSL</a class="category">
                     
-                    <a class="tag" href="/tags/root">root</a class="category">
+                    <a class="tag" href="/tags/bug">Bug</a class="category">
                     
-                    <a class="tag" href="/tags/su">su</a class="category">
+                    <a class="tag" href="/tags/mingw">MinGW</a class="category">
                     
                 
             </div>
@@ -116,17 +119,93 @@
 					<div class="post"><div class="post-header">
     <div class="meta">
         <div class="date">
-            <span class="day">25</span>
-            <span class="rest">Dec 2015</span>
+            <span class="day">05</span>
+            <span class="rest">Sep 2016</span>
         </div>
     </div>
     <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2015/12/25/install-gcc-5.2-in-centos-6.7/">CentOS 6.7 x64 下更新 GCC 5.2</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <h4 class="title small"><a href="/post/2016/09/05/js-calender-bug-with-date-carrying/">JavaScript 中 Date 细节问题导致的程序 Bug</a></h4>
         <span class="description">
             
-                <p>众所周知，CentOS作为服务器操作系统被广泛使用，然而其包含的 yum 源中提供的软件版本是非常旧的。比如 GCC，最新版本竟然还是 4.4.x。前天尝试编译 MongoDB 3.2.0，都要求使用 GCC 4.8.1了（GCC 4.8+支持C++ 11）。</p>
-<p>只好手动编译一次GCC。注意这并不复杂，但是时间很长。且要预留6G以上的空间给编译器。</p>
+                <p>今天遇到一个 Bug，是在逢 31 号当天，日历控件（同事开发的）就会出问题。 表现为凡是有 31 号的月份几乎都不显示 31 号，但是部分月份如 12 月和 7 月除外。</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/typescript">Category: TypeScript</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/javascript">JavaScript</a class="category">
+                    
+                    <a class="tag" href="/tags/date">Date</a class="category">
+                    
+                    <a class="tag" href="/tags/bug">Bug</a class="category">
+                    
+                    <a class="tag" href="/tags/31">31</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</div>
+				
+					<div class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">27</span>
+            <span class="rest">Aug 2016</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small"><a href="/post/2016/08/27/use-aws-sns-with-a-http-endpoint/">使用 AWS SNS 发送通知到 HTTP 终端</a></h4>
+        <span class="description">
+            
+                <p>AWS 的 SNS 是一个消息推送服务，通过 SNS，可以将 AWS 的其他服务（如 S3）的事件消息转发给 其它终端（E-Mail，HTTP服务器等）。</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/cloud">Category: Cloud</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/aws">AWS</a class="category">
+                    
+                    <a class="tag" href="/tags/sns">SNS</a class="category">
+                    
+                    <a class="tag" href="/tags/http">HTTP</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</div>
+				
+					<div class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">07</span>
+            <span class="rest">Jul 2016</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small"><a href="/post/2016/07/07/memo-about-libiconv-compilation-failure/">记一次 libiconv 编译错误</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <span class="description">
+            
+                <p>今天编译 PHP 时漏了安装 libiconv，于是去编译了一次 libiconv，结果编译报错了。</p>
             
         </span>
         
@@ -139,9 +218,7 @@
                 
                 
                     
-                    <a class="tag" href="/tags/gcc">GCC</a class="category">
-                    
-                    <a class="tag" href="/tags/centos">CentOS</a class="category">
+                    <a class="tag" href="/tags/libconv">libconv</a class="category">
                     
                 
             </div>
@@ -154,16 +231,15 @@
 					<div class="post"><div class="post-header">
     <div class="meta">
         <div class="date">
-            <span class="day">23</span>
-            <span class="rest">Dec 2015</span>
+            <span class="day">27</span>
+            <span class="rest">Feb 2016</span>
         </div>
     </div>
     <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2015/12/23/compile-mysql-5.7.10-in-centos-6.7/">记一次在 CentOS 6.7 上编译 MySQL 5.7.10 的过程</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <h4 class="title small"><a href="/post/2016/02/27/install-mongodb-in-windows/">MongoDB 在 Windows 下的手动安装与配置</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
         <span class="description">
             
-                <p>记录一次编译 MySQL 5.7.10 的过程。</p>
+                <p>本文介绍如何在 Windows 系统中安装 MongoDB 并配置为系统服务。</p>
             
         </span>
         
@@ -176,89 +252,9 @@
                 
                 
                     
-                    <a class="tag" href="/tags/mysql">MySQL</a class="category">
+                    <a class="tag" href="/tags/windows">Windows</a class="category">
                     
-                    <a class="tag" href="/tags/centos">CentOS</a class="category">
-                    
-                    <a class="tag" href="/tags/compile">Compile</a class="category">
-                    
-                
-            </div>
-            
-        
-    </div>
-</div>
-</div>
-				
-					<div class="post"><div class="post-header">
-    <div class="meta">
-        <div class="date">
-            <span class="day">02</span>
-            <span class="rest">Dec 2015</span>
-        </div>
-    </div>
-    <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2015/12/02/using-openssl-with-vs2015/">Visual Studio 2015 中使用 OpenSSL</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
-        <span class="description">
-            
-                <p>在 Visual Studio 2015 中使用 OpenSSL 的记录。</p>
-            
-        </span>
-        
-            
-            <div class="tags">
-                
-                    
-                    <a class="category" href="/categories/c/c&#43;&#43;">Category: C/C&#43;&#43;</a>
-                    
-                
-                
-                    
-                    <a class="tag" href="/tags/openssl">OpenSSL</a class="category">
-                    
-                    <a class="tag" href="/tags/visual-studio">Visual Studio</a class="category">
-                    
-                    <a class="tag" href="/tags/compile">Compile</a class="category">
-                    
-                
-            </div>
-            
-        
-    </div>
-</div>
-</div>
-				
-					<div class="post"><div class="post-header">
-    <div class="meta">
-        <div class="date">
-            <span class="day">29</span>
-            <span class="rest">Nov 2015</span>
-        </div>
-    </div>
-    <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2015/11/29/can-not-connect-mysql-with-php/">关于php与mysql连接的小CASE</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
-        <span class="description">
-            
-                <p>两则 PHP 连接 MySQL 失败的记录。</p>
-            
-        </span>
-        
-            
-            <div class="tags">
-                
-                    
-                    <a class="category" href="/categories/php">Category: PHP</a>
-                    
-                
-                
-                    
-                    <a class="tag" href="/tags/mysql">MySQL</a class="category">
-                    
-                    <a class="tag" href="/tags/pdo">PDO</a class="category">
-                    
-                    <a class="tag" href="/tags/named-socket">named-socket</a class="category">
+                    <a class="tag" href="/tags/mongodb">MongoDB</a class="category">
                     
                 
             </div>
@@ -289,7 +285,7 @@
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

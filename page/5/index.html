@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="generator" content="Hugo 0.63.2" />
+	<meta name="generator" content="Hugo 0.65.3" />
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Fenying - Angus&#39; Home. </title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142656" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Fenying - Angus&#39; Home. </title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887250" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="alternate" type="application/rss+xml" href="https://fenying.github.io/index.xml" title="Fenying" />
 	<meta property="og:title" content="Fenying" />
 <meta property="og:description" content="Angus&#39; Home." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://fenying.github.io/" />
-<meta property="og:updated_time" content="2020-01-31T17:15:00+08:00" />
+<meta property="og:updated_time" content="2020-02-27T00:00:00+00:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Fenying"/>
 <meta name="twitter:description" content="Angus&#39; Home."/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142656" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142656" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887250" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887250" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142656"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887250"></script>
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142656" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887250" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -49,6 +49,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -77,16 +81,18 @@
 					<div class="post"><div class="post-header">
     <div class="meta">
         <div class="date">
-            <span class="day">27</span>
-            <span class="rest">Aug 2016</span>
+            <span class="day">10</span>
+            <span class="rest">Nov 2016</span>
         </div>
     </div>
     <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2016/08/27/use-aws-sns-with-a-http-endpoint/">使用 AWS SNS 发送通知到 HTTP 终端</a></h4>
+        <h4 class="title small"><a href="/post/2016/11/11/openssl-rsa-commands/">OpenSSL 之 RSA 相关命令学习笔记</a></h4>
         <span class="description">
             
-                <p>AWS 的 SNS 是一个消息推送服务，通过 SNS，可以将 AWS 的其他服务（如 S3）的事件消息转发给 其它终端（E-Mail，HTTP服务器等）。</p>
+                <p>本文介绍 OpenSSL 命令行进行 RSA 加密、解密、签名、验证的操作，但不涉及 RSA
+算法原理解析，如有兴趣，可以阅读阮一峰的《RSA算法原理》。如果你只想知道 RSA
+是什么，那么你只要记住：<strong>RSA 是一种加密算法，使用两个密钥，一个叫公钥，一个
+叫私钥，使用公钥加密的密文只有使用私钥才可以解密，反之亦然。</strong></p>
             
         </span>
         
@@ -94,16 +100,14 @@
             <div class="tags">
                 
                     
-                    <a class="category" href="/categories/cloud">Category: Cloud</a>
+                    <a class="category" href="/categories/security">Category: Security</a>
                     
                 
                 
                     
-                    <a class="tag" href="/tags/aws">AWS</a class="category">
+                    <a class="tag" href="/tags/rsa">RSA</a class="category">
                     
-                    <a class="tag" href="/tags/sns">SNS</a class="category">
-                    
-                    <a class="tag" href="/tags/http">HTTP</a class="category">
+                    <a class="tag" href="/tags/openssl">OpenSSL</a class="category">
                     
                 
             </div>
@@ -116,16 +120,49 @@
 					<div class="post"><div class="post-header">
     <div class="meta">
         <div class="date">
-            <span class="day">07</span>
-            <span class="rest">Jul 2016</span>
+            <span class="day">08</span>
+            <span class="rest">Oct 2016</span>
         </div>
     </div>
     <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2016/07/07/memo-about-libiconv-compilation-failure/">记一次 libiconv 编译错误</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <h4 class="title small"><a href="/post/2016/10/08/add-an-empty-git-branch/">为 Git 项目添加一个新的纯空分支</a></h4>
         <span class="description">
             
-                <p>今天编译 PHP 时漏了安装 libiconv，于是去编译了一次 libiconv，结果编译报错了。</p>
+                <p>出于某种特殊的需求，要给一个已经存在的 git 项目添加一个全新的空分支——没有源自现有分支 commits 记录的分支。</p>
+            
+        </span>
+        
+            
+            <div class="tags">
+                
+                    
+                    <a class="category" href="/categories/git">Category: Git</a>
+                    
+                
+                
+                    
+                    <a class="tag" href="/tags/git">Git</a class="category">
+                    
+                
+            </div>
+            
+        
+    </div>
+</div>
+</div>
+				
+					<div class="post"><div class="post-header">
+    <div class="meta">
+        <div class="date">
+            <span class="day">25</span>
+            <span class="rest">Sep 2016</span>
+        </div>
+    </div>
+    <div class="matter">
+        <h4 class="title small"><a href="/post/2016/09/25/compile-libuv-with-vs2015/">在 Visual Studio 2015 下编译 LibUV-1.9.1</a></h4>
+        <span class="description">
+            
+                <p>使用 VS2015 编译 LibUV 的过程。</p>
             
         </span>
         
@@ -138,7 +175,7 @@
                 
                 
                     
-                    <a class="tag" href="/tags/libconv">libconv</a class="category">
+                    <a class="tag" href="/tags/c/c&#43;&#43;">C/C&#43;&#43;</a class="category">
                     
                 
             </div>
@@ -151,16 +188,15 @@
 					<div class="post"><div class="post-header">
     <div class="meta">
         <div class="date">
-            <span class="day">27</span>
-            <span class="rest">Feb 2016</span>
+            <span class="day">19</span>
+            <span class="rest">Sep 2016</span>
         </div>
     </div>
     <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2016/02/27/install-mongodb-in-windows/">MongoDB 在 Windows 下的手动安装与配置</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <h4 class="title small"><a href="/post/2016/09/19/how-to-write-typescript-definitions/">TypeScript 的声明文件的使用与编写</a></h4>
         <span class="description">
             
-                <p>本文介绍如何在 Windows 系统中安装 MongoDB 并配置为系统服务。</p>
+                <p>本文分享个人编写 TypeScript 声明文件的经验。</p>
             
         </span>
         
@@ -168,14 +204,14 @@
             <div class="tags">
                 
                     
-                    <a class="category" href="/categories/database">Category: Database</a>
+                    <a class="category" href="/categories/typescript">Category: TypeScript</a>
                     
                 
                 
                     
-                    <a class="tag" href="/tags/windows">Windows</a class="category">
+                    <a class="tag" href="/tags/definition">Definition</a class="category">
                     
-                    <a class="tag" href="/tags/mongodb">MongoDB</a class="category">
+                    <a class="tag" href="/tags/module">Module</a class="category">
                     
                 
             </div>
@@ -188,16 +224,15 @@
 					<div class="post"><div class="post-header">
     <div class="meta">
         <div class="date">
-            <span class="day">26</span>
-            <span class="rest">Feb 2016</span>
+            <span class="day">15</span>
+            <span class="rest">Sep 2016</span>
         </div>
     </div>
     <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2016/02/26/install-mysql-5.7.11-in-windows/">MySQL 5.7.11 在 Windows 下的安装配置</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
+        <h4 class="title small"><a href="/post/2016/09/15/two-style-of-typescript-module-definition/">TypeScript 的两种声明文件写法的区别和根本意义</a></h4>
         <span class="description">
             
-                <p>今天下载了一个 mysql-5.7.11-winx64.zip，发现里面没有 data 目录了，看了下以前的笔记整理下安装命令。</p>
+                <p>TypeScript 的 DefinitelyTyped 声明文件有两种写法，一种叫做 全局类型声明(Global Type Definition)，另一个则是叫做 模块导出声明(External Module Definition)。</p>
             
         </span>
         
@@ -205,53 +240,14 @@
             <div class="tags">
                 
                     
-                    <a class="category" href="/categories/database">Category: Database</a>
+                    <a class="category" href="/categories/typescript">Category: TypeScript</a>
                     
                 
                 
                     
-                    <a class="tag" href="/tags/windows">Windows</a class="category">
+                    <a class="tag" href="/tags/definition">Definition</a class="category">
                     
-                    <a class="tag" href="/tags/mysql">MySQL</a class="category">
-                    
-                
-            </div>
-            
-        
-    </div>
-</div>
-</div>
-				
-					<div class="post"><div class="post-header">
-    <div class="meta">
-        <div class="date">
-            <span class="day">24</span>
-            <span class="rest">Feb 2016</span>
-        </div>
-    </div>
-    <div class="matter">
-        <h4 class="title small">
-            <a href="/post/2016/02/24/install-sendmail-error-in-centos-6.3/">CentOS 6.3 下安装 Sendmail 报错</a><sup class="label migrated" title="该文章迁移自作者旧博客，可能存在排版错误">MIGRATED</sup></h4>
-        <span class="description">
-            
-                <p>公司有一台服务器是 CentOS 6.3，今天安装 sendmail 提示 GPG 验证失败。</p>
-            
-        </span>
-        
-            
-            <div class="tags">
-                
-                    
-                    <a class="category" href="/categories/shell">Category: Shell</a>
-                    
-                
-                
-                    
-                    <a class="tag" href="/tags/centos">CentOS</a class="category">
-                    
-                    <a class="tag" href="/tags/sendmail">sendmail</a class="category">
-                    
-                    <a class="tag" href="/tags/linux">Linux</a class="category">
+                    <a class="tag" href="/tags/module">Module</a class="category">
                     
                 
             </div>
@@ -282,7 +278,7 @@
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

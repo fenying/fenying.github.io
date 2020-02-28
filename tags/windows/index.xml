@@ -31,6 +31,15 @@
     </item>
     
     <item>
+      <title>Memcached for Windows x64</title>
+      <link>https://fenying.github.io/project/memcached-win64/</link>
+      <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/memcached-win64/</guid>
+      <description>知名 Key-Value 缓存服务器的 Windows x64 移植版。</description>
+    </item>
+    
+    <item>
       <title>Memcached-win64-1.4.24-alpha 发布</title>
       <link>https://fenying.github.io/post/2015/07/10/announcing-of-memcached-win64-1.4.24-alpha/</link>
       <pubDate>Fri, 10 Jul 2015 20:37:03 +0800</pubDate>

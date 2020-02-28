@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
-    <lastBuildDate>Thu, 29 Nov 2018 13:10:00 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fenying.github.io/categories/security/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LiteRT/OTP.js</title>
+      <link>https://fenying.github.io/project/litert/otp.js/</link>
+      <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/litert/otp.js/</guid>
+      <description>TypeScript 编写的为 Node.js 提供 One-Time Password 支持的工具库，支持 HOTP 和 TOTP。</description>
+    </item>
     
     <item>
       <title>使用阿里云 DNS 验证并签发 TLS 证书</title>
@@ -28,6 +37,24 @@
       
       <guid>https://fenying.github.io/post/2018/11/25/ecdsa-with-nodejs/</guid>
       <description>&lt;p&gt;最近有个朋友问我关于 Node.js 下使用 ECDSA 的问题，主要是使用 Node.js 的 Crypto 模块无法校验网络传输过来的签名结果。在踩坑无数后，终于搞清楚了原因。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LE-AliDNS</title>
+      <link>https://fenying.github.io/project/le-alidns/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/le-alidns/</guid>
+      <description>这是一个基于 Certbot + 阿里云 DNS 为 Let&amp;rsquo;s Encrypt 提供 DNS 验证的 Shell 工具包。</description>
+    </item>
+    
+    <item>
+      <title>WP-Passhash.js</title>
+      <link>https://fenying.github.io/project/wp-passhash.js/</link>
+      <pubDate>Sat, 25 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/wp-passhash.js/</guid>
+      <description>这是一个用于在 Node.js 中对 WordPress 的用户登录口令哈希值进行校验的库，一般用于整合 WordPress ，或者从 WordPress 迁移。</description>
     </item>
     
     <item>

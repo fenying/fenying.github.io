@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Windows 标准控件：按钮控件的使用 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142658" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Windows 标准控件：按钮控件的使用 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="Windows 标准控件：按钮控件的使用" />
 <meta property="og:description" content="本文展示 Windows 标准控件之按钮控件的使用方法。" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Windows 标准控件：按钮控件的使用"/>
 <meta name="twitter:description" content="本文展示 Windows 标准控件之按钮控件的使用方法。"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142658" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142658" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142658"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142658" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -120,26 +124,26 @@
 <p>以下程序在 Windows 7 简体中文破解版、Visual C++ 2008 专业版、Windows 7 SDK 环境下编译通过。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#008000">/* File Begin */</span>
 <span style="color:#008000">// wTest.cpp : 定义应用程序的入口点。
-</span><span style="color:#008000"></span><span style="color:#008000">// This is a Win32 Application C Project.
-</span><span style="color:#008000"></span><span style="color:#008000">// Author: Fenying
-</span><span style="color:#008000"></span><span style="color:#008000">// Time: 2011-07-20
-</span><span style="color:#008000"></span><span style="color:#008000">// Version: 0.0.0.1
-</span><span style="color:#008000"></span><span style="color:#008000">// (C) Maple Knights &amp; Fenying Studio Reserved.
-</span><span style="color:#008000"></span><span style="color:#008000">// Description： Windows 7 Ultimate SP1 &amp; Visual C++ 2008 Pro &amp; Windows 7 SDK &amp; Win32 Application C Project are required.
+</span><span style="color:#008000">// This is a Win32 Application C Project.
+</span><span style="color:#008000">// Author: Fenying
+</span><span style="color:#008000">// Time: 2011-07-20
+</span><span style="color:#008000">// Version: 0.0.0.1
+</span><span style="color:#008000">// (C) Maple Knights &amp; Fenying Studio Reserved.
+</span><span style="color:#008000">// Description： Windows 7 Ultimate SP1 &amp; Visual C++ 2008 Pro &amp; Windows 7 SDK &amp; Win32 Application C Project are required.
 </span><span style="color:#008000"></span>
-<span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;tchar.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;Windows.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;CommCtrl.h&gt;</span><span style="color:#00f">
+<span style="color:#00f">#include</span> <span style="color:#00f">&lt;tchar.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;Windows.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;CommCtrl.h&gt;</span><span style="color:#00f">
 </span><span style="color:#00f"></span>
-<span style="color:#00f">#</span><span style="color:#00f">ifdef NULL</span><span style="color:#00f">
-</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">undef NULL</span><span style="color:#00f">
-</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">define NULL 0</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">else</span><span style="color:#00f">
-</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">define NULL 0</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+<span style="color:#00f">#ifdef NULL
+</span><span style="color:#00f"></span>    <span style="color:#00f">#undef NULL
+</span><span style="color:#00f"></span>    <span style="color:#00f">#define NULL 0
+</span><span style="color:#00f">#else
+</span><span style="color:#00f"></span>    <span style="color:#00f">#define NULL 0
+</span><span style="color:#00f">#endif
 </span><span style="color:#00f"></span>
 <span style="color:#008000">//[0] 使用系统主题
-</span><span style="color:#008000"></span><span style="color:#00f">#</span><span style="color:#00f">pragma comment(linker, &#34;</span><span style="color:#00f">/</span><span style="color:#00f">manifestdependency:\&#34;type=&#39;win32&#39; name=&#39;Microsoft.Windows.Common-Controls&#39; version=&#39;6.0.0.0&#39; processorArchitecture=&#39;*&#39; publicKeyToken=&#39;6595b64144ccf1df&#39; language=&#39;*&#39;\&#34;&#34;)</span><span style="color:#00f">
+</span><span style="color:#008000"></span><span style="color:#00f">#pragma comment(linker, &#34;/manifestdependency:\&#34;type=&#39;win32&#39; name=&#39;Microsoft.Windows.Common-Controls&#39; version=&#39;6.0.0.0&#39; processorArchitecture=&#39;*&#39; publicKeyToken=&#39;6595b64144ccf1df&#39; language=&#39;*&#39;\&#34;&#34;)
 </span><span style="color:#00f"></span>
 <span style="color:#008000">//[A] 全局变量:
 </span><span style="color:#008000"></span>HINSTANCE hInst;                                <span style="color:#008000">// 当前实例
@@ -156,20 +160,20 @@ HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT
 
 <span style="color:#008000">//[C] 宏常量
 </span><span style="color:#008000"></span>
-<span style="color:#00f">#</span><span style="color:#00f">define GLOBAL_FORE_FONT_NAME        _T(&#34;Tahoma&#34;)</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_PUSHBUTTON               1</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_DEFPUSHBUTTON            2</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_CHECKBOX                 3</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_AUTOCHECKBOX             4</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_3STATECHECKBOX           5</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_AUTO3STATECHECKBOX       6</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_GROUPBOX                 7</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_RADIOBOX                 8</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_AUTORADIOBOX             9</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_COMMNADLINK              10</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_DEFCOMMNADLINK           11</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_SPLITBUTTON              12</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">define BTN_DEFSPLITBUTTON           13</span><span style="color:#00f">
+<span style="color:#00f">#define GLOBAL_FORE_FONT_NAME        _T(&#34;Tahoma&#34;)
+</span><span style="color:#00f">#define BTN_PUSHBUTTON               1
+</span><span style="color:#00f">#define BTN_DEFPUSHBUTTON            2
+</span><span style="color:#00f">#define BTN_CHECKBOX                 3
+</span><span style="color:#00f">#define BTN_AUTOCHECKBOX             4
+</span><span style="color:#00f">#define BTN_3STATECHECKBOX           5
+</span><span style="color:#00f">#define BTN_AUTO3STATECHECKBOX       6
+</span><span style="color:#00f">#define BTN_GROUPBOX                 7
+</span><span style="color:#00f">#define BTN_RADIOBOX                 8
+</span><span style="color:#00f">#define BTN_AUTORADIOBOX             9
+</span><span style="color:#00f">#define BTN_COMMNADLINK              10
+</span><span style="color:#00f">#define BTN_DEFCOMMNADLINK           11
+</span><span style="color:#00f">#define BTN_SPLITBUTTON              12
+</span><span style="color:#00f">#define BTN_DEFSPLITBUTTON           13
 </span><span style="color:#00f"></span>
 <span style="color:#008000">//[D] 主函数
 </span><span style="color:#008000"></span><span style="color:#2b91af">int</span> APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, <span style="color:#2b91af">int</span> nCmdShow) {
@@ -179,8 +183,8 @@ HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT
     HWND hWnd;
 
     <span style="color:#008000">// 初始化字符串
-</span><span style="color:#008000"></span>    szWindowClass = _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">my_wnd_cls</span><span style="color:#a31515">&#34;</span>);
-    szTitle = _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello World</span><span style="color:#a31515">&#34;</span>);
+</span><span style="color:#008000"></span>    szWindowClass = _T(<span style="color:#a31515">&#34;my_wnd_cls&#34;</span>);
+    szTitle = _T(<span style="color:#a31515">&#34;Hello World&#34;</span>);
 
     <span style="color:#008000">// 初始化默认字体
 </span><span style="color:#008000"></span>    hForeFont = CreateFontW(14,0,0,0,0,0,0,0,DEFAULT_CHARSET,0,0,0,0, GLOBAL_FORE_FONT_NAME);
@@ -208,7 +212,7 @@ HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT
     hWnd = CreateWindow(szWindowClass, szTitle, WS_TABSTOP|WS_OVERLAPPEDWINDOW, 200, 0, 800, 600, NULL, NULL, hInstance, NULL);
 
     <span style="color:#00f">if</span> (!hWnd) {
-        MessageBox(NULL,_T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Failed to create a window.</span><span style="color:#a31515">&#34;</span>), szTitle, MB_OK);
+        MessageBox(NULL,_T(<span style="color:#a31515">&#34;Failed to create a window.&#34;</span>), szTitle, MB_OK);
         <span style="color:#00f">return</span> FALSE;
     }
 
@@ -233,51 +237,51 @@ HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT
     <span style="color:#00f">case</span> WM_CREATE: <span style="color:#008000">// 当窗体被创建时
 </span><span style="color:#008000"></span>
         <span style="color:#008000">// 创建一个标准命令按钮 Push Button
-</span><span style="color:#008000"></span>        hBtnO = CreateButton(BS_PUSHBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Button</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 50, 200, 32, BTN_PUSHBUTTON);
+</span><span style="color:#008000"></span>        hBtnO = CreateButton(BS_PUSHBUTTON, _T(<span style="color:#a31515">&#34;Button&#34;</span>), hWnd, 50, 50, 200, 32, BTN_PUSHBUTTON);
 
         <span style="color:#008000">// 创建一个缺省标准命令按钮 Default Push Button
-</span><span style="color:#008000"></span>         CreateButton(BS_DEFPUSHBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Default Button</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 85, 200, 32, BTN_DEFPUSHBUTTON);
+</span><span style="color:#008000"></span>         CreateButton(BS_DEFPUSHBUTTON, _T(<span style="color:#a31515">&#34;Default Button&#34;</span>), hWnd, 50, 85, 200, 32, BTN_DEFPUSHBUTTON);
 
         <span style="color:#008000">// 创建一个二态复选框 CheckBox，其被单击时不会自动改变选择状态
-</span><span style="color:#008000"></span>        CreateButton(BS_CHECKBOX, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">CheckBox</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 120, 200, 24, BTN_CHECKBOX);
+</span><span style="color:#008000"></span>        CreateButton(BS_CHECKBOX, _T(<span style="color:#a31515">&#34;CheckBox&#34;</span>), hWnd, 50, 120, 200, 24, BTN_CHECKBOX);
 
         <span style="color:#008000">// 创建一个二态自动复选框 Auto CheckBox，其被单击时会自动改变选择状态
-</span><span style="color:#008000"></span>        CreateButton(BS_AUTOCHECKBOX, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Auto CheckBox</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 150, 200, 24, BTN_AUTOCHECKBOX);
+</span><span style="color:#008000"></span>        CreateButton(BS_AUTOCHECKBOX, _T(<span style="color:#a31515">&#34;Auto CheckBox&#34;</span>), hWnd, 50, 150, 200, 24, BTN_AUTOCHECKBOX);
 
         <span style="color:#008000">// 创建一个三态复选框 3 State CheckBox，其被单击时不会自动改变选择状态
-</span><span style="color:#008000"></span>        CreateButton(BS_3STATE, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">3 State CheckBox</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 180, 200, 24, BTN_3STATECHECKBOX);
+</span><span style="color:#008000"></span>        CreateButton(BS_3STATE, _T(<span style="color:#a31515">&#34;3 State CheckBox&#34;</span>), hWnd, 50, 180, 200, 24, BTN_3STATECHECKBOX);
 
         <span style="color:#008000">// 创建一个三态自动复选框 Auto 3 State CheckBox，其被单击时会自动改变选择状态
-</span><span style="color:#008000"></span>        CreateButton(BS_AUTO3STATE, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Auto 3 State CheckBox</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 210, 200, 24, BTN_AUTO3STATECHECKBOX);
+</span><span style="color:#008000"></span>        CreateButton(BS_AUTO3STATE, _T(<span style="color:#a31515">&#34;Auto 3 State CheckBox&#34;</span>), hWnd, 50, 210, 200, 24, BTN_AUTO3STATECHECKBOX);
 
         <span style="color:#008000">// 创建一个组合框 Group Box
-</span><span style="color:#008000"></span>        CreateButton(BS_GROUPBOX, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Group Box</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 240, 200, 100, BTN_GROUPBOX);
+</span><span style="color:#008000"></span>        CreateButton(BS_GROUPBOX, _T(<span style="color:#a31515">&#34;Group Box&#34;</span>), hWnd, 50, 240, 200, 100, BTN_GROUPBOX);
 
         <span style="color:#008000">// 创建一个单选框 Radio Box，其被单击时不会自动改变选择状态
-</span><span style="color:#008000"></span>        CreateButton(BS_RADIOBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Radio Box</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 350, 200, 24, BTN_RADIOBOX);
+</span><span style="color:#008000"></span>        CreateButton(BS_RADIOBUTTON, _T(<span style="color:#a31515">&#34;Radio Box&#34;</span>), hWnd, 50, 350, 200, 24, BTN_RADIOBOX);
 
         <span style="color:#008000">// 创建一个自动单选框 Auto Radio Box，其被单击时会自动改变选择状态
-</span><span style="color:#008000"></span>        CreateButton(BS_AUTORADIOBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Auto Radio Box</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 380, 200, 24, BTN_AUTORADIOBOX);
+</span><span style="color:#008000"></span>        CreateButton(BS_AUTORADIOBUTTON, _T(<span style="color:#a31515">&#34;Auto Radio Box&#34;</span>), hWnd, 50, 380, 200, 24, BTN_AUTORADIOBOX);
 
         <span style="color:#008000">// 创建一个自动单选框 Auto Radio Box，其被单击时会自动改变选择状态
-</span><span style="color:#008000"></span>        CreateButton(BS_AUTORADIOBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Auto Radio Box</span><span style="color:#a31515">&#34;</span>), hWnd, 50, 410, 200, 24, BTN_AUTORADIOBOX);
+</span><span style="color:#008000"></span>        CreateButton(BS_AUTORADIOBUTTON, _T(<span style="color:#a31515">&#34;Auto Radio Box&#34;</span>), hWnd, 50, 410, 200, 24, BTN_AUTORADIOBOX);
 
         <span style="color:#008000">// Windows Vista Required.
-</span><span style="color:#008000"></span><span style="color:#00f">#</span><span style="color:#00f">if _WIN32_WINNT &gt;= 0x600</span><span style="color:#00f">
+</span><span style="color:#008000"></span><span style="color:#00f">#if _WIN32_WINNT &gt;= 0x600
 </span><span style="color:#00f"></span>
         <span style="color:#008000">// 创建一个命令链接按钮 Command Link
-</span><span style="color:#008000"></span>        CreateButton(BS_COMMANDLINK, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Command Link</span><span style="color:#a31515">&#34;</span>), hWnd, 300, 50, 200, 48, BTN_COMMNADLINK);
+</span><span style="color:#008000"></span>        CreateButton(BS_COMMANDLINK, _T(<span style="color:#a31515">&#34;Command Link&#34;</span>), hWnd, 300, 50, 200, 48, BTN_COMMNADLINK);
 
         <span style="color:#008000">// 创建一个缺省命令链接按钮 Def Command Link
-</span><span style="color:#008000"></span>        CreateButton(BS_DEFCOMMANDLINK, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Def Command Link</span><span style="color:#a31515">&#34;</span>), hWnd, 300, 100, 200, 48, BTN_DEFCOMMNADLINK);
+</span><span style="color:#008000"></span>        CreateButton(BS_DEFCOMMANDLINK, _T(<span style="color:#a31515">&#34;Def Command Link&#34;</span>), hWnd, 300, 100, 200, 48, BTN_DEFCOMMNADLINK);
 
         <span style="color:#008000">// 创建一个分割按钮 Split Button
-</span><span style="color:#008000"></span>        CreateButton(BS_SPLITBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Split Button</span><span style="color:#a31515">&#34;</span>), hWnd, 300, 150, 200, 48, BTN_SPLITBUTTON);
+</span><span style="color:#008000"></span>        CreateButton(BS_SPLITBUTTON, _T(<span style="color:#a31515">&#34;Split Button&#34;</span>), hWnd, 300, 150, 200, 48, BTN_SPLITBUTTON);
 
         <span style="color:#008000">// 创建一个缺省分割按钮 Def Split Button
-</span><span style="color:#008000"></span>        CreateButton(BS_DEFSPLITBUTTON, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Def Split Button</span><span style="color:#a31515">&#34;</span>), hWnd, 300, 200, 200, 48, BTN_DEFSPLITBUTTON);
+</span><span style="color:#008000"></span>        CreateButton(BS_DEFSPLITBUTTON, _T(<span style="color:#a31515">&#34;Def Split Button&#34;</span>), hWnd, 300, 200, 200, 48, BTN_DEFSPLITBUTTON);
 
-<span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+<span style="color:#00f">#endif
 </span><span style="color:#00f"></span>        <span style="color:#008000">//
 </span><span style="color:#008000"></span>
         <span style="color:#00f">break</span>;
@@ -294,7 +298,7 @@ HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT
 </span><span style="color:#008000"></span>                    <span style="color:#008000">/*******************************************************
 </span><span style="color:#008000">                     * 单击事件消息。
 </span><span style="color:#008000">                     *******************************************************/</span>
-                    MessageBox(hWnd, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hi, You clicked the command button</span><span style="color:#a31515">&#34;</span>), szTitle, MB_OK);
+                    MessageBox(hWnd, _T(<span style="color:#a31515">&#34;Hi, You clicked the command button&#34;</span>), szTitle, MB_OK);
                     <span style="color:#00f">break</span>;
                 <span style="color:#00f">case</span> BN_DOUBLECLICKED:
                     <span style="color:#008000">/*******************************************************
@@ -303,7 +307,7 @@ HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT
 </span><span style="color:#008000">                     * BS_USERBUTTON, BS_RADIOBUTTON, BS_OWNERDRAW 三种按钮可
 </span><span style="color:#008000">                     * 以自动支持此消息，其他按钮必须添加 BS_NOTIFY 样式。
 </span><span style="color:#008000">                     *******************************************************/</span>
-                    MessageBox(hWnd, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hi, You double clicked the command button</span><span style="color:#a31515">&#34;</span>), szTitle, MB_OK);
+                    MessageBox(hWnd, _T(<span style="color:#a31515">&#34;Hi, You double clicked the command button&#34;</span>), szTitle, MB_OK);
                     <span style="color:#00f">break</span>;
                 <span style="color:#00f">default</span>:
                     <span style="color:#00f">goto</span> onNothing;
@@ -344,7 +348,7 @@ HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT
             <span style="color:#00f">case</span> BTN_COMMNADLINK: <span style="color:#008000">//命令链接按钮
 </span><span style="color:#008000"></span>                <span style="color:#00f">switch</span> (wmEvent) {
                 <span style="color:#00f">case</span> BN_CLICKED: <span style="color:#008000">// 单击事件。
-</span><span style="color:#008000"></span>                    MessageBox(hWnd, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hi, You clicked the default command button</span><span style="color:#a31515">&#34;</span>), szTitle, MB_OK);
+</span><span style="color:#008000"></span>                    MessageBox(hWnd, _T(<span style="color:#a31515">&#34;Hi, You clicked the default command button&#34;</span>), szTitle, MB_OK);
                     <span style="color:#00f">break</span>;
                 <span style="color:#00f">default</span>:
                     <span style="color:#00f">goto</span> onNothing;
@@ -386,7 +390,7 @@ HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT
 </span><span style="color:#008000">                     * 当一个按钮具有 BS_NOTIFY 时，如果获得了焦点，会收到此
 </span><span style="color:#008000">                     * 通知消息。
 </span><span style="color:#008000">                     *******************************************************/</span>
-                    SetWindowText(hCtl, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">With Focus.</span><span style="color:#a31515">&#34;</span>));
+                    SetWindowText(hCtl, _T(<span style="color:#a31515">&#34;With Focus.&#34;</span>));
                     <span style="color:#00f">break</span>;
                 <span style="color:#00f">case</span> BN_KILLFOCUS:
                     <span style="color:#008000">/*******************************************************
@@ -394,7 +398,7 @@ HWND CreateButton(DWORD dwStyle, LPCTSTR pTitle, HWND hParent, INT x, INT y, INT
 </span><span style="color:#008000">                     * 当一个按钮具有 BS_NOTIFY 时，如果失去了焦点，会收到此
 </span><span style="color:#008000">                     * 通知消息。
 </span><span style="color:#008000">                     *******************************************************/</span>
-                    SetWindowText(hCtl, _T(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Without Focus.</span><span style="color:#a31515">&#34;</span>));
+                    SetWindowText(hCtl, _T(<span style="color:#a31515">&#34;Without Focus.&#34;</span>));
                     <span style="color:#00f">break</span>;
                 <span style="color:#00f">default</span>:
                     <span style="color:#00f">goto</span> onNothing;
@@ -510,7 +514,7 @@ onNothing:
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

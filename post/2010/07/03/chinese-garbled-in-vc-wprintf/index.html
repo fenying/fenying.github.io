@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>关于 VC2008 中 wprintf 输出中文乱码问题 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142659" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>关于 VC2008 中 wprintf 输出中文乱码问题 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="关于 VC2008 中 wprintf 输出中文乱码问题" />
 <meta property="og:description" content="最近写编码转换，发现MB编码转换成 Unicode 后，中文总是乱码。
 起初以为是自己写错了，但测试后发现转换结果是完全正确的。
@@ -16,10 +16,10 @@
 <meta name="twitter:description" content="最近写编码转换，发现MB编码转换成 Unicode 后，中文总是乱码。
 起初以为是自己写错了，但测试后发现转换结果是完全正确的。
 再测试一下，发现居然连常字符串都不能正常输出……"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142659" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142659" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142659"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -28,7 +28,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142659" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -52,6 +52,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -122,8 +126,8 @@
 起初以为是自己写错了，但测试后发现转换结果是完全正确的。
 再测试一下，发现居然连常字符串都不能正常输出……</p>
 <p>源代码：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">CharW ucs2s[] = <span style="color:#a31515">L</span><span style="color:#a31515">&#34;</span><span style="color:#a31515">我fsf我safas</span><span style="color:#a31515">&#34;</span>;
-wprintf(<span style="color:#a31515">L</span><span style="color:#a31515">&#34;</span><span style="color:#a31515">%s</span><span style="color:#a31515">\r</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, ucs2s);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">CharW ucs2s[] = <span style="color:#a31515">L</span><span style="color:#a31515">&#34;我fsf我safas&#34;</span>;
+wprintf(<span style="color:#a31515">L</span><span style="color:#a31515">&#34;%s</span><span style="color:#a31515">\r\n</span><span style="color:#a31515">&#34;</span>, ucs2s);
 </code></pre></div><p>输出结果：<code>?fsf?safas</code></p>
 <p>带着疑问打开MSDN，发现原来 <code>printf</code> 函数有N个版本……</p>
 <p>其中 Unicode 版本的如下</p>
@@ -135,9 +139,9 @@ wprintf(<span style="color:#a31515">L</span><span style="color:#a31515">&#34;</s
 <p>解决方法如下：</p>
 <p>1、加入头文件 <code>#include &lt;Locale.h&gt;</code>
 2、调用函数 <code>_wsetlocale</code> 或 <code>setlocale</code> 设置要使用的本地语言。如：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">_wsetlocale(LC_ALL, <span style="color:#a31515">L</span><span style="color:#a31515">&#34;</span><span style="color:#a31515">chs</span><span style="color:#a31515">&#34;</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">_wsetlocale(LC_ALL, <span style="color:#a31515">L</span><span style="color:#a31515">&#34;chs&#34;</span>);
 </code></pre></div><p>或者</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">setlocale(LC_ALL, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">chs</span><span style="color:#a31515">&#34;</span>);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c">setlocale(LC_ALL, <span style="color:#a31515">&#34;chs&#34;</span>);
 </code></pre></div><p>此外，网上说 <code>locale</code> 对 <code>prinft</code> 和 <code>printf_s</code> 没有影响，这个似乎是如此。</p>
 <p>但我在MSDN里看到的几乎对所有的 <code>printf</code>、<code>atoi</code>、<code>atof</code> 等字符串操作函数都有影响……</p>
 <p>具体各位自己探索吧。</p>
@@ -177,7 +181,7 @@ wprintf(<span style="color:#a31515">L</span><span style="color:#a31515">&#34;</s
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

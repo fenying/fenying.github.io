@@ -14,10 +14,10 @@
     
     <item>
       <title>第四章 编译安装 OpenSSL</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/04.compile-openssl/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/04.compile-openssl/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/04.compile-openssl/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/04.compile-openssl/</guid>
       <description>&lt;p&gt;本章编译安装 OpenSSL 的 1.1.0c 版本。&lt;/p&gt;</description>
     </item>
     

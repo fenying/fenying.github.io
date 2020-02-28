@@ -14,10 +14,10 @@
     
     <item>
       <title>第二章 安装最新版 GCC</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/02.compile-latest-gcc/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/02.compile-latest-gcc/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/02.compile-latest-gcc/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/02.compile-latest-gcc/</guid>
       <description>&lt;p&gt;本章编译安装最新版本的 GCC 编译器。&lt;/p&gt;</description>
     </item>
     

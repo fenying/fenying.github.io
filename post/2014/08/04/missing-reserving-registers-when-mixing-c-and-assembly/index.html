@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>C/C&#43;&#43;与汇编混合编程中的函数声明 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142658" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>C/C&#43;&#43;与汇编混合编程中的函数声明 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="C/C&#43;&#43;与汇编混合编程中的函数声明" />
 <meta property="og:description" content="最近写一个C小程序时尝试了下用汇编写一部分代码，封装成函数供 VC （2013）调用。Debug模式一切正常，但是到了Release模式下就直接崩溃了。" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="C/C&#43;&#43;与汇编混合编程中的函数声明"/>
 <meta name="twitter:description" content="最近写一个C小程序时尝试了下用汇编写一部分代码，封装成函数供 VC （2013）调用。Debug模式一切正常，但是到了Release模式下就直接崩溃了。"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142658" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142658" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142658"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142658" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -132,26 +136,26 @@
 
 MemCpyB ENDP
 </code></pre></div><p>一段示例代码：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">extern</span> <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">C</span><span style="color:#a31515">&#34;</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> MemCpyB(<span style="color:#2b91af">void</span> *pDst, <span style="color:#2b91af">void</span> *pSrc, <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> uBytes);
-<span style="color:#00f">#</span><span style="color:#00f">pragma comment(lib, &#34;mem.lib&#34;) </span><span style="color:#008000">/*把汇编代码编译成 lib 使用*/</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">extern</span> <span style="color:#a31515">&#34;C&#34;</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> MemCpyB(<span style="color:#2b91af">void</span> *pDst, <span style="color:#2b91af">void</span> *pSrc, <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> uBytes);
+<span style="color:#00f">#pragma comment(lib, &#34;mem.lib&#34;) </span><span style="color:#008000">/*把汇编代码编译成 lib 使用*/</span><span style="color:#00f">
 </span><span style="color:#00f"></span><span style="color:#2b91af">int</span> main() {
     <span style="color:#2b91af">char</span> k[255];
-    MemCpyB(k, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello World!</span><span style="color:#a31515">&#34;</span>, 13);
-    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, k);
+    MemCpyB(k, <span style="color:#a31515">&#34;Hello World!&#34;</span>, 13);
+    printf(<span style="color:#a31515">&#34;%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, k);
     <span style="color:#00f">return</span> 0;
 }
 </code></pre></div><p>这个函数在静态栈里面工作完全正常，Release 模式也一样。但是如果是动态内存那就不一样了，比如：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">extern</span> <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">C</span><span style="color:#a31515">&#34;</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> MemCpyB(<span style="color:#2b91af">void</span> *pDst, <span style="color:#2b91af">void</span> *pSrc, <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> uBytes);
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">extern</span> <span style="color:#a31515">&#34;C&#34;</span> <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> MemCpyB(<span style="color:#2b91af">void</span> *pDst, <span style="color:#2b91af">void</span> *pSrc, <span style="color:#2b91af">unsigned</span> <span style="color:#2b91af">int</span> uBytes);
 
-<span style="color:#00f">#</span><span style="color:#00f">pragma comment(lib, &#34;mem.lib&#34;) </span><span style="color:#008000">/*把汇编代码编译成 lib 使用*/</span><span style="color:#00f">
+<span style="color:#00f">#pragma comment(lib, &#34;mem.lib&#34;) </span><span style="color:#008000">/*把汇编代码编译成 lib 使用*/</span><span style="color:#00f">
 </span><span style="color:#00f"></span>
 <span style="color:#2b91af">int</span> main() {
     <span style="color:#2b91af">char</span> *k;
     k = (<span style="color:#2b91af">char</span> *)malloc(255);
-    MemCpyB(k, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello World!</span><span style="color:#a31515">&#34;</span>, 13);
-    printf(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, k);
+    MemCpyB(k, <span style="color:#a31515">&#34;Hello World!&#34;</span>, 13);
+    printf(<span style="color:#a31515">&#34;%s</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, k);
     free(k);
     <span style="color:#00f">return</span> 0;
 }
@@ -166,89 +170,89 @@ MemCpyB ENDP
 
 INCLUDELIB OLDNAMES
 
-PUBLIC	<span style="">?</span><span style="">?</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@			<span style="color:#008000">; `string&#39;
-</span><span style="color:#008000"></span>PUBLIC	<span style="">?</span><span style="">?</span>_C@_0N@GCDOMLDM@Hello<span style="">?</span>5World<span style="">?</span>$CB<span style="">?</span>$AA@		<span style="color:#008000">; `string&#39;
-</span><span style="color:#008000"></span>PUBLIC	<span style="">?</span><span style="">?</span>_C@_03OFAPEBGM@<span style="">?</span>$CFs<span style="">?</span>6<span style="">?</span>$AA@			<span style="color:#008000">; `string&#39;
+PUBLIC	<span style="">??</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@			<span style="color:#008000">; `string&#39;
+</span><span style="color:#008000"></span>PUBLIC	<span style="">??</span>_C@_0N@GCDOMLDM@Hello<span style="">?</span>5World<span style="">?</span>$CB<span style="">?</span>$AA@		<span style="color:#008000">; `string&#39;
+</span><span style="color:#008000"></span>PUBLIC	<span style="">??</span>_C@_03OFAPEBGM@<span style="">?</span>$CFs<span style="">?</span>6<span style="">?</span>$AA@			<span style="color:#008000">; `string&#39;
 </span><span style="color:#008000"></span>EXTRN	_MemCpyB@12:PROC
 EXTRN	__imp__printf:PROC
 EXTRN	__imp__malloc:PROC
 EXTRN	__imp__free:PROC
 <span style="color:#008000">;	COMDAT ??_C@_03OFAPEBGM@?$CFs?6?$AA@
 </span><span style="color:#008000"></span>CONST	SEGMENT
-<span style="">?</span><span style="">?</span>_C@_03OFAPEBGM@<span style="">?</span>$CFs<span style="">?</span>6<span style="">?</span>$AA@ DB <span style="">&#39;</span>%s<span style="">&#39;</span>, 0aH, 00H		<span style="color:#008000">; `string&#39;
+<span style="">??</span>_C@_03OFAPEBGM@<span style="">?</span>$CFs<span style="">?</span>6<span style="">?</span>$AA@ DB <span style="">&#39;</span>%s<span style="">&#39;</span>, 0aH, 00H		<span style="color:#008000">; `string&#39;
 </span><span style="color:#008000"></span>CONST	ENDS
 <span style="color:#008000">;	COMDAT ??_C@_0N@GCDOMLDM@Hello?5World?$CB?$AA@
 </span><span style="color:#008000"></span>CONST	SEGMENT
-<span style="">?</span><span style="">?</span>_C@_0N@GCDOMLDM@Hello<span style="">?</span>5World<span style="">?</span>$CB<span style="">?</span>$AA@ DB <span style="">&#39;</span>Hello World!<span style="">&#39;</span>, 00H <span style="color:#008000">; `string&#39;
+<span style="">??</span>_C@_0N@GCDOMLDM@Hello<span style="">?</span>5World<span style="">?</span>$CB<span style="">?</span>$AA@ DB <span style="">&#39;</span>Hello World!<span style="">&#39;</span>, 00H <span style="color:#008000">; `string&#39;
 </span><span style="color:#008000"></span>CONST	ENDS
 <span style="color:#008000">;	COMDAT ??_C@_05CNOPHDHD@?$CF08x?6?$AA@
 </span><span style="color:#008000"></span>CONST	SEGMENT
-<span style="">?</span><span style="">?</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@ DB <span style="">&#39;</span><span style="">%</span>08x<span style="">&#39;</span>, 0aH, 00H	<span style="color:#008000">; `string&#39;
+<span style="">??</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@ DB <span style="">&#39;%</span>08x<span style="">&#39;</span>, 0aH, 00H	<span style="color:#008000">; `string&#39;
 </span><span style="color:#008000"></span>CONST	ENDS
 PUBLIC	_main
 <span style="color:#008000">; Function compile flags: /Ogtp
-</span><span style="color:#008000"></span><span style="color:#008000">; File e:\coding\test\test\test.cpp
-</span><span style="color:#008000"></span><span style="color:#008000">;	COMDAT _main
+</span><span style="color:#008000">; File e:\coding\test\test\test.cpp
+</span><span style="color:#008000">;	COMDAT _main
 </span><span style="color:#008000"></span>_TEXT	SEGMENT
 _main	PROC						<span style="color:#008000">; COMDAT
 </span><span style="color:#008000"></span>
 <span style="color:#008000">; 8    : int main() {
 </span><span style="color:#008000"></span>
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span>	<span style="">5</span><span style="">6</span>		 push	 esi
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span>	<span style="">5</span><span style="">7</span>		 push	 edi
+  <span style="">00000</span>	<span style="">56</span>		 push	 esi
+  <span style="">00001</span>	<span style="">57</span>		 push	 edi
 
 <span style="color:#008000">; 9    : 	char *k;
-</span><span style="color:#008000"></span><span style="color:#008000">; 10   : 	k = (char *)malloc(255);
+</span><span style="color:#008000">; 10   : 	k = (char *)malloc(255);
 </span><span style="color:#008000"></span>
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span>	<span style="">6</span><span style="">8</span> ff 00 00 00	 push	 255			<span style="color:#008000">; 000000ffH
+  <span style="">00002</span>	<span style="">68</span> ff 00 00 00	 push	 255			<span style="color:#008000">; 000000ffH
 </span><span style="color:#008000"></span>  00007	ff 15 00 00 00
-	<span style="">0</span><span style="">0</span>		 call	 DWORD PTR __imp__malloc
+	<span style="">00</span>		 call	 DWORD PTR __imp__malloc
 
 <span style="color:#008000">; 11   : 	printf(&#34;%08x\n&#34;, k);
 </span><span style="color:#008000"></span>
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">0</span>d	8b 35 00 00 00
-	<span style="">0</span><span style="">0</span>		 mov	 esi, DWORD PTR __imp__printf
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span><span style="">3</span>	<span style="">8</span>b f8		 mov	 edi, eax
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span><span style="">5</span>	<span style="">5</span><span style="">7</span>		 push	 edi
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span><span style="">6</span>	<span style="">6</span><span style="">8</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span>	 push	 OFFSET <span style="">?</span><span style="">?</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span>b	ff d6		 call	 esi
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">1</span>d	83 c4 0c	 add	 esp, 12			<span style="color:#008000">; 0000000cH
+  <span style="">0000</span>d	8b 35 00 00 00
+	<span style="">00</span>		 mov	 esi, DWORD PTR __imp__printf
+  <span style="">00013</span>	<span style="">8</span>b f8		 mov	 edi, eax
+  <span style="">00015</span>	<span style="">57</span>		 push	 edi
+  <span style="">00016</span>	<span style="">68</span> <span style="">00</span> <span style="">00</span> <span style="">00</span> <span style="">00</span>	 push	 OFFSET <span style="">??</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@
+  <span style="">0001</span>b	ff d6		 call	 esi
+  <span style="">0001</span>d	83 c4 0c	 add	 esp, 12			<span style="color:#008000">; 0000000cH
 </span><span style="color:#008000"></span>
 <span style="color:#008000">; 12   : 	MemCpyB(k, &#34;Hello World!&#34;, 13);
 </span><span style="color:#008000"></span>
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span><span style="">0</span>	<span style="">6</span>a 0d		 push	 13			<span style="color:#008000">; 0000000dH
-</span><span style="color:#008000"></span>  00022	68 00 00 00 00	 push	 OFFSET <span style="">?</span><span style="">?</span>_C@_0N@GCDOMLDM@Hello<span style="">?</span>5World<span style="">?</span>$CB<span style="">?</span>$AA@
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span><span style="">7</span>	<span style="">5</span><span style="">7</span>		 push	 edi
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span><span style="">8</span>	e8 00 00 00 00	 call	 _MemCpyB@12
+  <span style="">00020</span>	<span style="">6</span>a 0d		 push	 13			<span style="color:#008000">; 0000000dH
+</span><span style="color:#008000"></span>  00022	68 00 00 00 00	 push	 OFFSET <span style="">??</span>_C@_0N@GCDOMLDM@Hello<span style="">?</span>5World<span style="">?</span>$CB<span style="">?</span>$AA@
+  <span style="">00027</span>	<span style="">57</span>		 push	 edi
+  <span style="">00028</span>	e8 00 00 00 00	 call	 _MemCpyB@12
 
 <span style="color:#008000">; 13   : 	printf(&#34;%08x\n&#34;, k);
 </span><span style="color:#008000"></span>
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span>d	57		 push	 edi
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">2</span>e	68 00 00 00 00	 push	 OFFSET <span style="">?</span><span style="">?</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span><span style="">3</span>	ff d6		 call	 esi
+  <span style="">0002</span>d	57		 push	 edi
+  <span style="">0002</span>e	68 00 00 00 00	 push	 OFFSET <span style="">??</span>_C@_05CNOPHDHD@<span style="">?</span>$CF08x<span style="">?</span>6<span style="">?</span>$AA@
+  <span style="">00033</span>	ff d6		 call	 esi
 
 <span style="color:#008000">; 14   : 	printf(&#34;%s\n&#34;, k);
 </span><span style="color:#008000"></span>
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span><span style="">5</span>	<span style="">5</span><span style="">7</span>		 push	 edi
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span><span style="">6</span>	<span style="">6</span><span style="">8</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span> <span style="">0</span><span style="">0</span>	 push	 OFFSET <span style="">?</span><span style="">?</span>_C@_03OFAPEBGM@<span style="">?</span>$CFs<span style="">?</span>6<span style="">?</span>$AA@
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span>b	ff d6		 call	 esi
+  <span style="">00035</span>	<span style="">57</span>		 push	 edi
+  <span style="">00036</span>	<span style="">68</span> <span style="">00</span> <span style="">00</span> <span style="">00</span> <span style="">00</span>	 push	 OFFSET <span style="">??</span>_C@_03OFAPEBGM@<span style="">?</span>$CFs<span style="">?</span>6<span style="">?</span>$AA@
+  <span style="">0003</span>b	ff d6		 call	 esi
 
 <span style="color:#008000">; 15   : 	free(k);
 </span><span style="color:#008000"></span>
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span>d	57		 push	 edi
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">3</span>e	ff 15 00 00 00
-	<span style="">0</span><span style="">0</span>		 call	 DWORD PTR __imp__free
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span><span style="">4</span>	<span style="">8</span><span style="">3</span> c4 14	 add	 esp, 20			<span style="color:#008000">; 00000014H
+  <span style="">0003</span>d	57		 push	 edi
+  <span style="">0003</span>e	ff 15 00 00 00
+	<span style="">00</span>		 call	 DWORD PTR __imp__free
+  <span style="">00044</span>	<span style="">83</span> c4 14	 add	 esp, 20			<span style="color:#008000">; 00000014H
 </span><span style="color:#008000"></span>
 <span style="color:#008000">; 16   : 	return 0;
 </span><span style="color:#008000"></span>
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span><span style="">7</span>	<span style="">3</span><span style="">3</span> c0		 xor	 eax, eax
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span><span style="">9</span>	<span style="">5</span>f		 pop	 edi
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span>a	5e		 pop	 esi
+  <span style="">00047</span>	<span style="">33</span> c0		 xor	 eax, eax
+  <span style="">00049</span>	<span style="">5</span>f		 pop	 edi
+  <span style="">0004</span>a	5e		 pop	 esi
 
 <span style="color:#008000">; 17   : }
 </span><span style="color:#008000"></span>
-  <span style="">0</span><span style="">0</span><span style="">0</span><span style="">4</span>b	c3		 ret	 0
+  <span style="">0004</span>b	c3		 ret	 0
 _main	ENDP
 _TEXT	ENDS
 END
@@ -307,7 +311,7 @@ MemCpyB ENDP
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

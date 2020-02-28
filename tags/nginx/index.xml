@@ -14,10 +14,10 @@
     
     <item>
       <title>第五章 安装最新版 Nginx</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/05.compile-nginx/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/05.compile-nginx/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/05.compile-nginx/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/05.compile-nginx/</guid>
       <description>&lt;p&gt;本章编译安装 Nginx 服务器的 1.11.5 版本。&lt;/p&gt;</description>
     </item>
     

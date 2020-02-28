@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>判断程序是否运行在 Windows x64 系统下 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142658" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>判断程序是否运行在 Windows x64 系统下 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="判断程序是否运行在 Windows x64 系统下" />
 <meta property="og:description" content="以下功能代码判断是否运行在 Windows x64 下。本例使用 Windows API 函数 IsWow64Process，具体请参考MSDN文档：http://msdn.microsoft.com/en-us/library/ms684139(VS.85).aspx" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="判断程序是否运行在 Windows x64 系统下"/>
 <meta name="twitter:description" content="以下功能代码判断是否运行在 Windows x64 下。本例使用 Windows API 函数 IsWow64Process，具体请参考MSDN文档：http://msdn.microsoft.com/en-us/library/ms684139(VS.85).aspx"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142658" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142658" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142658"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142658" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -122,8 +126,8 @@
 </span><span style="color:#008000"> * Author:   Angus Fenying
 </span><span style="color:#008000"> * Date:     2013-08-22
 </span><span style="color:#008000"> */</span>
-<span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;windows.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;tchar.h&gt;</span><span style="color:#00f">
+<span style="color:#00f">#include</span> <span style="color:#00f">&lt;windows.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;tchar.h&gt;</span><span style="color:#00f">
 </span><span style="color:#00f"></span>
 <span style="color:#00f">typedef</span> BOOL (WINAPI *LPFN_ISWOW64PROCESS) (HANDLE, PBOOL);
 
@@ -149,7 +153,7 @@ BOOL IsWow64() {
     BOOL bIsWow64 = FALSE;
 
     <span style="color:#00f">if</span> (!fnIsWow64Process)
-        fnIsWow64Process = (LPFN_ISWOW64PROCESS)GetProcAddress(GetModuleHandle(TEXT(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">kernel32</span><span style="color:#a31515">&#34;</span>)),<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">IsWow64Process</span><span style="color:#a31515">&#34;</span>);
+        fnIsWow64Process = (LPFN_ISWOW64PROCESS)GetProcAddress(GetModuleHandle(TEXT(<span style="color:#a31515">&#34;kernel32&#34;</span>)),<span style="color:#a31515">&#34;IsWow64Process&#34;</span>);
 
     <span style="color:#00f">if</span>(fnIsWow64Process)
         <span style="color:#00f">if</span> (!fnIsWow64Process(GetCurrentProcess(), &amp;bIsWow64))
@@ -161,12 +165,12 @@ BOOL IsWow64() {
 <span style="color:#2b91af">int</span> main( <span style="color:#2b91af">void</span> ) {
 
     <span style="color:#00f">if</span> (Isx64Application())
-        _tprintf(TEXT(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">The application is a x64 program.</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>));
+        _tprintf(TEXT(<span style="color:#a31515">&#34;The application is a x64 program.</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>));
     <span style="color:#00f">else</span> {
         <span style="color:#00f">if</span> (!IsWow64())
-            _tprintf(TEXT(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">The application is running under Windows x86.</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>));
+            _tprintf(TEXT(<span style="color:#a31515">&#34;The application is running under Windows x86.</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>));
         <span style="color:#00f">else</span>
-            _tprintf(TEXT(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">The application is a x86 program running under Windows x64.</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>));
+            _tprintf(TEXT(<span style="color:#a31515">&#34;The application is a x86 program running under Windows x64.</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>));
     }
 
     <span style="color:#00f">return</span> 0;
@@ -208,7 +212,7 @@ BOOL IsWow64() {
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

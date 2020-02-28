@@ -21,5 +21,14 @@
       <description>&lt;p&gt;这是一个关于 Redis 坑的故事。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Memcached for Windows x64</title>
+      <link>https://fenying.github.io/project/memcached-win64/</link>
+      <pubDate>Sun, 12 Jul 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/memcached-win64/</guid>
+      <description>知名 Key-Value 缓存服务器的 Windows x64 移植版。</description>
+    </item>
+    
   </channel>
 </rss>

@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>TypeScript 的声明文件的使用与编写 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142657" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>TypeScript 的声明文件的使用与编写 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="TypeScript 的声明文件的使用与编写" />
 <meta property="og:description" content="本文分享个人编写 TypeScript 声明文件的经验。" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TypeScript 的声明文件的使用与编写"/>
 <meta name="twitter:description" content="本文分享个人编写 TypeScript 声明文件的经验。"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142657" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142657" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887250" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887250" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142657"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887250"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142657" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887250" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -173,7 +177,7 @@
 </blockquote>
 <h3 id="11-网页上引用非模块化的-javascript-文件里的名称">1.1. 网页上引用非模块化的 JavaScript 文件里的名称</h3>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#008000">// &lt;script src=&#34;sample-00.js&#34;&gt;&lt;/script&gt;
-</span><span style="color:#008000"></span><span style="color:#008000">// 通过 script 标签引入名称到 JS 的全局命名空间中。
+</span><span style="color:#008000">// 通过 script 标签引入名称到 JS 的全局命名空间中。
 </span><span style="color:#008000"></span><span style="color:#00f">var</span> name = <span style="color:#a31515">&#34;Mick&#34;</span>;
 
 <span style="color:#00f">function</span> test(inStr) {
@@ -192,7 +196,7 @@
 <span style="color:#00f">declare</span> <span style="color:#00f">let</span> test: (inStr: <span style="color:#2b91af">string</span>) =&gt; <span style="color:#2b91af">string</span>;
 </code></pre></div><p>在 TypeScript 文件里使用 <strong>三斜线指令</strong> 引用这个文件：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File: test-01.ts
-</span><span style="color:#008000"></span><span style="color:#008000">/// &lt;reference path=&#34;./sample-00.d.ts&#34;&gt;
+</span><span style="color:#008000">/// &lt;reference path=&#34;./sample-00.d.ts&#34;&gt;
 </span><span style="color:#008000"></span>console.log(name); <span style="color:#008000">// 编译通过。
 </span><span style="color:#008000"></span>console.log(test(<span style="color:#a31515">&#34;hello&#34;</span>)); <span style="color:#008000">// 编译通过。
 </span></code></pre></div><h3 id="12-使用第三方库">1.2. 使用第三方库</h3>
@@ -200,7 +204,7 @@
 可以到 DefinitelyTyped 组织的 GitHub 仓库里面下载一份 <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/async/async.d.ts"><code>async.d.ts</code></a>
 文件，将之引用进来。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File: test-02.ts
-</span><span style="color:#008000"></span><span style="color:#008000">/// &lt;reference path=&#34;./async.d.ts&#34;&gt;
+</span><span style="color:#008000">/// &lt;reference path=&#34;./async.d.ts&#34;&gt;
 </span><span style="color:#008000"></span><span style="color:#00f">import</span> async = require(<span style="color:#a31515">&#34;async&#34;</span>);
 
 async.series([
@@ -553,7 +557,7 @@ module.exports = randomString;
 <li>
 <p>文件 ./node_modules/sample/index.d.ts</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ts" data-lang="ts"><span style="color:#008000">// File: ./node_modules/sample/index.d.ts
-</span><span style="color:#008000"></span><span style="color:#008000">// 导出函数 setABC
+</span><span style="color:#008000">// 导出函数 setABC
 </span><span style="color:#008000"></span><span style="color:#00f">export</span> <span style="color:#00f">declare</span> <span style="color:#00f">function</span> setABC(abcValue: <span style="color:#2b91af">number</span>): <span style="color:#00f">void</span>;
 
 <span style="color:#008000">// 导出函数 getABC
@@ -778,7 +782,7 @@ module.exports = randomString;
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

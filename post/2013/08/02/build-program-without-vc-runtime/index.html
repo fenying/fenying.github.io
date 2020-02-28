@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>用 VC2012 产生脱离VC运行库的 C/C&#43;&#43; 程序 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142658" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>用 VC2012 产生脱离VC运行库的 C/C&#43;&#43; 程序 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="用 VC2012 产生脱离VC运行库的 C/C&#43;&#43; 程序" />
 <meta property="og:description" content="最近在研究如何使一个VC编译的程序脱离VC运行库，也就是msvcrXX.dll。经过多次尝试，总算有所收获。" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="用 VC2012 产生脱离VC运行库的 C/C&#43;&#43; 程序"/>
 <meta name="twitter:description" content="最近在研究如何使一个VC编译的程序脱离VC运行库，也就是msvcrXX.dll。经过多次尝试，总算有所收获。"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142658" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142658" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142658"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142658" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -116,20 +120,20 @@
 
 				<p>最近在研究如何使一个VC编译的程序脱离VC运行库，也就是msvcrXX.dll。经过多次尝试，总算有所收获。</p>
 <p>首先，要把msvcrXX.dll脱离出来，第一步是取消链接库，代码是：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">pragma comment (linker, &#34;</span><span style="color:#00f">/</span><span style="color:#00f">nodefaultlib:msvcrt.lib&#34;) </span><span style="color:#008000">/*If _DEBUG, it should be msvcrtd.lib*/</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#pragma comment (linker, &#34;/nodefaultlib:msvcrt.lib&#34;) </span><span style="color:#008000">/*If _DEBUG, it should be msvcrtd.lib*/</span><span style="color:#00f">
 </span></code></pre></div><p>这样就把msvcrXX.dll去掉了，但是接下来的就问题无限了，比如，<code>mainCRTStartup</code> 函数没了。（这是Console程序，对于Windows程序应该是<code>WinMainCRTStartup</code>）。写过Windows SDK程序的人都知道，对于UNICODE和非UNICODE程序，入口函数是不一样的，为了统一，我们先指定下入口函数。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">pragma comment (linker, &#34;</span><span style="color:#00f">/</span><span style="color:#00f">entry:mainCRTStartup&#34;)</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#pragma comment (linker, &#34;/entry:mainCRTStartup&#34;)
 </span></code></pre></div><p>此外，没有 CRT 的时候，没法进行基本运行时检查，所以打开“项目属性-C/C++-代码生成”，把“基本运行时检查”改为“默认值”。（Release配置不用改，只改Debug）。</p>
 <p>下面是入口函数实现：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;Windows.h&gt;</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;Windows.h&gt;</span><span style="color:#00f">
 </span><span style="color:#00f"></span><span style="color:#2b91af">int</span> <span style="color:#00f">__cdecl</span> mainCRTStartup() {
-    WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello World!</span><span style="color:#a31515">\r</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>, 14, NULL, NULL);
+    WriteFile(GetStdHandle(STD_OUTPUT_HANDLE), <span style="color:#a31515">&#34;Hello World!</span><span style="color:#a31515">\r\n</span><span style="color:#a31515">&#34;</span>, 14, NULL, NULL);
     <span style="color:#00f">return</span> 0;
 }
 </code></pre></div><p>编译运行，Sorry，出错了。错误提示：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">1&gt;main.obj : error LNK2001: 无法解析的外部符号 @__security_check_cookie@4
 </code></pre></div><p>这个错误提示比较简单解决，只需引入 bufferoverflowU.lib 即可。</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">pragma comment (lib,&#34;bufferoverflowU.lib&#34;)</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#pragma comment (lib,&#34;bufferoverflowU.lib&#34;)
 </span></code></pre></div><p>这下再编译运行，OK了，此时程序只有3.5KB。但是，试试使用<code>malloc</code>？<code>printf</code>？或者是使用C++类？不好意思，这是VC运行库的内容。那么，似乎这么做毫无意义了？那也未必，如果你只是要 C 编程，那么可以把部分函数重写。比如：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#2b91af">void</span> *mem_alloc(ULONG_PTR uSize) {
     <span style="color:#00f">return</span> (<span style="color:#2b91af">void</span> *)HeapAlloc (GetProcessHeap(), 0,uSize);
@@ -163,52 +167,52 @@ DWORD echo(<span style="color:#2b91af">char</span> *pszOutput) { <span style="co
 }
 </code></pre></div><p>此时测试结果是，C++异常无效（需要在工程设置里把C++异常关掉，否则会提示找不到<code>__CxxFrameHandler3</code>），也就是说，这时 C++ 几乎废了。</p>
 <p>是否觉得这么做太烦了？其实，msvcrXX.dll是各个版本VC的运行库文件，VC2005开始都要独立安装，但是对于VC6，却几乎不存在这个问题。因为几乎Windows 2000开始的Windows系统都带有VC6的运行库，那么，用它取代掉就可以了！这个比较简单，在VC6安装包里，“VC\Lib\” 目录下，找到 MSVCRT.LIB 和 MSVCRTD.LIB。前者是 Release 版本，后者是 Debug 版本，复制到工程目录下，分别命名为 msvcrt98.lib 和 msvcrt98d.lib，然后在代码里写：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">pragma comment (linker, &#34;</span><span style="color:#00f">/</span><span style="color:#00f">nodefaultlib:msvcrt.lib&#34;) </span><span style="color:#008000">/* msvcrtd.lib If _DEBUG */</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">pragma comment (lib, &#34;msvcrt98.lib&#34;) </span><span style="color:#008000">/* msvcrt98d.lib If _DEBUG */</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#pragma comment (linker, &#34;/nodefaultlib:msvcrt.lib&#34;) </span><span style="color:#008000">/* msvcrtd.lib If _DEBUG */</span><span style="color:#00f">
+</span><span style="color:#00f">#pragma comment (lib, &#34;msvcrt98.lib&#34;) </span><span style="color:#008000">/* msvcrt98d.lib If _DEBUG */</span><span style="color:#00f">
 </span></code></pre></div><p>这里，引入了VC6的运行库，那么<code>mainCRTStartu</code>p也已经写好了，所以入口函数写 <code>main</code> 即可。而且由于VC6的静态链接库太旧，没有“SAFESEH安全异常处理程序”，因此要把“项目属性-链接器-高级-映像具有安全异常处理程序”设置为“否 (/SAFESEH:NO)”。</p>
 <p>到此，替代完成。<code>malloc</code>，<code>printf</code> 等 C 标准函数都可以用了。<code>new</code>，<code>delete</code> 等 C++ 运算符也可以用了，但是 C++ 异常依旧无效。</p>
 <p>下面是一份完整代码：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">ifdef _DEBUG</span><span style="color:#00f">
-</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">pragma comment (linker, &#34;</span><span style="color:#00f">/</span><span style="color:#00f">nodefaultlib:msvcrtd.lib&#34;)</span><span style="color:#00f">
-</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">pragma comment (lib, &#34;msvcrt98d.lib&#34;)</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">else</span><span style="color:#00f">
-</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">pragma comment (linker, &#34;</span><span style="color:#00f">/</span><span style="color:#00f">nodefaultlib:msvcrt.lib&#34;)</span><span style="color:#00f">
-</span><span style="color:#00f"></span>    <span style="color:#00f">#</span><span style="color:#00f">pragma comment (lib, &#34;msvcrt98.lib&#34;)</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#ifdef _DEBUG
+</span><span style="color:#00f"></span>    <span style="color:#00f">#pragma comment (linker, &#34;/nodefaultlib:msvcrtd.lib&#34;)
+</span><span style="color:#00f"></span>    <span style="color:#00f">#pragma comment (lib, &#34;msvcrt98d.lib&#34;)
+</span><span style="color:#00f">#else
+</span><span style="color:#00f"></span>    <span style="color:#00f">#pragma comment (linker, &#34;/nodefaultlib:msvcrt.lib&#34;)
+</span><span style="color:#00f"></span>    <span style="color:#00f">#pragma comment (lib, &#34;msvcrt98.lib&#34;)
+</span><span style="color:#00f">#endif
 </span><span style="color:#00f"></span>
-<span style="color:#00f">#</span><span style="color:#00f">pragma comment (lib,&#34;bufferoverflowU.lib&#34;)</span><span style="color:#00f">
+<span style="color:#00f">#pragma comment (lib,&#34;bufferoverflowU.lib&#34;)
 </span><span style="color:#00f"></span>
-<span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;windows.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;tchar.h&gt;</span><span style="color:#00f">
+<span style="color:#00f">#include</span> <span style="color:#00f">&lt;windows.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;stdio.h&gt;</span><span style="color:#00f">
+</span><span style="color:#00f">#include</span> <span style="color:#00f">&lt;tchar.h&gt;</span><span style="color:#00f">
 </span><span style="color:#00f"></span>
 class A {
 public:
     A(<span style="color:#2b91af">char</span> *pszStr) {
-        echo (<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">New A: </span><span style="color:#a31515">&#34;</span>);
+        echo (<span style="color:#a31515">&#34;New A: &#34;</span>);
         echo (pszStr);
-        echo (<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">\r</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>);
+        echo (<span style="color:#a31515">&#34;</span><span style="color:#a31515">\r\n</span><span style="color:#a31515">&#34;</span>);
     }
 
     ~A() {
-        echo (<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Delete A</span><span style="color:#a31515">\r</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>);
+        echo (<span style="color:#a31515">&#34;Delete A</span><span style="color:#a31515">\r\n</span><span style="color:#a31515">&#34;</span>);
     }
 
     <span style="color:#2b91af">void</span> print() {
-        echo (<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">A::print()</span><span style="color:#a31515">\r</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>);
+        echo (<span style="color:#a31515">&#34;A::print()</span><span style="color:#a31515">\r\n</span><span style="color:#a31515">&#34;</span>);
     }
 };
 
 <span style="color:#2b91af">int</span> main() {
-    A a(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Static</span><span style="color:#a31515">&#34;</span>), *pa;
+    A a(<span style="color:#a31515">&#34;Static&#34;</span>), *pa;
     DWORD c;
     <span style="color:#2b91af">char</span> *buf;
     buf = (<span style="color:#2b91af">char</span>*)malloc(123);
-    strcpy(buf, <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Hello World</span><span style="color:#a31515">\r</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>);
+    strcpy(buf, <span style="color:#a31515">&#34;Hello World</span><span style="color:#a31515">\r\n</span><span style="color:#a31515">&#34;</span>);
     printf(buf);
     a.print();
-    c = strlen(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">233213</span><span style="color:#a31515">&#34;</span>);
-    pa = new A(<span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">Dynamic</span><span style="color:#a31515">&#34;</span>);
+    c = strlen(<span style="color:#a31515">&#34;233213&#34;</span>);
+    pa = new A(<span style="color:#a31515">&#34;Dynamic&#34;</span>);
     pa-&gt;print();
     delete pa;
     free(buf);
@@ -251,7 +255,7 @@ public:
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

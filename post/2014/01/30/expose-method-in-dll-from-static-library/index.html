@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>将无源代码的 lib 内函数添加到 dll 输出函数 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142658" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>将无源代码的 lib 内函数添加到 dll 输出函数 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="将无源代码的 lib 内函数添加到 dll 输出函数" />
 <meta property="og:description" content="今天想把一个用汇编写的 lib 整合到一个 dll 的输出函数中，用 _declspec(dllexport) 导出该函数不可行，最后用 def 模块导出文件，终于在 Visual Studio 2012 下成功通过测试。" />
 <meta property="og:type" content="article" />
@@ -12,10 +12,10 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="将无源代码的 lib 内函数添加到 dll 输出函数"/>
 <meta name="twitter:description" content="今天想把一个用汇编写的 lib 整合到一个 dll 的输出函数中，用 _declspec(dllexport) 导出该函数不可行，最后用 def 模块导出文件，终于在 Visual Studio 2012 下成功通过测试。"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142658" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142658" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142658"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142658" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -48,6 +48,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -118,16 +122,16 @@
 <p>以 lib 函数 <code>myfunc1</code> 为例：</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> myfunc1(); 
 </code></pre></div><p>在 dllTest.h 内应该声明：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">ifdef _USRDLL</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">	pragma comment(lib, &#34;libMyFunc.lib&#34;) </span><span style="color:#008000">/* Sources static library */</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">else</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">	pragma comment(lib, &#34;dllTest.lib&#34;) </span><span style="color:#008000">/* Lib for dll. */</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#ifdef _USRDLL
+</span><span style="color:#00f">#	pragma comment(lib, &#34;libMyFunc.lib&#34;) </span><span style="color:#008000">/* Sources static library */</span><span style="color:#00f">
+</span><span style="color:#00f">#else
+</span><span style="color:#00f">#	pragma comment(lib, &#34;dllTest.lib&#34;) </span><span style="color:#008000">/* Lib for dll. */</span><span style="color:#00f">
+</span><span style="color:#00f">#endif
 </span><span style="color:#00f"></span>
 
-<span style="color:#00f">#</span><span style="color:#00f">ifdef __cplusplus </span><span style="color:#008000">/* myfunc1 is written in Assembly. */</span><span style="color:#00f">
-</span><span style="color:#00f"></span><span style="color:#00f">extern</span> <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">C</span><span style="color:#a31515">&#34;</span>
-<span style="color:#00f">#</span><span style="color:#00f">endif</span><span style="color:#00f">
+<span style="color:#00f">#ifdef __cplusplus </span><span style="color:#008000">/* myfunc1 is written in Assembly. */</span><span style="color:#00f">
+</span><span style="color:#00f"></span><span style="color:#00f">extern</span> <span style="color:#a31515">&#34;C&#34;</span>
+<span style="color:#00f">#endif
 </span><span style="color:#00f"></span><span style="color:#2b91af">int</span> <span style="color:#00f">__stdcall</span> myfunc1();
 </code></pre></div><p>然后使用 dllTest.def 模块定义文件，写如下内容：（Visual Studio 2012下，把“项目属性\连接器\输入\模块定义文件”修改为&quot;dllTest.def&rdquo;）</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-def" data-lang="def">LIBRARY dllTest
@@ -175,7 +179,7 @@ myfunc1
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |

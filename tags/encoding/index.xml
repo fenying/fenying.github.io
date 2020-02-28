@@ -22,6 +22,16 @@
     </item>
     
     <item>
+      <title>LiteRT/Encodings.js</title>
+      <link>https://fenying.github.io/project/litert/encoding.js/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/litert/encoding.js/</guid>
+      <description>TypeScript 编写的为 Node.js 提供各种常见编码支持的简单 API 封装库，包括：
+ base64 base64url base62x base32 base16(hex) urlencode  </description>
+    </item>
+    
+    <item>
       <title>扫盲：字符编码与字符集的区别</title>
       <link>https://fenying.github.io/post/2010/07/12/character-set-and-encoding/</link>
       <pubDate>Mon, 12 Jul 2010 11:26:57 +0800</pubDate>

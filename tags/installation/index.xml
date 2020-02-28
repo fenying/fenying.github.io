@@ -14,10 +14,10 @@
     
     <item>
       <title>第一章 安装 CentOS</title>
-      <link>https://fenying.github.io/books/minicentos-handbook/01.system-installation/</link>
+      <link>https://fenying.github.io/book/minicentos-handbook/01.system-installation/</link>
       <pubDate>Mon, 26 Dec 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://fenying.github.io/books/minicentos-handbook/01.system-installation/</guid>
+      <guid>https://fenying.github.io/book/minicentos-handbook/01.system-installation/</guid>
       <description>&lt;p&gt;本章进行系统安装和 SSH 配置。&lt;/p&gt;</description>
     </item>
     

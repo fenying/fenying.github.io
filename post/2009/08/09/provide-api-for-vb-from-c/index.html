@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>VC&#43;&#43;写DLL给VB使用 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1581142659" /><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>VC&#43;&#43;写DLL给VB使用 - Fenying</title><link rel="icon" type="image/png" href="/logo/32x32.png?sv=1582887249" /><meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta property="og:title" content="VC&#43;&#43;写DLL给VB使用" />
 <meta property="og:description" content="之前用VC写了一个DLL封装了MySQL的CAPI给VB使用。
 在写DLL时遇到了一箩筐问题，现在总结了一些经验，特地写在这里记下来以免遗忘。" />
@@ -14,10 +14,10 @@
 <meta name="twitter:title" content="VC&#43;&#43;写DLL给VB使用"/>
 <meta name="twitter:description" content="之前用VC写了一个DLL封装了MySQL的CAPI给VB使用。
 在写DLL时遇到了一箩筐问题，现在总结了一些经验，特地写在这里记下来以免遗忘。"/>
-<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1581142659" />
-	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1581142659" />
+<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/normalize.css?sv=1582887249" />
+	<link rel="stylesheet" type="text/css" media="screen" href="https://fenying.github.io/css/main.css?sv=1582887249" />
 
-		<script src="https://fenying.github.io/js/main.js?sv=1581142659"></script>
+		<script src="https://fenying.github.io/js/main.js?sv=1582887249"></script>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
 	
 		<div class="avatar">
 			<a href="https://fenying.github.io/">
-				<img src="/logo/128x128.png?sv=1581142659" alt="Fenying" />
+				<img src="/logo/128x128.png?sv=1582887249" alt="Fenying" />
 			</a>
 		</div>
 	
@@ -50,6 +50,10 @@
 			
 			<li>
 				<a href="/books/">Books</a>
+			</li>
+			
+			<li>
+				<a href="/project/">Projects</a>
 			</li>
 			
 			<li>
@@ -137,9 +141,9 @@
 <p>恩，好了，下面添加文件。按下Ctrl + N，添加一个头文件，命名“MyDll1.h”，再添加一个源文件，命名为“MyDll1.cpp”。</p>
 <p>好了？不，还差一个文件，小巧精悍的*.def文件，这个是在向导里选择“文本文件”，然后名字必须是“*.def”格式，一字不漏。</p>
 <p>首先打开MyDll1.h，添加第一行代码：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&lt;windows.h&gt;</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#include</span> <span style="color:#00f">&lt;windows.h&gt;</span><span style="color:#00f">
 </span></code></pre></div><p>接着是在MyDll1.cpp里添加</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#</span><span style="color:#00f">include</span> <span style="color:#00f">&#34;MyDll1.h&#34;</span><span style="color:#00f">
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#00f">#include</span> <span style="color:#00f">&#34;MyDll1.h&#34;</span><span style="color:#00f">
 </span></code></pre></div><p>开始吧～</p>
 <h2 id="第一个标准函数">第一个标准函数</h2>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#008000">//在MyDll1.h里添加
@@ -161,7 +165,7 @@ EXPORTS            Add
 <p>在工程目录的Release文件夹里找到MyDll1.dll，复制到 <code>C:\Windows\System32\</code> 下。</p>
 <p>下面是VB部分。</p>
 <p>启动VB，创建“标准EXE”工程，双击窗体，输入代码：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> Add <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByVal</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> Add <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;MyDll1.dll&#34;</span> (<span style="color:#00f">ByVal</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
 <span style="color:#008000">&#39;//注意声明方式，后面会深入探讨。
 </span><span style="color:#008000"></span>
 <span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
@@ -201,7 +205,7 @@ EXPORTS            Add
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">EXPORTS            AddEx
 </code></pre></div><p>保存，按下F7，再次复制到 <code>C:\Windows\System32\</code>。</p>
 <p>回到VB，使用下面的代码：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> AddEx <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> AddEx <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;MyDll1.dll&#34;</span> (<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
 <span style="color:#008000">&#39;ByRef调用方式
 </span><span style="color:#008000"></span><span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
 
@@ -216,13 +220,13 @@ EXPORTS            Add
 <p>VB中有一种“过程”，它没有返回值，相当于C/C++中的 <code>void</code> 型函数。例如:</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Sub1()
 
-    Msgbox <span style="color:#a31515">&#34;</span><span style="color:#a31515">Sub1!</span><span style="color:#a31515">&#34;</span>
+    Msgbox <span style="color:#a31515">&#34;Sub1!&#34;</span>
 
 <span style="color:#00f">End</span> <span style="color:#00f">Sub</span>
 </code></pre></div><p>在C/C++里是这样定义的</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#2b91af">void</span> func1()
 {
-    cout &lt;&lt; <span style="color:#a31515"></span><span style="color:#a31515">&#34;</span><span style="color:#a31515">func1</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>;
+    cout &lt;&lt; <span style="color:#a31515">&#34;func1</span><span style="color:#a31515">\n</span><span style="color:#a31515">&#34;</span>;
 }
 </code></pre></div><p>用VC写一个给VB用下试试。</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#008000">//在MyDll1.h里添加
@@ -236,7 +240,7 @@ EXPORTS            Add
 </code></pre></div><p>在MyDll1.def里添加</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">EXPORTS            NAdd
 </code></pre></div><p>回到VB，使用如下代码：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Sub</span> NAdd <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Sub</span> NAdd <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;MyDll1.dll&#34;</span> (<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>, <span style="color:#00f">ByVal</span> b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>)
 <span style="color:#008000">&#39;Sub声明方式，不是Function哦
 </span><span style="color:#008000"></span><span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
 
@@ -270,7 +274,7 @@ EXPORTS            Add
 </code></pre></div><p>在MyDll1.def里添加</p>
 <div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-fallback" data-lang="fallback">EXPORTS            TypeTest
 </code></pre></div><p>VB程序如下：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Sub</span> TypeTest <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> mytype)
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Sub</span> TypeTest <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;MyDll1.dll&#34;</span> (<span style="color:#00f">ByRef</span> a <span style="color:#00f">As</span> mytype)
 <span style="color:#00f">Private</span> Type mytype
     i <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
     b <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
@@ -308,7 +312,7 @@ EXPORTS            Add
     func1 = 123
 <span style="color:#00f">End</span> <span style="color:#00f">Function</span>
 </code></pre></div><p>再在窗体里写：</p>
-<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> GetBack <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;</span><span style="color:#a31515">MyDll1.dll</span><span style="color:#a31515">&#34;</span> (<span style="color:#00f">ByVal</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
+<div class="highlight"><pre style="background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#00f">Private</span> <span style="color:#00f">Declare</span> <span style="color:#00f">Function</span> GetBack <span style="color:#00f">Lib</span> <span style="color:#a31515">&#34;MyDll1.dll&#34;</span> (<span style="color:#00f">ByVal</span> a <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>) <span style="color:#00f">As</span> <span style="color:#2b91af">Long</span>
 
 <span style="color:#00f">Private</span> <span style="color:#00f">Sub</span> Form_Load()
 
@@ -373,7 +377,7 @@ EXPORTS            Add
 	</div>
 	<div class="footer wrapper">
 	<nav class="nav">
-		<div>Last updated on 2020-02-08</div>
+		<div>Last updated on 2020-02-28</div>
 		<div>
 			 © Copyright 2020 Angus Fenying  |
 			Power by <a href="https://gohugo.io/" target="_blank" title="Hugo">Hugo</a> |
