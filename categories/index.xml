@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
-    <lastBuildDate>Fri, 31 Jan 2020 17:15:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 03 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fenying.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,9 +15,18 @@
     <item>
       <title>Encoding</title>
       <link>https://fenying.github.io/categories/encoding/</link>
-      <pubDate>Fri, 31 Jan 2020 17:15:00 +0800</pubDate>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate>
       
       <guid>https://fenying.github.io/categories/encoding/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PHP</title>
+      <link>https://fenying.github.io/categories/php/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/categories/php/</guid>
       <description></description>
     </item>
     
@@ -40,6 +49,15 @@
     </item>
     
     <item>
+      <title>TypeScript</title>
+      <link>https://fenying.github.io/categories/typescript/</link>
+      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/categories/typescript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Cache</title>
       <link>https://fenying.github.io/categories/cache/</link>
       <pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate>
@@ -54,15 +72,6 @@
       <pubDate>Wed, 25 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://fenying.github.io/categories/security/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>TypeScript</title>
-      <link>https://fenying.github.io/categories/typescript/</link>
-      <pubDate>Tue, 07 Aug 2018 18:39:00 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/categories/typescript/</guid>
       <description></description>
     </item>
     
@@ -99,15 +108,6 @@
       <pubDate>Sat, 27 Aug 2016 17:46:00 +0800</pubDate>
       
       <guid>https://fenying.github.io/categories/cloud/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PHP</title>
-      <link>https://fenying.github.io/categories/php/</link>
-      <pubDate>Sun, 29 Nov 2015 14:40:16 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/categories/php/</guid>
       <description></description>
     </item>
     

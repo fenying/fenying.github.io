@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
-    <lastBuildDate>Fri, 31 Jan 2020 17:15:00 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 03 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fenying.github.io/categories/encoding/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>LiteRT/Molo.js</title>
+      <link>https://fenying.github.io/project/litert/molo.js/</link>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/project/litert/molo.js/</guid>
+      <description>TypeScript 编写的为 Node.js 提供 IoC/DI 的框架。</description>
+    </item>
     
     <item>
       <title>DER 编码规范理解</title>

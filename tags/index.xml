@@ -7,10 +7,82 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© Copyright 2020 Angus Fenying</copyright>
-    <lastBuildDate>Thu, 27 Feb 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 03 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://fenying.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>container</title>
+      <link>https://fenying.github.io/tags/container/</link>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/container/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dependency</title>
+      <link>https://fenying.github.io/tags/dependency/</link>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/dependency/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>di</title>
+      <link>https://fenying.github.io/tags/di/</link>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/di/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>injection</title>
+      <link>https://fenying.github.io/tags/injection/</link>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/injection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ioc</title>
+      <link>https://fenying.github.io/tags/ioc/</link>
+      <pubDate>Fri, 03 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/ioc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>analyzer</title>
+      <link>https://fenying.github.io/tags/analyzer/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/analyzer/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>php</title>
+      <link>https://fenying.github.io/tags/php/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>profile</title>
+      <link>https://fenying.github.io/tags/profile/</link>
+      <pubDate>Sat, 28 Mar 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/profile/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>timezone</title>
@@ -63,6 +135,24 @@
       <pubDate>Mon, 20 Jan 2020 18:32:00 +0800</pubDate>
       
       <guid>https://fenying.github.io/tags/mongodb/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>game</title>
+      <link>https://fenying.github.io/tags/game/</link>
+      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/game/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>minesweeper</title>
+      <link>https://fenying.github.io/tags/minesweeper/</link>
+      <pubDate>Thu, 16 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://fenying.github.io/tags/minesweeper/</guid>
       <description></description>
     </item>
     
@@ -180,15 +270,6 @@
       <pubDate>Tue, 24 Sep 2019 11:44:00 +0800</pubDate>
       
       <guid>https://fenying.github.io/tags/fpm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>php</title>
-      <link>https://fenying.github.io/tags/php/</link>
-      <pubDate>Tue, 24 Sep 2019 11:44:00 +0800</pubDate>
-      
-      <guid>https://fenying.github.io/tags/php/</guid>
       <description></description>
     </item>
     
